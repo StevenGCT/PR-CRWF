@@ -1,0 +1,26 @@
+@api =  http://localhost:4000/categorys
+
+GET {{api}}
+
+################################
+
+POST {{api}}
+Content-Type: application/json
+
+{
+    "Category" :"Ejemplo"
+}
+################################
+GET {{api}}/4
+################################
+DELETE {{api}}/4
+################################
+GET {{api}}/count
+################################
+PUT {{api}}/10
+Content-Type: application/json
+
+{
+    "Category" :"Prueba Update"
+}
+################################
