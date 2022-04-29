@@ -1,21 +1,29 @@
 import React from "react";
 
-export default class Login extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+export default function NavbarLogin(props){
 
-    render() {
-        return <div>
-                    <nav className="navbar navbar-light bg-light ps-4 pe-4">
+        return (<div>
+                    <nav className="navbar navbar-light ps-2 pe-2">
                         <div className="container-fluid">
-                            <a className="navbar-brand" href="#">IncUVa - Lab</a>
-                            <p className="navbar-brand fs-6" href="#">¿No tienes cuenta? 
-                            <a className="btn btn-link" href="/register">Regístrate</a></p>
-                            
+                            <a className="navbar-brand text-light" href="#">IncUVa - Lab</a>
+                            {
+                                props.locale == true &&
+                                <div>
+                                    <p className="navbar-brand fs-6 text-light" href="#">¿No tienes cuenta? 
+                                    <a className="btn btn-link text-light" href="/register">Regístrate</a></p>
+                                </div>
+                            }
+
+                            {
+                                props.locale == false &&
+                                <div>
+                                    <p className="navbar-brand fs-6 text-light" href="#">¿Tienes una cuenta? 
+                                    <a className="btn btn-link text-light" href="/login">Iniciar Sesión</a></p>
+                                </div>
+                            }
                             
                         </div>
                     </nav>
-                </div>
+                </div>);
     }
-}
+

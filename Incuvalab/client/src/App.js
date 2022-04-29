@@ -16,7 +16,7 @@ function App() {
                     <Route path="*" element={<NotFoundPage/>}/>
                     <Route exact path='/' component={<Home/>} />
                     <Route path='/register' element={<Register />}/>
-                    <Route path='/login' element={<Login />} />
+                    <Route path='/login' element={<Login/>} />
                 </Routes>
             </PostProvider>
             

@@ -14,7 +14,7 @@ function RegisterForm() {
     return (
         <div className="base-container">
             
-            <NavbarLogin/>
+            <NavbarLogin locale = {false}/>
 
             <div className="container-sm mt-2">
                 <div className="row ">
@@ -23,7 +23,7 @@ function RegisterForm() {
                             <img src={registerImg}></img>
                         </div>
                     </div>
-                    <div className="col text-start card p-5 ">
+                    <div className="col text-start card p-5 shadow-lg p-3 mb-5 bg-body rounded">
                     <div className="mb-3">
                         <label className="fs-1">Registro</label>
                     </div>
@@ -38,11 +38,11 @@ function RegisterForm() {
                                 confirmPassword:''
                                 }}
                                 validationSchema={Yup.object({
-                                    name: Yup.string().required('Nombre es un campo requerido'),
-                                    lastName: Yup.string().required('Apellido es un campo requerido'),
-                                    email: Yup.string().required('Email es un campo requerido').email('Email invalido'),
-                                    password: Yup.string().required('Contraseña es un campo requerido').min(8, 'Contraseña demasiado corta - Ingrese por lo menos 8 caracteres.'),
-                                    confirmPassword: Yup.string().required('Confimación de la contraseña es un campo requerido').oneOf([Yup.ref('password'), null], 'Las contraseñas no coinciden')
+                                    name: Yup.string().required('* Nombre es un campo requerido'),
+                                    lastName: Yup.string().required('* Apellido es un campo requerido'),
+                                    email: Yup.string().required('* Email es un campo requerido').email('* Email invalido'),
+                                    password: Yup.string().required('* Contraseña es un campo requerido').min(8, '* Contraseña demasiado corta - Ingrese por lo menos 8 caracteres.'),
+                                    confirmPassword: Yup.string().required('* Confimación de la contraseña es un campo requerido').oneOf([Yup.ref('password'), null], '* Las contraseñas no coinciden')
                                 })}
                                 onSubmit={async (values, actions) => {
                                     await registerUser(values)
@@ -52,32 +52,42 @@ function RegisterForm() {
                             {({handleSubmit}) => (
                                 <Form onSubmit={handleSubmit}>
                                     <div className="form-group mb-3">
-                                        <label htmlFor="name" className="form-label">Nombre
-                                        <ErrorMessage component="p" name="name" className="ml-2 text-danger"/></label>
+                                        <div className="row">
+                                        <label htmlFor="name" className="col-3 form-label">Nombre</label>
+                                        <ErrorMessage component="p" name="name" className="col text-danger"/>
+                                        </div>
                                         <Field name='name' className="form-control"/>
                                     </div>
                                     <div className="form-group mb-3">
-                                        <label htmlFor="lastname" className="form-label">Apellido
-                                        <ErrorMessage component="p" name="lastName" className="ms-2 text-danger"/></label>
+                                        <div className="row">
+                                        <label htmlFor="lastname" className="col-3 form-label">Apellido</label>
+                                        <ErrorMessage component="p" name="lastName" className="col text-danger"/>
+                                        </div>
                                         <Field name='lastName' className="form-control"/>
                                     </div>
                                     
                                     <div className="form-group mb-3">
-                                        <label htmlFor="email" className="form-label">Email
-                                        <ErrorMessage component="p" name="email" className="ms-2 text-danger"/></label>
+                                        <div className="row">
+                                        <label htmlFor="email" className="col-3 form-label">Email</label>
+                                        <ErrorMessage component="p" name="email" className="col text-danger"/>
+                                        </div>
                                         <Field name='email' type="email" className="form-control" placeholder="nombre@ejemplo.com"/>
                                     </div>
                                     
                                     <div className="form-group mb-3">
-                                        <label htmlFor="password" className="form-label">Contraseña
-                                        <ErrorMessage component="p" name="password" className="ms-2 text-danger"/></label>
+                                        <div className="row">
+                                        <label htmlFor="password" className="col-3 form-label">Contraseña</label>
+                                        <ErrorMessage component="p" name="password" className="col text-danger"/>
+                                        </div>
                                         <Field  name='password' type="password" className="form-control"/>
+                                       
                                     </div>
 
                                     <div className="form-group mb-3">
-                                        <label htmlFor="password" className="form-label">Confirma tu contraseña
-                                        </label>
-                                        <ErrorMessage component="p" name="confirmPassword" className="text-danger"/>
+                                        <div className="row">
+                                        <label htmlFor="password" className="col-5 form-label">Confirma tu contraseña</label>
+                                        <ErrorMessage component="p" name="confirmPassword" className="col text-danger"/>
+                                        </div>
                                         <Field name='confirmPassword' type="password" className="form-control"/>
                                     </div>
                                     
