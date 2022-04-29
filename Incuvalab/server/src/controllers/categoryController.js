@@ -19,17 +19,18 @@ export const getCategorys = async(req, res) => {
 
 export const createCategory = async(req, res) => {
     try {
-        const { Category } = req.body;
-        if (Category == null) {
+        const {categoryName} = req.body;
+        if (categoryName == null) {
             res.status(400).json({ msg: 'Bad Request. Please fill all fields' });
+            
         } else {
             //console.log(Category);
             const pool = await getConnection();
             var result = await pool.request()
-                .input("category", sql.VarChar, Category)
+                .input("category", sql.VarChar, categoryName)
                 .query(queries.createNewCategory);
             console.log(result.rowsAffected);
-            res.json({ Category });
+            res.json({categoryName});
         }
     } catch (err) {
         res.status(500);
