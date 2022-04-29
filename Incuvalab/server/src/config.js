@@ -8,4 +8,6 @@ export default {
     dbPassword: process.env.DB_PASS || '',
     dbServer: process.env.DB_SERVER || '',
     dbDatabase: process.env.DB || '',
+    email:process.env.EMAIL || '',
+    password:process.env.PASSWORD || ''
 }
