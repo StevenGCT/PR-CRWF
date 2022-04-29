@@ -1,38 +1,24 @@
-.App {
-  text-align: center;
+.bg-MainUnivalle{
+  background-color: #9D0044;
+}
+.btn-flat {
+  background-color: #FF4F9B;
+  color: white;
+}
+.content{
+  padding: 12px;
+  height: 3000px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.progress {
+  accent-color: #231F20;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.navLink{
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.custom-nav{
+  color: white;
+  align-content: stretch;
 }
