@@ -10,12 +10,6 @@ export const usePosts = () => {
 export const PostProvider = ({children}) => {
     const [posts, setPosts] = useState([])
 
-   /* const getUser = async () => {
-        const res = await getUserRequest()
-        console.log(res)
-        //setPost(res.data)
-    }*/
-
     const registerUser = async (user) => {
         const res = await registerUserRequest(user);
     }
@@ -25,11 +19,6 @@ export const PostProvider = ({children}) => {
         console.log(res.data);
         return res.data;
     }
-
-    useEffect(() => {
-       //getPosts()
-    }, [])
-
 
     return <postContext.Provider value={{
         posts,

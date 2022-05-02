@@ -1,30 +1,31 @@
-import loginImg from "../../login2.svg";
-import NavbarLogin from "../../components/login/navbar_login"
+import NavbarLogin from "../../components/header-navbar"
+import Footer from "../../components/footer"
 import { usePosts } from "../../context/postContext"
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
+import "../../stylesheets/login.css"
 
 function LoginForm() {
 
     const { loginUser } = usePosts();
-    const { posts } = usePosts();
     const navigate = useNavigate();
     var errorLogin = false;
+
     return (
         <div className="base-container">
 
             <NavbarLogin locale={true} />
 
-            <div className="container-sm mt-5">
+            <div className="container-sm my-5 card shadow-lg bg-body rounded">
                 <div className="row ">
-                    <div className="col text-start card p-5 shadow-lg p-3 mb-5 bg-body rounded">
+                    <div className="col text-start m-5">
 
                         <div className="mb-5">
-                            <label className="fs-1">Inicio de sesión</label>
+                            <h1>Inicio de sesión</h1>
                         </div>
 
-                        <div className="content" >
+                        <div className="content mb-4" >
                             <Formik className="form"
                                 initialValues={{
                                     email: '',
@@ -65,17 +66,18 @@ function LoginForm() {
                                                 <ErrorMessage component="p" name="password" className="col text-danger" />
                                             </div>
                                             <Field name='password' type="password" className="form-control" />
+                                            <div className="text-center my-4">
+                                                <a className="link-secondary text-center">¿Olvidaste tu contraseña?</a>
+                                            </div>
                                         </div>
 
                                         <div className="text-center">
-                                            <div className="footer mt-4 card text-center">
-                                                <button type="submit" className="btn btn-outline-primary">
-                                                    Inciar Sesión
+                                            <div className="footer mt-4 card">
+                                                <button type="submit" className="btn btn-outline-secondary">
+                                                    Iniciar Sesión
                                                 </button>
 
                                             </div>
-                                            <hr></hr>
-                                            <a>¿Olvidaste tu contraseña?</a>
                                         </div>
                                     </Form>
                                 )}
@@ -84,15 +86,22 @@ function LoginForm() {
                         </div>
 
                     </div>
-                    <div className="col-7 ">
-                        <div className="image img-fluid">
-                            <img src={loginImg}></img>
-                        </div>
 
+                    <div className="col-7 position-relative gradient">
+                        <div className="position-absolute top-50 start-50 translate-middle text-light text-center">
+                            <h1>¡Bienvenido!</h1>
+                            <h3 className="">Estamos a tu disposición para ayudarte.</h3>
+                            <h6 className="my-4">¿No tienes una cuenta?</h6>
+                            <form action="/register">
+                                <button className="btn-option" type="sumit">Registrate</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
             </div>
+
+            <Footer />
         </div>
     );
 }
