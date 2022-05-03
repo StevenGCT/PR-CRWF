@@ -1,0 +1,22 @@
+@api =  http://localhost:4000/users
+
+GET {{api}}
+
+################################
+POST {{api}}
+Content-Type: application/json
+
+{
+    "Users" :"Ejemplo"
+}
+################################
+GET {{api}}/4
+################################
+GET {{api}}/count
+
+Content-Type: application/json
+
+{
+    "Users" :"Prueba Update"
+}
+################################
