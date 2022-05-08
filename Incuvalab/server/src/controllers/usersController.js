@@ -87,3 +87,45 @@ export const getTitleOfFundingDonateByUserId = async(req, res) => {
         res.send(error.message);
     }
 }
+
+export const updatePasswordByUserId = async(req, res) => {
+    try {
+        const pool = await getConnection();
+        const { NewPassword } = req.body;
+        const { id } = req.params;
+        if (NewPassword == null || id == null) {
+            res.status(400).json(msg, "Bad Request undefined Category Or id");
+        } else {
+            const result = await pool.request()
+                .input('newPassword', sql.VarChar, NewPassword)
+                .input('id', sql.Int, id)
+                .query(queries.changePassword);
+            res.status(200);
+            res.json(result);
+        }
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const updateImageProfile = async(req, res) => {
+    try {
+        const pool = await getConnection();
+        const { NewImageProfile } = req.body;
+        const { id } = req.params;
+        if (NewImageProfile == null || id == null) {
+            res.status(400).json(msg, "Bad Request undefined Category Or id");
+        } else {
+            const result = await pool.request()
+                .input('newImageProfile', sql.VarChar, NewImageProfile)
+                .input('id', sql.Int, id)
+                .query(queries.changeImageProfile);
+            res.status(200);
+            res.json(result);
+        }
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}

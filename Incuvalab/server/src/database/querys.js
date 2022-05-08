@@ -14,4 +14,7 @@ export const queries = {
     getTitleFundingByUserId: "SELECT F.Title FROM Funding F INNER JOIN User_Funding UE ON F.IdFunding = UE.idFunding WHERE UE.idUser = @id",
     getCountDonateByUserId: "SELECT COUNT(*) FROM Donations D INNER JOIN Users U ON D.IdUser = U.IdUser WHERE U.idUser = @id",
     getTitleOfFundingDonateByUserId: "SELECT F.Title FROM Donations D INNER JOIN Users U ON D.IdUser = U.IdUser INNER JOIN Funding F ON D.IdFunding = f.IdFunding WHERE U.idUser = @id",
+    changePassword: "Update Users SET Password = HASHBYTES('MD5', @newPassword) WHERE IdUser = @id",
+    changeImageProfile: "UPDATE UI SET UI.UserImage = @newImageProfile FROM UserImage UI INNER JOIN Users U ON UI.IdImage = U.idUsersImage WHERE U.IdUser = @id"
+
 }
