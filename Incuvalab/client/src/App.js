@@ -1,14 +1,16 @@
-import {HomePage, NotFoundPage} from './pages';
+import {Catalogue, NotFoundPage} from './pages';
 import {Routes, Route} from 'react-router-dom';
-
+import { PostProvider } from './context/postContext';
 
 function App() {
     return ( 
-        <div className="bg-red-400 h-screen">
-            <Routes>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="*" element={<NotFoundPage/>}/>
-            </Routes>
+        <div>
+            <PostProvider>
+                <Routes>
+                    <Route path="/" element={<Catalogue/>}/>
+                    <Route path="*" element={<NotFoundPage/>}/>
+                </Routes>
+            </PostProvider>
         </div>
         );
 }

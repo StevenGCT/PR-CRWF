@@ -1,3 +1,3 @@
-export {HomePage} from './HomePage';
+export {Catalogue} from './Catalogue';
 export {NotFoundPage} from './NotFoundPage';
 

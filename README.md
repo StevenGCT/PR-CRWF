@@ -16,5 +16,13 @@ para instalar todas las depencias se necesita estar en el directorio incuba lab 
 
 falta instalar la propiedad npm i -g @babel/node
 
+Más info de babel:
+https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
+
+
+Ejecutar este comando cuando se llegue a la ultima parte del proyecto
+npm audit fix --force
+
+
 
 (EJEMPLO TEST GIT COMMIT A MI RAMA)
