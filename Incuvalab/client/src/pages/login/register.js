@@ -10,7 +10,16 @@ import "../../stylesheets/login.css"
 function RegisterForm() {
 
     const { registerUser } = usePosts();
+
     const navigate = useNavigate();
+
+    function getUsername(firstName, lastName) {
+        let username = firstName + lastName;
+        let userRows  = new RegExp('^{$username}(-[0-9]*)?$');
+        let countUser = Math.random()*(0-100)-100;
+
+        return (countUser > 1) ? userRows+'-'+countUser : username;
+    }
 
     return (
         <div className="base-container">
@@ -43,7 +52,8 @@ function RegisterForm() {
                                     email: '',
                                     password: '',
                                     confirmPassword: '',
-                                    cbxCkeckPrivacyPolicy: ''
+                                    cbxCkeckPrivacyPolicy: '',
+                                    username:''
                                 }}
                                 validationSchema={Yup.object({
                                     name: Yup.string().required('* Nombre es un campo requerido'),
@@ -54,14 +64,20 @@ function RegisterForm() {
                                     cbxCkeckPrivacyPolicy: Yup.boolean().required('* Debes aceptar los terminos y condiciones').oneOf([true],'* Debes aceptar los terminos y condiciones')
                                 })}
                                 onSubmit={async (values, actions) => {
-                                    await registerUser(values)
-                                    navigate('/')
+                                    values.username = getUsername(values.name, values.lastName);
+                                    const posts = await registerUser(values);
+                                    if (posts.length > 0) {
+                                        localStorage.setItem('user',JSON.stringify(posts));
+                                        navigate('/')
+                                    } else {
+                                        //errorLogin = true;
+                                    }
                                 }}
                             >
                                 {({ handleSubmit }) => (
                                     <Form onSubmit={handleSubmit}>
-                                        <div class="row">
-                                            <div class="row">
+                                        <div className="row">
+                                            <div className="row">
                                                 <ErrorMessage component="p" name="name" className="col text-danger" />
                                                 <ErrorMessage component="p" name="lastName" className="col text-danger" />
                                             </div>
@@ -85,7 +101,6 @@ function RegisterForm() {
                                                 <ErrorMessage component="p" name="password" className="col text-danger" />
                                             </div>
                                             <Field name='password' type="password" className="form-control" placeholder="Contraseña" />
-
                                         </div>
 
                                         <div className="form-group mb-3">
@@ -96,16 +111,16 @@ function RegisterForm() {
                                         </div>
 
                                         <div class="form-check">
-                                            <Field name="cbxSendEmailProyects" class="form-check-input" type="checkbox" id="gridCheck" />
-                                            <label class="form-check-label" for="gridCheck">
+                                            <Field name="cbxSendEmailProyects" className="form-check-input" type="checkbox" id="gridCheck" />
+                                            <label className="form-check-label" htmlFor="gridCheck">
                                                 Envíenme una combinación semanal de proyectos seleccionados exclusivamente para mí, además de noticias ocasionales de IncUVa Lab
                                             </label>
                                         </div>
 
                                         <div class="form-check">
                                             <ErrorMessage component="p" name="cbxCkeckPrivacyPolicy" className="col text-danger" />
-                                            <Field name="cbxCkeckPrivacyPolicy" class="form-check-input" type="checkbox" id="gridCheck" />
-                                            <label class="form-check-label" for="gridCheck">
+                                            <Field name="cbxCkeckPrivacyPolicy" className="form-check-input" type="checkbox" id="gridCheck" />
+                                            <label className="form-check-label" htmlFor="gridCheck">
                                                 Acepto la <a className="link-primary">Política de privacidad</a> , <a className="link-primary">Política de cookies y los Términos de uso</a>.
                                             </label>
                                         </div>

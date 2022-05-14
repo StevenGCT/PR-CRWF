@@ -7,7 +7,7 @@ import Register from './pages/login/register';
 import { PostProvider } from './context/postContext'
 
 function App() {
-    return ( 
+    return (
         <div>
             <PostProvider>
                 <Routes>
@@ -16,8 +16,7 @@ function App() {
                     <Route path='/login' element={<Login/>} />
                 </Routes>
             </PostProvider>
-            
         </div>
-        );
+    );
 }
 export default App;

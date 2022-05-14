@@ -40,7 +40,7 @@ var createUser = /*#__PURE__*/function () {
           case 7:
             pool = _context.sent;
             _context.next = 10;
-            return pool.request().input("name", _database.sql.VarChar, req.body.name).input("lastName", _database.sql.VarChar, req.body.lastName).input("email", _database.sql.VarChar, req.body.email).input("password", _database.sql.VarChar, req.body.password).query(_database.queries.createNewUser);
+            return pool.request().input("name", _database.sql.VarChar, req.body.name).input("lastName", _database.sql.VarChar, req.body.lastName).input("email", _database.sql.VarChar, req.body.email).input("password", _database.sql.VarChar, req.body.password).input("username", _database.sql.VarChar, req.body.username).query(_database.queries.createNewUser);
 
           case 10:
             result = _context.sent;

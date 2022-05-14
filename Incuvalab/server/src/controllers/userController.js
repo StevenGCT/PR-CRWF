@@ -12,6 +12,7 @@ export const createUser = async(req, res) => {
                 .input("lastName", sql.VarChar, req.body.lastName)
                 .input("email", sql.VarChar, req.body.email)
                 .input("password", sql.VarChar, req.body.password)
+                .input("username", sql.VarChar, req.body.username)
                 .query(queries.createNewUser);
             console.log(result.rowsAffected);
             res.json(req.body);

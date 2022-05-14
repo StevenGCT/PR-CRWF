@@ -46,7 +46,7 @@ export default function Footer(props) {
                                 <h5>Suscribete a nuestro boletin</h5>
                                 <p>Resumen mensual de lo que es nuevo y emocionante de nosotros.</p>
                                 <div className="d-flex w-100 gap-2">
-                                    <label for="newsletter1" className="visually-hidden">Dirección de email</label>
+                                    <label htmlFor="newsletter1" className="visually-hidden">Dirección de email</label>
                                     <input id="newsletter1" type="text" className="form-control" placeholder="Direccion de email"/>
                                         <button className="btn btn-primary" type="button">Suscríbete</button>
                                 </div>

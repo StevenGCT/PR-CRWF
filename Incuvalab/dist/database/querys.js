@@ -12,7 +12,7 @@ var queries = {
   getCountCategory: "SELECT COUNT(*) FROM Category",
   updateCategoryById: "Update Category SET CategoryName = @category WHERE IdCategory = @id",
   rankCategory: "SELECT TOP 10 * FROM Funding ORDER BY CurrentGoal DESC",
-  createNewUser: "INSERT INTO Users ([Name] ,LastName, Email, [Password]) VALUES (@name, @lastName, @email, HashBytes('MD5', @password))",
+  createNewUser: "INSERT INTO Users ([Name] ,LastName, Email, [Password], UserName) VALUES (@name, @lastName, @email, HashBytes('MD5', @password), @username)",
   getUserById: "SELECT * FROM Users WHERE IdUser = @id",
   getLoginUser: "SELECT IdUser FROM Users WHERE Email = @email AND [Password]= HashBytes('MD5',@password)",
   deleteUserById: "DELETE FROM Users WHERE IdUser = @id",

@@ -12,11 +12,16 @@ export const PostProvider = ({children}) => {
 
     const registerUser = async (user) => {
         const res = await registerUserRequest(user);
+        
+        if(res.data != null){
+            const resLogin = await loginUserRequest(user);
+            return resLogin.data;
+        }
+        
     }
 
     const loginUser = async (user) => {
         const res = await loginUserRequest(user);
-        console.log(res.data);
         return res.data;
     }
 

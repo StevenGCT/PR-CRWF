@@ -9,6 +9,7 @@ import "../../stylesheets/login.css"
 function LoginForm() {
 
     const { loginUser } = usePosts();
+
     const navigate = useNavigate();
     var errorLogin = false;
 
@@ -36,8 +37,10 @@ function LoginForm() {
                                     password: Yup.string().required('* Contraseña es un campo requerido'),
                                 })}
                                 onSubmit={async (values, actions) => {
+                                    
                                     const posts = await loginUser(values)
                                     if (posts.length > 0) {
+                                        localStorage.setItem('user',JSON.stringify(posts));
                                         navigate('/')
                                     } else {
                                         errorLogin = true;
