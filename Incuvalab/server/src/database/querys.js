@@ -10,6 +10,8 @@ export const queries = {
 
 export const fundqueries = {
     getAllFunding: "SELECT * FROM Funding WHERE State = 1 AND Aprove = 1",
+    getEveryFunding: "SELECT * FROM Funding",
+    getAllFundingByCat: "SELECT * FROM Funding WHERE IdCategory = @id",
     createNewFunding: "INSERT INTO Funding VALUES(@funding)",
     getFundingById: "SELECT * FROM Funding WHERE IdFunding = @id",
     deleteFundingById: "DELETE FROM Funding WHERE IdFunding = @id",

@@ -1,11 +1,11 @@
-import { usePostsFund } from '../context/postContext2'
+import { usePosts } from '../context/postContext2'
 import { Card, ProgressBar, CardGroup, Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export function FundCards() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
     //ARREGLAR BUG DEL PROGRESS BAR (CUANDO ESTE LLEGUE A SU META DEJAR EL PORCENTAJE EN 100 Y YA NO CALCULAR ESTE MISMO)
-    const {posts} = usePostsFund()
+    const {posts} = usePosts()
 
     return(
     <CardGroup>

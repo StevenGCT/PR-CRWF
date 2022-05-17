@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getFunding, getFundingById } from '../controllers/fundingController';
+import { getFunding, getFundingByCat, getFundingById } from '../controllers/fundingController';
 
 const router = Router();
 
@@ -7,6 +7,8 @@ const router = Router();
 router.get('/funding', getFunding);
 // Get Fundung BY ID
 router.get('/funding/:id', getFundingById);
+// Get Fundung BY Category
+router.get('/funding/category/:id', getFundingByCat);
 /*
 // Insert Funding
 router.post('/funding', createCategory);

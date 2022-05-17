@@ -1,16 +1,17 @@
 import {Catalogue, NotFoundPage} from './pages';
 import {Routes, Route} from 'react-router-dom';
-import { PostProvider } from './context/postContext';
+import { PostProviderFund } from './context/postContext2';
+
 
 function App() {
     return ( 
         <div>
-            <PostProvider>
+            <PostProviderFund>
                 <Routes>
-                    <Route path="/" element={<Catalogue/>}/>
+                    <Route path="/catalogue" element={<Catalogue/>}/>
                     <Route path="*" element={<NotFoundPage/>}/>
                 </Routes>
-            </PostProvider>
+            </PostProviderFund>
         </div>
         );
 }

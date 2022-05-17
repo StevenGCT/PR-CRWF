@@ -23,6 +23,6 @@ https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
 Ejecutar este comando cuando se llegue a la ultima parte del proyecto
 npm audit fix --force
 
-
+IMPORTANTE: NO DEJAR NINGUN COMENTARIO EN CUALQUIER ARCHIVO DE Incuvalab/server/request Y Incuvalab/client/src/api Y Incuvalab/client/src/context
 
 (EJEMPLO TEST GIT COMMIT A MI RAMA)
