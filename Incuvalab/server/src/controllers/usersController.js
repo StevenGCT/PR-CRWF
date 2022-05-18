@@ -34,8 +34,10 @@ export const getUserById = async(req, res) => {
 
 export const getCountFundingByUserId = async(req, res) => {
     try {
+        const { id } = req.params;
         const pool = await getConnection();
         const result = await pool.request()
+            .input('id', id)
             .query(queries.getCountFundingByUserId)
         console.log(result);
         res.status(200);
@@ -48,8 +50,10 @@ export const getCountFundingByUserId = async(req, res) => {
 
 export const getTitleFundingByUserId = async(req, res) => {
     try {
+        const { id } = req.params;
         const pool = await getConnection();
         const result = await pool.request()
+            .input('id', id)
             .query(queries.getTitleFundingByUserId)
         console.log(result);
         res.status(200);
@@ -62,8 +66,10 @@ export const getTitleFundingByUserId = async(req, res) => {
 
 export const getCountDonateByUserId = async(req, res) => {
     try {
+        const { id } = req.params;
         const pool = await getConnection();
         const result = await pool.request()
+            .input('id', id)
             .query(queries.getCountDonateByUserId)
         console.log(result);
         res.status(200);
@@ -76,8 +82,10 @@ export const getCountDonateByUserId = async(req, res) => {
 
 export const getTitleOfFundingDonateByUserId = async(req, res) => {
     try {
+        const { id } = req.params;
         const pool = await getConnection();
         const result = await pool.request()
+            .input('id', id)
             .query(queries.getTitleOfFundingDonateByUserId)
         console.log(result);
         res.status(200);

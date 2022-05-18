@@ -3,20 +3,13 @@
 GET {{api}}
 
 ################################
-POST {{api}}
-Content-Type: application/json
-
-{
-    "Users" :"Ejemplo"
-}
+GET {{api}}/3
 ################################
-GET {{api}}/4
+GET {{api}}/countFunding/3
 ################################
-GET {{api}}/count
-
-Content-Type: application/json
-
-{
-    "Users" :"Prueba Update"
-}
+GET {{api}}/TitleFunding/3
+################################
+GET {{api}}/countDonated/3
+################################
+GET {{api}}/TitleFundingDonated/3
 ################################
