@@ -15,7 +15,7 @@ function RegisterForm() {
 
     function getUsername(firstName, lastName) {
         let username = firstName + lastName;
-        let userRows  = new RegExp('^{$username}(-[0-9]*)?$');
+        let userRows  = new RegExp('^{$username}(-[0-3]*)?$');
         let countUser = Math.random()*(0-100)-100;
 
         return (countUser > 1) ? userRows+'-'+countUser : username;

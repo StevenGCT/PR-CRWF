@@ -1,5 +1,10 @@
 import { useState, useContext, createContext , useEffect} from 'react'
 import { loginUserRequest, registerUserRequest} from '../api/users'
+
+//** Otro */
+import { getFundingByIdRequest } from '../api/funding'
+//** Otro */
+
 const postContext = createContext();
 
 export const usePosts = () => {
@@ -25,11 +30,22 @@ export const PostProvider = ({children}) => {
         return res.data;
     }
 
+    //** Otro */
+    const getFundingById = async (idFunding) => {
+        const res = await getFundingByIdRequest(idFunding);
+        return res.data;
+    }
+
+    useEffect(() => {
+      
+    },[]);
+
     return <postContext.Provider value={{
         posts,
         setPosts,
         registerUser,
-        loginUser
+        loginUser,
+        getFundingById
     }}>
         {children}
     </postContext.Provider>
