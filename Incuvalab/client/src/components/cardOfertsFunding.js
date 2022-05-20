@@ -1,10 +1,11 @@
 import React from 'react';
+import '../stylesheets/funding.css'
 
 function OfertFunding(props) {
     return (
         <div className="col">
             <div className="card mb-4 rounded-3 shadow-sm border">
-                <div className="card-header py-3 text-white bg-primary border-primary">
+                <div className="card-header py-3 bg-danger text-white  border-danger">
                     <h4 className="my-0 fw-normal">{props.nombreDonacion}</h4>
                 </div>
                 <div className="card-body">
@@ -12,7 +13,7 @@ function OfertFunding(props) {
                     <ul className="list-unstyled mt-3 mb-4">
                         <li>{props.descripcion}</li>
                     </ul>
-                    <button type="button" className="w-100 btn btn-lg btn-primary">Volverme donador {props.nombreDonacion}</button>
+                    <button type="button" className="w-100 btn-lg button btn-outline">Volverme donador {props.nombreDonacion}</button>
                 </div>
             </div>
         </div>

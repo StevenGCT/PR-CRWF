@@ -1,0 +1,48 @@
+.button{
+    border: 3px solid black;
+    padding: 5px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-option{
+    border: 5px solid white;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-outline {
+    background-color: white;
+    color: #9D0044;
+    border-color: #9D0044;
+}
+
+.btn-outline:hover {
+    background: #b70150;
+    color: white;
+    border-color: #b70150;
+}
+
+.btn-general{
+    background: #9D0044;
+    color: white;
+    border-color: #9D0044;
+}
+
+.btn-general:hover {
+    background: #92003f;
+    color: white;
+    border-color: #92003f;
+}
+
+.bg-card{
+    background: #92003f;
+} 
+
+.border-card{
+   border: 3px solid #92003f;
+}

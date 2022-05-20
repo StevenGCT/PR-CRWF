@@ -6,8 +6,13 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { usePosts } from "../../context/postContext"
 import OfertFunding from '../../components/cardOfertsFunding'
+import f1 from "../../f1.jpg"
+import f2 from "../../f2.jpg"
+import f3 from "../../f3.jpg"
 
 export default function FundingPage() {
+
+    con
 
     const { getFundingById } = usePosts();
     const [post, setPost] = useState({
@@ -101,12 +106,12 @@ export default function FundingPage() {
                                     </div>
                                 </div>
                                 <div className="row ">
-                                    <a href="#" className="col  btn btn-primary ">Donar a este proyecto</a>
+                                    <button href="#" className="col button btn-general">Donar a este proyecto</button>
 
                                 </div>
                                 <div className="row my-2" >
-                                    <a href="#" className="col me-2  btn btn-primary">Seguir</a>
-                                    <a href="#" className="col ms-2 btn btn-primary">Patrocinar</a>
+                                    <button href="#" className="col me-2 button btn-general">Seguir</button>
+                                    <button href="#" className="col ms-2 button btn-general">Patrocinar</button>
                                 </div>
                             </div>
                         </div>
@@ -125,12 +130,10 @@ export default function FundingPage() {
                     nombreDonacion= "Donador estrella"
                     monto = "250 Bs."
                     descripcion = "Siendo un donador estrella usted nos ayudará a llevar nuestro objetivo a las estrellas. Savemos que crees en nosotros." />
-                    
                     <OfertFunding
                     nombreDonacion= "Donador Sol Naciente"
                     monto = "500 Bs."
                     descripcion = "Siendo un donador sol naciente usted nos ayudará a llevar nuestro objetivo a las estrellas. Savemos que crees en nosotros." />
-                    
                 </div>
             </div>
 
@@ -141,9 +144,11 @@ export default function FundingPage() {
                     <div className="col-sm-8">
                         <h5>Historia del proyecto</h5>
                         <p>{post.Description}</p>
-
+                        <img src={f1} className="img-fluid m-4"></img>
                         <p>{post.Question1}</p>
+                        <img src={f2} className="img-fluid m-4"></img>
                         <p>{post.Question2}</p>
+                        <img src={f3} className="img-fluid m-4"></img>
                         <p>{post.Question3}</p>
                     </div>
 
