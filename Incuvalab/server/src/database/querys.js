@@ -5,5 +5,6 @@ export const queries = {
     deleteCategoryById: "DELETE FROM Category WHERE IdCategory = @id",
     getCountCategory: "SELECT COUNT(*) FROM Category",
     updateCategoryById: "Update Category SET CategoryName = @category WHERE IdCategory = @id",
-    rankCategory: "SELECT TOP 10 * FROM Funding ORDER BY CurrentGoal DESC"
+    rankCategory: "SELECT TOP 10 * FROM Funding ORDER BY CurrentGoal DESC",
+    Donations:"SELECT * FROM Donations INNER JOIN Funding ON Donations.IdDonation = Funding.IdFunding"
 }

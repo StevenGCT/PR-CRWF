@@ -27,7 +27,7 @@ export function Donate() {
   }, [params.id, getPost]);
   
 
-  return (
+ return (
     <div className="flex items-center justify-center">
       <div className="p-10 shadow-md shadow-black"
       style={{backgroundColor: "#5f1f20 "}}

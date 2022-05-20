@@ -37,6 +37,12 @@ export function HomePage() {
         >
           Donar Ahora
         </Link>
+        <Link 
+          to="/confirm"
+          className="bg-pink-800 px-4 py-2 text-white hover:bg-pink-800"
+        >
+          Confirmacion De Donaciones
+        </Link>
         
       </header>
 
