@@ -1,4 +1,4 @@
-import {HomePage, NotFoundPage} from './pages';
+import {HomePage, NotFoundPage, UserProfile, CreateProject, Settings} from './pages';
 import {Routes, Route} from 'react-router-dom';
 import {UserProvider} from './context/userContext';
 
@@ -9,7 +9,9 @@ function App() {
                 <Routes>
                     <Route path="/" element={<HomePage/>}/>
                     <Route path="*" element={<NotFoundPage/>}/>
-
+                    <Route path="/UserProfile" element={<UserProfile/>}/>
+                    <Route path="/CreateProject" element={<CreateProject/>}/>
+                    <Route path="/Settings" element={<Settings/>}/>
                 </Routes>
             </UserProvider>
         );

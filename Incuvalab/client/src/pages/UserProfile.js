@@ -1,6 +1,9 @@
-//import './../css/userProfile.css';
+import './../css/userProfile.css';
+import {useUsers} from '../context/userContext';
 
 export function UserProfile() {
+
+    const{ followeds, followedsCount, donated, donatedCount, projects, projectsCount } = useUsers();
 
         return(
             <div className="App">
@@ -9,20 +12,28 @@ export function UserProfile() {
                     <div class="card2">
                         <div class="subject">
                         <select name="subject" id="subject_input">
-                            <option disabled hidden selected>Followed Projects</option>
-                            <option>Project 1</option>
-                            <option>Project 2</option>
-                            <option>Project 3</option>
+                            <option disabled hidden selected>Followed Projects: {followedsCount}</option>
+                            {followeds.map(followed => (
+                                <option >
+                                {followed.Title}
+                                </option>
+                            ))}   
                         </select>
                         <select name="subject" id="subject_input">
-                            <option disabled hidden selected>Donated Projects</option>
-                            <option>Project 1</option>
-                            <option>Project 2</option>
-                            <option>Project 3</option>
+                            <option disabled hidden selected>Donated Projects: {donatedCount}</option>
+                            {donated.map(donate => (
+                                <option >
+                                {donate.Title}
+                                </option>
+                            ))}   
                         </select>
                         <select name="subject" id="subject_input">
-                            <option disabled hidden selected>My Projects</option>
-                            <option>Project 1</option>  
+                            <option disabled hidden selected>My Projects: {projectsCount}</option>
+                            {projects.map(project => (
+                                <option >
+                                {project.Title}
+                                </option>
+                            ))}   
                         </select>
                         <label class="lbl">Settings</label>
                         </div>

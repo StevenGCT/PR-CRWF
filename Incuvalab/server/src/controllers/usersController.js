@@ -57,7 +57,7 @@ export const getTitleFundingByUserId = async(req, res) => {
             .query(queries.getTitleFundingByUserId)
         console.log(result);
         res.status(200);
-        res.json(result.recordset[0]['']);
+        res.json(result.recordset);
     } catch (error) {
         res.status(500);
         res.send(error.message);
@@ -87,6 +87,38 @@ export const getTitleOfFundingDonateByUserId = async(req, res) => {
         const result = await pool.request()
             .input('id', id)
             .query(queries.getTitleOfFundingDonateByUserId)
+        console.log(result);
+        res.status(200);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const getTitleOfFollowedFundingByUserId = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(queries.getTitleFollowedFundingByUserId)
+        console.log(result);
+        res.status(200);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const getCountFollowedFundingByUserId = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(queries.getCountFollowedFundingByUserId)
         console.log(result);
         res.status(200);
         res.json(result.recordset[0]['']);

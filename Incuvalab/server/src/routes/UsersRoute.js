@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getUsers, getUserById, getCountFundingByUserId, getTitleFundingByUserId, getCountDonateByUserId, getTitleOfFundingDonateByUserId } from '../controllers/usersController';
+import { getUsers, getUserById, getCountFundingByUserId, getTitleFundingByUserId, getCountDonateByUserId, getTitleOfFundingDonateByUserId, getTitleOfFollowedFundingByUserId, getCountFollowedFundingByUserId } from '../controllers/usersController';
 
 
 const router = Router();
@@ -15,5 +15,9 @@ router.get('/users/TitleFunding/:id', getTitleFundingByUserId);
 router.get('/users/countDonated/:id', getCountDonateByUserId);
 // Get Title Fonding Donnated
 router.get('/users/TitleFundingDonated/:id', getTitleOfFundingDonateByUserId);
+// Get Count Followed Funding
+router.get('/users/countFollowed/:id', getCountFollowedFundingByUserId);
+// Get Title Followed Fonding 
+router.get('/users/Followed/:id', getTitleOfFollowedFundingByUserId);
 
 export default router;

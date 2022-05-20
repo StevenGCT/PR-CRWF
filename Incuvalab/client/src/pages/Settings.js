@@ -1,18 +1,30 @@
 
 import image1 from '../components/images/predeterminate.jpg';
-//import './../css/setting.css';
+import './../css/setting.css';
+import { useUsers } from '../context/userContext';
 
 export function Settings() {
-        return(
+
+    const { usersById } = useUsers();
+
+        return( 
             <div className="App">
                 <div id="container" class="container-fluid">   
                         <div class="card" id="card1">
                                     <h1>Personal Info</h1>
                                     <div class="name">
-                                        <label id="lblName">First Name</label>
+                                        {usersById.map(userById => (
+                                            <label id="lblName">
+                                                {userById.Name}
+                                            </label>
+                                        ))}   
                                     </div>
                                     <div class="lastName">
-                                        <label id="lastName">Last Name</label>
+                                        {usersById.map(userById => (
+                                            <label id="lastName">
+                                                {userById.LastName}
+                                            </label>
+                                        ))} 
                                     </div>
                                     <div class="newPassword">
                                         <label for="newPassword"></label>
@@ -53,7 +65,7 @@ export function Settings() {
                                 <div class="file-select" id="src-file1" >
                                     <input type="file" name="src-file1" aria-label="Archivo" accept="image/png, image/jpeg"/>
                                 </div>
-                            </div>
+                        </div>
 
                 </div>                   
             </div>

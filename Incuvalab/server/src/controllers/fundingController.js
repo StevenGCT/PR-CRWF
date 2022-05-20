@@ -55,13 +55,13 @@ export const createFunding = async(req, res) => {
                 .input("Question3", sql.VarChar, Question3)
                 .input("FastDescription", sql.VarChar, FastDescription)
                 .input("Description", sql.VarChar, Description)
-                .input("FundingImage1", sql.VarBinary, FundingImage1)
-                .input("FundingImage2", sql.VarBinary, FundingImage2)
-                .input("FundingImage3", sql.VarBinary, FundingImage3)
+                .input("FundingImage1", sql.VarChar, FundingImage1)
+                .input("FundingImage2", sql.VarChar, FundingImage2)
+                .input("FundingImage3", sql.VarChar, FundingImage3)
                 .input("FundingVideo", sql.VarChar, FundingVideo)
                 .input("AccountNumber", sql.VarChar, AccountNumber)
                 .input("SocialMedia", sql.VarChar, SocialMedia)
-                .input("IdCategory", sql.Int, IdCategory)
+                .input("IdCategory", sql.TinyInt, IdCategory)
                 .input("Goal", sql.Decimal, Goal)
                 .query(queries.createNewFunding);
             console.log(result.rowsAffected);
