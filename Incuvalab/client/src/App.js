@@ -1,15 +1,19 @@
-import {HomePage, NotFoundPage} from './pages';
+import {HomePage, NotFoundPage, UserProfile, CreateProject, Settings} from './pages';
 import {Routes, Route} from 'react-router-dom';
+import {UserProvider} from './context/userContext';
 
 
 function App() {
     return ( 
-        <div className="bg-red-400 h-screen">
-            <Routes>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="*" element={<NotFoundPage/>}/>
-            </Routes>
-        </div>
+            <UserProvider>
+                <Routes>
+                    <Route path="/" element={<HomePage/>}/>
+                    <Route path="*" element={<NotFoundPage/>}/>
+                    <Route path="/UserProfile" element={<UserProfile/>}/>
+                    <Route path="/CreateProject" element={<CreateProject/>}/>
+                    <Route path="/Settings" element={<Settings/>}/>
+                </Routes>
+            </UserProvider>
         );
 }
 export default App;
