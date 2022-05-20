@@ -6,7 +6,7 @@ export function SearchByCategory() {
     const {postsCat} = usePostsCat()
     console.log("Posts SearchByCategory",postsCat)
     return(
-    <DropdownButton id="dropdown-item-button" title="Buscar por Categoría" size="md" className="d-grid gap-2 m-2 text-justify" variant="dark">
+    <DropdownButton id="dropdown-item-button" title="Buscar por Categoría" size="md" className="d-grid gap-2 m-2" variant="dark">
     {postsCat.map(postCat => (
         <Dropdown.Item key={postCat.IdCategory} as="button">{postCat.CategoryName}</Dropdown.Item>
     ))}

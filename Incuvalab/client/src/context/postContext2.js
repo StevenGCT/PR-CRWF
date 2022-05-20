@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from 'react'
-import { getFundsRequests } from '../api/funds'
+import { getFundsRequests, getFundsRequestsByCat } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 
 
@@ -16,7 +16,6 @@ export const usePostsCat = () => {
     const context = useContext(postContext2)
     return context
 }
-
 
 
 export const PostProviderFund = ({children}) => {
@@ -36,6 +35,17 @@ export const PostProviderFund = ({children}) => {
       setPostsCat(res.data)
     }
 
+    const getPostsFundByCat = async (idCat) => {
+      try{
+        const res = await getFundsRequestsByCat(idCat);
+        return res.data;
+      }
+      catch (error){
+        console.error(error);
+      }
+    };
+
+
     useEffect(() =>{
         getFunds()
       }, [])
@@ -48,7 +58,8 @@ export const PostProviderFund = ({children}) => {
         posts,
         getFunds,
         postsCat,
-        getCats
+        getCats,
+        getPostsFundByCat
     }}>
         {children}
     </postContext2.Provider>   
