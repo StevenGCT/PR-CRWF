@@ -4,4 +4,4 @@ export const createCommentRequest = async (comment) => await axios.post('/commen
 
 export const deleteCommentRequest = async (idComment) => await axios.delete('/comment/'+ idComment)
 
-export const getCommentsRequest = async (idFunding) => await axios.get('//comments/:id'+ idFunding)
+export const getCommentsRequest = async (idFunding) => await axios.get('/comments/'+ idFunding)

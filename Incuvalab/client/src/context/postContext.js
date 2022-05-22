@@ -3,6 +3,7 @@ import { loginUserRequest, registerUserRequest} from '../api/users'
 
 //** Otro */
 import { getFundingByIdRequest } from '../api/funding'
+import { createCommentRequest, getCommentsRequest, deleteCommentRequest} from '../api/comment'
 //** Otro */
 
 const postContext = createContext();
@@ -56,7 +57,7 @@ export const PostProvider = ({children}) => {
     //** Otro */
 
     useEffect(() => {
-      
+        
     },[]);
 
     return <postContext.Provider value={{

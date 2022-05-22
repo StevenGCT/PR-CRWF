@@ -17,6 +17,7 @@ export default function FundingPage() {
 
     const { getFundingById} = usePosts();
     const [post, setPost] = useState({
+        IdFunding:"",
         Title: "",
         Question1: "",
         Question2: "",
@@ -39,8 +40,8 @@ export default function FundingPage() {
         (async () => {
             if (params.id) {
                 const post = await getFundingById(params.id);
-
                 setPost({
+                    IdFunding: post[0].IdFunding,
                     Title: post[0].Title,
                     Question1: post[0].Question1,
                     Question2: post[0].Question2,
@@ -155,7 +156,8 @@ export default function FundingPage() {
 
                     <div className="col-sm">
                         <h5>Comentarios</h5>
-                        <Comment/>
+                        <Comment 
+                        idFunding = {post.IdFunding}/>
                     </div>
                 </div>
             </div>
