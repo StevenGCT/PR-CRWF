@@ -36,6 +36,25 @@ export const PostProvider = ({children}) => {
         return res.data;
     }
 
+    const createComment = async (comment) => {
+        const res = await createCommentRequest(comment);
+        
+        if(res.data != null){
+            return res;
+        }
+    }
+
+    const getComments = async (idFunding) => {
+        const res = await getCommentsRequest(idFunding);
+        return res.data;
+    }
+
+    const deleteCommentById = async (idComment) => {
+        const res = await deleteCommentRequest(idComment);
+        return res.data;
+    }
+    //** Otro */
+
     useEffect(() => {
       
     },[]);
@@ -45,7 +64,10 @@ export const PostProvider = ({children}) => {
         setPosts,
         registerUser,
         loginUser,
-        getFundingById
+        getFundingById,
+        createComment,
+        getComments,
+        deleteCommentById
     }}>
         {children}
     </postContext.Provider>

@@ -6,15 +6,16 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { usePosts } from "../../context/postContext"
 import OfertFunding from '../../components/cardOfertsFunding'
+import Comment from '../../components/comentFunding'
+
 import f1 from "../../f1.jpg"
 import f2 from "../../f2.jpg"
 import f3 from "../../f3.jpg"
 
 export default function FundingPage() {
 
-    con
 
-    const { getFundingById } = usePosts();
+    const { getFundingById} = usePosts();
     const [post, setPost] = useState({
         Title: "",
         Question1: "",
@@ -55,7 +56,7 @@ export default function FundingPage() {
                     Goal: post[0].Goal,
                     CurrentGoal: post[0].CurrentGoal
                 });
-                console.log();
+                
             }
         })();
     }, [params.id, getFundingById]);
@@ -141,7 +142,7 @@ export default function FundingPage() {
 
             <div className="container my-5">
                 <div className="row">
-                    <div className="col-sm-8">
+                    <div className="col-sm-8 pe-4">
                         <h5>Historia del proyecto</h5>
                         <p>{post.Description}</p>
                         <img src={f1} className="img-fluid m-4"></img>
@@ -154,6 +155,7 @@ export default function FundingPage() {
 
                     <div className="col-sm">
                         <h5>Comentarios</h5>
+                        <Comment/>
                     </div>
                 </div>
             </div>
