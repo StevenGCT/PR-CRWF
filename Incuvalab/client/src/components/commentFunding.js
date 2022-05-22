@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react'
 import avatar from '../profile2.webp'
 import { usePosts } from '../context/postContext'
-import { Card, ProgressBar, CardGroup, Row, Col } from 'react-bootstrap'
+import { Card, CardGroup, Row, Col } from 'react-bootstrap'
 
 function Comment(props) {
     const { getComments } = usePosts();
@@ -22,7 +22,7 @@ function Comment(props) {
     return (
         <CardGroup>
             <Row xs={1} md={1} className="g-4 rounded">
-                {post.map(postC => (
+                {post?.map(postC => (
                     <Col>
                         <Card key={post.IdComment}>
                             <Card.Body>
@@ -31,7 +31,7 @@ function Comment(props) {
                                     <div className='col mt-2'> <b class="">{postC.Name}</b></div>
                                 </Row>
                                 <Card.Text className="p-2">
-                                    <div className="flex justify-center ">
+                                    <div className="flex justify-left ">
                                         <h6 className="text-muted">
                                             {postC.Comment}
                                         </h6>

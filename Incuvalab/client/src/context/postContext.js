@@ -41,7 +41,7 @@ export const PostProvider = ({children}) => {
         const res = await createCommentRequest(comment);
         
         if(res.data != null){
-            return res;
+            return res.status;
         }
     }
 

@@ -6,14 +6,15 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { usePosts } from "../../context/postContext"
 import OfertFunding from '../../components/cardOfertsFunding'
-import Comment from '../../components/comentFunding'
+import Comment from '../../components/commentFunding'
+import CommentFrom from '../../components/formCommentFunding'
 
 import f1 from "../../f1.jpg"
 import f2 from "../../f2.jpg"
 import f3 from "../../f3.jpg"
 
 export default function FundingPage() {
-
+    const dataUser = JSON.parse(localStorage.getItem('user'));
 
     const { getFundingById} = usePosts();
     const [post, setPost] = useState({
@@ -156,8 +157,10 @@ export default function FundingPage() {
 
                     <div className="col-sm">
                         <h5>Comentarios</h5>
+                        <CommentFrom idFunding = {post.IdFunding} idUser={dataUser[0].IdUser}/>
+                        <hr/>
                         <Comment 
-                        idFunding = {post.IdFunding}/>
+                        idFunding = {post.IdFunding} />
                     </div>
                 </div>
             </div>
