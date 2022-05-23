@@ -1,0 +1,275 @@
+
+#container {
+    max-width: 80%;
+    margin: 60px 10%;
+    padding: 3%;
+    background-color: #cccccc69;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 40px;
+    position: absolute;
+  }
+  
+  h1 {
+    color: #474544;
+    font-size: 25px;
+    letter-spacing: 7px;
+    text-align: left;
+    text-transform: uppercase;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .name{
+    float: left;
+      width: 45%;
+    background: none;
+    border: none;
+      border-bottom: solid 2px #474544;
+      color: #474544;
+      font-size: 1.000em;
+    font-weight: 400;
+    letter-spacing: 1px;
+      margin: 0em 0 1.875em 0;
+      padding: 0 0 0.875em 0;
+    text-transform: uppercase;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+  }
+  
+  .lastName{
+    float: right;
+      width: 45%;
+    background: none;
+    border: none;
+      border-bottom: solid 2px #474544;
+      color: #474544;
+      font-size: 1.000em;
+    font-weight: 400;
+    letter-spacing: 1px;
+      margin: 0em 0 1.875em 0;
+      padding: 0 0 0.875em 0;
+    text-transform: uppercase;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+  }
+  
+  .underline {
+    border-bottom: solid 1.6px #a4a4a4;
+    margin: -1px auto;
+    width: 100%;
+  }
+  
+  [type='password'] {
+      background: none;
+    border: none;
+      border-bottom: solid 2px #474544;
+      color: #474544;
+      font-size: 1.000em;
+    font-weight: 400;
+    letter-spacing: 1px;
+      margin: 0em 0 1.875em 0;
+      padding: 0.475em 0 0.475em 0;
+    text-transform: uppercase;
+      width: 100%;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      -o-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+  }
+  
+  #newPassword_input {
+    float: left;
+    width: 55%;
+  }
+
+  
+  ::-webkit-input-placeholder {
+      color: #474544;
+  }
+  
+  :-moz-placeholder { 
+      color: #474544;
+      opacity: 1;
+  }
+  
+  ::-moz-placeholder {
+      color: #474544;
+      opacity: 1;
+  }
+  
+  :-ms-input-placeholder {
+      color: #474544;
+  }
+  
+  button[type='submit']{
+    background: #2196F3;
+    border: solid 2px #2196F3;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 0.875em;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    padding: 15px;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+    border-radius: 40px;
+  }
+  input[type='submit']{
+    background: #2196F3;
+    border: solid 2px #2196F3;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 0.875em;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    padding: 15px;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+    border-radius: 40px;
+  }
+  
+  
+  #businessApply {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 40px;
+  }
+  
+  #save_button {
+    width: 35%;
+  }
+  #newPasswordButton_button {
+    float: right;
+    justify-content: center;
+    display: flex;
+    width: 35%;
+  }
+  .submits{
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
+  #card1 {
+    float: left;
+    margin: 10px;
+    padding: 16px;
+    width: 50%;
+  
+  }
+  #card2 {
+    float: right;
+    margin-top: 100px;
+    padding: 16px;
+    width: 30%;
+    justify-content: center;
+  }
+  
+  img {
+    width: 70%;
+    border-radius: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #2196F3;
+    background-image: #2196F3;
+    
+  }
+
+  
+  /*input file*/
+  .file-select {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .file-select::before {
+    background-color: #2196F3;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: 'Seleccionar'; /* testo por defecto */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  
+    
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 0.875em;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+    border-radius: 40px;
+    width: 70%;
+  }
+  
+  .file-select input[type="file"] {
+    opacity: 0;
+    width: 70%;
+    height: 32px;
+    display: inline-block;
+  
+    background: #2196F3;
+    border: solid 2px #2196F3;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 0.875em;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    padding: 15px;
+    text-transform: uppercase;
+    border-radius: 40px;
+  }
+  
+  #src-file1::before {
+    content: 'Seleccionar Imagen';
+  }
+  

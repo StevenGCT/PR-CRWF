@@ -1,22 +1,21 @@
 @api =  http://localhost:4000/users
 
 GET {{api}}
-
 ################################
-POST {{api}}
+GET {{api}}/3
+################################
+GET {{api}}/countFunding/3
+################################
+GET {{api}}/TitleFunding/3
+################################
+GET {{api}}/countDonated/3
+################################
+GET {{api}}/TitleFundingDonated/3
+################################
+PUT {{api}}/change/3
 Content-Type: application/json
 
 {
-    "Users" :"Ejemplo"
-}
-################################
-GET {{api}}/4
-################################
-GET {{api}}/count
-
-Content-Type: application/json
-
-{
-    "Users" :"Prueba Update"
+    "Password" :"asd"
 }
 ################################
