@@ -75,10 +75,9 @@ function LoginForm() {
 
                                         <div className="text-center">
                                             <div className="footer mt-4 card">
-                                                <button type="submit" className="btn btn-outline-secondary">
+                                                <button type="submit" className="button btn-outline-secondary">
                                                     Iniciar Sesión
                                                 </button>
-
                                             </div>
                                         </div>
                                     </Form>

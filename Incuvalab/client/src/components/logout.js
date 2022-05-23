@@ -7,7 +7,7 @@ class ButtonLogout extends Component {
     }
     handleClick() {
       localStorage.clear();
-      window.location.reload(false);
+      window.location.replace('/');
     }
     render() {
       return <button onClick={this.handleClick} class="dropdown-item">Cerrar Sesión</button>;
