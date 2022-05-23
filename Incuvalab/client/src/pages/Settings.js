@@ -3,9 +3,11 @@ import image1 from '../components/images/predeterminate.jpg';
 import './../css/setting.css';
 import { useUsers } from '../context/userContext';
 
+import {Formik, Form, Field} from 'formik';
+
 export function Settings() {
 
-    const { usersById } = useUsers();
+        const { usersById, updatePassword } = useUsers();
 
         return( 
             <div className="App">
@@ -27,28 +29,26 @@ export function Settings() {
                                         ))} 
                                     </div>
                                     <div class="newPassword">
-                                        <label for="newPassword"></label>
-                                        <input type="password" placeholder="New Password" name="newPassword" id="newPassword_input" required/>
-                                    </div>
-                                    <div class="newPasswordButton">
-                                        <label for="newPasswordButton"></label>
-                                        <input type="submit" value="CHANGE" name="newPasswordButton" id="newPasswordButton_button" />
-                                    </div>
-
-                                    <h1>Notifications</h1>
-                                    <div class="underline"></div>
-                                    <div class="notification" id="weaklyReports">
-                                        <label for="notification" id="notification_label">Weakly Reports</label>
-                                        <div class="switch">
-                                            <label class="switch">
-                                                <input type="checkbox"/>
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    
-
-                                    <div class="underline"></div>
+                                        <Formik
+                                            initialValues={{
+                                                NewPassword : '',
+                                                }}
+                                                onSubmit = {(values, actions)=>{
+                                                    updatePassword(3, values)
+                                                    console.log(values)
+                                                }}
+                                            >
+                                            
+                                            {({ handleSubmit }) => (
+                                                <Form onSubmit={handleSubmit}>
+                                                    <label for="newPassword"></label>
+                                                    <Field id="newPassword_input" type="password" name="NewPassword" placeholder="New Password" required/>
+                                                    <label for="newPasswordButton"></label>
+                                                    <button id="newPasswordButton_button" name="newPasswordButton" type='submit'>CHANGE</button>
+                                                </Form>
+                                            )}    
+                                        </Formik>
+                                    </div>         
 
                                     <div class="submit">
                                         <input type="submit" value="Apply for bususiness account" id="businessApply" />
@@ -73,3 +73,8 @@ export function Settings() {
 
         );
     }
+
+
+
+
+    

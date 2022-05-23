@@ -41,13 +41,12 @@ select::-ms-expand {
   margin: 80px;
   text-align: left;
 }
-@media screen and (max-width: 768px) {
+
   #container {
-    margin: 20px auto;
-    width: 95%;
+    width: 80%;
   }
-}
-.card {
+
+.card1 {
     max-width: 80%;
     margin: 60px 10%;
     padding: 3%;

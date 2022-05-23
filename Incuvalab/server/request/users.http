@@ -12,3 +12,10 @@ GET {{api}}/countDonated/3
 ################################
 GET {{api}}/TitleFundingDonated/3
 ################################
+PUT {{api}}/change/3
+Content-Type: application/json
+
+{
+    "Password" :"asd"
+}
+################################
