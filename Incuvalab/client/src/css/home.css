@@ -27,7 +27,7 @@
     width: 100%;
   }
   
-  label{
+  .labelForDonatedView{
     float: left;
       width: 90%;
     background: none;

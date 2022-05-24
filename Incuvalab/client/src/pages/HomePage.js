@@ -67,17 +67,17 @@ export function HomePage() {
           <h2 class="h2">Paso 1</h2>
           <div class="underline"></div>
           <div>
-            <label>Siga este sencillo paso para comenzar y utilizar este excelente producto</label>
+            <label class="labelForDonatedView" >Siga este sencillo paso para comenzar y utilizar este excelente producto</label>
           </div>           
           <h2 class="h2">Paso 2</h2>
           <div class="underline"></div>
           <div>
-            <label>Sigue este paso para empezar a crear valor para tus clientes</label>
+            <label class="labelForDonatedView" >Sigue este paso para empezar a crear valor para tus clientes</label>
           </div>
           <h2 class="h2">Paso 3</h2>     
           <div class="underline"></div>
           <div>
-            <label>Ahora has terminado y has creado algo muy especial.</label>
+            <label class="labelForDonatedView" >Ahora has terminado y has creado algo muy especial.</label>
           </div>
           <div class="submits">
             <input type="submit" id="btnDonatedSteps" value="Registrate ahora"/>
