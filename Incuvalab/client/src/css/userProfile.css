@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
-
 h1 {
   color: #474544;
   font-size: 25px;
@@ -47,7 +46,7 @@ select::-ms-expand {
     width: 95%;
   }
 }
-.card {
+#cardUser1 {
     max-width: 80%;
     margin: 60px 10%;
     padding: 3%;
@@ -58,7 +57,8 @@ select::-ms-expand {
     background-color: #cccccc69;
     border-radius: 40px;
 }
-.card2 {
+
+#cardUser2 {
   margin:  80px;
   margin-top: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

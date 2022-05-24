@@ -80,7 +80,7 @@ export function HomePage() {
             <label>Ahora has terminado y has creado algo muy especial.</label>
           </div>
           <div class="submits">
-            <input type="submit" value="Registrate ahora"/>
+            <input type="submit" id="btnDonatedSteps" value="Registrate ahora"/>
           </div>  
         </div>  
       </div>

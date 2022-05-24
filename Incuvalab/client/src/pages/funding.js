@@ -4,7 +4,7 @@ import Footer from "../components/footer"
 import '../css/navbar.css'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { usePosts } from "../context/postContext"
+import { usePostsFund } from "../context/userContext"
 import OfertFunding from '../components/cardOfertsFunding'
 //import Comment from '../components/commentFunding'
 //import CommentFrom from '../components/formCommentFunding'
@@ -13,10 +13,10 @@ import f1 from '../components/images/predeterminate.jpg'
 import f2 from '../components/images/predeterminate.jpg'
 import f3 from '../components/images/predeterminate.jpg'
 
-export default function FundingPage() {
+export function FundingPage() {
     const dataUser = JSON.parse(localStorage.getItem('user'));
 
-    const { getFundingById} = usePosts();
+    const { getFundingById} = usePostsFund();
     const [post, setPost] = useState({
         IdFunding:"",
         Title: "",
@@ -80,8 +80,8 @@ export default function FundingPage() {
                         <div className="card">
                             <div className="card-body col px-5 pb-5 pt-4">
                                 <div className="row mb-3">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div className="progress">
+                                        <div className="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -110,7 +110,6 @@ export default function FundingPage() {
                                 </div>
                                 <div className="row ">
                                     <button href="#" className="col button btn-general">Donar a este proyecto</button>
-
                                 </div>
                                 <div className="row my-2" >
                                     <button href="#" className="col me-2 button btn-general">Seguir</button>

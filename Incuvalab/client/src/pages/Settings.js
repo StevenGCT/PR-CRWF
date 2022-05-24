@@ -11,8 +11,8 @@ export function Settings() {
         return( 
             <div className="App">
                 <div id="container" class="container-fluid">   
-                        <div class="card" id="card1">
-                                    <h1>Personal Info</h1>
+                        <div class="card" id="cardSetting1">
+                                    <h1 class="h1">Personal Info</h1>
                                     <div class="name">
                                         {usersById.map(userById => (
                                             <label id="lblName">
@@ -59,7 +59,7 @@ export function Settings() {
                                         <input type="submit" value="Save" id="save_button" />
                                     </div>     
                         </div>                                                          
-                            <div class="card" id="card2">
+                            <div class="card" id="cardSetting2">
                             <img src={image1} alt="userImage"/>
                                 <div class="file-select" id="src-file1" >
                                     <input type="file" name="src-file1" aria-label="Archivo" accept="image/png, image/jpeg"/>

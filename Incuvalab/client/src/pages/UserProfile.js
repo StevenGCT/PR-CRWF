@@ -8,9 +8,9 @@ export function UserProfile() {
 
         return(
             <div className="App">
-                <div class="card1">
+                <div class="card1" id="cardUser1">
                     <h1>USER PROFILE</h1>
-                    <div class="card2">
+                    <div class="card2" id="cardUser2">
                         <div class="subject">
                         <select name="subject" id="subject_input">
                             <option disabled hidden selected>Followed Projects: {followedsCount}</option>
