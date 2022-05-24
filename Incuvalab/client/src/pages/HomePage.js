@@ -1,7 +1,9 @@
+
 import { Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import image1 from '../components/images/predeterminate.jpg';
-
+import './../css/home.css';
+import "../../css/login.css"
 
 export function HomePage() {
   
@@ -58,21 +60,21 @@ export function HomePage() {
       
       <div className="container" id="container" class="container-fluid">
         <div class="card" id="card1">
-          <h1>Quieres ser un donante?</h1>
-          <img src={image1} alt="image"/>
+          <h1 class="h1">Quieres ser un donante?</h1>
+          <img id="imgDonatedConteiner" src={image1} alt="imageforDonatedView"/>
         </div>                                                          
         <div class="card" id="card2">
-          <h2>Paso 1</h2>
+          <h2 class="h2">Paso 1</h2>
           <div class="underline"></div>
           <div>
             <label>Siga este sencillo paso para comenzar y utilizar este excelente producto</label>
           </div>           
-          <h2>Paso 2</h2>
+          <h2 class="h2">Paso 2</h2>
           <div class="underline"></div>
           <div>
             <label>Sigue este paso para empezar a crear valor para tus clientes</label>
           </div>
-          <h2>Paso 3</h2>     
+          <h2 class="h2">Paso 3</h2>     
           <div class="underline"></div>
           <div>
             <label>Ahora has terminado y has creado algo muy especial.</label>

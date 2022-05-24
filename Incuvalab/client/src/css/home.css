@@ -1,0 +1,94 @@
+
+#container {
+    max-width: 80%;
+    margin: 60px 10%;
+    padding: 3%;
+    background-color: #cccccc69;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 40px;
+    position: absolute;
+  }
+  
+  .h1 {
+    color: #474544;
+    font-size: 25px;
+    letter-spacing: 7px;
+    text-align: left;
+    text-transform: uppercase;
+    width: 100%;
+  }
+  
+  .h2 {
+    color: #474544;
+    font-size: 20px;
+    letter-spacing: 7px;
+    text-align: left;
+    text-transform: uppercase;
+    width: 100%;
+  }
+  
+  label{
+    float: left;
+      width: 90%;
+    background: none;
+    border: none;
+      color: #474544;
+      font-size: 1.000em;
+    font-weight: 400;
+    letter-spacing: 1px;
+      margin: 15px 0 1em 0;
+      padding: 0 0 0.475em 0;
+    text-transform: uppercase;
+  
+  }
+  
+  .underline {
+    border-bottom: solid 1.6px #a4a4a4;
+    margin: -1px auto;
+    width: 100%;
+  }
+  
+  #card1 {
+    float: left;
+    margin: 10px;
+    padding: 16px;
+    width: 50%;
+  
+  }
+  #card2 {
+    float: right;
+    margin-top: 100px;
+    padding: 16px;
+    width: 40%;
+    justify-content: center;
+  }
+  
+  #imgDonatedConteiner {
+    width: 70%;
+    border-radius: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #2196F3;
+    background-image: #2196F3;
+    
+  }
+  
+  input[type='submit']{
+    background: #2196F3;
+    border: solid 2px #2196F3;
+    color: white;
+    cursor: pointer;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: 0.875em;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    padding: 15px;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+    border-radius: 40px;
+    float: right;
+  }
