@@ -1,5 +1,7 @@
 import { useState, createContext, useContext, useEffect } from 'react'
 import { changePassword, getAllCategorysRequest, createFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest} from '../api/user'
+import { getFundsRequests, getFundsRequestsByCat } from '../api/funds'
+import { getCatRequests } from '../api/categories'
 
 const userContext = createContext()
 
@@ -8,6 +10,22 @@ export const useUsers = () => {
     if (!context) throw new Error("Post Provider is missing");
   return context;
 }
+
+export const usePostsFund = () => {
+  const context = useContext(userContext)
+  return context
+}
+
+export const usePostsCat = () => {
+  const context = useContext(userContext)
+  return context
+}
+
+export const usePostsCatFund = () => {
+const context = useContext(userContext)
+return context
+}
+
 
 export const UserProvider = ({children}) =>{
     const [users, setUsers] = useState([]);
@@ -22,7 +40,6 @@ export const UserProvider = ({children}) =>{
     const [projects, setProjec] = useState([]);
     const [projectsCount, setProjectCount] = useState([]);
     
-
     const [categorys, setCategorys] = useState([]);
 
     const getAllCategory = async () =>{
@@ -81,6 +98,34 @@ export const UserProvider = ({children}) =>{
       console.log(res)
     }
 
+    const [posts, setPosts] = useState([])
+    const [postsCat, setPostsCat] = useState([])
+    const [postsCatFund, setPostsCatFund] = useState([])
+
+    const getFunds = async () => {
+      const res =  await getFundsRequests()
+      console.log(res, setPosts)
+      setPosts(res.data)
+    }
+
+    const getCats = async () => {
+      const res =  await getCatRequests()
+      console.log("Datos getCats", res)
+      setPostsCat(res.data)
+    }
+
+    const getPostsFundByCat = async (idCat) => {
+      try{
+        const res = await getFundsRequestsByCat(idCat);
+        setPostsCatFund(res.data);
+      }
+      catch (error){
+        console.error(error);
+      }
+    };
+
+    
+
     useEffect(() => {
       getAllCategory()
     }, [])
@@ -118,6 +163,18 @@ export const UserProvider = ({children}) =>{
         getUserFundingCount()
       }, [])
 
+      useEffect(() =>{
+        getFunds()
+      }, [])
+
+    useEffect(() =>{
+        getCats()
+      }, [])
+
+    useEffect(() =>{
+        getPostsFundByCat()
+      }, [])
+
     return (
         <userContext.Provider value={{ 
             categorys,
@@ -136,6 +193,15 @@ export const UserProvider = ({children}) =>{
 
             createFunding,
             updatePassword,
+
+            posts,
+            getFunds,
+
+            postsCat,
+            getCats,
+
+            postsCatFund,
+            getPostsFundByCat
 
         }}>
           {children}
