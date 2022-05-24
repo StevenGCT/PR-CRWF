@@ -2,6 +2,7 @@ import { useState, createContext, useContext, useEffect } from 'react'
 import { changePassword, getAllCategorysRequest, createFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest} from '../api/user'
 import { getFundsRequests, getFundsRequestsByCat } from '../api/funds'
 import { getCatRequests } from '../api/categories'
+import { getFundingByIdRequest } from '../api/funding'
 
 const userContext = createContext()
 
@@ -124,7 +125,10 @@ export const UserProvider = ({children}) =>{
       }
     };
 
-    
+    const getFundingById = async (idFunding) => {
+      const res = await getFundingByIdRequest(idFunding);
+      return res.data;
+  }
 
     useEffect(() => {
       getAllCategory()
@@ -201,7 +205,9 @@ export const UserProvider = ({children}) =>{
             getCats,
 
             postsCatFund,
-            getPostsFundByCat
+            getPostsFundByCat,
+
+            getFundingById
 
         }}>
           {children}
