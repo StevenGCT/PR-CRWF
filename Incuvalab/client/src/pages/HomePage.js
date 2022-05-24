@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import image1 from '../components/images/predeterminate.jpg';
 import './../css/home.css';
-import "../../css/login.css"
+
 
 export function HomePage() {
   

@@ -19,8 +19,7 @@ export const queries = {
     getTitleFollowedFundingByUserId: "SELECT U.IdUser, F.Title FROM Followed_Funding FD INNER JOIN Users U ON FD.IdUser = U.IdUser INNER JOIN Funding F ON FD.IdFunding = f.IdFunding WHERE U.idUser = @id",
     getCountFollowedFundingByUserId: "SELECT COUNT(*) FROM Followed_Funding FD INNER JOIN Users U ON FD.IdUser = U.IdUser WHERE U.idUser = @id",
 
-    //funding
-    createNewFunding: "INSERT INTO Funding(Title, Question1, Question2, Question3, FastDescription, Description, FundingImage1, FundingImage2, FundingImage3, FundingVideo, AccountNumber, SocialMedia, IdCategory, Goal) VALUES (@Title, @Question1, @Question2, @Question3, @FastDescription, @Description, @FundingImage1, @FundingImage2, @FundingImage3, @FundingVideo, @AccountNumber, @SocialMedia, @IdCategory, @Goal)",
+
 
     //User
     createNewUser: "INSERT INTO Users ([Name] ,LastName, Email, [Password], UserName) VALUES (@name, @lastName, @email, HashBytes('MD5', @password), @username)",
@@ -29,11 +28,20 @@ export const queries = {
     deleteUserById: "DELETE FROM Users WHERE IdUser = @id",
     updateUserById: "UPDATE Users SET Name = @name, Email = @userEmail, PhoneNumber = @userPhoneNumber, LastName = @userLastname, SecondLastName = @userSecondName, UserName = @username, Address = @addressName WHERE IdUser = @id",
 
-    //Funding
-    getFundingById: "SELECT IdFunding, Title,Question1,Question2,Question3,FastDescription,Description,FundingImage1,FundingImage2,FundingImage3,FundingVideo,SocialMedia,RegisterDate,C.CategoryName,Goal,CurrentGoal FROM Funding F INNER JOIN Category C ON C.IdCategory = F.IdFunding WHERE IdFunding = @id",
-    
     //Comments
     getComments: "SELECT C.IdComment, CONCAT(U.Name, ' ', U.LastName) AS Name, C.Comment, C.RegisterDate FROM Comments C INNER JOIN Users U ON U.IdUser = C.IdUser WHERE C.IdFunding = @idFunding ORDER BY  C.RegisterDate DESC",
     createNewComment: "INSERT INTO Comments(IdFunding, IdUser, Comment) VALUES (@idFunding , @idUser, @comment)",
     deleteCommentById: "DELETE FROM Comments WHERE IdComment = @idComment"
+}
+
+export const fundqueries = {
+    getAllFunding: "SELECT * FROM Funding WHERE State = 1 AND Aprove = 1",
+    getDeletedFunding: "SELECT * FROM Funding WHERE State = 0",
+    getAllFundingByCat: "SELECT * FROM Funding WHERE IdCategory = @id",
+    getFundingById: "SELECT IdFunding, Title,Question1,Question2,Question3,FastDescription,Description,FundingImage1,FundingImage2,FundingImage3,FundingVideo,SocialMedia,RegisterDate,C.CategoryName,Goal,CurrentGoal FROM Funding F INNER JOIN Category C ON C.IdCategory = F.IdFunding WHERE IdFunding = @id",
+    deleteFundingById: "DELETE FROM Funding WHERE IdFunding = @id",
+    getCountFunding: "SELECT COUNT(*) FROM Funding",
+    updateCategoryById: "UPDATE FUNDING SET Description = @funding WHERE IdCategory = @id",
+    rankCategory: "SELECT TOP 10 * FROM Funding ORDER BY CurrentGoal DESC",
+    createNewFunding: "INSERT INTO Funding(Title, Question1, Question2, Question3, FastDescription, Description, FundingImage1, FundingImage2, FundingImage3, FundingVideo, AccountNumber, SocialMedia, IdCategory, Goal) VALUES (@Title, @Question1, @Question2, @Question3, @FastDescription, @Description, @FundingImage1, @FundingImage2, @FundingImage3, @FundingVideo, @AccountNumber, @SocialMedia, @IdCategory, @Goal)"
 }

@@ -1,11 +1,12 @@
 import { getConnection, sql, queries } from '../database'
+import { fundqueries } from '../database/querys'
 
 export const setRanckFunding = async(req, res) => {
     try {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .query(queries.rankCategory);
+            .query(fundqueries.rankCategory);
         console.log(result);
         res.json(result.recordset);
     } catch (error) {
@@ -63,7 +64,7 @@ export const createFunding = async(req, res) => {
                 .input("SocialMedia", sql.VarChar, SocialMedia)
                 .input("IdCategory", sql.TinyInt, IdCategory)
                 .input("Goal", sql.Decimal, Goal)
-                .query(queries.createNewFunding);
+                .query(fundqueries.createNewFunding);
             console.log(result.rowsAffected);
             res.json({ Title, Question1, Question2,Question3, FastDescription, Description, FundingImage1, FundingImage2, FundingImage3, FundingVideo, AccountNumber, SocialMedia, IdCategory, Goal });
         }
@@ -73,3 +74,61 @@ export const createFunding = async(req, res) => {
     }
 }
 
+
+export const getFundingById = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(fundqueries.getFundingById)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const getFunding = async(req, res) => {
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .query(fundqueries.getAllFunding);
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const getOldFunding = async(req, res) => {
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .query(fundqueries.getDeletedFunding);
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const getFundingByCat = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(fundqueries.getAllFundingByCat)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}

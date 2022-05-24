@@ -134,7 +134,7 @@ export const updatePasswordByUserId = async(req, res) => {
         const { NewPassword } = req.body;
         const { id } = req.params;
         if (NewPassword == null || id == null) {
-            res.status(400).json(msg, "Bad Request undefined Category Or id");
+            res.status(400).json(msg, "Bad Request undefined password Or id");
         } else {
             const result = await pool.request()
                 .input('newPassword', sql.VarChar, NewPassword)
