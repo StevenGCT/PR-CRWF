@@ -16,4 +16,6 @@ para instalar todas las depencias se necesita estar en el directorio incuba lab 
 
 falta instalar la propiedad npm i -g @babel/node
 
+problomas para importar React- npm install babel-plugin-react-require --save-dev
+
 
