@@ -1,8 +1,6 @@
 import { getConnection, sql, queries } from '../database'
 
-// Get Category Of The database
-// By: Yhonattan David Llanos Rivera
-// Contact Number: +59169685120
+
 export const getCategorys = async(req, res) => {
     try {
         const pool = await getConnection();

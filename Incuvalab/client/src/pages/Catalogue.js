@@ -5,10 +5,11 @@ import { VscBell } from 'react-icons/vsc'
 import { Form, Button, Container, Col, Row, FormControl } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+
 export function Catalogue() { 
 
   const {posts} = usePostsFund()
- 
+
 
   if (posts.length === 0) return(    
     <div className='flex flex-col justify-center items-center m-5'>

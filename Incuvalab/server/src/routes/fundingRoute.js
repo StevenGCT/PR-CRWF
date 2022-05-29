@@ -1,10 +1,14 @@
 import { Router } from 'express';
-import { getFunding, getFundingByCat, getFundingById } from '../controllers/fundingController';
+import { getFunding, getFundingByCat, getFundingById, getOldFunding, getQuestionFunding } from '../controllers/fundingController';
 
 const router = Router();
 
 // Get List of funding
 router.get('/funding', getFunding);
+// Get List of all not aprobed funding
+router.get('/request-funding', getQuestionFunding);
+// Get List of deleted fundings
+router.get('/oldfunding', getOldFunding);
 // Get Fundung BY ID
 router.get('/funding/:id', getFundingById);
 // Get Fundung BY Category

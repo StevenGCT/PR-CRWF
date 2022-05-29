@@ -1,4 +1,4 @@
-import { DashMenu } from "../components/DashMenu"
+import { DashMenu } from "../../components/DashMenu"
 
 
 export function ControlPage() {

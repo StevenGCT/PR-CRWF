@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { FundCardsCommand } from "./FundCardsCommand"
+import { FundCardsAprobe } from "./FundCardsAprobe"
 import { Link } from "react-router-dom"
 
 //ARREGLAR RUTEOS Y COLORES
 
-export function DashMenu() {
+export function DashMenuAprobe() {
     const [open, setOpen] = useState(true);
     return(
         <div className="flex">
@@ -75,7 +75,7 @@ export function DashMenu() {
         <h1 className="text-2xl font-semibold ">Lista de Campañas</h1>
         <br />
             <div className="container align-center">
-                <FundCardsCommand></FundCardsCommand>
+                <FundCardsAprobe></FundCardsAprobe>
             </div>
       </div>
     </div>
