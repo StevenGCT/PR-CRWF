@@ -36,7 +36,8 @@ export const queries = {
 
 export const fundqueries = {
     getAllFunding: "SELECT * FROM Funding WHERE State = 1 AND Aprove = 1",
-    getDeletedFunding: "SELECT * FROM Funding WHERE State = 0",
+    getAllNoAprobedFunding: "SELECT * FROM Funding WHERE State = 1 AND Aprove = 0",
+    getDeletedFunding: "SELECT * FROM Funding WHERE State = 0 OR Aprove = 0",
     getAllFundingByCat: "SELECT * FROM Funding WHERE IdCategory = @id",
     getFundingById: "SELECT IdFunding, Title,Question1,Question2,Question3,FastDescription,Description,FundingImage1,FundingImage2,FundingImage3,FundingVideo,SocialMedia,RegisterDate,C.CategoryName,Goal,CurrentGoal FROM Funding F INNER JOIN Category C ON C.IdCategory = F.IdFunding WHERE IdFunding = @id",
     deleteFundingById: "DELETE FROM Funding WHERE IdFunding = @id",

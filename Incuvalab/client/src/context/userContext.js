@@ -1,6 +1,6 @@
 import { useState, createContext, useContext, useEffect } from 'react'
 import { changePassword, getAllCategorysRequest, createFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest} from '../api/user'
-import { getFundsRequests, getFundsRequestsByCat } from '../api/funds'
+import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest } from '../api/funding'
 import { loginUserRequest, registerUserRequest} from '../api/users'
@@ -28,6 +28,16 @@ export const usePostsCat = () => {
 export const usePostsCatFund = () => {
 const context = useContext(userContext)
 return context
+}
+
+export const usePostsFundAprobe = () => {
+  const context = useContext(userContext)
+  return context
+}
+
+export const usePostsFundRecycle = () => {
+  const context = useContext(userContext)
+  return context
 }
 
 
@@ -121,6 +131,8 @@ export const UserProvider = ({children}) =>{
     const [posts, setPosts] = useState([])
     const [postsCat, setPostsCat] = useState([])
     const [postsCatFund, setPostsCatFund] = useState([])
+    const [postsToAprobe, setPostsAprobe] = useState([])
+    const [postsToRecycle, setPostsRecycle] = useState([])
 
     const getFunds = async () => {
       const res =  await getFundsRequests()
@@ -132,6 +144,18 @@ export const UserProvider = ({children}) =>{
       const res =  await getCatRequests()
       console.log("Datos getCats", res)
       setPostsCat(res.data)
+    }
+
+    const getFundsAprobe = async () => {
+      const res =  await getFundsAprobeRequests()
+      console.log(res, setPosts)
+      setPostsAprobe(res.data)
+    }
+
+    const getFundsRecycle = async () => {
+      const res =  await getFundsErasedRequests()
+      console.log(res, setPosts)
+      setPostsRecycle(res.data)
     }
 
     const getPostsFundByCat = async (idCat) => {
@@ -161,6 +185,13 @@ export const UserProvider = ({children}) =>{
         getUserById()
       }, [])
 
+      useEffect(() =>{
+        getFundsAprobe()
+      }, [])
+
+      useEffect(() =>{
+        getFundsRecycle()
+      }, [])
 
       useEffect(() => {
         getFollowedFunding()
@@ -225,6 +256,12 @@ export const UserProvider = ({children}) =>{
 
             postsCatFund,
             getPostsFundByCat,
+
+            postsToAprobe,
+            getFundsAprobe,
+
+            postsToRecycle,
+            getFundsRecycle,
 
             getFundingById,
 
