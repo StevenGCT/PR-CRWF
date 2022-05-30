@@ -3,6 +3,9 @@ import { changePassword, getAllCategorysRequest, createFundingRequest, getUserBy
 import { getFundsRequests, getFundsRequestsByCat } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest } from '../api/funding'
+import { loginUserRequest, registerUserRequest} from '../api/users'
+
+
 
 const userContext = createContext()
 
@@ -42,6 +45,22 @@ export const UserProvider = ({children}) =>{
     const [projectsCount, setProjectCount] = useState([]);
     
     const [categorys, setCategorys] = useState([]);
+
+    
+    const registerUser = async (user) => {
+      const res = await registerUserRequest(user);
+      
+      if(res.data != null){
+          const resLogin = await loginUserRequest(user);
+          return resLogin.data;
+      }
+      
+    }
+
+     const loginUser = async (user) => {
+        const res = await loginUserRequest(user);
+        return res.data;
+    }
 
     const getAllCategory = async () =>{
       const res = await getAllCategorysRequest()
@@ -207,8 +226,10 @@ export const UserProvider = ({children}) =>{
             postsCatFund,
             getPostsFundByCat,
 
-            getFundingById
+            getFundingById,
 
+            registerUser,
+            loginUser
         }}>
           {children}
         </userContext.Provider>

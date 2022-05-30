@@ -1,6 +1,6 @@
-import './../css/userProfile.css';
 import {useUsers} from '../context/userContext';
 import {Link} from 'react-router-dom'
+import './../css/userProfile.css';
 
 export function UserProfile() {
 
@@ -9,7 +9,7 @@ export function UserProfile() {
         return(
             <div className="App">
                 <div class="card1" id="cardUser1">
-                    <h1>USER PROFILE</h1>
+                    <h1 id='h1'>USER PROFILE</h1>
                     <div class="card2" id="cardUser2">
                         <div class="subject">
                         <select name="subject" id="subject_input">

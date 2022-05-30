@@ -17,7 +17,7 @@
     margin-right: 67%;
   }
   
-  .h1 {
+  #h1 {
     color: #474544;
     font-size: 25px;
     letter-spacing: 7px;
@@ -26,7 +26,7 @@
     width: 100%;
   }
   
-  .name{
+  #name{
     float: left;
       width: 45%;
     background: none;
@@ -51,7 +51,7 @@
       transition: all 0.3s;
   }
   
-  .lastName{
+  #lastName{
     float: right;
       width: 45%;
     background: none;
@@ -82,7 +82,7 @@
     width: 100%;
   }
   
-  input[type='password'] {
+  .input[type='password'] {
       background: none;
     border: none;
       border-bottom: solid 2px #474544;
@@ -168,7 +168,7 @@
   #save_button {
     width: 35%;
   }
-  .submits{
+  #submits{
     margin-top: 10px;
     justify-content: center;
     align-items: center;
@@ -190,7 +190,7 @@
     justify-content: center;
   }
   
-  img {
+  #img {
     width: 70%;
     border-radius: 30%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

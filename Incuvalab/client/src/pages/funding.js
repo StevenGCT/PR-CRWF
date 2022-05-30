@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
-import '../css/navbar.css'
+
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { usePostsFund } from "../context/userContext"

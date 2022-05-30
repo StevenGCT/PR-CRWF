@@ -2,7 +2,7 @@ import React from "react";
 import logo from './images/logo.png'
 import avatar from './images/profile.webp'
 import ButonLogout from './logout';
-
+import '../css/navbar.css'
 
 export default function NavbarLogin(props) {
     const dataUser = JSON.parse(localStorage.getItem('user'));

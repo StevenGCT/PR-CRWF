@@ -1,6 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
-h1 {
+#h1 {
   color: #474544;
   font-size: 25px;
   letter-spacing: 7px;
@@ -9,7 +8,7 @@ h1 {
   margin-left: 7%;
 }
 
-select{
+#subject_input{
 	background: none;
   border: none;
 	border-bottom: solid 2px #474544;
@@ -33,10 +32,10 @@ select{
 	transition: all 0.3s;
 }
 
-select::-ms-expand {
+#subject_input::-ms-expand {
   display: none;
 }
-.subject{
+#subject{
   margin: 80px;
   text-align: left;
 }
