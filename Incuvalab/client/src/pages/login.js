@@ -41,10 +41,13 @@ export function Login() {
                                     if (posts.length > 0) {
                                         localStorage.setItem('user',JSON.stringify(posts));
                                         const postsTypeUser = await getTypeUser(posts[0].IdUser);
+                                        
                                         if(postsTypeUser.length > 0 && postsTypeUser[0].TypeUserName == "Administrador"){
                                             navigate('/control-page')
+                                            localStorage.setItem('role', 'Administrador');
                                         }else{
                                             navigate('/')
+                                            localStorage.setItem('role', 'Usuario');
                                         }
                                         
                                     } else {

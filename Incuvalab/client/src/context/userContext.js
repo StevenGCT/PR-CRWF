@@ -55,7 +55,6 @@ export const UserProvider = ({children}) =>{
     const [projectsCount, setProjectCount] = useState([]);
     
     const [categorys, setCategorys] = useState([]);
-
     
     const registerUser = async (user) => {
       const res = await registerUserRequest(user);
@@ -250,7 +249,7 @@ export const UserProvider = ({children}) =>{
 
             createFunding,
             updatePassword,
-
+            setPosts,
             posts,
             getFunds,
 
