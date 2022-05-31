@@ -55,6 +55,24 @@ export const getUserById = async(req, res) => {
     }
 }
 
+
+export const getTypeUserById = async(req, res) => {
+    try {
+        const { id } = req.params;
+        console.log(id);
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(queries.getTypeUserById)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+
 export const deleteUserById = async(req, res) => {
     try {
         const { id } = req.params;

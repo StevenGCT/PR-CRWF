@@ -8,7 +8,7 @@ import './../css/login.css';
 
 export function Login() {
 
-    const { loginUser } = useUsers();
+    const { loginUser, getTypeUser } = useUsers();
 
     const navigate = useNavigate();
     var errorLogin = false;
@@ -40,7 +40,13 @@ export function Login() {
                                     const posts = await loginUser(values)
                                     if (posts.length > 0) {
                                         localStorage.setItem('user',JSON.stringify(posts));
-                                        navigate('/')
+                                        const postsTypeUser = await getTypeUser(posts[0].IdUser);
+                                        if(postsTypeUser > 0 && postsTypeUser[0].TypeUserName == "Administrador"){
+                                            navigate('control-page')
+                                        }else{
+                                            navigate('/')
+                                        }
+                                        
                                     } else {
                                         errorLogin = true;
                                     } 

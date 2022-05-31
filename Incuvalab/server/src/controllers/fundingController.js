@@ -146,3 +146,18 @@ export const getFundingByCat = async(req, res) => {
         res.send(error.message);
     }
 }
+
+export const getAllFundingBySameName = async(req, res) => {
+    try {
+        const { placename } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('placename', placename)
+            .query(fundqueries.getFundingByName)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}

@@ -31,7 +31,9 @@ export const queries = {
     //Comments
     getComments: "SELECT C.IdComment, CONCAT(U.Name, ' ', U.LastName) AS Name, C.Comment, C.RegisterDate FROM Comments C INNER JOIN Users U ON U.IdUser = C.IdUser WHERE C.IdFunding = @idFunding ORDER BY  C.RegisterDate DESC",
     createNewComment: "INSERT INTO Comments(IdFunding, IdUser, Comment) VALUES (@idFunding , @idUser, @comment)",
-    deleteCommentById: "DELETE FROM Comments WHERE IdComment = @idComment"
+    deleteCommentById: "DELETE FROM Comments WHERE IdComment = @idComment",
+
+    getTypeUserById: "SELECT TypeUserName FROM Users U INNER JOIN UserType UT ON UT.IdUserType = U.IdUserType WHERE U.IdUser = @id;"
 }
 
 export const fundqueries = {
@@ -39,6 +41,7 @@ export const fundqueries = {
     getAllNoAprobedFunding: "SELECT * FROM Funding WHERE State = 1 AND Aprove = 0",
     getDeletedFunding: "SELECT * FROM Funding WHERE State = 0 OR Aprove = 0",
     getAllFundingByCat: "SELECT * FROM Funding WHERE IdCategory = @id",
+    getFundingByName: "SELECT * FROM Funding WHERE Title LIKE '%@placename%'",
     getFundingById: "SELECT IdFunding, Title,Question1,Question2,Question3,FastDescription,Description,FundingImage1,FundingImage2,FundingImage3,FundingVideo,SocialMedia,RegisterDate,C.CategoryName,Goal,CurrentGoal FROM Funding F INNER JOIN Category C ON C.IdCategory = F.IdFunding WHERE IdFunding = @id",
     deleteFundingById: "DELETE FROM Funding WHERE IdFunding = @id",
     getCountFunding: "SELECT COUNT(*) FROM Funding",

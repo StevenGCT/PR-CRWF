@@ -3,7 +3,7 @@ import { changePassword, getAllCategorysRequest, createFundingRequest, getUserBy
 import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest } from '../api/funding'
-import { loginUserRequest, registerUserRequest} from '../api/users'
+import { loginUserRequest, registerUserRequest, getTypeUserRequest} from '../api/users'
 
 
 
@@ -64,19 +64,22 @@ export const UserProvider = ({children}) =>{
           const resLogin = await loginUserRequest(user);
           return resLogin.data;
       }
-      
     }
 
-     const loginUser = async (user) => {
+    const loginUser = async (user) => {
         const res = await loginUserRequest(user);
         return res.data;
+    }
+
+    const getTypeUser = async (user) => {
+      const res = await getTypeUserRequest(user);
+      return res.data;
     }
 
     const getAllCategory = async () =>{
       const res = await getAllCategorysRequest()
       setCategorys(res.data)
     }
-
 
     const getFollowedFunding = async () =>{
         const res = await getUserFollowedFundingRequest()
@@ -266,7 +269,8 @@ export const UserProvider = ({children}) =>{
             getFundingById,
 
             registerUser,
-            loginUser
+            loginUser,
+            getTypeUser
         }}>
           {children}
         </userContext.Provider>
