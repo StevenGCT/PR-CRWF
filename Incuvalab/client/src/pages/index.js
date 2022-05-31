@@ -7,6 +7,7 @@ export {FundingPage} from './funding';
 export {Login} from './login';
 export {Register} from './register';
 export {Catalogue} from './Catalogue';
+export {CatalogueCategory} from './CatalogueCategory';
 export {ControlPage} from './Control/ControlPage';
 export {ControlAprobe} from './Control/ControlAprobe';
 export {ControlRecycled} from './Control/ControlRecycled';
