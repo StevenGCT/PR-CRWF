@@ -161,9 +161,9 @@ export const UserProvider = ({children}) =>{
       setPostsRecycle(res.data)
     }
 
-    const getPostsFundByCat = async (idCat) => {
+    const getPostsFundByCat = async (id) => {
       try{
-        const res = await getFundsRequestsByCat(idCat);
+        const res = await getFundsRequestsByCat(id);
         setPostsCatFund(res.data);
       }
       catch (error){
