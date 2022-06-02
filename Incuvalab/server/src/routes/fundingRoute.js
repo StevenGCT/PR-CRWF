@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { setRanckFunding, createFunding, getFunding, getFundingByCat, getFundingById, getOldFunding, getQuestionFunding, getAllFundingBySameName } from '../controllers/fundingController';
+import { setRanckFunding, createFunding, getFunding, getFundingByCat, getFundingById, getOldFunding, getQuestionFunding, getAllFundingBySameName, getAllCompleteFunding } from '../controllers/fundingController';
 
 const router = Router();
 
@@ -7,14 +7,16 @@ const router = Router();
 router.get('/Funding/rank', setRanckFunding);
 router.post('/Funding', createFunding);
 
-// Get Fundung BY ID
+// Get Funding BY ID
 router.get('/Funding/:id', getFundingById);
-// Get List of all not aprobed funding
+// Get a List of all not aprobed funding
 router.get('/request-funding', getQuestionFunding);
-// Get List of funding
+// Get a List of funding
 router.get('/funding', getFunding);
-// Get List of deleted fundings
+// Get a List of deleted fundings
 router.get('/oldfunding', getOldFunding);
+// Get a List of Completed fundings
+router.get('/fullfunding', getAllCompleteFunding);
 // Get Funding BY Category
 router.get('/funding/category/:id', getFundingByCat);
 // Get Funding By name

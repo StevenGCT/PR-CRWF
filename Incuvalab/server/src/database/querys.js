@@ -27,6 +27,7 @@ export const queries = {
     getLoginUser: "SELECT IdUser, UserName FROM Users WHERE Email = @email AND [Password]= HashBytes('MD5',@password)",
     deleteUserById: "DELETE FROM Users WHERE IdUser = @id",
     updateUserById: "UPDATE Users SET Name = @name, Email = @userEmail, PhoneNumber = @userPhoneNumber, LastName = @userLastname, SecondLastName = @userSecondName, UserName = @username, Address = @addressName WHERE IdUser = @id",
+    getUserCommandlist: "SELECT U.IdUser, U.Name , U.Email , U.PhoneNumber , U.PhoneNumber , UT.TypeUserName , U.LastName , U.SecondLastName , U.RegisterDate , U.LastUpdate , U.UserName , U.Address FROM Users U INNER JOIN UserType UT ON U.IdUserType = UT.IdUserType",
 
     //Comments
     getComments: "SELECT C.IdComment, CONCAT(U.Name, ' ', U.LastName) AS Name, C.Comment, C.RegisterDate FROM Comments C INNER JOIN Users U ON U.IdUser = C.IdUser WHERE C.IdFunding = @idFunding ORDER BY  C.RegisterDate DESC",
@@ -38,6 +39,7 @@ export const queries = {
 
 export const fundqueries = {
     getAllFunding: "SELECT * FROM Funding WHERE State = 1 AND Aprove = 1",
+    getCompleteFunding: "SELECT * FROM Funding WHERE CurrentGoal >= Goal AND State = 1 AND Aprove = 1",
     getAllNoAprobedFunding: "SELECT * FROM Funding WHERE State = 1 AND Aprove = 0",
     getDeletedFunding: "SELECT * FROM Funding WHERE State = 0 OR Aprove = 0",
     getAllFundingByCat: "SELECT * FROM Funding WHERE IdCategory = @id",
@@ -48,4 +50,5 @@ export const fundqueries = {
     updateCategoryById: "UPDATE FUNDING SET Description = @funding WHERE IdCategory = @id",
     rankCategory: "SELECT TOP 10 * FROM Funding ORDER BY CurrentGoal DESC",
     createNewFunding: "INSERT INTO Funding(Title, Question1, Question2, Question3, FastDescription, Description, FundingImage1, FundingImage2, FundingImage3, FundingVideo, AccountNumber, SocialMedia, IdCategory, Goal) VALUES (@Title, @Question1, @Question2, @Question3, @FastDescription, @Description, @FundingImage1, @FundingImage2, @FundingImage3, @FundingVideo, @AccountNumber, @SocialMedia, @IdCategory, @Goal)"
+    
 }

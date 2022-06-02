@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { FundCardsCommand } from "./FundCardsCommand"
+import { FundCardsComplete } from "./FundCardsComplete"
 import { Link } from "react-router-dom"
 
 //ARREGLAR RUTEOS Y COLORES
 
-export function DashMenu() {
+export function DashMenuComplete() {
     const [open, setOpen] = useState(true);
     return(
         <div className="flex">
@@ -63,7 +63,7 @@ export function DashMenu() {
           <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
           <img src={`https://raw.githubusercontent.com/Sridhar-C-25/sidebar_reactTailwind/main/src/assets/Folder.png`} alt="Control-Icon"/>
             <span className={`${!open && "hidden"} origin-left duration-200`}>
-                Rechazados/Eliminados
+                Registros antiguos
             </span>
           </li>
           </Link>
@@ -87,7 +87,7 @@ export function DashMenu() {
         <h1 className="text-2xl font-semibold ">Lista de Campañas</h1>
         <br />
             <div className="container align-center">
-                <FundCardsCommand></FundCardsCommand>
+                <FundCardsComplete />
             </div>
       </div>
     </div>

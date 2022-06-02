@@ -9,6 +9,7 @@ export function FundCards() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
     const {posts} = usePostsFund()
     return(
+        
     
     <CardGroup>
         <Row xs={1} md={3} className="g-4 rounded">
@@ -21,7 +22,7 @@ export function FundCards() {
                     </Card.Header>
                     <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg"/>
                     <Card.Body>
-                        <ProgressBar className="m-2"  now={(post.CurrentGoal/post.Goal)*100} variant="dark" label={post.CurrentGoal + "Bs."} />
+                            {post.CurrentGoal >= post.Goal ? <ProgressBar className="m-2"  now={(post.CurrentGoal/post.Goal)*100} variant="success" label={post.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2"  now={(post.CurrentGoal/post.Goal)*100} variant="dark" label={post.CurrentGoal + "Bs."} />}                        
                             <Card.Text className="p-2">
                                 <div className="flex justify-center "><h6 className="text-muted">Meta: {post.Goal}Bs.</h6></div>
                                 {post.FastDescription}

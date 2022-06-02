@@ -23,8 +23,8 @@ export function FundCardsRecycled() {
                     <Card.Text className="p-2">
                         <div className="flex justify-center ">
                             <Col>
-                                <Row>
-                                    <Button variant="dark">Restaurar</Button>
+                                <Row className="flex p-3">
+                                    <Button variant="dark" size="sm">Restaurar</Button>
                                 </Row>
                                 <Row>
                                     <h6 className="text-muted">Meta: {postContainer.Goal}Bs.</h6>

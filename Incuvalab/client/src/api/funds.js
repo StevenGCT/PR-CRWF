@@ -7,3 +7,5 @@ export const getFundsRequestsByCat = async (id) => await axios.get('/funding/cat
 export const getFundsAprobeRequests = async () => await axios.get('/request-funding')
 
 export const getFundsErasedRequests = async () => await axios.get('/oldfunding')
+
+export const getFundsCompletedRequests = async () => await axios.get('/fullfunding')

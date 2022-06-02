@@ -132,6 +132,20 @@ export const getOldFunding = async(req, res) => {
     }
 }
 
+export const getAllCompleteFunding = async(req, res) => {
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .query(fundqueries.getCompleteFunding);
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
 export const getFundingByCat = async(req, res) => {
     try {
         const { id } = req.params;

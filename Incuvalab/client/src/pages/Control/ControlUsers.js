@@ -1,13 +1,13 @@
-import { DashMenu } from "../../components/DashMenu"
+import { DashMenuUser } from "../../components/DashMenuUser"
 import NavbarLogin from "../../components/header-navbar"
 
 
-export function ControlPage() {
+export function ControlUsers() {
     return (
       <>
       <div>
       <NavbarLogin locale={true} />
-      <DashMenu />
+      <DashMenuUser />
       </div>
     <div className="container align-center">
       
