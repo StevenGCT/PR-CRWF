@@ -41,8 +41,8 @@ export default function NavbarLogin(props) {
                                         <b class="caret mx-4 mt-2"> {dataUser[0].UserName}</b>
                                     </div>
                                     <div class="dropdown-menu dropdown-left mt-2" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">MI perfil</a>
-                                        <a class="dropdown-item" href="#">Configuración</a>
+                                        <a class="dropdown-item" href="/UserProfile">MI perfil</a>
+                                        <a class="dropdown-item" href="/Settings">Configuración</a>
                                         <ButonLogout/>
                                     </div>
                                 </div>

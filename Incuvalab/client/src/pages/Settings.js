@@ -2,6 +2,8 @@ import image1 from '../components/images/predeterminate.jpg';
 import { useUsers } from '../context/userContext';
 import { Formik, Form, Field } from 'formik';
 import './../css/setting.css';
+import NavbarLogin from "../components/header-navbar"
+import Footer from "../components/footer"
 
 export function Settings() {
 
@@ -9,6 +11,7 @@ export function Settings() {
 
     return (
         <div className="App">
+            <NavbarLogin locale={true} />
             <div id="container" class="container-fluid">
                 <div class="card" id="cardSetting1">
                     <h1 class="h1" id='h1'>Personal Info</h1>

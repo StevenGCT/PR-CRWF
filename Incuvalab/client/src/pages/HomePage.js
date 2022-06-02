@@ -22,7 +22,7 @@ export function HomePage() {
           <Col sm={8} className="my-5">
             <h1 className="display-5 fw-bold  text-start align-middle" id='titleHome'>Los proyectos emprendedores abren un mundo de posibilidades. Ayuda a financiarlo aquí.</h1>
             <br ></br>
-            <p className=" fs-3 text-white text-start">Deja el mundo vea y apoye tu trabajo de tus ideaas desde cualquier parte.</p>
+            <p className=" fs-3 text-white text-start">Deja que el mundo vea y apoye tu trabajo de tus ideas desde cualquier parte.</p>
             <input className='btn btn-lg mt-5' type="button" value="Iniciar Campaña" id='btn-startproyect'></input>
           </Col>
           <Col sm={4}>
@@ -92,7 +92,7 @@ export function HomePage() {
 
           <Col className='m-2'>
             <div id="circulo">
-              <p> 3 </p>
+              <p> 4 </p>
             </div>
             <div className='my-3 mx-3 text-center'>
               <p className='fs-3 fw-bold text-secondary'>Empieza con lo más básico</p>
