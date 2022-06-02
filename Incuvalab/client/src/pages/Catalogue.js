@@ -26,7 +26,7 @@ export function Catalogue() {
         <h1 className="mt-5 p-3">Catálogo</h1>
           <Container>
             <Row>
-              <Col sm={4}><SearchByCategory /></Col>
+              <Col sm={4}><SearchByCategory/></Col>
               <Col sm={8}>
                 <Form className="d-flex m-2">
                   <FormControl

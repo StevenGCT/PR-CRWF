@@ -1,21 +1,26 @@
 import { useState, createContext, useContext, useEffect } from 'react'
-import { changePassword, getAllCategorysRequest, createFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest} from '../api/user'
+import { changePassword, getAllCategorysRequest, createFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
 import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests } from '../api/funds'
 import { getCatRequests } from '../api/categories'
-import { getFundingByIdRequest } from '../api/funding'
-import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest} from '../api/users'
+import { getFundingByIdRequest ,  getFundingTop3Request } from '../api/funding'
+import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest } from '../api/users'
 
 
 
 const userContext = createContext()
 
 export const useUsers = () => {
-    const context = useContext(userContext)
-    if (!context) throw new Error("Post Provider is missing");
+  const context = useContext(userContext)
+  if (!context) throw new Error("Post Provider is missing");
   return context;
 }
 
 export const usePostsFund = () => {
+  const context = useContext(userContext)
+  return context
+}
+
+export const useFundTop = () => {
   const context = useContext(userContext)
   return context
 }
@@ -31,8 +36,8 @@ export const usePostsCat = () => {
 }
 
 export const usePostsCatFund = () => {
-const context = useContext(userContext)
-return context
+  const context = useContext(userContext)
+  return context
 }
 
 export const usePostsFundAprobe = () => {
@@ -45,272 +50,288 @@ export const usePostsFundRecycle = () => {
   return context
 }
 
-export const usePostsFundComplete= () => {
+export const usePostsFundComplete = () => {
   const context = useContext(userContext)
   return context
 }
 
 
-export const UserProvider = ({children}) =>{
-    const [users, setUsers] = useState([]);
-    const [usersById, setUsersById] = useState([]);
+export const UserProvider = ({ children }) => {
+  const [users, setUsers] = useState([]);
+  const [usersById, setUsersById] = useState([]);
 
-    const [followeds, setFollowed] = useState([]);
-    const [followedsCount, setFollowedCount] = useState([]);
+  const [followeds, setFollowed] = useState([]);
+  const [followedsCount, setFollowedCount] = useState([]);
 
-    const [donated, setDonated] = useState([]);
-    const [donatedCount, setDonatedCount] = useState([]);
+  const [donated, setDonated] = useState([]);
+  const [donatedCount, setDonatedCount] = useState([]);
 
-    const [projects, setProjec] = useState([]);
-    const [projectsCount, setProjectCount] = useState([]);
-    
-    const [categorys, setCategorys] = useState([]);
-    
-    const registerUser = async (user) => {
-      const res = await registerUserRequest(user);
-      
-      if(res.data != null){
-          const resLogin = await loginUserRequest(user);
-          return resLogin.data;
-      }
+  const [projects, setProjec] = useState([]);
+  const [projectsCount, setProjectCount] = useState([]);
+
+  const [categorys, setCategorys] = useState([]);
+
+  const registerUser = async (user) => {
+    const res = await registerUserRequest(user);
+
+    if (res.data != null) {
+      const resLogin = await loginUserRequest(user);
+      return resLogin.data;
     }
-
-    const loginUser = async (user) => {
-        const res = await loginUserRequest(user);
-        return res.data;
-    }
-
-    const getTypeUser = async (user) => {
-      const res = await getTypeUserRequest(user);
-      return res.data;
-    }
-
-    const getAllCategory = async () =>{
-      const res = await getAllCategorysRequest()
-      setCategorys(res.data)
-    }
-
-    const getFollowedFunding = async () =>{
-        const res = await getUserFollowedFundingRequest()
-        setFollowed(res.data)
-    }
-
-    const getFollowedCount = async () =>{
-        const res = await getCountUserFollowedFundingRequest()
-        setFollowedCount(res.data)
-    }
-
-    const getDonatedFunding = async () =>{
-        const res = await getUserDonatedFundingRequest()
-        setDonated(res.data)
-    }
-
-    const getDonatedCount = async () =>{
-        const res = await getCountUserDonatedFundingRequest()
-        setDonatedCount(res.data)
-    }
-
-    const getUserFunding = async () =>{
-        const res = await getUserFundingRequest()
-        setProjec(res.data)
-    }
-
-    const getUserFundingCount = async () =>{
-        const res = await getCountUserFundingRequest()
-        setProjectCount(res.data)
-    }
-
-    const getUser = async () =>{
-        const res = await getUserRequest()
-        setUsers(res.data)
-    }
-    
-    const getUserById = async () =>{
-        const res = await getUserByIdRequest()
-        setUsersById(res.data)
-    }
-
-    const createFunding = async (funding) =>{
-      const res = await createFundingRequest(funding)
-      console.log(res) 
-    }
-
-    const updatePassword = async (id, password) =>{
-      const res =  await changePassword(id, password)
-      console.log(res)
-    }
-
-    const [posts, setPosts] = useState([])
-    const [postsCat, setPostsCat] = useState([])
-    const [postsCatFund, setPostsCatFund] = useState([])
-    const [postsToAprobe, setPostsAprobe] = useState([])
-    const [postsToRecycle, setPostsRecycle] = useState([])
-    const [postsComplete, setPostsCompleted] = useState([])
-    const [postsUsersList, setPostsUsersToModify] = useState([])
-
-    const getFunds = async () => {
-      const res =  await getFundsRequests()
-      console.log(res, setPosts)
-      setPosts(res.data)
-    }
-
-    const getUsersToModify = async () => {
-      const res =  await userListToEditRequest()
-      console.log("Datos to modify", res)
-      setPostsUsersToModify(res.data)
-    }
-
-    const getCats = async () => {
-      const res =  await getCatRequests()
-      console.log("Datos getCats", res)
-      setPostsCat(res.data)
-    }
-
-    const getFundsAprobe = async () => {
-      const res =  await getFundsAprobeRequests()
-      console.log(res, setPosts)
-      setPostsAprobe(res.data)
-    }
-
-    const getFundsRecycle = async () => {
-      const res =  await getFundsErasedRequests()
-      console.log(res, setPosts)
-      setPostsRecycle(res.data)
-    }
-
-
-    const getFundsCompleted = async () => {
-      const res =  await getFundsCompletedRequests()
-      console.log(res, setPosts)
-      setPostsCompleted(res.data)
-    }
-
-    const getPostsFundByCat = async (id) => {
-      try{
-        const res = await getFundsRequestsByCat(id);
-        setPostsCatFund(res.data);
-      }
-      catch (error){
-        console.error(error);
-      }
-    };
-
-    const getFundingById = async (idFunding) => {
-      const res = await getFundingByIdRequest(idFunding);
-      return res.data;
   }
 
-    useEffect(() => {
-      getAllCategory()
-    }, [])
+  const loginUser = async (user) => {
+    const res = await loginUserRequest(user);
+    return res.data;
+  }
 
-      useEffect(() => {
-        getUser()
-      }, [])
+  const getTypeUser = async (user) => {
+    const res = await getTypeUserRequest(user);
+    return res.data;
+  }
 
-      useEffect(() => {
-        getUsersToModify()
-      }, [])
+  const getAllCategory = async () => {
+    const res = await getAllCategorysRequest()
+    setCategorys(res.data)
+  }
 
-      useEffect(() => {
-        getUserById()
-      }, [])
+  const getFollowedFunding = async () => {
+    const res = await getUserFollowedFundingRequest()
+    setFollowed(res.data)
+  }
 
-      useEffect(() =>{
-        getFundsAprobe()
-      }, [])
+  const getFollowedCount = async () => {
+    const res = await getCountUserFollowedFundingRequest()
+    setFollowedCount(res.data)
+  }
 
-      useEffect(() =>{
-        getFundsRecycle()
-      }, [])
+  const getDonatedFunding = async () => {
+    const res = await getUserDonatedFundingRequest()
+    setDonated(res.data)
+  }
 
-      useEffect(() =>{
-        getFundsCompleted()
-      }, [])
+  const getDonatedCount = async () => {
+    const res = await getCountUserDonatedFundingRequest()
+    setDonatedCount(res.data)
+  }
 
-      useEffect(() => {
-        getFollowedFunding()
-      }, [])
+  const getUserFunding = async () => {
+    const res = await getUserFundingRequest()
+    setProjec(res.data)
+  }
 
-      useEffect(() => {
-        getFollowedCount()
-      }, [])
+  const getUserFundingCount = async () => {
+    const res = await getCountUserFundingRequest()
+    setProjectCount(res.data)
+  }
 
-      useEffect(() => {
-        getDonatedFunding()
-      }, [])
+  const getUser = async () => {
+    const res = await getUserRequest()
+    setUsers(res.data)
+  }
 
-      useEffect(() => {
-        getDonatedCount()
-      }, [])
+  const getUserById = async () => {
+    const res = await getUserByIdRequest()
+    setUsersById(res.data)
+  }
 
-      useEffect(() => {
-        getUserFunding()
-      }, [])
+  const createFunding = async (funding) => {
+    const res = await createFundingRequest(funding)
+    console.log(res)
+  }
 
-      useEffect(() => {
-        getUserFundingCount()
-      }, [])
+  const updatePassword = async (id, password) => {
+    const res = await changePassword(id, password)
+    console.log(res)
+  }
 
-      useEffect(() =>{
-        getFunds()
-      }, [])
+  const [posts, setPosts] = useState([])
+  const [postsTop, setPostsTop] = useState([])
+  const [postsCat, setPostsCat] = useState([])
+  const [postsCatFund, setPostsCatFund] = useState([])
+  const [postsToAprobe, setPostsAprobe] = useState([])
+  const [postsToRecycle, setPostsRecycle] = useState([])
+  const [postsComplete, setPostsCompleted] = useState([])
+  const [postsUsersList, setPostsUsersToModify] = useState([])
 
-    useEffect(() =>{
-        getCats()
-      }, [])
+  const getFunds = async () => {
+    const res = await getFundsRequests()
+    console.log(res, setPosts)
+    setPosts(res.data)
+  }
 
-    useEffect(() =>{
-        getPostsFundByCat()
-      }, [])
+  const getUsersToModify = async () => {
+    const res = await userListToEditRequest()
+    console.log("Datos to modify", res)
+    setPostsUsersToModify(res.data)
+  }
 
-    return (
-        <userContext.Provider value={{ 
-            categorys,
+  const getCats = async () => {
+    const res = await getCatRequests()
+    console.log("Datos getCats", res)
+    setPostsCat(res.data)
+  }
 
-            users,
-            usersById,
+  const getFundsAprobe = async () => {
+    const res = await getFundsAprobeRequests()
+    console.log(res, setPosts)
+    setPostsAprobe(res.data)
+  }
 
-            followeds,
-            followedsCount,
+  const getFundsRecycle = async () => {
+    const res = await getFundsErasedRequests()
+    console.log(res, setPosts)
+    setPostsRecycle(res.data)
+  }
 
-            donated,
-            donatedCount,
 
-            projects,
-            projectsCount,
+  const getFundsCompleted = async () => {
+    const res = await getFundsCompletedRequests()
+    console.log(res, setPosts)
+    setPostsCompleted(res.data)
+  }
 
-            createFunding,
-            updatePassword,
-            setPosts,
-            posts,
-            getFunds,
+  const getPostsFundByCat = async (id) => {
+    try {
+      const res = await getFundsRequestsByCat(id);
+      setPostsCatFund(res.data);
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
 
-            postsCat,
-            getCats,
+  const getFundingById = async (idFunding) => {
+    const res = await getFundingByIdRequest(idFunding);
+    return res.data;
+  }
 
-            postsCatFund,
-            getPostsFundByCat,
+  const getFundingTop3 = async () => {
+    const res = await getFundingTop3Request();
+    setPostsTop( res.data);
+  }
 
-            postsToAprobe,
-            getFundsAprobe,
 
-            postsToRecycle,
-            getFundsRecycle,
+  useEffect(() => {
+    getAllCategory()
+  }, [])
 
-            postsComplete,
-            getFundsCompleted,
+  useEffect(() => {
+    getUser()
+  }, [])
 
-            postsUsersList,
-            getUsersToModify,
+  useEffect(() => {
+    getUsersToModify()
+  }, [])
 
-            getFundingById,
+  useEffect(() => {
+    getUserById()
+  }, [])
 
-            registerUser,
-            loginUser,
-            getTypeUser
-        }}>
-          {children}
-        </userContext.Provider>
-      );
+  useEffect(() => {
+    getFundsAprobe()
+  }, [])
+
+  useEffect(() => {
+    getFundsRecycle()
+  }, [])
+
+  useEffect(() => {
+    getFundsCompleted()
+  }, [])
+
+  useEffect(() => {
+    getFollowedFunding()
+  }, [])
+
+  useEffect(() => {
+    getFollowedCount()
+  }, [])
+
+  useEffect(() => {
+    getDonatedFunding()
+  }, [])
+
+  useEffect(() => {
+    getDonatedCount()
+  }, [])
+
+  useEffect(() => {
+    getUserFunding()
+  }, [])
+
+  useEffect(() => {
+    getUserFundingCount()
+  }, [])
+
+  useEffect(() => {
+    getFunds()
+  }, [])
+
+  useEffect(() => {
+    getFundingTop3()
+  }, [])
+
+  useEffect(() => {
+    getCats()
+  }, [])
+
+  useEffect(() => {
+    getPostsFundByCat()
+  }, [])
+
+  return (
+    <userContext.Provider value={{
+      categorys,
+
+      users,
+      usersById,
+
+      followeds,
+      followedsCount,
+
+      donated,
+      donatedCount,
+
+      projects,
+      projectsCount,
+
+      createFunding,
+      updatePassword,
+      setPosts,
+      posts,
+      getFunds,
+
+      setPostsTop,
+      postsTop,
+
+      postsCat,
+      getCats,
+
+      postsCatFund,
+      getPostsFundByCat,
+
+      postsToAprobe,
+      getFundsAprobe,
+
+      postsToRecycle,
+      getFundsRecycle,
+
+      postsComplete,
+      getFundsCompleted,
+
+      postsUsersList,
+      getUsersToModify,
+
+      getFundingById,
+
+      registerUser,
+      loginUser,
+      getTypeUser,
+
+      getFundingTop3
+    }}>
+      {children}
+    </userContext.Provider>
+  );
 }

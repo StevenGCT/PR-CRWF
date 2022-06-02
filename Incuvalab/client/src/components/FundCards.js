@@ -16,7 +16,7 @@ export function FundCards() {
       {posts.map(post => (
         <Col>
             <Card key={posts.IdFunding}>
-                <Link to={"/funding/" + post.IdFunding}>
+                <Link href={"/funding/" + post.IdFunding}>
                     <Card.Header>
                         {post.Title}
                     </Card.Header>

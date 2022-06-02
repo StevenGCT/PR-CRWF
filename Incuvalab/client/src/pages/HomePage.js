@@ -9,6 +9,7 @@ import image5 from '../components/images/manchas.png';
 import './../css/home.css';
 import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
+import { FundCards} from '../components/FundCardTop';
 
 export function HomePage() {
 
@@ -58,7 +59,6 @@ export function HomePage() {
           </Col>
           <Col>
             <img className='img-fluid mt-3 ' src={image5} />
-
           </Col>
         </Row>
         <Row className='p-5'>
@@ -111,9 +111,16 @@ export function HomePage() {
         </div>
       </div>
 
-      <div>
+      <hr/>
 
+      <div className='container-sm my-5'>
+        <div>
+        <p className='display-6 fw-bold'>Proyectos destacados</p>
+        </div>
+        <FundCards/>
       </div>
+
+      <hr/>
 
       <div className='container-sm my-5'>
         <div className='card shadow-lg p-3 mb-5 bg-body rounded rounded mx-8'>

@@ -47,5 +47,5 @@ function App() {
                 </Routes>
             </UserProvider>
         );
-}
+} 
 export default App;
