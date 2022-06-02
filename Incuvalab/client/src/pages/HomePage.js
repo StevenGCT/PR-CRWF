@@ -1,6 +1,11 @@
 import { Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import image1 from '../components/images/predeterminate.jpg';
+import image1 from '../components/images/homepage.jpg';
+import image2 from '../components/images/homepage1.jpg';
+import image3 from '../components/images/homepage2.jpg';
+import image4 from '../components/images/finances.svg';
+import image5 from '../components/images/manchas.png';
+
 import './../css/home.css';
 import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
@@ -10,85 +15,127 @@ export function HomePage() {
   return (
     <div>
       <NavbarLogin locale={true} />
-      <div className="container flex position-relative overflow-hidden p-3 p-md-5 text-center bg-light">
+      <div className="container-fluid flex position-relative overflow-hidden p-3 p-md-5 mb-5" id='banner'>
         <Row></Row>
-        <Row>
-          <Col sm={8}>
-            <h1 className="display-5 fw-bold">Main example</h1>
-            <br></br>
-            <p>Find out how to do it!</p>
+        <Row className='mx-5'>
+          <Col sm={8} className="my-5">
+            <h1 className="display-5 fw-bold  text-start align-middle" id='titleHome'>Los proyectos emprendedores abren un mundo de posibilidades. Ayuda a financiarlo aquí.</h1>
+            <br ></br>
+            <p className=" fs-3 text-white text-start">Deja el mundo vea y apoye tu trabajo de tus ideaas desde cualquier parte.</p>
+            <input className='btn btn-lg mt-5' type="button" value="Iniciar Campaña" id='btn-startproyect'></input>
           </Col>
           <Col sm={4}>
-            <img variant="top" src="https://epthinktank.eu/wp-content/uploads/2015/09/eprs-briefing-568327-overview-eu-funds-research-innovation.png" alt="Funding Image"></img>
+            <Row>
+              <Col>
+                <img className='img-fluid' src={image1} />
+              </Col>
+              <Col>
+                <img className='img-fluid' src={image3} />
+              </Col>
+            </Row>
+            <Row >
+              <Col>
+                <img className='img-fluid mt-3' src={image2} />
+              </Col>
+            </Row>
           </Col>
         </Row>
         <Row></Row>
+      </div>
 
+      <div className='container-sm'>
+        <Row>
+          <Col sm={2}>
+            <p className='fs-5 fw-bold text-secondary'> ¿Qué nos espera?</p>
+          </Col>
+          <Col className='my-auto'>
+            <hr/>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <p className='display-6 fw-bold  text-wrap  mb-2' id="text-wrap-left">Recaudar fondos en Incuva Lab solo lleva unos minutos</p>
+          </Col>
+          <Col>
+            <img className='img-fluid mt-3 ' src={image5} />
+
+          </Col>
+        </Row>
+        <Row className='p-5'>
+          <Col className='m-2'>
+            <div id="circulo">
+              <p> 1 </p>
+            </div>
+            <div className='my-3 mx-3 text-center'>
+              <p className='fs-3 fw-bold text-secondary'>Empieza con lo más básico</p>
+              Comienza por dar tu nombre y ubicación.
+            </div>
+          </Col>
+          <Col className='m-2'>
+            <div id="circulo">
+              <p> 2 </p>
+            </div>
+            <div className='my-3 mx-3 text-center'>
+              <p className='fs-3 fw-bold text-secondary'>Empieza con lo más básico</p>
+              Comienza por dar tu nombre y ubicación.
+            </div>
+          </Col>
+          <Col className='m-2'>
+            <div id="circulo">
+              <p> 3 </p>
+            </div>
+            <div className='my-3 mx-3 text-center'>
+              <p className='fs-3 fw-bold text-secondary'>Empieza con lo más básico</p>
+              Comienza por dar tu nombre y ubicación.
+            </div>
+          </Col>
+
+          <Col className='m-2'>
+            <div id="circulo">
+              <p> 3 </p>
+            </div>
+            <div className='my-3 mx-3 text-center'>
+              <p className='fs-3 fw-bold text-secondary'>Empieza con lo más básico</p>
+              Comienza por dar tu nombre y ubicación.
+            </div>
+          </Col>
+        </Row>
+      </div>
+
+      <hr />
+
+      <div className='container-sm my-5'>
+        <div className='text-center'>
+          <p className='display-5 fw-bold'>¿Qué es IncUVa-Lab?</p>
+          <p className='fs-5 fw-semibold px-5 lh-lg'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet aliquet ipsum. Vestibulum sagittis at elit in feugiat. Curabitur at ipsum et sapien tempus cursus. Nunc ac ante sapien. Proin eget est tellus. In hac habitasse platea dictumst. Suspendisse potenti. Sed tempor et ex vitae ultrices.</p>
+        </div>
+      </div>
+
+      <div>
 
       </div>
 
-      <div className="container container-fluid card p-5 bg-secondary bg-opacity-10 my-3">
-        <div className="row">
-          <div className="col">
-            <h4>¿Quieres ser un donador?</h4>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-4">
-            <img src="" />
-          </div>
-          <div className="col">
-            <div>
-              <h5>Paso 1</h5>
-              <hr />
-              <p>En primer lugar, incia sesión en una cuenta de Incuva Lab</p>
-              <h5>Paso 2</h5>
-              <hr />
-              <p>Ve al proyecto que te interesa apoyar y haz click en el boton "Donar a este proyecto"</p>
-              <h5>Paso 3</h5>
-              <hr />
-              <p>Revisa los detalle de tu contribución</p>
-              <h5>Paso 4</h5>
-              <hr />
-              <p>Para completar tu contribución, haz clic en contribuir.</p>
-            </div>
-          </div>
-        </div>
-        <div className="d-flex justify-content-end">
-          <a class="btn btn-secondary" href="#" role="button">Registrate!</a>
+      <div className='container-sm my-5'>
+        <div className='card shadow-lg p-3 mb-5 bg-body rounded rounded mx-8'>
+          <Row className='px-5'>
+            <Col className='mt-5 ms-5'>
+              <p className="display-6 fw-bolder text-start text-secondary">¿Listo para empezar? Únete hoy mismo a miles de personas.</p>
+              <Row>
+                <Col sm={4}>
+                  <input className='btn btn-lg mt-3' type="button" value="Iniciar Campaña" id='btn-startproyect'></input>
+                </Col>
+                <Col sm={7}>
+                  <input className='btn btn-lg mt-3' type="button" value="Como funciona" id='btn-outline-pageHome'></input>
+                </Col>
+              </Row>
+            </Col>
+            <Col>
+              <img className='img-fluid mt-3' src={image4} />
+            </Col>
+          </Row>
         </div>
       </div>
 
-      <div className="container container-fluid card p-5 bg-secondary bg-opacity-10 my-3" >
-        <div className='row'>
-          <div className="col">
-            <h1 class="h1">Quieres ser un donante?</h1>
-            <img id="imgDonatedConteiner" src={image1} alt="imageforDonatedView" />
-          </div>
-
-          <div class="col card" >
-            <h2 class="h2">Paso 1</h2>
-            <div class="underline"></div>
-            <div>
-              <label class="labelForDonatedView" >Siga este sencillo paso para comenzar y utilizar este excelente producto</label>
-            </div>
-            <h2 class="h2">Paso 2</h2>
-            <div class="underline"></div>
-            <div>
-              <label class="labelForDonatedView" >Sigue este paso para empezar a crear valor para tus clientes</label>
-            </div>
-            <h2 class="h2">Paso 3</h2>
-            <div class="underline"></div>
-            <div>
-              <label class="labelForDonatedView" >Ahora has terminado y has creado algo muy especial.</label>
-            </div>
-            <div class="submits">
-              <input type="submit" id="btnDonatedSteps" value="Registrate ahora" />
-            </div>
-          </div>
-        </div>
-
-      </div>
       <Footer />
     </div>
   )
