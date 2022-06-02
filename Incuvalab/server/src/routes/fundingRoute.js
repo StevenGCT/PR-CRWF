@@ -18,6 +18,6 @@ router.get('/oldfunding', getOldFunding);
 // Get Funding BY Category
 router.get('/funding/category/:id', getFundingByCat);
 // Get Funding By name
-router.get('/funding/name/:placename', getAllFundingBySameName)
+router.get('/funding/name' , getAllFundingBySameName)
 
 export default router;

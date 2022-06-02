@@ -1,11 +1,12 @@
 import { usePostsCatFund } from '../context/userContext'
 import { Card, ProgressBar, CardGroup, Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { Link } from "react-router-dom"
 
 
 export function FundCardsCat() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
-    //ARREGLAR BUG DEL PROGRESS BAR (CUANDO ESTE LLEGUE A SU META DEJAR EL PORCENTAJE EN 100 Y YA NO CALCULAR ESTE MISMO)
+    
     const {postsCatFund} = usePostsCatFund()
     return(
     
@@ -14,6 +15,7 @@ export function FundCardsCat() {
       {postsCatFund.map(catpost => (
           <Col>
         <Card key={catpost.IdFunding}>
+        <Link to={"/funding/" + catpost.IdFunding}>
             <Card.Header>
                 {catpost.Title}
             </Card.Header>
@@ -28,6 +30,7 @@ export function FundCardsCat() {
             <Card.Footer>
                 <small className="text-muted">Campaña subida el: {catpost.RegisterDate}</small>
             </Card.Footer>
+        </Link>
         </Card>
         </Col>
       ))}
