@@ -2,8 +2,9 @@ import { useState, createContext, useContext, useEffect } from 'react'
 import { changePassword, getAllCategorysRequest, createFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
 import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests } from '../api/funds'
 import { getCatRequests } from '../api/categories'
-import { getFundingByIdRequest ,  getFundingTop3Request } from '../api/funding'
+import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
 import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest } from '../api/users'
+import { createCommentRequest, getCommentsRequest, deleteCommentRequest} from '../api/comment'
 
 
 
@@ -208,7 +209,25 @@ export const UserProvider = ({ children }) => {
 
   const getFundingTop3 = async () => {
     const res = await getFundingTop3Request();
-    setPostsTop( res.data);
+    setPostsTop(res.data);
+  }
+
+  const createComment = async (comment) => {
+    const res = await createCommentRequest(comment);
+
+    if (res.data != null) {
+      return res.status;
+    }
+  }
+
+  const getComments = async (idFunding) => {
+    const res = await getCommentsRequest(idFunding);
+    return res.data;
+  }
+
+  const deleteCommentById = async (idComment) => {
+    const res = await deleteCommentRequest(idComment);
+    return res.data;
   }
 
 
@@ -329,7 +348,11 @@ export const UserProvider = ({ children }) => {
       loginUser,
       getTypeUser,
 
-      getFundingTop3
+      getFundingTop3,
+
+      createComment,
+      getComments,
+      deleteCommentById
     }}>
       {children}
     </userContext.Provider>

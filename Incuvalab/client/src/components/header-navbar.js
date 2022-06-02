@@ -21,13 +21,13 @@ export default function NavbarLogin(props) {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="#">Descubrir</a>
+                                <a className="nav-link" aria-current="page" href="/">Inicio</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Catálogo de proyectos</a>
+                                <a className="nav-link"  href="/catalogue">Catálogo de proyectos</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link">Crear un proyecto</a>
+                                <a className="nav-link" href="/CreateProject">Crear un proyecto</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link">Preguntas frecuentes</a>

@@ -131,8 +131,10 @@ export function HomePage() {
                 <Col sm={4}>
                   <input className='btn btn-lg mt-3' type="button" value="Iniciar Campaña" id='btn-startproyect'></input>
                 </Col>
-                <Col sm={7}>
+                <Col sm={4}>
                   <input className='btn btn-lg mt-3' type="button" value="Como funciona" id='btn-outline-pageHome'></input>
+                </Col>
+                <Col sm={8}>
                 </Col>
               </Row>
             </Col>
