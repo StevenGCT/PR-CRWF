@@ -7,6 +7,8 @@ export const queries = {
     updateCategoryById: "Update Category SET CategoryName = @category WHERE IdCategory = @id",
     rankCategory: "SELECT TOP 10 * FROM Funding ORDER BY CurrentGoal DESC",
 
+    getRackFundingTop3: "SELECT  TOP (3) * FROM Funding a INNER JOIN (SELECT IdFunding, MAX(Goal) AS rev FROM Funding GROUP BY IdFunding) b ON a.IdFunding = b.IdFunding AND a.Goal = b.rev",
+    
     //Profile View
     getAllUsers: "SELECT * FROM Users;",
     getUserById: "SELECT * FROM Users WHERE IdUser = @id",
@@ -50,5 +52,4 @@ export const fundqueries = {
     updateCategoryById: "UPDATE FUNDING SET Description = @funding WHERE IdCategory = @id",
     rankCategory: "SELECT TOP 10 * FROM Funding ORDER BY CurrentGoal DESC",
     createNewFunding: "INSERT INTO Funding(Title, Question1, Question2, Question3, FastDescription, Description, FundingImage1, FundingImage2, FundingImage3, FundingVideo, AccountNumber, SocialMedia, IdCategory, Goal) VALUES (@Title, @Question1, @Question2, @Question3, @FastDescription, @Description, @FundingImage1, @FundingImage2, @FundingImage3, @FundingVideo, @AccountNumber, @SocialMedia, @IdCategory, @Goal)"
-    
 }

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { setRanckFunding, createFunding, getFunding, getFundingByCat, getFundingById, getOldFunding, getQuestionFunding, getAllFundingBySameName, getAllCompleteFunding } from '../controllers/fundingController';
+import { setRanckFunding, createFunding, getFunding, getFundingByCat, getFundingById, getOldFunding, getQuestionFunding, getAllFundingBySameName, getAllCompleteFunding, setRanckTop3 } from '../controllers/fundingController';
 
 const router = Router();
 
@@ -20,6 +20,8 @@ router.get('/fullfunding', getAllCompleteFunding);
 // Get Funding BY Category
 router.get('/funding/category/:id', getFundingByCat);
 // Get Funding By name
-router.get('/funding/name' , getAllFundingBySameName)
+router.get('/funding/name' , getAllFundingBySameName);
+//Get Funding Top 3
+router.get('/fundingRank3' , setRanckTop3 );
 
 export default router;
