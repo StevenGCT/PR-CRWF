@@ -30,7 +30,7 @@ export function FundCardsAprobe() {
                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
                                         <Button variant="success" size="sm">Publicar</Button>
                                         <Button variant="warning" size="sm">Editar</Button>
-                                        <Button variant="danger" size="sm">Eliminar</Button>
+                                        <Button variant="danger" size="sm">Denegar</Button>
                                     </ButtonGroup>
                                 </Row>
                             </Col>
