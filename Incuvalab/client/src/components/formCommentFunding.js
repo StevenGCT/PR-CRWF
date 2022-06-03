@@ -11,6 +11,7 @@ function Comment(props) {
     const navigate = useNavigate();
     return (
         <div className='mb-2'>
+            
             <Formik className="form"
                 initialValues={{
                     comment: ''

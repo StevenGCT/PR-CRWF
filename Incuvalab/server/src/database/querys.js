@@ -22,7 +22,7 @@ export const queries = {
     getCountFollowedFundingByUserId: "SELECT COUNT(*) FROM Followed_Funding FD INNER JOIN Users U ON FD.IdUser = U.IdUser WHERE U.idUser = @id",
 
 
-
+    getUserDonateFunding: "SELECT idUser FROM Funding F INNER JOIN User_Funding UF ON UF.idFunding = F.idFunding WHERE F.IdFunding = @idFunding",
     //User
     createNewUser: "INSERT INTO Users ([Name] ,LastName, Email, [Password], UserName) VALUES (@name, @lastName, @email, HashBytes('MD5', @password), @username)",
     getUserById: "SELECT * FROM Users WHERE IdUser = @id",

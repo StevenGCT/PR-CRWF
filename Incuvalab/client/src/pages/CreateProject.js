@@ -1,14 +1,17 @@
 import {Formik, Form, Field} from 'formik'
+import { Navigate } from 'react-router-dom';
 import {useUsers} from '../context/userContext'
 
 
 export function CreateProject() {
 
     const {createFunding, categorys} = useUsers()
-
+    const dataUser = JSON.parse(localStorage.getItem('user'));
+    
     return(
         <div>
-            <Formik
+            {localStorage.getItem('user')!=null ?
+                <Formik
                 initialValues={{
                     Title : '',
                     Question1 : '',
@@ -51,15 +54,15 @@ export function CreateProject() {
                                 <option value={category.IdCategory} >
                                 {category.CategoryName}
                                 </option>
-                            ))} 
+                            ))}
                         </Field>
                         <Field name="Goal" type="number" placeholderr="Meta a recaudar" required/>
                         <button type='submit'>Save</button>
                     </Form>
                 )}    
-
-                
-            </Formik>
+            </Formik>:<Navigate to="/login"/>
+            }
+           
         </div>
         );
     }
