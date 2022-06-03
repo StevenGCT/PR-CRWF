@@ -1,5 +1,6 @@
 import { usePostsFundRecycle } from '../context/userContext'
-import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup } from 'react-bootstrap'
+import { useState} from 'react'
+import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup, Modal } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -7,6 +8,13 @@ export function FundCardsRecycled() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
     
     const {postsToRecycle} = usePostsFundRecycle()
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
     return(
     
     <CardGroup>
@@ -28,8 +36,22 @@ export function FundCardsRecycled() {
                                 </Row>
                                 <Row className="flex p-2">
                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
-                                        <Button variant="danger" size="sm">Borrar Registro</Button>
+                                        <Button variant="danger" size="sm" onClick={handleShow}>Borrar Registro</Button>
                                         <Button variant="dark" size="sm">Restaurar</Button>
+                                        <Modal show={show} onHide={handleClose} animation={false}>
+                                            <Modal.Header closeButton>
+                                            <Modal.Title>Precaución</Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body>Esta apunto de BORRAR PARA SIEMPRE la campaña "{postContainer.Title}" ¿Esta seguro?</Modal.Body>
+                                            <Modal.Footer>
+                                            <Button variant="secondary" onClick={handleClose}>
+                                                Cancelar
+                                            </Button>
+                                            <Button variant="danger" onClick={handleClose}>
+                                                Eliminar
+                                            </Button>
+                                            </Modal.Footer>
+                                        </Modal>
                                     </ButtonGroup>
                                 </Row>
                             </Col>
