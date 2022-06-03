@@ -3,7 +3,7 @@ import { changePassword, getAllCategorysRequest, createFundingRequest, getUserBy
 import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
-import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest } from '../api/users'
+import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest , userDonateFundingRequest} from '../api/users'
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest} from '../api/comment'
 
 
@@ -88,6 +88,11 @@ export const UserProvider = ({ children }) => {
 
   const getTypeUser = async (user) => {
     const res = await getTypeUserRequest(user);
+    return res.data;
+  }
+
+  const userDonateFunding = async (id) => {
+    const res = await userDonateFundingRequest(id);
     return res.data;
   }
 
@@ -352,7 +357,8 @@ export const UserProvider = ({ children }) => {
 
       createComment,
       getComments,
-      deleteCommentById
+      deleteCommentById,
+      userDonateFunding
     }}>
       {children}
     </userContext.Provider>
