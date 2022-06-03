@@ -18,11 +18,11 @@ export function UserCards() {
             <Card key={postUserEditList.IdUser}>
                 <Card.Header>
                     {postUserEditList.IdUser === 1 ? <> <h5>Owner <Badge pill bg="success"> Id:{postUserEditList.IdUser} </Badge> <Button className="rounded-pill" variant="dark" size="sm"><strong>?</strong></Button> <ButtonGroup className="position-sticky start-100 flex dgrid gap-2 m-2">
-                        <Button variant="secondary" size="sm">Banear</Button>
+                        <Button variant="secondary" size="sm">Vetar</Button>
                         <Button variant="warning" size="sm">Editar</Button>
                         <Button variant="danger" size="sm">Eliminar</Button>
                     </ButtonGroup> </h5>  </>  :  <h5>{postUserEditList.TypeUserName} <Badge pill bg="success"> Id:{postUserEditList.IdUser} </Badge> <Button className="rounded-pill" variant="dark" size="sm"><strong>?</strong></Button> <ButtonGroup className="position-sticky start-100 flex dgrid gap-2 m-2">
-                        <Button variant="secondary" size="sm">Banear</Button>
+                        <Button variant="secondary" size="sm">Vetar</Button>
                         <Button variant="warning" size="sm">Editar</Button>
                         <Button variant="danger" size="sm">Eliminar</Button>
                     </ButtonGroup> </h5>} 
@@ -35,7 +35,7 @@ export function UserCards() {
                                 <Card.Img src={avatar} className="profile-image img-circle pt-4" height="40" width="40" alt="profile_picture" />
                             </Col>
                             <Col className="ml-6" sm={8}>
-                            <Card.Title className ="flex">{postUserEditList.LastName + " " + postUserEditList.SecondLastName + " " + postUserEditList.Name}</Card.Title>
+                            <Card.Title className ="flex">{postUserEditList.LastName + " " + postUserEditList.SecondLastName + " " + postUserEditList.Name + " (" + postUserEditList.UserName + ")"}</Card.Title>
                             <Card.Text className="pl-3">
                                     <li>{postUserEditList.Email}</li>
                                     <li>{postUserEditList.PhoneNumber}</li>
