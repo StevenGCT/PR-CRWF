@@ -19,7 +19,7 @@ export function FundCardsAprobe() {
             </Card.Header>
             <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg"/>
             <Card.Body>
-                <ProgressBar className="m-2"  now={(postAprove.CurrentGoal/postAprove.Goal)*100} variant="dark" label={postAprove.CurrentGoal + "Bs."} />
+            {postAprove.CurrentGoal >= postAprove.Goal ? <ProgressBar className="m-2"  now={(postAprove.CurrentGoal/postAprove.Goal)*100} variant="success" label={postAprove.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2"  now={(postAprove.CurrentGoal/postAprove.Goal)*100} variant="dark" label={postAprove.CurrentGoal + "Bs."} />}
                     <Card.Text className="p-2">
                         <div className="flex justify-center ">
                             <Col>

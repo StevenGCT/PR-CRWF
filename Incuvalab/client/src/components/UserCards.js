@@ -16,21 +16,16 @@ export function UserCards() {
             <Card key={postUserEditList.IdUser}>
                 <Card.Header>{postUserEditList.IdUser === 1 ? <h5>Dueñ@</h5> : <h5>{postUserEditList.TypeUserName}</h5>}</Card.Header>
                     <Card.Body>
-                        <Container>
-                        <Col>
-
-                        
-                        <Card.Title className ="flex">{postUserEditList.LastName + " " + postUserEditList.SecondLastName + " " + postUserEditList.Name}</Card.Title>
-                        <Card.Text>
-                            <p>{postUserEditList.Email}</p>
-                        </Card.Text>
-                        </Col>
-                        <Col>
-                        <Card.Img src={avatar} class="profile-image img-circle" height="40" width="40" alt="profile_picture" />
-                        </Col> 
-                        
-                       
-                        
+                        <Container className="flex dgrid">
+                            <Col sm={4}>
+                                <Card.Img src={avatar} class="profile-image img-circle" height="50" width="50" alt="profile_picture" />
+                            </Col>
+                            <Col sm={6}>
+                            <Card.Title className ="flex">{postUserEditList.LastName + " " + postUserEditList.SecondLastName + " " + postUserEditList.Name}</Card.Title>
+                            <Card.Text>
+                                <p>{postUserEditList.Email}</p>
+                            </Card.Text>
+                            </Col>
                         </Container>
                     </Card.Body>
             </Card>

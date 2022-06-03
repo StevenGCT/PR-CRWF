@@ -21,7 +21,7 @@ export function FundCardsCat() {
             </Card.Header>
             <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg"/>
             <Card.Body>
-                <ProgressBar className="m-2"  now={(catpost.CurrentGoal/catpost.Goal)*100} variant="dark" label={catpost.CurrentGoal + "Bs."} />
+            {catpost.CurrentGoal >= catpost.Goal ? <ProgressBar className="m-2"  now={(catpost.CurrentGoal/catpost.Goal)*100} variant="success" label={catpost.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2"  now={(catpost.CurrentGoal/catpost.Goal)*100} variant="dark" label={catpost.CurrentGoal + "Bs."} />}
                     <Card.Text className="p-2">
                         <div className="flex justify-center "><h6 className="text-muted">Meta: {catpost.Goal}Bs.</h6></div>
                         {catpost.FastDescription}

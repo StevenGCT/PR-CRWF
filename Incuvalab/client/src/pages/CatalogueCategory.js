@@ -1,6 +1,6 @@
 import { FundCardsCat } from "../components/FundCardsCat"
 import { SearchByCategory } from "../components/SearchByCategory"
-import { usePostsFund } from '../context/userContext'
+import { usePostsCatFund } from '../context/userContext'
 import { VscBell } from 'react-icons/vsc'
 import { Form, Button, Container, Col, Row, FormControl } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -8,17 +8,18 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 export function CatalogueCategory() { 
 
-  const {posts} = usePostsFund()
+  const {postsCatFund} = usePostsCatFund()
 
+/* Se Debe Insertar los respectivos containers al return de este if, y se debe ajustar el mensaje del contenido.
 
-  if (posts.length === 0) return(    
+  if (postsCatFund.length === 0) return(    
     <div className='flex flex-col justify-center items-center m-5'>
       <br />
       <VscBell className='w-16 h-16'/>
       <h1>No hay campañas con esa categoria disponibles, Pero tu puedes empezar una!.</h1>
     </div>
   )
-
+*/
   
   return (
     <>

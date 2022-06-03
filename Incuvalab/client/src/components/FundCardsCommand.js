@@ -21,7 +21,7 @@ export function FundCardsCommand() {
             <Card.Body>
             <div className="flex justify-center ">
             </div>
-                <ProgressBar className="m-2"  now={(post.CurrentGoal/post.Goal)*100} variant="dark" label={post.CurrentGoal + "Bs."} />
+            {post.CurrentGoal >= post.Goal ? <ProgressBar className="m-2"  now={(post.CurrentGoal/post.Goal)*100} variant="success" label={post.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2"  now={(post.CurrentGoal/post.Goal)*100} variant="dark" label={post.CurrentGoal + "Bs."} />}
                     <Card.Text className="p-2">
                         <div className="flex justify-center ">
                             <Col>
