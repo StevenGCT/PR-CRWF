@@ -1,6 +1,6 @@
 import { useState, createContext, useContext, useEffect } from 'react'
 import { changePassword, getAllCategorysRequest, createFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
-import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests } from '../api/funds'
+import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestToBault, permanentDeleteRequest, moveRequestToBault } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
 import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest , userDonateFundingRequest} from '../api/users'
@@ -207,6 +207,26 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  const moveFundingToBault = async (id) => {
+    const res = await moveRequestToBault(id);
+    return res.data;
+  }
+
+  const fundingOutBault = async (id) => {
+    const res = await removeRequestToBault(id);
+    return res.data;
+  }
+
+  const publishFunding = async (id) => {
+    const res = await aproveRequestsOfList(id);
+    return res.data;
+  }
+
+  const deletePermanentFunding = async (id) => {
+    const res = await permanentDeleteRequest(id);
+    return res.data;
+  }
+
   const getFundingById = async (idFunding) => {
     const res = await getFundingByIdRequest(idFunding);
     return res.data;
@@ -337,9 +357,13 @@ export const UserProvider = ({ children }) => {
 
       postsToAprobe,
       getFundsAprobe,
+      moveFundingToBault,
+      publishFunding,
 
       postsToRecycle,
       getFundsRecycle,
+      deletePermanentFunding,
+      fundingOutBault,
 
       postsComplete,
       getFundsCompleted,
