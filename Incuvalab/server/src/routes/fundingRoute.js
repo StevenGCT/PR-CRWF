@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { setRanckFunding, createFunding, getFunding, getFundingByCat, getFundingById, getOldFunding, getQuestionFunding, getAllFundingBySameName, getAllCompleteFunding, setRanckTop3 } from '../controllers/fundingController';
+import { setRanckFunding, createFunding, getFunding, getFundingByCat, getFundingById, getOldFunding, getQuestionFunding, getAllFundingBySameName, getAllCompleteFunding, setRanckTop3, deletePointedFunding, deletePointedLogicalFunding, AproveFunding } from '../controllers/fundingController';
 
 const router = Router();
 
@@ -21,7 +21,15 @@ router.get('/fullfunding', getAllCompleteFunding);
 router.get('/funding/category/:id', getFundingByCat);
 // Get Funding By name
 router.get('/funding/name' , getAllFundingBySameName);
-//Get Funding Top 3
+// Get Funding Top 3
 router.get('/fundingRank3' , setRanckTop3 );
+
+// Logical delete of funding
+router.update('/funding/move/:id', deletePointedLogicalFunding);
+// Complete delete of funding
+router.delete('/funding/delete/:id', deletePointedFunding);
+// Update Aprove Funding
+router.update('/funding/aprove/:id', AproveFunding);
+
 
 export default router;

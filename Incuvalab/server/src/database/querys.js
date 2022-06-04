@@ -48,8 +48,11 @@ export const fundqueries = {
     getFundingByName: "SELECT * FROM Funding WHERE Title LIKE '%@placename%'",
     getFundingById: "SELECT IdFunding, Title,Question1,Question2,Question3,FastDescription,Description,FundingImage1,FundingImage2,FundingImage3,FundingVideo,SocialMedia,RegisterDate,C.CategoryName,Goal,CurrentGoal FROM Funding F INNER JOIN Category C ON C.IdCategory = F.IdFunding WHERE IdFunding = @id",
     deleteFundingById: "DELETE FROM Funding WHERE IdFunding = @id",
+    deleteFundingByLogical:"UPDATE Funding  SET State = 0 WHERE IdFunding  = @id",
+    aproveFundingById:"UPDATE Funding  SET Aprove = 1 WHERE IdFunding  = @id",
     getCountFunding: "SELECT COUNT(*) FROM Funding",
     updateCategoryById: "UPDATE FUNDING SET Description = @funding WHERE IdCategory = @id",
     rankCategory: "SELECT TOP 10 * FROM Funding ORDER BY CurrentGoal DESC",
     createNewFunding: "INSERT INTO Funding(Title, Question1, Question2, Question3, FastDescription, Description, FundingImage1, FundingImage2, FundingImage3, FundingVideo, AccountNumber, SocialMedia, IdCategory, Goal) VALUES (@Title, @Question1, @Question2, @Question3, @FastDescription, @Description, @FundingImage1, @FundingImage2, @FundingImage3, @FundingVideo, @AccountNumber, @SocialMedia, @IdCategory, @Goal)"
+
 }

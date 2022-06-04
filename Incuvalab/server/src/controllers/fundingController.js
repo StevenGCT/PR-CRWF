@@ -161,6 +161,51 @@ export const getFundingByCat = async(req, res) => {
     }
 }
 
+export const deletePointedFunding = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(fundqueries.deleteFundingById)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const deletePointedLogicalFunding = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(fundqueries.deleteFundingByLogical)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const AproveFunding = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(fundqueries.aproveFundingById)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
 export const getAllFundingBySameName = async(req, res) => {
     try {
         const { placename } = req.params;
