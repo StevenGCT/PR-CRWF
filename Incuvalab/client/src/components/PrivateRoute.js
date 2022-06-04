@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 
 export const PrivateRoute = () => {
     const dataUser = JSON.parse(localStorage.getItem('user'));
-    const auth = dataUser!=null ? false: true;
+    const auth = dataUser != null ? false: true;
     return auth ? <Outlet /> : <Navigate to="/" />;
 }
 

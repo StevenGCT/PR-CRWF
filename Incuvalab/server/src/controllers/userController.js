@@ -124,3 +124,19 @@ export const getUserEditList = async(req, res) => {
         res.send(error.message);
     }
 }
+
+export const getUserDonateFunding = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool
+            .request().input('idFunding', id)
+            .query(queries.getUserDonateFunding);
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+

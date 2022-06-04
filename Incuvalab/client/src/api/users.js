@@ -7,3 +7,5 @@ export const loginUserRequest = async (user) => await axios.post('/userLogin', u
 export const getTypeUserRequest = async (id) => await axios.get('/userType/'+ id)
 
 export const userListToEditRequest = async () => await axios.get('/userlist')
+
+export const userDonateFundingRequest = async (id) => await axios.get('/userDonate/'+ id)

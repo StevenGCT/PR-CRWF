@@ -23,7 +23,7 @@ export function HomePage() {
             <h1 className="display-5 fw-bold  text-start align-middle" id='titleHome'>Los proyectos emprendedores abren un mundo de posibilidades. Ayuda a financiarlo aquí.</h1>
             <br ></br>
             <p className=" fs-3 text-white text-start">Deja que el mundo vea y apoye tu trabajo de tus ideas desde cualquier parte.</p>
-            <input className='btn btn-lg mt-5' type="button" value="Iniciar Campaña" id='btn-startproyect'></input>
+            <a className='btn btn-lg mt-5' href='/CreateProject' type="button"  id='btn-startproyect'>Iniciar Campaña</a>
           </Col>
           <Col sm={4}>
             <Row>
@@ -128,11 +128,11 @@ export function HomePage() {
             <Col className='mt-5 ms-5'>
               <p className="display-6 fw-bolder text-start text-secondary">¿Listo para empezar? Únete hoy mismo a miles de personas.</p>
               <Row>
-                <Col sm={4}>
-                  <input className='btn btn-lg mt-3' type="button" value="Iniciar Campaña" id='btn-startproyect'></input>
+                <Col sm={5}>
+                  <a className='btn btn-lg mt-3' type="button" href='/CreateProject' id='btn-startproyect'>Iniciar Campaña</a>
                 </Col>
-                <Col sm={4}>
-                  <input className='btn btn-lg mt-3' type="button" value="Como funciona" id='btn-outline-pageHome'></input>
+                <Col sm={5}>
+                  <a className='btn btn-lg mt-3' type="button"  id='btn-outline-pageHome'>Como funciona</a>
                 </Col>
                 <Col sm={8}>
                 </Col>
