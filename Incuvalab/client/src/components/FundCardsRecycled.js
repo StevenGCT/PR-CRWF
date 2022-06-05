@@ -8,11 +8,14 @@ export function FundCardsRecycled() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
     
     const {postsToRecycle} = usePostsFundRecycle()
+    const {fundingOutBault} = usePostsFundRecycle()
 
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    function fetchData(){ fetch("https://localhost:3000/controle-page-recycle") .then(res => res.json()) .then( (result) => { this.setState({ quote: result[Math.floor(Math.random() * result.length)] }); }, ) }
 
 
     return(
@@ -37,7 +40,7 @@ export function FundCardsRecycled() {
                                 <Row className="flex p-2">
                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
                                         <Button variant="danger" size="sm" onClick={handleShow}>Borrar Registro</Button>
-                                        <Button variant="dark" size="sm">Restaurar</Button>
+                                        <Button variant="dark" size="sm" onClick={[fundingOutBault(postContainer.IdFunding), fetchData()]}>Restaurar</Button>
                                         <Modal show={show} onHide={handleClose} animation={false}>
                                             <Modal.Header closeButton>
                                             <Modal.Title>Precaución</Modal.Title>

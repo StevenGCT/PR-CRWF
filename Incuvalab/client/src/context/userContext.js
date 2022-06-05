@@ -1,6 +1,6 @@
 import { useState, createContext, useContext, useEffect } from 'react'
 import { changePassword, getAllCategorysRequest, createFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
-import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestToBault, permanentDeleteRequest, moveRequestToBault } from '../api/funds'
+import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestFromBault, permanentDeleteRequest, moveRequestToBault } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
 import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest , userDonateFundingRequest} from '../api/users'
@@ -190,7 +190,6 @@ export const UserProvider = ({ children }) => {
     setPostsRecycle(res.data)
   }
 
-
   const getFundsCompleted = async () => {
     const res = await getFundsCompletedRequests()
     console.log(res, setPosts)
@@ -208,12 +207,18 @@ export const UserProvider = ({ children }) => {
   };
 
   const moveFundingToBault = async (id) => {
+    try {
     const res = await moveRequestToBault(id);
-    return res.data;
+    setPosts(posts.filter((post) => post.idFunding !== id))
+    }
+    catch (error)
+    {
+      console.error(error);
+    }
   }
 
   const fundingOutBault = async (id) => {
-    const res = await removeRequestToBault(id);
+    const res = await removeRequestFromBault(id);
     return res.data;
   }
 

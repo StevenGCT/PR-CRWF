@@ -1,6 +1,6 @@
+import toast from "react-hot-toast"
 import { usePostsFund } from '../context/userContext'
-import { useState} from 'react'
-import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup, Modal } from 'react-bootstrap'
+import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -8,11 +8,43 @@ export function FundCardsCommand() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
           
     const {posts} = usePostsFund()
+    const {moveRequestToBault} = usePostsFund()
 
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleToStore = (id) => {
+        toast(
+          (t) => (
+            <div>
+              <p className="text-white">
+                Do you want to delete <strong>{id}</strong>?
+              </p>
+              <div>
+                <button
+                  className="bg-red-500 hover:bg-red-400 px-3 py-2 text-sm text-white rounded-sm mx-2"
+                  onClick={(e) => {
+                    moveRequestToBault(id);
+                    toast.dismiss(t.id);
+                  }}
+                >
+                  Delete
+                </button>
+                <button
+                  className="bg-slate-400 hover:bg-slate-500 px-3 py-2 text-white rounded-sm mx-2"
+                  onClick={() => toast.dismiss(t.id)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          ),
+          {
+            duration: "4000",
+            style: {
+              background: "#202020"
+            }
+          }
+        );
+      };
+        
 
     return(
     <CardGroup>
@@ -37,21 +69,10 @@ export function FundCardsCommand() {
                                 <Row className="flex p-3">
                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
                                         <Button variant="warning" size="sm">Editar</Button>
-                                        <Button variant="danger" size="sm" onClick={handleShow}>Eliminar</Button>
-                                        <Modal show={show} onHide={handleClose} animation={false}>
-                                            <Modal.Header closeButton>
-                                            <Modal.Title>Precaución</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>Esta apunto de Denegar la campaña "{post.Title}" ¿Esta seguro?</Modal.Body>
-                                            <Modal.Footer>
-                                            <Button variant="secondary" onClick={handleClose}>
-                                                Cancelar
-                                            </Button>
-                                            <Button variant="danger" onClick={handleClose}>
-                                                Denegar
-                                            </Button>
-                                            </Modal.Footer>
-                                        </Modal>          
+                                        <Button variant="danger" size="sm" onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleToStore(post.IdFunding);
+                                  }}>Eliminar</Button>              
                                     </ButtonGroup>
                                 </Row>
                             </Col>
@@ -69,6 +90,3 @@ export function FundCardsCommand() {
     </CardGroup>
     );
 }
-
-
-
