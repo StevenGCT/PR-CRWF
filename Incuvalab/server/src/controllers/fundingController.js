@@ -1,5 +1,5 @@
 import { getConnection, sql, queries } from '../database'
-import { fundqueries } from '../database/querys'
+import { fundqueries} from '../database/querys'
 
 export const setRanckFunding = async(req, res) => {
     try {
@@ -104,12 +104,40 @@ export const getFunding = async(req, res) => {
     }
 }
 
+export const getQuestionFunding = async(req, res) => {
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .query(fundqueries.getAllNoAprobedFunding);
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
 export const getOldFunding = async(req, res) => {
     try {
         const pool = await getConnection();
         const result = await pool
             .request()
             .query(fundqueries.getDeletedFunding);
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const getAllCompleteFunding = async(req, res) => {
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .query(fundqueries.getCompleteFunding);
         console.log(result);
         res.json(result.recordset);
     } catch (error) {
@@ -132,3 +160,95 @@ export const getFundingByCat = async(req, res) => {
         res.send(error.message);
     }
 }
+
+export const deletePointedFunding = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(fundqueries.deleteFundingById)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const deletePointedLogicalFunding = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(fundqueries.deleteFundingByLogical)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const restoreBaultedFunding = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(fundqueries.restoreFunding)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+
+export const AproveFunding = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(fundqueries.aproveFundingById)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const getAllFundingBySameName = async(req, res) => {
+    try {
+        const { placename } = req.params;
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('placename', placename)
+            .query(fundqueries.getFundingByName)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+
+export const setRanckTop3 = async(req, res) => {
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .query(queries.getRackFundingTop3);
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+

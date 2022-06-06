@@ -1,15 +1,17 @@
-import './../css/userProfile.css';
 import {useUsers} from '../context/userContext';
 import {Link} from 'react-router-dom'
-
+import './../css/userProfile.css';
+import NavbarLogin from "../components/header-navbar"
+import Footer from "../components/footer"
 export function UserProfile() {
 
     const{ followeds, followedsCount, donated, donatedCount, projects, projectsCount } = useUsers();
 
         return(
             <div className="App">
+                <NavbarLogin locale={true} />
                 <div class="card1" id="cardUser1">
-                    <h1>USER PROFILE</h1>
+                    <h1 id='h1'>USER PROFILE</h1>
                     <div class="card2" id="cardUser2">
                         <div class="subject">
                         <select name="subject" id="subject_input">
@@ -40,6 +42,7 @@ export function UserProfile() {
                         </div>
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }

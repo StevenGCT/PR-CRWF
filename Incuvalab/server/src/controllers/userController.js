@@ -55,6 +55,24 @@ export const getUserById = async(req, res) => {
     }
 }
 
+
+export const getTypeUserById = async(req, res) => {
+    try {
+        const { id } = req.params;
+        console.log(id);
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', id)
+            .query(queries.getTypeUserById)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+
 export const deleteUserById = async(req, res) => {
     try {
         const { id } = req.params;
@@ -92,3 +110,33 @@ export const updateUserById = async(req, res) => {
         res.send(error.message);
     }
 }
+
+export const getUserEditList = async(req, res) => {
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .query(queries.getUserCommandlist);
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const getUserDonateFunding = async(req, res) => {
+    try {
+        const { id } = req.params;
+        const pool = await getConnection();
+        const result = await pool
+            .request().input('idFunding', id)
+            .query(queries.getUserDonateFunding);
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+

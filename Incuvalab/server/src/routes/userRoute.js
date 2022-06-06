@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { updateUserById, createUser, getUserById, deleteUserById, getLoginUser} from '../controllers/userController';
+import { updateUserById, createUser, getUserById, deleteUserById, getLoginUser, getTypeUserById, getUserEditList, getUserDonateFunding} from '../controllers/userController';
 
 const router = Router();
 // Insert User
@@ -13,5 +13,10 @@ router.delete('/user/:id', deleteUserById);
 // Update User
 router.put('/user/:id', updateUserById);
 
+router.get('/userType/:id', getTypeUserById);
+// Get all user for a list
+router.get('/userlist', getUserEditList);
+
+router.get('/userDonate/:id', getUserDonateFunding);
 
 export default router;

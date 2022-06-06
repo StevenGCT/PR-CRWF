@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
-import '../css/navbar.css'
+
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { usePostsFund } from "../context/userContext"
 import OfertFunding from '../components/cardOfertsFunding'
-//import Comment from '../components/commentFunding'
-//import CommentFrom from '../components/formCommentFunding'
+import Comment from '../components/commentFundinng'
+import CommentFrom from '../components/formCommentFunding'
 
 import f1 from '../components/images/predeterminate.jpg'
 import f2 from '../components/images/predeterminate.jpg'
@@ -157,9 +157,9 @@ export function FundingPage() {
 
                     <div className="col-sm">
                         <h5>Comentarios</h5>
-                        {/*<CommentFrom idFunding = {post.IdFunding} idUser={dataUser[0].IdUser}/>*/}
+                        <CommentFrom idFunding = {post.IdFunding} idUser={dataUser[0].IdUser}/>
                         <hr/>
-                        {/*<Comment idFunding = {post.IdFunding} />*/}
+                        <Comment idFunding = {post.IdFunding} />
                     </div>
                 </div>
             </div>

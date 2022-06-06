@@ -2,7 +2,7 @@ import React from "react";
 import logo from './images/logo.png'
 import avatar from './images/profile.webp'
 import ButonLogout from './logout';
-
+import '../css/navbar.css'
 
 export default function NavbarLogin(props) {
     const dataUser = JSON.parse(localStorage.getItem('user'));
@@ -21,13 +21,13 @@ export default function NavbarLogin(props) {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="#">Descubrir</a>
+                                <a className="nav-link" aria-current="page" href="/">Inicio</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Catálogo de proyectos</a>
+                                <a className="nav-link"  href="/catalogue">Catálogo de proyectos</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link">Crear un proyecto</a>
+                                <a className="nav-link" href="/CreateProject">Crear un proyecto</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link">Preguntas frecuentes</a>
@@ -41,8 +41,8 @@ export default function NavbarLogin(props) {
                                         <b class="caret mx-4 mt-2"> {dataUser[0].UserName}</b>
                                     </div>
                                     <div class="dropdown-menu dropdown-left mt-2" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">MI perfil</a>
-                                        <a class="dropdown-item" href="#">Configuración</a>
+                                        <a class="dropdown-item" href="/UserProfile">MI perfil</a>
+                                        <a class="dropdown-item" href="/Settings">Configuración</a>
                                         <ButonLogout/>
                                     </div>
                                 </div>
