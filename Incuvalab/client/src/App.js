@@ -1,6 +1,7 @@
 import {HomePage, NotFoundPage, UserProfile, CreateProject, Settings, FundingPage} from './pages';
 import {Routes, Route} from 'react-router-dom';
 import {UserProvider} from './context/userContext';
+import {Card} from './components/Card';
 
 function App() {
     return ( 
@@ -12,6 +13,7 @@ function App() {
                     <Route path="/CreateProject" element={<CreateProject/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
                     <Route path='/funding/:id' element={<FundingPage/>} />
+                    <Route path='/qrcards/' element={<Card/>} />
                 </Routes>
             </UserProvider>
         );
