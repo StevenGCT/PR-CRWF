@@ -5,6 +5,9 @@ import fundingRoute from './routes/fundingRoute';
 import userRoute from './routes/UsersRoute';
 import imageCloudinaryUpload from './routes/ImageUploadCloudinary';
 
+import usersRoute from './routes/UsersRoute';
+import commentRoute from './routes/commentRoute';
+import userRoute from './routes/userRoute';
 
 const app = express();
 
@@ -16,8 +19,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(categoryRoute);
 app.use(fundingRoute);
+app.use(usersRoute);
 app.use(userRoute);
 app.use(imageCloudinaryUpload);
 
+app.use(commentRoute);
 
 export default app;
