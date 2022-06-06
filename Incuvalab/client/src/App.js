@@ -3,23 +3,24 @@ import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
 
+//Proteger UserProfile y Settings para cada usuario individualmente
+
 function App() {
     return (
         <UserProvider>
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="*" element={<NotFoundPage />} />
-                <Route exact path='/UserProfile' element={<PrivateRoute />}>
-                    <Route path="/UserProfile" element={<UserProfile />} />
-                </Route>
+
+                
+                <Route path="/UserProfile" element={<UserProfile />} />
+                
 
                 <Route exact path='/CreateProject' element={<PrivateRoute />}>
                     <Route path="/CreateProject" element={<CreateProject />} />
                 </Route>
 
-                <Route exact path="/Settings" element={<PrivateRoute />}>
-                    <Route path="/Settings" element={<Settings />} />
-                </Route>
+                <Route path="/Settings" element={<Settings />} />
 
                 <Route path='/funding/:id' element={<FundingPage />} />
 
