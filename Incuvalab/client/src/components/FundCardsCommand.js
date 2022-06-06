@@ -1,4 +1,4 @@
-import toast from "react-hot-toast"
+import { Toaster, toast} from "react-hot-toast"
 import { usePostsFund } from '../context/userContext'
 import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -63,14 +63,13 @@ export function FundCardsCommand() {
                     <Card.Text className="p-2">
                         <div className="flex justify-center ">
                             <Col>
-                                <Row>
+                                <Row >
                                     <h6 className="text-muted">Meta: {post.Goal}Bs.</h6>
                                 </Row>
                                 <Row className="flex p-3">
                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
-                                        <Button variant="warning" size="sm">Editar</Button>
-                                        <Button variant="danger" size="sm" onClick={(e) => {
-                                    e.stopPropagation();
+                                        <Button variant="warning" size="sm" onClick={() => toast('Ejemplo')}>Editar</Button>
+                                        <Button variant="danger" size="sm" onClick={() => {
                                     handleToStore(post.IdFunding);
                                   }}>Eliminar</Button>              
                                     </ButtonGroup>
