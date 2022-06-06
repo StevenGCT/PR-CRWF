@@ -1,0 +1,20 @@
+@api =  http://localhost:4000/users
+
+GET {{api}}
+################################
+GET {{api}}/3
+################################
+GET {{api}}/countFunding/3
+################################
+GET {{api}}/TitleFunding/3
+################################
+GET {{api}}/countDonated/3
+################################
+GET {{api}}/TitleFundingDonated/3
+################################
+PUT {{api}}/change/3
+Content-Type: application/json
+{
+    "NewPassword" :"asd"
+}
+################################
