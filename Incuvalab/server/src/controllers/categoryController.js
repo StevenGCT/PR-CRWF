@@ -1,4 +1,5 @@
 import { getConnection, sql, queries } from '../database'
+import {uploadImage} from '../libs/myCloudinary';
 
 // Get Category Of The database
 // By: Yhonattan David Llanos Rivera
@@ -20,10 +21,13 @@ export const getCategorys = async(req, res) => {
 export const createCategory = async(req, res) => {
     try {
         const { Category } = req.body;
-        if (Category == null) {
+        console.log(req.files)
+        if (Category == null && req.files.image == null) {
             res.status(400).json({ msg: 'Bad Request. Please fill all fields' });
         } else {
             //console.log(Category);
+            const resultCloudinary = await uploadImage(req.files.image.tempFilePath)
+            console.log(resultCloudinary);
             const pool = await getConnection();
             var result = await pool.request()
                 .input("category", sql.VarChar, Category)
@@ -31,7 +35,7 @@ export const createCategory = async(req, res) => {
             console.log(result.rowsAffected);
             res.json({ Category });
         }
-    } catch (err) {
+    } catch (error) {
         res.status(500);
         res.send(error.message);
     }
@@ -98,6 +102,20 @@ export const updateCategoryById = async(req, res) => {
             res.json(result);
         }
     } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+export const findCategoryByName = async (req, res)=>{
+    try{
+        const pool  = await getConnection();
+        const {Category}= rqç.body;
+        const result = await pool.request().
+            input('category', sql.VarChar, Category).
+            query(queries.findCategoryByName);
+            res.status(200);
+            res.json(result);
+    }catch (error) {
         res.status(500);
         res.send(error.message);
     }

@@ -8,16 +8,16 @@ POST {{api}}
 Content-Type: application/json
 
 {
-    "Category" :"Ejemplo"
+    "Category" :"Ejemplo s"
 }
 ################################
-GET {{api}}/4
+GET {{api}}/10
 ################################
-DELETE {{api}}/4
+DELETE {{api}}/10
 ################################
 GET {{api}}/count
 ################################
-PUT {{api}}/10
+PUT {{api}}/14
 Content-Type: application/json
 
 {

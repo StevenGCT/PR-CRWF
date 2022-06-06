@@ -1,9 +1,23 @@
-export function HomePage() {
-  return (
-    
-    <div className="container flex">
+import {useCategorys} from '../context/categoryContext';
+import {VscEmtyWindow} from 'react-icons/vsc';
+import {Link} from 'react-router-dom'
+import {CategoryCard} from '../components/categoryCard';
 
-      <h1 className="text-3xl font-bold underline">HomePage</h1>
-    </div>
+export function HomePage() {
+  const {categorys} = useCategorys();
+
+  if(categorys.length ===0)return(
+    <div>No Existen Categorias</div>
   )
+  return (
+    <div className="text-black">
+      <Link to="/categoryForm">Crear nueva Categoria</Link>
+       <div className="grid grid-cols-3 gap-2">
+        {categorys.map(category =>(
+          <CategoryCard category={category} key={category.IdCategory}/>
+        ))}
+       </div>
+       </div>
+       
+  );
 }

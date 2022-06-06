@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "babel src -d dist",
-        "dev": "nodemon server/src/index.js --exec babel-node",
+        "dev": "nodemon server/src/index.js --exec babel-node --ignore client",
         "start": "node dist"
     },
     "keywords": [],
