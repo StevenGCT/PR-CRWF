@@ -128,6 +128,7 @@ export function FundingPage() {
                     nombreDonacion= "Donador incial"
                     monto = "Libre"
                     descripcion = "Apóyalo porque crees en él. Apoya el proyecto sin recompensa, simplemente porque te resulta interesante." />
+                    
                     <OfertFunding
                     nombreDonacion= "Donador estrella"
                     monto = "250 Bs."
