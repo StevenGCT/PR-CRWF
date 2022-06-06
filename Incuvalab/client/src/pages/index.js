@@ -7,9 +7,7 @@ export {UserProfile} from './UserProfile';
 export {Settings} from './Settings';
 export {CreateProject} from './CreateProject';
 export {FundingPage} from './funding';
-<<<<<<< HEAD
-export{Card} from './components/Card';
-=======
+
 export {Login} from './login';
 export {Register} from './register';
 export {Catalogue} from './Catalogue';
@@ -19,4 +17,4 @@ export {ControlAprobe} from './Control/ControlAprobe';
 export {ControlRecycled} from './Control/ControlRecycled';
 export {ControlComplete} from './Control/ControlComplete';
 export {ControlUsers} from './Control/ControlUsers';
->>>>>>> development_A
+
