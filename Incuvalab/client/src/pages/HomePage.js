@@ -1,13 +1,143 @@
-import {useCategorys} from '../context/categoryContext';
-import {VscEmtyWindow} from 'react-icons/vsc';
-import {Link} from 'react-router-dom'
-import {CategoryCard} from '../components/categoryCard';
+/*import { usePosts } from "../context/postContext";
+import { Link } from "react-router-dom";
+import { PostCard } from "../components/PostCard";
+import { VscEmptyWindow } from "react-icons/vsc";
+//import { useEffect } from "react";
 
 export function HomePage() {
-  const {categorys} = useCategorys();
+  const { posts } = usePosts();
 
-  if(categorys.length ===0)return(
-    <div>No Existen Categorias</div>
+  const renderPost = () => {
+    if (posts.length === 0)
+      return (
+        <div className="flex flex-col justify-center items-center">
+          <VscEmptyWindow className="w-48 h-48 text-white" />
+          <h1 className="text-white text-2xl">There are no posts</h1>
+        </div>
+      );
+
+    return (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {posts.map((post) => (
+          <PostCard key={post.IdFunding} post={post} />
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <main>
+      <header className="flex justify-between items-center my-4">
+        <h1 className="text-2xl text-gray-300 font-bold">
+          Posts ({posts.length})
+        </h1>
+        <Link 
+          to="/new"
+          className="bg-pink-800 px-4 py-2 text-white hover:bg-pink-800"
+        >
+          Donar Ahora
+        </Link>
+        <Link 
+          to="/confirm"
+          className="bg-pink-800 px-4 py-2 text-white hover:bg-pink-800"
+        >
+          Confirmacion De Donaciones
+        </Link>
+        
+      </header>
+
+      {renderPost()}
+    </main>
+  );*/
+
+//Segundo Script Home
+import { Row, Col } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import image1 from '../components/images/predeterminate.jpg';
+import './../css/home.css';
+import { PostCard } from "../components/PostCard";
+
+
+export function HomePage() {
+  
+  return (
+    <>
+    <div className="container flex position-relative overflow-hidden p-3 p-md-5 text-center bg-light">
+      <Row></Row>
+      <Row>
+        <Col sm={8}>
+          <h1 className="display-5 fw-bold">Main example</h1>
+          <br></br>
+          <p>Find out how to do it!</p>
+        </Col>
+        <Col sm={4}>
+          <img variant="top" src="https://epthinktank.eu/wp-content/uploads/2015/09/eprs-briefing-568327-overview-eu-funds-research-innovation.png" alt="Funding Image"></img>
+        </Col>
+      </Row>
+      <Row></Row>
+            
+      
+    </div>
+
+    <div className="container container-fluid card p-5 bg-secondary bg-opacity-10 my-3">
+        <div className="row">
+          <div className="col">
+            <h4>¿Quieres ser un donador?</h4>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-4">
+            <img src="" />
+          </div>
+          <div className="col">
+            <div>
+              <h5>Paso 1</h5>
+              <hr />
+              <p>En primer lugar, incia sesión en una cuenta de Incuva Lab</p>
+              <h5>Paso 2</h5>
+              <hr />
+              <p>Ve al proyecto que te interesa apoyar y haz click en el boton "Donar a este proyecto"</p>
+              <h5>Paso 3</h5>
+              <hr />
+              <p>Revisa los detalle de tu contribución</p>
+              <h5>Paso 4</h5>
+              <hr />
+              <p>Para completar tu contribución, haz clic en contribuir.</p>
+            </div>
+          </div>
+        </div>
+        <div className="d-flex justify-content-end">
+            <a class="btn btn-secondary" href="#" role="button">Registrate!</a>
+        </div>
+      </div>
+      
+      <div className="container" id="container" class="container-fluid">
+        <div class="card" id="card1">
+          <h1 class="h1">Quieres ser un donante?</h1>
+          <img id="imgDonatedConteiner" src={image1} alt="imageforDonatedView"/>
+        </div>                                                          
+        <div class="card" id="card2">
+          <h2 class="h2">Paso 1</h2>
+          <div class="underline"></div>
+          <div>
+            <label class="labelForDonatedView" >Siga este sencillo paso para comenzar y utilizar este excelente producto</label>
+          </div>           
+          <h2 class="h2">Paso 2</h2>
+          <div class="underline"></div>
+          <div>
+            <label class="labelForDonatedView" >Sigue este paso para empezar a crear valor para tus clientes</label>
+          </div>
+          <h2 class="h2">Paso 3</h2>     
+          <div class="underline"></div>
+          <div>
+            <label class="labelForDonatedView" >Ahora has terminado y has creado algo muy especial.</label>
+          </div>
+          <div class="submits">
+            <input type="submit" id="btnDonatedSteps" value="Registrate ahora"/>
+          </div>  
+        </div>  
+      </div>
+    </>
   )
   return (
     <div className="text-black">
