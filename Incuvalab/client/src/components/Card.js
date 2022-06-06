@@ -10,7 +10,15 @@ const Card = ({price, imgSrc}) => {
                 <p>Por favor Escanea</p>
                 <a href="#">Subir Comprobante</a>
             </div>
+
+            <div class="card"/>
+            <img id="img-preview"/>
+            <div class="card-footer">
+                <input type="file" id="img-uploader"/>
+                <progress id="img-upload-bar" value="0" max="100" style="width: 100%"></progress>
+            </div>
         </div>
+                    
     )
     }
 }
