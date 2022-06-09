@@ -8,7 +8,7 @@ router.get('/Funding/rank', setRanckFunding);
 router.post('/Funding', createFunding);
 
 // Get Funding BY ID
-router.get('/Funding/:id', getFundingById);
+router.get('/funding/:id', getFundingById);
 // Get a List of all not aprobed funding
 router.get('/request-funding', getQuestionFunding);
 // Get a List of funding

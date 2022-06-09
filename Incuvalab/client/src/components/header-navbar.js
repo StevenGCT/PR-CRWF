@@ -6,7 +6,7 @@ import '../css/navbar.css'
 
 export default function NavbarLogin(props) {
     const dataUser = JSON.parse(localStorage.getItem('user'));
-    
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light px-4 py-4">
@@ -20,15 +20,22 @@ export default function NavbarLogin(props) {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            {localStorage.getItem('role') != null && localStorage.getItem('role') == 'Administrador' ?
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/control-page">Dashboard</a>
+                                </li> :
+                                <li className="nav-item">
+                                    <a className="nav-link" aria-current="page" href="/">Inicio</a>
+                                </li>
+                            }
+
                             <li className="nav-item">
-                                <a className="nav-link" aria-current="page" href="/">Inicio</a>
+                                <a className="nav-link" href="/catalogue">Catálogo de proyectos</a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link"  href="/catalogue">Catálogo de proyectos</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/CreateProject">Crear un proyecto</a>
-                            </li>
+                            {//<li className="nav-item">
+                              //<a className="nav-link" href="/CreateProject">Crear un proyecto</a>
+                            //</li>
+                            }
                             <li className="nav-item">
                                 <a className="nav-link">Preguntas frecuentes</a>
                             </li>
@@ -43,7 +50,7 @@ export default function NavbarLogin(props) {
                                     <div class="dropdown-menu dropdown-left mt-2" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="/UserProfile">MI perfil</a>
                                         <a class="dropdown-item" href="/Settings">Configuración</a>
-                                        <ButonLogout/>
+                                        <ButonLogout />
                                     </div>
                                 </div>
                                 :

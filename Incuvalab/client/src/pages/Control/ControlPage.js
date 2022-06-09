@@ -3,16 +3,15 @@ import NavbarLogin from "../../components/header-navbar"
 
 
 export function ControlPage() {
-    return (
-      <>
+  return (
+    <>
       <div>
-      <NavbarLogin locale={true} />
-      <DashMenu />
+        <NavbarLogin locale={true} />
+        <DashMenu />
       </div>
-    <div className="container align-center">
-      
-    </div>
+      <div className="container align-center">
+
+      </div>
     </>
-    )
-  }
-  
+  )
+}

@@ -47,7 +47,7 @@ export const fundqueries = {
     getDeletedFunding: "SELECT * FROM Funding WHERE State = 0",
     getAllFundingByCat: "SELECT * FROM Funding WHERE IdCategory = @id",
     getFundingByName: "SELECT * FROM Funding WHERE Title LIKE '%@placename%'",
-    getFundingById: "SELECT IdFunding, Title,Question1,Question2,Question3,FastDescription,Description,FundingImage1,FundingImage2,FundingImage3,FundingVideo,SocialMedia,RegisterDate,C.CategoryName,Goal,CurrentGoal FROM Funding F INNER JOIN Category C ON C.IdCategory = F.IdFunding WHERE IdFunding = @id",
+    getFundingById: "SELECT IdFunding, Title,Question1,Question2,Question3,FastDescription,Description,FundingImage1,FundingImage2,FundingImage3,FundingVideo,SocialMedia,RegisterDate,C.CategoryName,Goal,CurrentGoal FROM Funding F INNER JOIN Category C ON C.IdCategory = F.IdCategory WHERE IdFunding = @id",
     deleteFundingById: "DELETE FROM Funding WHERE IdFunding = @id",
     deleteFundingByLogical:"UPDATE Funding  SET State = 0 WHERE IdFunding  = @id",
     aproveFundingById:"UPDATE Funding  SET Aprove = 1 WHERE IdFunding  = @id",
