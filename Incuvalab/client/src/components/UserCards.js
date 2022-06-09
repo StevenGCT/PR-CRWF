@@ -1,4 +1,5 @@
 import { usePostsUsersList } from '../context/userContext'
+import moment from 'moment'
 import { Card, CardGroup, Row, Col, Container, Badge, Button, ButtonGroup } from 'react-bootstrap'
 import avatar from './images/profile.webp'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -40,8 +41,8 @@ export function UserCards() {
                                     <li>{postUserEditList.Email}</li>
                                     <li>{postUserEditList.PhoneNumber}</li>
                                     <li>{postUserEditList.Address}</li>
-                                    <li>Registrado: {postUserEditList.RegisterDate}</li>
-                                    <li>Ultima modificación: {postUserEditList.LastUpdate}</li>
+                                    <li>Registrado: {moment(postUserEditList.RegisterDate).format('DD/MM/YYYY')} a las: {moment(postUserEditList.RegisterDate).format('HH:mm a')}</li>
+                                    <li>Ultima modificación: {moment(postUserEditList.LastUpdate).format('DD/MM/YYYY')} a las: {moment(postUserEditList.LastUpdate).format('HH:mm a')}</li>
                             </Card.Text>
                             </Col>
                         </Container>

@@ -1,4 +1,5 @@
 import { usePostsFundRecycle } from '../context/userContext'
+import moment from 'moment'
 import { useState} from 'react'
 import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup, Modal } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -6,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 export function FundCardsRecycled() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
+    //AGREGAR UNA PRECAUCIÓN DE CONFIRMACIÓN EN ELIMINAR
     
     const {postsToRecycle} = usePostsFundRecycle()
     const {fundingOutBault} = usePostsFundRecycle()
@@ -64,7 +66,7 @@ export function FundCardsRecycled() {
                     </Card.Text>
             </Card.Body>
             <Card.Footer>
-                <small className="text-muted">Campaña subida el: {postContainer.RegisterDate}</small>
+                <small className="text-muted">Campaña subida el: {moment(postContainer.RegisterDate).format('DD/MM/YYYY')}</small>
             </Card.Footer>
         </Card>
         </Col>

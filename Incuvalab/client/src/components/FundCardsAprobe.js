@@ -1,4 +1,5 @@
 import { usePostsFundAprobe } from '../context/userContext'
+import moment from 'moment'
 import { useState} from 'react'
 import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -48,7 +49,7 @@ export function FundCardsAprobe() {
                     </Card.Text>
             </Card.Body>
             <Card.Footer>
-                <small className="text-muted">Campaña subida el: {postAprove.RegisterDate}</small>
+                <small className="text-muted">Campaña subida el: {moment(postAprove.RegisterDate).format('DD/MM/YYYY')}</small>
             </Card.Footer>
         </Card>
         </Col>
