@@ -20,7 +20,7 @@ router.get('/fullfunding', getAllCompleteFunding);
 // Get Funding BY Category
 router.get('/funding/category/:id', getFundingByCat);
 // Get Funding By name
-router.get('/funding/name' , getAllFundingBySameName);
+router.post('/funding/name' , getAllFundingBySameName);
 // Get Funding Top 3
 router.get('/fundingRank3' , setRanckTop3 );
 // Logical delete/deny of funding

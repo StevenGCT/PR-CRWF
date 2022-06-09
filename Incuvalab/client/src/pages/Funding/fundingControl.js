@@ -9,7 +9,7 @@ import OfertFunding from '../../components/cardOfertsFunding'
 import Comment from '../../components/commentFunding'
 import CommentFrom from '../../components/formCommentFunding'
 
-import f1 from "../../f1.jpg"
+import f1 from "./../../f1.jpg"
 import f2 from "../../f2.jpg"
 import f3 from "../../f3.jpg"
 

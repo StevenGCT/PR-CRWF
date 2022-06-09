@@ -224,10 +224,10 @@ export const AproveFunding = async(req, res) => {
 
 export const getAllFundingBySameName = async(req, res) => {
     try {
-        const { placename } = req.params;
+        console.log(res);
         const pool = await getConnection();
         const result = await pool.request()
-            .input('placename', placename)
+            .input('nameplace', sql.VarChar, req.body.nameplace)
             .query(fundqueries.getFundingByName)
         console.log(result);
         res.json(result.recordset);
@@ -236,6 +236,7 @@ export const getAllFundingBySameName = async(req, res) => {
         res.send(error.message);
     }
 }
+
 
 
 export const setRanckTop3 = async(req, res) => {

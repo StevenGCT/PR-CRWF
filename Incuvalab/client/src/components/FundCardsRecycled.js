@@ -1,6 +1,7 @@
 import { usePostsFundRecycle } from '../context/userContext'
-import moment from 'moment'
+import { toast } from 'react-hot-toast'
 import { useState} from 'react'
+import moment from 'moment'
 import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup, Modal } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -8,12 +9,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 export function FundCardsRecycled() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
     //AGREGAR UNA PRECAUCIÓN DE CONFIRMACIÓN EN ELIMINAR
-    
+ 
     const {postsToRecycle} = usePostsFundRecycle()
     const {fundingOutBault} = usePostsFundRecycle()
 
     const [show, setShow] = useState(false);
-    
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
  
@@ -21,8 +22,8 @@ export function FundCardsRecycled() {
       window.location.reload(false);
     }
 
+
     return(
-    
     <CardGroup>
         <Row xs={1} md={3} className="g-4 rounded">
       {postsToRecycle.map(postContainer => (
@@ -38,26 +39,26 @@ export function FundCardsRecycled() {
                         <div className="flex justify-center ">
                             <Col>
                                 <Row>
-                                    <h6 className="text-muted">Meta: {postContainer.Goal}Bs.</h6>
+                                    <h6 className="text-muted text-center">Meta: {postContainer.Goal}Bs.</h6>
                                 </Row>
                                 <Row className="flex p-2">
                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
-                                        <Button variant="danger" size="sm" onClick={[handleShow]}>Borrar Registro</Button>
-                                        <Button variant="dark" size="sm" onClick={() => {fundingOutBault(postContainer.IdFunding); refreshPage();}}>Restaurar</Button>
-                                        <Modal show={show} onHide={handleClose} animation={false}>
+                                        <Button variant="danger" size="sm" onClick={handleShow}>Borrar Registro</Button>
+                                        <Modal show={show} onHide={handleClose}>
                                             <Modal.Header closeButton>
-                                            <Modal.Title>Precaución</Modal.Title>
+                                            <Modal.Title>Precaución!</Modal.Title>
                                             </Modal.Header>
-                                            <Modal.Body>Esta apunto de BORRAR PARA SIEMPRE la campaña "{postContainer.Title}" ¿Esta seguro?</Modal.Body>
+                                            <Modal.Body>Esta apunto de borrar</Modal.Body>
                                             <Modal.Footer>
                                             <Button variant="secondary" onClick={handleClose}>
-                                                Cancelar
+                                                Close
                                             </Button>
-                                            <Button variant="danger" onClick={handleClose}>
-                                                Eliminar
+                                            <Button variant="primary" onClick={handleClose}>
+                                                Save Changes
                                             </Button>
                                             </Modal.Footer>
                                         </Modal>
+                                        <Button variant="dark" size="sm" onClick={() => {fundingOutBault(postContainer.IdFunding); refreshPage();}}>Restaurar</Button>
                                     </ButtonGroup>
                                 </Row>
                             </Col>
