@@ -1,4 +1,4 @@
-import { Toaster, toast} from "react-hot-toast"
+import { toast } from "react-hot-toast"
 import { usePostsFund } from '../context/userContext'
 import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -8,44 +8,12 @@ export function FundCardsCommand() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
           
     const {posts} = usePostsFund()
-    const {moveRequestToBault} = usePostsFund()
+    const {moveFundingToBault} = usePostsFund()
 
-    const handleToStore = (id) => {
-        toast(
-          (t) => (
-            <div>
-              <p className="text-white">
-                Do you want to delete <strong>{id}</strong>?
-              </p>
-              <div>
-                <button
-                  className="bg-red-500 hover:bg-red-400 px-3 py-2 text-sm text-white rounded-sm mx-2"
-                  onClick={(e) => {
-                    moveRequestToBault(id);
-                    toast.dismiss(t.id);
-                  }}
-                >
-                  Delete
-                </button>
-                <button
-                  className="bg-slate-400 hover:bg-slate-500 px-3 py-2 text-white rounded-sm mx-2"
-                  onClick={() => toast.dismiss(t.id)}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          ),
-          {
-            duration: "4000",
-            style: {
-              background: "#202020"
-            }
-          }
-        );
-      };
-        
-
+    function refreshPage() {
+      window.location.reload(false);
+    }
+    
     return(
     <CardGroup>
         <Row xs={1} md={3} className="g-4 rounded">
@@ -68,10 +36,8 @@ export function FundCardsCommand() {
                                 </Row>
                                 <Row className="flex p-3">
                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
-                                        <Button variant="warning" size="sm" onClick={() => toast('Ejemplo')}>Editar</Button>
-                                        <Button variant="danger" size="sm" onClick={() => {
-                                    handleToStore(post.IdFunding);
-                                  }}>Eliminar</Button>              
+                                        <Button variant="warning" size="sm" onClick={() => window.location.reload(false)}>Editar</Button>
+                                        <Button variant="danger" size="sm" onClick={() => {moveFundingToBault(post.IdFunding); refreshPage();}}>Eliminar</Button>    
                                     </ButtonGroup>
                                 </Row>
                             </Col>

@@ -11,12 +11,13 @@ export function FundCardsRecycled() {
     const {fundingOutBault} = usePostsFundRecycle()
 
     const [show, setShow] = useState(false);
-    const [nameF, setName] = ('none');
-
+    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const handleClick = () => setName(nameF);
-
+ 
+    function refreshPage() {
+      window.location.reload(false);
+    }
 
     return(
     
@@ -39,13 +40,13 @@ export function FundCardsRecycled() {
                                 </Row>
                                 <Row className="flex p-2">
                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
-                                        <Button variant="danger" size="sm" onClick={[handleShow, handleClick(postContainer.Title)]}>Borrar Registro</Button>
-                                        <Button variant="dark" size="sm" onClick={[fundingOutBault(postContainer.IdFunding)]}>Restaurar</Button>
+                                        <Button variant="danger" size="sm" onClick={[handleShow]}>Borrar Registro</Button>
+                                        <Button variant="dark" size="sm" onClick={() => {fundingOutBault(postContainer.IdFunding); refreshPage();}}>Restaurar</Button>
                                         <Modal show={show} onHide={handleClose} animation={false}>
                                             <Modal.Header closeButton>
                                             <Modal.Title>Precaución</Modal.Title>
                                             </Modal.Header>
-                                            <Modal.Body>Esta apunto de BORRAR PARA SIEMPRE la campaña "{nameF}" ¿Esta seguro?</Modal.Body>
+                                            <Modal.Body>Esta apunto de BORRAR PARA SIEMPRE la campaña "{postContainer.Title}" ¿Esta seguro?</Modal.Body>
                                             <Modal.Footer>
                                             <Button variant="secondary" onClick={handleClose}>
                                                 Cancelar

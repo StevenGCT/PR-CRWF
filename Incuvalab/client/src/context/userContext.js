@@ -207,14 +207,8 @@ export const UserProvider = ({ children }) => {
   };
 
   const moveFundingToBault = async (id) => {
-    try {
     const res = await moveRequestToBault(id);
-    setPosts(posts.filter((post) => post.idFunding !== id))
-    }
-    catch (error)
-    {
-      console.error(error);
-    }
+    return res.data;
   }
 
   const fundingOutBault = async (id) => {
