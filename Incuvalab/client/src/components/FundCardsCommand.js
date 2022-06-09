@@ -13,14 +13,14 @@ export function FundCardsCommand() {
     function refreshPage() {
         window.location.reload(false);
     }
-    
+
     return (
         <CardGroup>
             <Row xs={1} md={3} className="g-4 rounded">
                 {posts.map(post => (
                     <Col>
                         <Card key={posts.IdFunding}>
-                            <a class="btn" href={"/funding/" + post.IdFunding[0]}>
+                            <a class="btn" href={"/control-funding/" + post.IdFunding}>
                                 <Card.Header>
                                     {post.Title}
                                 </Card.Header>
@@ -52,7 +52,8 @@ export function FundCardsCommand() {
                             </a>
                         </Card>
                     </Col>
-                ))}
+                ))
+                }
             </Row>
         </CardGroup>
     );
