@@ -1,4 +1,5 @@
 import { usePostsFund } from '../context/userContext'
+import moment from 'moment'
 import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -31,7 +32,7 @@ export function FundCardsCommand() {
                         <div className="flex justify-center ">
                             <Col>
                                 <Row >
-                                    <h6 className="text-muted">Meta: {post.Goal}Bs.</h6>
+                                    <h6 className="text-muted text-center">Meta: {post.Goal}Bs.</h6>
                                 </Row>
                                 <Row className="flex p-3">
                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
@@ -45,7 +46,7 @@ export function FundCardsCommand() {
                     </Card.Text>
             </Card.Body>
             <Card.Footer>
-                <small className="text-muted">Campaña subida el: {post.RegisterDate}</small>
+                <small className="text-muted">Campaña subida el: {moment(post.RegisterDate).format('DD/MM/YYYY')}</small>
             </Card.Footer>
         </Card>
         </Col> 

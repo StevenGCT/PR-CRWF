@@ -34,7 +34,7 @@ export function FundCardsAprobe() {
                         <div className="flex justify-center ">
                             <Col>
                                 <Row>
-                                    <h6 className="text-muted">Meta: {postAprove.Goal}Bs.</h6>
+                                    <h6 className="text-muted text-center">Meta: {postAprove.Goal}Bs.</h6>
                                 </Row>
                                 <Row className="flex p-3">
                                     <ButtonGroup className="flex dgrid gap-2 p-2" aria-label="Options">
