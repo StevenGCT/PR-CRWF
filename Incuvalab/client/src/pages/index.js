@@ -8,6 +8,8 @@ export {Settings} from './Settings';
 export {CreateProject} from './CreateProject';
 export {FundingPage} from './funding';
 
+export {FundingControl} from './Funding/fundingControl';
+
 export {Login} from './login';
 export {Register} from './register';
 export {Catalogue} from './Catalogue';
