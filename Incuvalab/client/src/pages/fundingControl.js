@@ -14,7 +14,7 @@ import f2 from '../components/images/predeterminate.jpg'
 import f3 from '../components/images/predeterminate.jpg'
 import { ProgressBar } from 'react-bootstrap'
 
-export function FundingPage() {
+export function ControlFunding() {
     const dataUser = JSON.parse(localStorage.getItem('user'));
 
     const { getFundingById } = usePostsFund();
@@ -30,10 +30,11 @@ export function FundingPage() {
         FundingImage2: "",
         FundingImage3: "",
         FundingVideo: "",
-        SocialMedios: "",
+        SocialMedia: "",
         Category: "",
         Goal: "",
-        CurrentGoal: ""
+        CurrentGoal: "",
+        RegisterDate: ""
     });
 
     const params = useParams();
@@ -55,10 +56,11 @@ export function FundingPage() {
                     FundingImage2: post[0].FundingImage2,
                     FundingImage3: post[0].FundingImage3,
                     FundingVideo: post[0].FundingVideo,
-                    SocialMedios: post[0].SocialMedios,
-                    Category: post[0].Category,
+                    SocialMedia: post[0].SocialMedia,
+                    Category: post[0].CategoryName,
                     Goal: post[0].Goal,
-                    CurrentGoal: post[0].CurrentGoal
+                    CurrentGoal: post[0].CurrentGoal,
+                    RegisterDate: post[0].RegisterDate
                 });
 
             }
@@ -79,13 +81,17 @@ export function FundingPage() {
                         </div>
                     </div>
                     <div className="col-sm">
+
                         <div className="card">
+                            <div className='card-header mb-4'>
+                                <h3>Detalles del proyecto</h3>
+                            </div>
                             <div className="card-body col px-5 pb-5 pt-4">
                                 <div className="row mb-3">
                                     <div>
                                         {post.CurrentGoal >= post.Goal ?
                                             <ProgressBar min={0} now={(post.CurrentGoal * 100) / post.Goal} max={100} variant="success" />
-                                            : <ProgressBar min={0} now={(post.CurrentGoal * 100) / post.Goal} max={100} variant="dark"  />
+                                            : <ProgressBar min={0} now={(post.CurrentGoal * 100) / post.Goal} max={100} variant="dark" />
                                         }
                                     </div>
                                 </div>
@@ -95,62 +101,27 @@ export function FundingPage() {
                                 <div className="row">
                                     <p>contribuido de {post.Goal} Bs.</p>
                                 </div>
-                                <div className="row">
-                                    <h3>Contribuir</h3>
+                                <div>
+                                    <h4>Categoria</h4>
                                 </div>
-                                <div className="row my-4">
-                                    <div className="col">Cantidad</div>
-                                    <div className="col">
-                                        <input type="text" className="form-control" placeholder="0.0" />
-                                    </div>
+                                <div>
+                                    <h6>{post.Category}</h6>
                                 </div>
-                                <div className="row">
-                                    <h5>Detalles de donación</h5>
-                                </div>
-                                <div className="row form-switch form-check mb-3">
-                                    <div className="form-switch form-check">
-                                        <input className="col form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                                        <label className="col form-check-label" htmlFor="flexSwitchCheckChecked">No mostrar publicamente mi nombre en la donación a esta campaña</label>
-                                    </div>
-                                </div>
-                                <div className="row ">
-                                    <button href="#" className="col button btn-general">Donar a este proyecto</button>
-                                </div>
-                                <div className="row my-2" >
-                                    <button href="#" className="col me-2 button btn-general">Seguir</button>
-                                    <button href="#" className="col ms-2 button btn-general">Patrocinar</button>
-                                </div>
+                            </div>
+                            <div className="card-footer col px-5 pb-5 pt-4">
+                                {post.RegisterDate}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <hr />
-            <div className="container my-5">
-                <h4 className="text-center mb-5">Opciones de donación directa</h4>
-                <div className=" row row-cols-1 row-cols-md-3 mb-3  text-center ">
-                    <OfertFunding
-                        nombreDonacion="Donador incial"
-                        monto="Libre"
-                        descripcion="Apóyalo porque crees en él. Apoya el proyecto sin recompensa, simplemente porque te resulta interesante." />
 
-                    <OfertFunding
-                        nombreDonacion="Donador estrella"
-                        monto="250 Bs."
-                        descripcion="Siendo un donador estrella usted nos ayudará a llevar nuestro objetivo a las estrellas. Savemos que crees en nosotros." />
-                    <OfertFunding
-                        nombreDonacion="Donador Sol Naciente"
-                        monto="500 Bs."
-                        descripcion="Siendo un donador sol naciente usted nos ayudará a llevar nuestro objetivo a las estrellas. Savemos que crees en nosotros." />
-                </div>
-            </div>
-
-            <hr />
 
             <div className="container my-5">
                 <div className="row">
-                    <div className="col-sm-8 pe-4">
-                        <h5>Historia del proyecto</h5>
+                    <div className="col-sm">
+                        <h3>Historia del proyecto</h3>
                         <p>{post.Description}</p>
                         <img src={f1} className="img-fluid m-4"></img>
                         <p>{post.Question1}</p>
@@ -158,13 +129,6 @@ export function FundingPage() {
                         <p>{post.Question2}</p>
                         <img src={f3} className="img-fluid m-4"></img>
                         <p>{post.Question3}</p>
-                    </div>
-
-                    <div className="col-sm">
-                        <h5>Comentarios</h5>
-                        <CommentFrom idFunding={post.IdFunding} idUser={dataUser[0].IdUser} />
-                        <hr />
-                        <Comment idFunding={post.IdFunding} />
                     </div>
                 </div>
             </div>

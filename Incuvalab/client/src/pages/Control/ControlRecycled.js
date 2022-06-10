@@ -1,16 +1,17 @@
 import { DashMenuRecycled } from "../../components/DashMenuRecycled"
+import NavbarLogin from "../../components/header-navbar"
 
 
 export function ControlRecycled() {
-    return (
-      <>
+  return (
+    <>
+       <NavbarLogin locale={true} />
       <div>
-      <DashMenuRecycled />
+        <DashMenuRecycled />
       </div>
-    <div className="container align-center">
-      
-    </div>
+      <div className="container align-center">
+
+      </div>
     </>
-    )
-  }
-  
+  )
+}

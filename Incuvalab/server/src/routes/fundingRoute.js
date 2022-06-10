@@ -8,7 +8,7 @@ router.get('/Funding/rank', setRanckFunding);
 router.post('/Funding', createFunding);
 
 // Get Funding BY ID
-router.get('/Funding/:id', getFundingById);
+router.get('/funding/:id', getFundingById);
 // Get a List of all not aprobed funding
 router.get('/request-funding', getQuestionFunding);
 // Get a List of funding
@@ -20,7 +20,7 @@ router.get('/fullfunding', getAllCompleteFunding);
 // Get Funding BY Category
 router.get('/funding/category/:id', getFundingByCat);
 // Get Funding By name
-router.get('/funding/name' , getAllFundingBySameName);
+router.post('/funding/name' , getAllFundingBySameName);
 // Get Funding Top 3
 router.get('/fundingRank3' , setRanckTop3 );
 // Logical delete/deny of funding

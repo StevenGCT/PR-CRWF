@@ -1,4 +1,5 @@
 import { usePostsUsersList } from '../context/userContext'
+import moment from 'moment'
 import { Card, CardGroup, Row, Col, Container, Badge, Button, ButtonGroup } from 'react-bootstrap'
 import avatar from './images/profile.webp'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -17,11 +18,11 @@ export function UserCards() {
           <Col>
             <Card key={postUserEditList.IdUser}>
                 <Card.Header>
-                    {postUserEditList.IdUser === 1 ? <> <h5>Owner <Badge pill bg="success"> Id:{postUserEditList.IdUser} </Badge> <Button className="rounded-pill" variant="dark" size="sm"><strong>?</strong></Button> <ButtonGroup className="position-sticky start-100 flex dgrid gap-2 m-2">
+                    {postUserEditList.IdUser === 1 ? <> <h5>Owner <Badge pill bg="success"> Id:{postUserEditList.IdUser} </Badge> <ButtonGroup className="position-sticky start-100 flex dgrid gap-2 m-2">
                         <Button variant="secondary" size="sm">Vetar</Button>
                         <Button variant="warning" size="sm">Editar</Button>
                         <Button variant="danger" size="sm">Eliminar</Button>
-                    </ButtonGroup> </h5>  </>  :  <h5>{postUserEditList.TypeUserName} <Badge pill bg="success"> Id:{postUserEditList.IdUser} </Badge> <Button className="rounded-pill" variant="dark" size="sm"><strong>?</strong></Button> <ButtonGroup className="position-sticky start-100 flex dgrid gap-2 m-2">
+                    </ButtonGroup> </h5>  </>  :  <h5>{postUserEditList.TypeUserName} <Badge pill bg="success"> Id:{postUserEditList.IdUser} </Badge> <ButtonGroup className="position-sticky start-100 flex dgrid gap-2 m-2">
                         <Button variant="secondary" size="sm">Vetar</Button>
                         <Button variant="warning" size="sm">Editar</Button>
                         <Button variant="danger" size="sm">Eliminar</Button>
@@ -40,8 +41,8 @@ export function UserCards() {
                                     <li>{postUserEditList.Email}</li>
                                     <li>{postUserEditList.PhoneNumber}</li>
                                     <li>{postUserEditList.Address}</li>
-                                    <li>Registrado: {postUserEditList.RegisterDate}</li>
-                                    <li>Ultima modificación: {postUserEditList.LastUpdate}</li>
+                                    <li>Registrado: {moment(postUserEditList.RegisterDate).format('DD/MM/YYYY')} a las: {moment(postUserEditList.RegisterDate).format('HH:mm a')}</li>
+                                    <li>Ultima modificación: {moment(postUserEditList.LastUpdate).format('DD/MM/YYYY')} a las: {moment(postUserEditList.LastUpdate).format('HH:mm a')}</li>
                             </Card.Text>
                             </Col>
                         </Container>

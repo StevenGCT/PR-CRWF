@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, 
     ControlComplete, ControlUsers } from './pages';
+=======
+import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers, FundingForm} from './pages';
+>>>>>>> 406300090a647ea3b5993605d500a68a5109ec40
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
@@ -54,11 +58,23 @@ function App() {
                     <Route path="/control-page-user" element={<ControlUsers />} />
                 </Route>
 
+                <Route exact path='/control-funding/:id' element={<PrivateRouteAdmin />}>
+                    <Route path="/control-funding/:id" element={<ControlFunding />} />
+                </Route>
+
                 <Route path="/catalogue" element={<Catalogue />} />
 
+<<<<<<< HEAD
                 <Route path="/catalogue/category" element={<CatalogueCategory />} />
 
                 <Route path="/questions" element={<Questions />} />
+=======
+                <Route path="/catalogue/category" element={<CatalogueCategory />} />+
+
+                <Route exact path='/createFunding' element={<PrivateRouteAdmin />}>
+                    <Route path="/createFunding" element={<FundingForm />} />
+                </Route>
+>>>>>>> 406300090a647ea3b5993605d500a68a5109ec40
 
             </Routes>
         </UserProvider>

@@ -1,7 +1,5 @@
 import { getConnection, sql, queries } from '../database'
 
-
-
 export const getCategorys = async(req, res) => {
     try {
         const pool = await getConnection();

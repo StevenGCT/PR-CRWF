@@ -1,16 +1,16 @@
 import { DashMenuAprobe } from "../../components/DashMenuAprobe"
+import NavbarLogin from "../../components/header-navbar"
 
 
 export function ControlAprobe() {
-    return (
-      <>
+  return (
+    <>
+      <NavbarLogin locale={true} />
       <div>
-      <DashMenuAprobe />
+        <DashMenuAprobe />
       </div>
-    <div className="container align-center">
-      
-    </div>
+      <div className="container align-center">
+      </div>
     </>
-    )
-  }
-  
+  )
+}

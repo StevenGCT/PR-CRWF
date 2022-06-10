@@ -6,8 +6,6 @@ import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
 import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest , userDonateFundingRequest} from '../api/users'
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest} from '../api/comment'
 
-
-
 const userContext = createContext()
 
 export const useUsers = () => {
@@ -136,14 +134,14 @@ export const UserProvider = ({ children }) => {
     setUsers(res.data)
   }
 
-  const getUserById = async () => {
-    const res = await getUserByIdRequest()
+  const getUserById = async (id) => {
+    const res = await getUserByIdRequest(id)
     setUsersById(res.data)
   }
 
   const createFunding = async (funding) => {
     const res = await createFundingRequest(funding)
-    console.log(res)
+    return res.data;
   }
 
   const updatePassword = async (id, password) => {
@@ -207,14 +205,8 @@ export const UserProvider = ({ children }) => {
   };
 
   const moveFundingToBault = async (id) => {
-    try {
     const res = await moveRequestToBault(id);
-    setPosts(posts.filter((post) => post.idFunding !== id))
-    }
-    catch (error)
-    {
-      console.error(error);
-    }
+    return res.data;
   }
 
   const fundingOutBault = async (id) => {
