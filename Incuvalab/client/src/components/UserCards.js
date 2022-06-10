@@ -18,11 +18,11 @@ export function UserCards() {
           <Col>
             <Card key={postUserEditList.IdUser}>
                 <Card.Header>
-                    {postUserEditList.IdUser === 1 ? <> <h5>Owner <Badge pill bg="success"> Id:{postUserEditList.IdUser} </Badge> <Button className="rounded-pill" variant="dark" size="sm"><strong>?</strong></Button> <ButtonGroup className="position-sticky start-100 flex dgrid gap-2 m-2">
+                    {postUserEditList.IdUser === 1 ? <> <h5>Owner <Badge pill bg="success"> Id:{postUserEditList.IdUser} </Badge> <ButtonGroup className="position-sticky start-100 flex dgrid gap-2 m-2">
                         <Button variant="secondary" size="sm">Vetar</Button>
                         <Button variant="warning" size="sm">Editar</Button>
                         <Button variant="danger" size="sm">Eliminar</Button>
-                    </ButtonGroup> </h5>  </>  :  <h5>{postUserEditList.TypeUserName} <Badge pill bg="success"> Id:{postUserEditList.IdUser} </Badge> <Button className="rounded-pill" variant="dark" size="sm"><strong>?</strong></Button> <ButtonGroup className="position-sticky start-100 flex dgrid gap-2 m-2">
+                    </ButtonGroup> </h5>  </>  :  <h5>{postUserEditList.TypeUserName} <Badge pill bg="success"> Id:{postUserEditList.IdUser} </Badge> <ButtonGroup className="position-sticky start-100 flex dgrid gap-2 m-2">
                         <Button variant="secondary" size="sm">Vetar</Button>
                         <Button variant="warning" size="sm">Editar</Button>
                         <Button variant="danger" size="sm">Eliminar</Button>

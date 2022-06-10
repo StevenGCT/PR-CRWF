@@ -47,7 +47,7 @@ export function FundCardsCommand() {
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Footer>
-                                    <small className="text-muted">Campaña subida el: {post.RegisterDate}</small>
+                                    <small className="text-muted">Campaña subida el: {moment(post.RegisterDate).format('DD/MM/YYYY')}</small>
                                 </Card.Footer>
                             </a>
                         </Card>
