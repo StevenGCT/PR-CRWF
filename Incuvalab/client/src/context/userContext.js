@@ -134,8 +134,8 @@ export const UserProvider = ({ children }) => {
     setUsers(res.data)
   }
 
-  const getUserById = async () => {
-    const res = await getUserByIdRequest()
+  const getUserById = async (id) => {
+    const res = await getUserByIdRequest(id)
     setUsersById(res.data)
   }
 
