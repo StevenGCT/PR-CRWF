@@ -29,69 +29,61 @@ export function DashMenuUser() {
         </div>
 
         <br />
-        <Link to="/control-page">
+          <Link to="/control-page" style={{ color: 'inherit', textDecoration: 'inherit'}}>
           <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
-
           <img src={require('./images/assets/Folder.png')} alt="Control-Icon"/>
             <span className={`${!open && "hidden"} origin-left duration-200`}>
-              Activos
+                Activos
             </span>
           </li>
-        </Link>
-        <Link to="/control-page-aprove">
+          </Link>
+          <Link to="/control-page-aprove" style={{ color: 'inherit', textDecoration: 'inherit'}}>
           <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
           <img src={require('./images/assets/requests.png')} alt="Control-Icon"/>
             <span className={`${!open && "hidden"} origin-left duration-200`}>
-              Solicitudes
+                Solicitudes
             </span>
           </li>
-        </Link>
-        <Link to="/control-page-complete">
+          </Link>
+          <Link to="/control-page-complete" style={{ color: 'inherit', textDecoration: 'inherit'}}>
           <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
-
           <img src={require('./images/assets/complete.png')} alt="Control-Icon"/>
             <span className={`${!open && "hidden"} origin-left duration-200`}>
-              Completados
+                Completados
             </span>
           </li>
-        </Link>
-        <Link to="/control-page-recycle">
+          </Link>
+          <Link to="/control-page-recycle" style={{ color: 'inherit', textDecoration: 'inherit'}}>
           <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
           <img src={require('./images/assets/box.png')} alt="Control-Icon"/>
             <span className={`${!open && "hidden"} origin-left duration-200`}>
-              Baul de Registros
+                Baul de Registros
             </span>
           </li>
-        </Link>
-        <Link to="/control-page-user">
+          </Link>
+          <Link to="/createFunding/menu" style={{ color: 'inherit', textDecoration: 'inherit'}}>
           <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
           <img src={require('./images/assets/addFolder.png')} alt="Control-Icon"/>
             <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Agregar Campaña
             </span>
           </li>
-        </Link>
-        <Link to="/createFunding">
+          </Link>
+          <Link to="/control-page-user" style={{ color: 'inherit', textDecoration: 'inherit'}}>
           <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 mt-9 : mt-2`}>
           <img src={require('./images/assets/newUser.png')} alt="Control-Icon"/>
             <span className={`${!open && "hidden"} origin-left duration-200`}>
                 Usuarios
             </span>
           </li>
-        </Link>
-
+          </Link>
           <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
           <img src={require('./images/assets/addUser.png')} alt="Control-Icon"/>
             <span className={`${!open && "hidden"} origin-left duration-200`}>
-              Usuarios
+                Agregar Usuario
             </span>
           </li>
-        <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
-          <img src={`https://raw.githubusercontent.com/Sridhar-C-25/sidebar_reactTailwind/main/src/assets/Folder.png`} alt="Control-Icon" />
-          <span className={`${!open && "hidden"} origin-left duration-200`}>
-            Agregar Usuario
-          </span>
-        </li>
+        
       </div>
       <div className="h-screen flex-1 p-7">
         <h1 className="text-2xl font-semibold ">Lista de Usuarios</h1>

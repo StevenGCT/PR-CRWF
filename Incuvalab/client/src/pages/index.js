@@ -2,6 +2,7 @@ export {HomePage} from './HomePage';
 export {Donate} from './Donate';
 export {Confirmation} from './Confirmation';
 export {NotFoundPage} from './NotFoundPage';
+export {Questions} from './Questions';
 //Ambos
 export {UserProfile} from './UserProfile';
 export {Settings} from './Settings';

@@ -1,8 +1,6 @@
 import { usePostsFundRecycle } from '../context/userContext'
-import { toast } from 'react-hot-toast'
-import { useState } from 'react'
 import moment from 'moment'
-import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup, Modal } from 'react-bootstrap'
+import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -12,11 +10,7 @@ export function FundCardsRecycled() {
 
     const { postsToRecycle } = usePostsFundRecycle()
     const { fundingOutBault } = usePostsFundRecycle()
-
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const { deletePermanentFunding } = usePostsFundRecycle()
 
     function refreshPage() {
         window.location.reload(false);
@@ -29,9 +23,11 @@ export function FundCardsRecycled() {
                 {postsToRecycle.map(postContainer => (
                     <Col>
                         <Card key={postsToRecycle.IdFunding}>
-                            <a class="btn" href={"/control-funding/" + postContainer.IdFunding}>
+                            
                                 <Card.Header>
-                                    {postContainer.Title}
+                                    <a class="btn" href={"/control-funding/" + postContainer.IdFunding}>
+                                        <strong>{postContainer.Title}</strong>
+                                    </a>
                                 </Card.Header>
                                 <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg" />
                                 <Card.Body>
@@ -44,21 +40,7 @@ export function FundCardsRecycled() {
                                                 </Row>
                                                 <Row className="flex p-2">
                                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
-                                                        <Button variant="danger" size="sm" onClick={handleShow}>Borrar Registro</Button>
-                                                        <Modal show={show} onHide={handleClose}>
-                                                            <Modal.Header closeButton>
-                                                                <Modal.Title>Precaución!</Modal.Title>
-                                                            </Modal.Header>
-                                                            <Modal.Body>Esta apunto de borrar</Modal.Body>
-                                                            <Modal.Footer>
-                                                                <Button variant="secondary" onClick={handleClose}>
-                                                                    Close
-                                                                </Button>
-                                                                <Button variant="primary" onClick={handleClose}>
-                                                                    Save Changes
-                                                                </Button>
-                                                            </Modal.Footer>
-                                                        </Modal>
+                                                        <Button variant="danger" size="sm" onClick={() => { deletePermanentFunding(postContainer.IdFunding); refreshPage(); }}>Borrar Registro</Button>                                                        
                                                         <Button variant="dark" size="sm" onClick={() => { fundingOutBault(postContainer.IdFunding); refreshPage(); }}>Restaurar</Button>
                                                     </ButtonGroup>
                                                 </Row>
@@ -70,7 +52,6 @@ export function FundCardsRecycled() {
                                 <Card.Footer>
                                     <small className="text-muted">Campaña subida el: {moment(postContainer.RegisterDate).format('DD/MM/YYYY')}</small>
                                 </Card.Footer>
-                            </a>
                         </Card>
                     </Col>
                 ))}

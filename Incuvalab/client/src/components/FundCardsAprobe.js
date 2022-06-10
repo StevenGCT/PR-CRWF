@@ -24,9 +24,13 @@ export function FundCardsAprobe() {
                 {postsToAprobe.map(postAprove => (
                     <Col>
                         <Card key={postsToAprobe.IdFunding}>
-                            <a class="btn" href={"/control-funding/" + postAprove.IdFunding}>
+                            
                                 <Card.Header>
-                                    {postAprove.Title}
+                                   
+                                    <a class="btn" href={"/control-funding/" + postAprove.IdFunding}>
+                                    <strong>{postAprove.Title}</strong>
+                                    </a>
+                                    
                                 </Card.Header>
                                 <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg" />
                                 <Card.Body>
@@ -52,7 +56,7 @@ export function FundCardsAprobe() {
                                 <Card.Footer>
                                     <small className="text-muted">Campaña subida el: {moment(postAprove.RegisterDate).format('DD/MM/YYYY')}</small>
                                 </Card.Footer>
-                            </a>
+                            
                         </Card>
                     </Col>
                 ))}

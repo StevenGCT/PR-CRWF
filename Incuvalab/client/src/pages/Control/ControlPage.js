@@ -1,7 +1,6 @@
 import { DashMenu } from "../../components/DashMenu"
 import NavbarLogin from "../../components/header-navbar"
 
-
 export function ControlPage() {
   return (
     <>
