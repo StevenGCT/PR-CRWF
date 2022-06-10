@@ -141,7 +141,7 @@ export const UserProvider = ({ children }) => {
 
   const createFunding = async (funding) => {
     const res = await createFundingRequest(funding)
-    console.log(res)
+    return res.data;
   }
 
   const updatePassword = async (id, password) => {

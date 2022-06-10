@@ -60,7 +60,9 @@ function App() {
 
                 <Route path="/catalogue/category" element={<CatalogueCategory />} />+
 
-                <Route path="/createFunding" element={<FundingForm />} />+
+                <Route exact path='/createFunding' element={<PrivateRouteAdmin />}>
+                    <Route path="/createFunding" element={<FundingForm />} />
+                </Route>
 
             </Routes>
         </UserProvider>

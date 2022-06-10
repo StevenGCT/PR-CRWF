@@ -2,26 +2,32 @@ import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
 import React from "react";
 import { useUsers, usePostsCat } from "../context/userContext"
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form, Field } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-import { DropdownButton, Dropdown } from 'react-bootstrap'
-import { Link } from "react-router-dom"
+import arrow_back from '../components/images/assets/arrow_back_.png'
+import { propTypes } from "react-bootstrap/esm/Image";
 
-export function FundingForm() {
+export function FundingForm(props) {
 
     const navigate = useNavigate();
     const { createFunding } = useUsers();
     const { postsCat } = usePostsCat()
-    const { getPostsFundByCat } = usePostsCat()
 
     return (
         <div>
             <NavbarLogin locale={false} />
 
             <div className="container-sm my-2 p-5">
+                <form action="/control-page">
+                    <button className="flex mb-3" type="submit">
+                        <img src={arrow_back} className="w-10"></img>
+                        <h5 className="my-2">Volver</h5>
+                    </button>
+                </form>
+
                 <div className="mb-4">
-                    <h2>Fundamentos del proyecto</h2>
+                    <h2>Crear fundamentos del proyecto</h2>
                 </div>
 
                 <h4>Presentación del proyecto</h4>
@@ -50,12 +56,11 @@ export function FundingForm() {
                     })}
 
                     onSubmit={async (values, actions) => {
-                        
                         const posts = await createFunding(values);
-                        if (posts.length > 0) {
-                            navigate('/')
+                        if (posts != null) {
+                            navigate('/control-page-aprove')
                         } else {
-                            //errorLogin = true;
+
                         }
                     }}>
 
@@ -114,8 +119,8 @@ export function FundingForm() {
                                 <div class="col form-group mb-3">
                                     <label className="fw-semibold">Categoria</label>
                                     <br />
-                                    <Field as="select" name="idCategory" className="form-select">
-                                        <option value="0" disabled hidden selected>Elige una categoria</option>
+                                    <Field name="idCategory" className="form-select" component="select">
+                                        <option value="0" selected >Elige una categoria</option>
                                         {postsCat.map(postCat => (
                                             <option value={postCat.IdCategory} >
                                                 {postCat.CategoryName}

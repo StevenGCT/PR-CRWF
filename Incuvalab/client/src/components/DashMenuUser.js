@@ -86,7 +86,6 @@ export function DashMenuUser() {
               Usuarios
             </span>
           </li>
-        
         <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
           <img src={`https://raw.githubusercontent.com/Sridhar-C-25/sidebar_reactTailwind/main/src/assets/Folder.png`} alt="Control-Icon" />
           <span className={`${!open && "hidden"} origin-left duration-200`}>
@@ -102,6 +101,5 @@ export function DashMenuUser() {
         </div>
       </div>
     </div>
-    
   )
 }

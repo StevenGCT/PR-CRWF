@@ -67,7 +67,7 @@ export function DashMenu() {
             </span>
           </li>
           </Link>
-          <Link to="/create-funding">
+          <Link to="/createFunding/menu">
           <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
           <img src={require('./images/assets/addFolder.png')} alt="Control-Icon"/>
             <span className={`${!open && "hidden"} origin-left duration-200`}>
