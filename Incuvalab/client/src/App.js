@@ -1,7 +1,9 @@
-import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers } from './pages';
+import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, 
+    ControlComplete, ControlUsers } from './pages';
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
+import { Questions } from './pages/Questions';
 
 //Proteger UserProfile y Settings para cada usuario individualmente
 
@@ -55,6 +57,9 @@ function App() {
                 <Route path="/catalogue" element={<Catalogue />} />
 
                 <Route path="/catalogue/category" element={<CatalogueCategory />} />
+
+                <Route path="/questions" element={<Questions />} />
+
             </Routes>
         </UserProvider>
     );
