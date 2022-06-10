@@ -1,4 +1,4 @@
-import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers } from './pages';
+import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers, FundingForm} from './pages';
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
@@ -58,7 +58,10 @@ function App() {
 
                 <Route path="/catalogue" element={<Catalogue />} />
 
-                <Route path="/catalogue/category" element={<CatalogueCategory />} />
+                <Route path="/catalogue/category" element={<CatalogueCategory />} />+
+
+                <Route path="/createFunding" element={<FundingForm />} />+
+
             </Routes>
         </UserProvider>
     );

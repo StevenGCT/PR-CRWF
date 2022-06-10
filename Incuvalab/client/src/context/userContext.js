@@ -6,8 +6,6 @@ import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
 import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest , userDonateFundingRequest} from '../api/users'
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest} from '../api/comment'
 
-
-
 const userContext = createContext()
 
 export const useUsers = () => {

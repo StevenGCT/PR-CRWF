@@ -16,62 +16,34 @@ export const setRanckFunding = async(req, res) => {
 }
 
 export const createFunding = async(req, res) => {
-    try {
-        const { Title, 
-            Question1, 
-            Question2, 
-            Question3, 
-            FastDescription, 
-            Description, 
-            FundingImage1, 
-            FundingImage2, 
-            FundingImage3, 
-            FundingVideo, 
-            AccountNumber, 
-            SocialMedia, 
-            IdCategory, 
-            Goal  } = req.body;
-        if (Title == null 
-            && Question1 == null 
-            && Question2 == null 
-            && Question3 == null 
-            && FastDescription == null 
-            && Description == null 
-            && FundingImage1 == null 
-            && FundingImage2 == null 
-            && FundingImage3 == null 
-            && FundingVideo == null 
-            && AccountNumber == null 
-            && SocialMedia == null 
-            && IdCategory == null 
-            && Goal == null) {
+   
+        if (req.body == null) 
+        {
             res.status(400).json({ msg: 'Bad Request. Please fill all fields' });
-        } else {
-            //console.log(Title);
+        } 
+        else 
+        {
             const pool = await getConnection();
             var result = await pool.request()
-                .input("Title", sql.VarChar, Title)
-                .input("Question1", sql.VarChar, Question1)
-                .input("Question2", sql.VarChar, Question2)
-                .input("Question3", sql.VarChar, Question3)
-                .input("FastDescription", sql.VarChar, FastDescription)
-                .input("Description", sql.VarChar, Description)
-                .input("FundingImage1", sql.VarChar, FundingImage1)
-                .input("FundingImage2", sql.VarChar, FundingImage2)
-                .input("FundingImage3", sql.VarChar, FundingImage3)
-                .input("FundingVideo", sql.VarChar, FundingVideo)
-                .input("AccountNumber", sql.VarChar, AccountNumber)
-                .input("SocialMedia", sql.VarChar, SocialMedia)
-                .input("IdCategory", sql.TinyInt, IdCategory)
-                .input("Goal", sql.Decimal, Goal)
+                .input("title", sql.VarChar, req.body.title)
+                .input("question1", sql.VarChar, req.body.question1)
+                .input("question2", sql.VarChar, req.body.question2)
+                .input("question3", sql.VarChar, req.body.question3)
+                .input("fastDescription", sql.VarChar, req.body.fastDescription)
+                .input("description", sql.VarChar, req.body.description)
+                .input("fundingImage1", sql.VarChar, req.body.fundingImage1)
+                .input("fundingImage2", sql.VarChar, req.body.fundingImage2)
+                .input("fundingImage3", sql.VarChar, req.body.fundingImage3)
+                .input("fundingVideo", sql.VarChar, req.body.fundingVideo)
+                .input("accountNumber", sql.VarChar, req.body.accountNumber)
+                .input("socialMedia", sql.VarChar, req.body.socialMedia)
+                .input("idCategory", sql.TinyInt, req.body.idCategory)
+                .input("goal", sql.Decimal, req.body.goal)
+                .input("aprove", sql.TinyInt, 0)
                 .query(fundqueries.createNewFunding);
             console.log(result.rowsAffected);
-            res.json({ Title, Question1, Question2,Question3, FastDescription, Description, FundingImage1, FundingImage2, FundingImage3, FundingVideo, AccountNumber, SocialMedia, IdCategory, Goal });
+            res.json(req.body);
         }
-    } catch (err) {
-        res.status(500);
-        res.send(error.message);
-    }
 }
 
 

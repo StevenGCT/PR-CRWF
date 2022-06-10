@@ -5,7 +5,7 @@ import NavbarLogin from "../../components/header-navbar"
 export function ControlAprobe() {
   return (
     <>
-       <NavbarLogin locale={true} />
+      <NavbarLogin locale={true} />
       <div>
         <DashMenuAprobe />
       </div>

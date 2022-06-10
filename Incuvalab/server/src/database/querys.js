@@ -24,6 +24,7 @@ export const queries = {
 
 
     getUserDonateFunding: "SELECT idUser FROM Funding F INNER JOIN User_Funding UF ON UF.idFunding = F.idFunding WHERE F.IdFunding = @idFunding",
+    
     //User
     createNewUser: "INSERT INTO Users ([Name] ,LastName, Email, [Password], UserName) VALUES (@name, @lastName, @email, HashBytes('MD5', @password), @username)",
     getUserById: "SELECT * FROM Users WHERE IdUser = @id",
@@ -54,6 +55,6 @@ export const fundqueries = {
     getCountFunding: "SELECT COUNT(*) FROM Funding",
     updateCategoryById: "UPDATE FUNDING SET Description = @funding WHERE IdCategory = @id",
     rankCategory: "SELECT TOP 10 * FROM Funding ORDER BY CurrentGoal DESC",
-    createNewFunding: "INSERT INTO Funding(Title, Question1, Question2, Question3, FastDescription, Description, FundingImage1, FundingImage2, FundingImage3, FundingVideo, AccountNumber, SocialMedia, IdCategory, Goal) VALUES (@Title, @Question1, @Question2, @Question3, @FastDescription, @Description, @FundingImage1, @FundingImage2, @FundingImage3, @FundingVideo, @AccountNumber, @SocialMedia, @IdCategory, @Goal)",
+    createNewFunding: "INSERT INTO Funding(Title, Question1, Question2, Question3, FastDescription, Description, FundingImage1, FundingImage2, FundingImage3, FundingVideo, AccountNumber, SocialMedia, IdCategory, Goal, Aprove) VALUES (@title, @question1, @question2, @question3, @fastDescription, @description, @fundingImage1, @fundingImage2, @fundingImage3, @fundingVideo, @accountNumber, @socialMedia, @idCategory, @goal, @aprove)",
     restoreFunding:"UPDATE Funding  SET State = 1, Aprove = 0 WHERE IdFunding  = @id"
 }

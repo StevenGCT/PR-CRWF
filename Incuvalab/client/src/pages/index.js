@@ -20,3 +20,4 @@ export {ControlRecycled} from './Control/ControlRecycled';
 export {ControlComplete} from './Control/ControlComplete';
 export {ControlUsers} from './Control/ControlUsers';
 
+export {FundingForm} from './fundingForm';
