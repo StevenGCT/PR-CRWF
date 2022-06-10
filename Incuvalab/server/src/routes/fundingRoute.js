@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { setRanckFunding, createFunding, getFunding, getFundingByCat, getFundingById, getOldFunding, getQuestionFunding, getAllFundingBySameName, getAllCompleteFunding, setRanckTop3, deletePointedFunding, deletePointedLogicalFunding, AproveFunding, restoreBaultedFunding } from '../controllers/fundingController';
+import { updateFunding, setRanckFunding, createFunding, getFunding, getFundingByCat, getFundingById, getOldFunding, getQuestionFunding, getAllFundingBySameName, getAllCompleteFunding, setRanckTop3, deletePointedFunding, deletePointedLogicalFunding, AproveFunding, restoreBaultedFunding } from '../controllers/fundingController';
 
 const router = Router();
 
@@ -32,5 +32,6 @@ router.put('/funding/aprove/:id', AproveFunding);
 // Restore from bault of funding
 router.put('/funding/restore/:id', restoreBaultedFunding);
 
+router.put('/updateFunding', updateFunding);
 
 export default router;

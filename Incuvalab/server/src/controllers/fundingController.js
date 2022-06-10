@@ -163,6 +163,34 @@ export const deletePointedLogicalFunding = async(req, res) => {
     }
 }
 
+export const updateFunding = async(req, res) => {
+    try {
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('Id',sql.TinyInt ,req.body.IdFunding)
+            .input('Title', sql.VarChar,req.body.Title)
+            .input('Question1',sql.VarChar, req.body.Question1)
+            .input('Question2',sql.VarChar, req.body.Question1)
+            .input('Question3', sql.VarChar,req.body.Question3)
+            .input('FastDescription',sql.VarChar, req.body.FastDescription)
+            .input('Description',sql.VarChar, req.body.Description)
+            .input('FundingImage1', sql.VarChar,req.body.FundingImage1)
+            .input('FundingImage2',sql.VarChar, req.body.FundingImage2)
+            .input('FundingImage3',sql.VarChar, req.body.FundingImage3)
+            .input('FundingVideo',sql.VarChar, req.body.FundingVideo)
+            .input('AccountNumber', sql.VarChar,req.body.AccountNumber)
+            .input('SocialMedia',sql.VarChar,req.body.SocialMedia)
+            .input('IdCategory',sql.TinyInt, req.body.IdCategory)
+            .input('Goal', sql.Decimal,req.body.Goal)
+            .query(fundqueries.updateFunding)
+        console.log(result);
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
 export const restoreBaultedFunding = async(req, res) => {
     try {
         const { id } = req.params;

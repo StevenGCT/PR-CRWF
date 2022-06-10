@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from 'react'
-import { changePassword, getAllCategorysRequest, createFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
+import { changePassword, getAllCategorysRequest, createFundingRequest,putFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
 import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestFromBault, permanentDeleteRequest, moveRequestToBault } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
@@ -141,6 +141,12 @@ export const UserProvider = ({ children }) => {
 
   const createFunding = async (funding) => {
     const res = await createFundingRequest(funding)
+    return res.data;
+  }
+
+  const updateFunding = async (funding) => {
+    console.log(funding)
+    const res = await putFundingRequest(funding)
     return res.data;
   }
 
@@ -338,6 +344,7 @@ export const UserProvider = ({ children }) => {
       projectsCount,
 
       createFunding,
+      updateFunding,
       updatePassword,
       setPosts,
       posts,

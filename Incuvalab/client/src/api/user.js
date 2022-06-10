@@ -23,4 +23,6 @@ export const createFundingRequest = async (funding) => await axios.post("/Fundin
 
 export const changePassword = async (id, NewPassword) => await axios.put(`/users/change/${id}`,  NewPassword);
 
+export const putFundingRequest = async (funding) => await axios.put('/updateFunding',  funding);
+
 //export const createProjectRequest = async (project) => await axios.post('api/Funding')

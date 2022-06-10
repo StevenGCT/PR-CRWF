@@ -2,7 +2,7 @@ import { usePostsFund } from '../context/userContext'
 import moment from 'moment'
 import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import { Link } from "react-router-dom"
 
 export function FundCardsCommand() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
@@ -37,7 +37,7 @@ export function FundCardsCommand() {
                                                 </Row>
                                                 <Row className="flex p-3">
                                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
-                                                        <Button variant="warning" size="sm" onClick={() => window.location.reload(false)}>Editar</Button>
+                                                        <Link to={'/createFunding/'+post.IdFunding} className='btn btn-warning' size="sm">Editar</Link>
                                                         <Button variant="danger" size="sm" onClick={() => { moveFundingToBault(post.IdFunding); refreshPage(); }}>Eliminar</Button>
                                                     </ButtonGroup>
                                                 </Row>

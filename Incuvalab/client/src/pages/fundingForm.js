@@ -3,16 +3,72 @@ import Footer from "../components/footer"
 import React from "react";
 import { useUsers, usePostsCat } from "../context/userContext"
 import { Formik, Form, Field } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import * as Yup from 'yup'
 import arrow_back from '../components/images/assets/arrow_back_.png'
 import { propTypes } from "react-bootstrap/esm/Image";
+import { usePostsFund } from "../context/userContext"
+import OfertFunding from '../components/cardOfertsFunding'
+import { useState, useEffect } from 'react'
+import { PostCard2 } from "../components/PostCard2";
 
 export function FundingForm(props) {
 
     const navigate = useNavigate();
-    const { createFunding } = useUsers();
-    const { postsCat } = usePostsCat()
+    const { createFunding, updateFunding } = useUsers();
+    const { postsCat } = usePostsCat();
+
+    const { getFundingById } = usePostsFund();
+    const [post, setPost] = useState({
+        IdFunding: "",
+        Title: "",
+        Question1: "",
+        Question2: "",
+        Question3: "",
+        FastDescrption: "",
+        Description: "",
+        FundingImage1: "",
+        FundingImage2: "",
+        FundingImage3: "",
+        FundingVideo: "",
+        SocialMedios: "",
+        Category: "",
+        IdCategory:"",
+        Goal: "",
+        CurrentGoal: "",
+        AccountNumber:""
+    });
+
+    const params = useParams();
+
+    useEffect(() => {
+        (async () => {
+            if (params.id) {
+                const post = await getFundingById(params.id);
+
+                setPost({
+                    IdFunding: post[0].IdFunding,
+                    Title: post[0].Title,
+                    Question1: post[0].Question1,
+                    Question2: post[0].Question2,
+                    Question3: post[0].Question2,
+                    FastDescription: post[0].FastDescription,
+                    Description: post[0].Description,
+                    FundingImage1: post[0].FundingImage1,
+                    FundingImage2: post[0].FundingImage2,
+                    FundingImage3: post[0].FundingImage3,
+                    FundingVideo: post[0].FundingVideo,
+                    SocialMedia: post[0].SocialMedia,
+                    Category: post[0].Category,
+                    IdCategory: post[0].IdCategory,
+                    Goal: post[0].Goal,
+                    CurrentGoal: post[0].CurrentGoal,
+                    AccountNumber: post[0].AccountNumber
+                });
+
+            }
+        })();
+    }, [params.id, getFundingById]);
 
     return (
         <div>
@@ -34,35 +90,33 @@ export function FundingForm(props) {
                 <hr />
 
                 <Formik className="form"
-                    initialValues={{
-                        title: '',
-                        question1: '',
-                        question2: '',
-                        question3: '',
-                        fastDescription: '',
-                        description: '',
-                        fundingImage1: '',
-                        fundingImage2: '',
-                        fundingImage3: '',
-                        fundingVideo: '',
-                        accountNumber: '',
-                        socialMedia: '',
-                        idCategory: '',
-                        goal: ''
-                    }}
+                    initialValues={post}
 
                     validationSchema={Yup.object({
 
                     })}
 
                     onSubmit={async (values, actions) => {
-                        const posts = await createFunding(values);
-                        if (posts != null) {
-                            navigate('/control-page-aprove')
-                        } else {
-
+                        if(params != null){
+                            const posts = await updateFunding(values);
+                                console.log(posts)
+                            if (posts != null) {
+                                navigate('/control-page')
+                            } else {
+    
+                            }
+                        }else{
+                            const posts = await createFunding(values);
+                            if (posts != null) {
+                                navigate('/control-page')
+                            } else {
+    
+                            }
                         }
-                    }}>
+                        
+                    }}
+
+                    enableReinitialize={true}>
 
                     {({ handleSubmit }) => (
                         <Form onSubmit={handleSubmit}>
@@ -72,34 +126,34 @@ export function FundingForm(props) {
                                 </div>
                                 <div className="col form-group mb-3">
                                     <label className="fw-semibold">Título</label>
-                                    <Field name='title' className="form-control" placeholder="Falso Muntis: Nuestra Opera prima" />
+                                    <Field name='Title' className="form-control" placeholder="Falso Muntis: Nuestra Opera prima" />
                                 </div>
                             </div>
 
                             <div className="row">
                                 <div className="col form-group mb-3 ">
                                     <label className="fw-semibold">Descripcion breve</label>
-                                    <Field component="textarea" name='fastDescription' className="form-control" maxlength="135" rows="2" placeholder="La ópera prima de nuestra compañía teatral: Una comedia con actores/músicos en vivo basada en el mito griego de Orfeo y Eurídice." />
+                                    <Field component="textarea" name='FastDescription' className="form-control" maxlength="135" rows="2" placeholder="La ópera prima de nuestra compañía teatral: Una comedia con actores/músicos en vivo basada en el mito griego de Orfeo y Eurídice." />
                                 </div>
                                 <div className="col form-group mb-3">
                                     <label className="fw-semibold">Descripcion General</label>
-                                    <Field component="textarea" name='description' className="form-control" maxlength="135" rows="2" placeholder="La ópera prima de nuestra compañía teatral: Una comedia con actores/músicos en vivo basada en el mito griego de Orfeo y Eurídice." />
+                                    <Field component="textarea" name='Description' className="form-control" maxlength="135" rows="2" placeholder="La ópera prima de nuestra compañía teatral: Una comedia con actores/músicos en vivo basada en el mito griego de Orfeo y Eurídice." />
                                 </div>
                             </div>
 
                             <div className="form-group mb-3">
                                 <label className="fw-semibold">Misión del creador de la campaña</label>
-                                <Field name='question1' type="text" component="textarea" className="form-control" />
+                                <Field name='Question1' type="text" component="textarea" className="form-control" />
                             </div>
 
                             <div className="form-group mb-3">
                                 <label className="fw-semibold">Visión de la campaña</label>
-                                <Field name='question2' type="text" component="textarea" className="form-control" />
+                                <Field name='Question2' type="text" component="textarea" className="form-control" />
                             </div>
 
                             <div class="form-group mb-3">
                                 <label className="fw-semibold">Objetivos de la campaña</label>
-                                <Field name='question3' type="text" component="textarea" className="form-control" />
+                                <Field name='Question3' type="text" component="textarea" className="form-control" />
                             </div>
 
                             <div className="my-4">
@@ -110,16 +164,16 @@ export function FundingForm(props) {
                             <div className="row">
                                 <div class="col form-group mb-3">
                                     <label className="fw-semibold">Link de la video presentacion de la compaña</label>
-                                    <Field name='fundingVideo' type="text" className="form-control" placeholder="https://www.youtube.com/embed/tuVideo" />
+                                    <Field name='FundingVideo' type="text" className="form-control" placeholder="https://www.youtube.com/embed/tuVideo" />
                                 </div>
                                 <div class="col form-group mb-3">
                                     <label className="fw-semibold">Social media</label>
-                                    <Field name='socialMedia' type="text" className="form-control" placeholder="Facebook, Twiter o Instagram" />
+                                    <Field name='SocialMedia' type="text" className="form-control" placeholder="Facebook, Twiter o Instagram" />
                                 </div>
                                 <div class="col form-group mb-3">
                                     <label className="fw-semibold">Categoria</label>
                                     <br />
-                                    <Field name="idCategory" className="form-select" component="select">
+                                    <Field name="IdCategory" className="form-select" component="select">
                                         <option value="0" selected >Elige una categoria</option>
                                         {postsCat.map(postCat => (
                                             <option value={postCat.IdCategory} >
@@ -138,25 +192,35 @@ export function FundingForm(props) {
                             <div className="row">
                                 <div class="col form-group mb-3">
                                     <label className="fw-semibold">Número de cuenta</label>
-                                    <Field name='accountNumber' type="text" className="form-control" />
+                                    <Field name='AccountNumber' type="text" className="form-control" />
                                 </div>
                                 <div class="col form-group mb-3">
                                     <label className="fw-semibold">Meta a reacudar</label>
                                     <div class="input-group">
-                                        <Field name='goal' type="text" className="form-control" placeholder="0.00" />
+                                        <Field name='Goal' type="text" className="form-control" placeholder="0.00" />
                                         <span class="input-group-text">$</span>
                                         <span class="input-group-text">0.00</span>
                                     </div>
                                 </div>
                             </div>
+                            {
+                                params != null ?
+                                    <div className="text-center">
+                                        <div className="footer mt-4 card text-center">
+                                            <button type="submit" className="button btn-outline-login">
+                                                Modificar campaña
+                                            </button>
+                                        </div>
+                                    </div> :
+                                    <div className="text-center">
+                                        <div className="footer mt-4 card text-center">
+                                            <button type="submit" className="button btn-outline-login">
+                                                Crear campaña
+                                            </button>
+                                        </div>
+                                    </div>
+                            }
 
-                            <div className="text-center">
-                                <div className="footer mt-4 card text-center">
-                                    <button type="submit" className="button btn-outline-login">
-                                        Crear campaña
-                                    </button>
-                                </div>
-                            </div>
                         </Form>
                     )}
                 </Formik>
