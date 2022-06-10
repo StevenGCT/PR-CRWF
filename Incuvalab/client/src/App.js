@@ -16,7 +16,6 @@ function App() {
                 
                 <Route path="/UserProfile" element={<UserProfile />} />
                 
-
                 <Route exact path='/CreateProject' element={<PrivateRoute />}>
                     <Route path="/CreateProject" element={<CreateProject />} />
                 </Route>
@@ -58,7 +57,6 @@ function App() {
                 </Route>
 
                 <Route path="/catalogue" element={<Catalogue />} />
-<<<<<<< HEAD
 
                 <Route path="/catalogue/category" element={<CatalogueCategory />} />+
                
@@ -69,13 +67,6 @@ function App() {
                 <Route exact path='/createFunding/:id' element={<PrivateRouteAdmin />}>
                     <Route path="/createFunding/:id" element={<FundingForm />} />
                 </Route>
-
-=======
-                <Route path="/catalogue/category" element={<CatalogueCategory />} />
-                <Route exact path='/createFunding' element={<PrivateRouteAdmin />}>
-                    <Route path="/createFunding" element={<FundingForm />} />
-                </Route>
->>>>>>> d5e98aa92fff1266e6eba691db8576df0d6220f8
             </Routes>
         </UserProvider>
     );
