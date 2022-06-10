@@ -20,11 +20,14 @@ export function FundCardsCommand() {
                 {posts.map(post => (
                     <Col>
                         <Card key={posts.IdFunding}>
-                            <a class="btn" href={"/control-funding/" + post.IdFunding}>
+                            
                                 <Card.Header>
-                                    {post.Title}
+                                    <a class="btn" href={"/control-funding/" + post.IdFunding}>
+                                    <strong>{post.Title}</strong>
+                                    </a>
                                 </Card.Header>
                                 <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg" />
+                            
                                 <Card.Body>
                                     <div className="flex justify-center ">
                                     </div>
@@ -33,7 +36,7 @@ export function FundCardsCommand() {
                                         <div className="flex justify-center ">
                                             <Col>
                                                 <Row >
-                                                    <h6 className="text-muted">Meta: {post.Goal}Bs.</h6>
+                                                    <h6 className="text-muted text-center">Meta: {post.Goal}Bs.</h6>
                                                 </Row>
                                                 <Row className="flex p-3">
                                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
@@ -49,7 +52,6 @@ export function FundCardsCommand() {
                                 <Card.Footer>
                                     <small className="text-muted">Campaña subida el: {moment(post.RegisterDate).format('DD/MM/YYYY')}</small>
                                 </Card.Footer>
-                            </a>
                         </Card>
                     </Col>
                 ))

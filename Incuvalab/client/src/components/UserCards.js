@@ -9,6 +9,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 export function UserCards() {
 
     const {postsUsersList} = usePostsUsersList()
+    const {deleteUserById} = usePostsUsersList()
+
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
+
     return(
         
     
@@ -19,13 +26,9 @@ export function UserCards() {
             <Card key={postUserEditList.IdUser}>
                 <Card.Header>
                     {postUserEditList.IdUser === 1 ? <> <h5>Owner <Badge pill bg="success"> Id:{postUserEditList.IdUser} </Badge> <ButtonGroup className="position-sticky start-100 flex dgrid gap-2 m-2">
-                        <Button variant="secondary" size="sm">Vetar</Button>
-                        <Button variant="warning" size="sm">Editar</Button>
-                        <Button variant="danger" size="sm">Eliminar</Button>
+                        
                     </ButtonGroup> </h5>  </>  :  <h5>{postUserEditList.TypeUserName} <Badge pill bg="success"> Id:{postUserEditList.IdUser} </Badge> <ButtonGroup className="position-sticky start-100 flex dgrid gap-2 m-2">
-                        <Button variant="secondary" size="sm">Vetar</Button>
-                        <Button variant="warning" size="sm">Editar</Button>
-                        <Button variant="danger" size="sm">Eliminar</Button>
+                        <Button variant="danger" size="sm" onClick={() => { deleteUserById(postUserEditList.IdFunding); refreshPage(); }}>Eliminar</Button>
                     </ButtonGroup> </h5>} 
                     
                     

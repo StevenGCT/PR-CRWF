@@ -32,7 +32,7 @@ export default function NavbarLogin(props) {
                             <Nav.Link href="/control-page">Dashboard</Nav.Link> : <Nav.Link href="/">Inicio</Nav.Link>}
                             
                             <Nav.Link href="/catalogue">Catalogo de proyectos</Nav.Link>
-                            <Nav.Link href="#action2">Preguntas frecuentes</Nav.Link>
+                            <Nav.Link href="/Questions">Preguntas frecuentes</Nav.Link>
                         </Nav>
 
                         <div className="d-flex">

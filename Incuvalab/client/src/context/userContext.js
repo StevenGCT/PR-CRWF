@@ -3,7 +3,7 @@ import { changePassword, getAllCategorysRequest, createFundingRequest,putFunding
 import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestFromBault, permanentDeleteRequest, moveRequestToBault } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
-import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest , userDonateFundingRequest} from '../api/users'
+import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest , userDonateFundingRequest, deleteReqById} from '../api/users'
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest} from '../api/comment'
 
 const userContext = createContext()
@@ -121,6 +121,11 @@ export const UserProvider = ({ children }) => {
 
   const getUserFunding = async () => {
     const res = await getUserFundingRequest()
+    setProjec(res.data)
+  }
+
+  const deleteUserById = async (id) => {
+    const res = await deleteReqById(id)
     setProjec(res.data)
   }
 
@@ -380,6 +385,7 @@ export const UserProvider = ({ children }) => {
       registerUser,
       loginUser,
       getTypeUser,
+      deleteUserById,
 
       getFundingTop3,
 
@@ -392,3 +398,4 @@ export const UserProvider = ({ children }) => {
     </userContext.Provider>
   );
 }
+

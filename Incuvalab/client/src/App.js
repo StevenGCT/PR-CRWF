@@ -1,7 +1,8 @@
-import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers, FundingForm} from './pages';
+import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers, FundingForm ,Questions } from './pages';
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
+
 
 //Proteger UserProfile y Settings para cada usuario individualmente
 
@@ -11,7 +12,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="*" element={<NotFoundPage />} />
-
+                <Route path="/Questions" element={<Questions />} />
                 
                 <Route path="/UserProfile" element={<UserProfile />} />
                 
@@ -57,6 +58,7 @@ function App() {
                 </Route>
 
                 <Route path="/catalogue" element={<Catalogue />} />
+<<<<<<< HEAD
 
                 <Route path="/catalogue/category" element={<CatalogueCategory />} />+
                
@@ -68,6 +70,12 @@ function App() {
                     <Route path="/createFunding/:id" element={<FundingForm />} />
                 </Route>
 
+=======
+                <Route path="/catalogue/category" element={<CatalogueCategory />} />
+                <Route exact path='/createFunding' element={<PrivateRouteAdmin />}>
+                    <Route path="/createFunding" element={<FundingForm />} />
+                </Route>
+>>>>>>> d5e98aa92fff1266e6eba691db8576df0d6220f8
             </Routes>
         </UserProvider>
     );

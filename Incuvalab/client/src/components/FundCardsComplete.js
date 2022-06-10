@@ -14,15 +14,15 @@ export function FundCardsComplete() {
           {postsComplete.map(postGreen => (
             <Col key={postGreen.IdFunding}>
                 {postGreen.CurrentGoal >= postGreen.Goal && <Card>
-                    <Link to={"/funding/" + postGreen.IdFunding}>
-                        <Card.Header>
-                            {postGreen.Title}
+                    <Link to={"/funding/" + postGreen.IdFunding} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <Card.Header className="text-center">
+                            <strong>{postGreen.Title}</strong>
                         </Card.Header>
                         <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg"/>
                         <Card.Body>
                                 {postGreen.CurrentGoal >= postGreen.Goal ? <ProgressBar className="m-2"  now={(postGreen.CurrentGoal/postGreen.Goal)*100} variant="success" label={postGreen.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2"  now={(postGreen.CurrentGoal/postGreen.Goal)*100} variant="dark" label={postGreen.CurrentGoal + "Bs."} />}                        
                                 <Card.Text className="p-2">
-                                    <div className="flex justify-center "><h6 className="text-muted">Meta: {postGreen.Goal}Bs.</h6></div>
+                                    <div className="flex justify-center "><h6 className="text-muted text-center">Meta: {postGreen.Goal}Bs.</h6></div>
                                     {postGreen.FastDescription}
                                 </Card.Text>
                         </Card.Body>
