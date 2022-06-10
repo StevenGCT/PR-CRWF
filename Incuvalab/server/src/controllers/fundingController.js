@@ -227,7 +227,7 @@ export const getAllFundingBySameName = async(req, res) => {
         console.log(res);
         const pool = await getConnection();
         const result = await pool.request()
-            .input('name', sql.VarChar, req.body.name)
+            .input('nameplace', sql.VarChar, req.body.nameplace)
             .query(fundqueries.getFundingByName)
         console.log(result);
         res.json(result.recordset);
