@@ -11,11 +11,21 @@ Content-Type: application/json
     "Category" :"Ejemplo"
 }
 ################################
-GET {{api}}/4
+GET {{api}}/7
 ################################
-DELETE {{api}}/4
+DELETE {{api}}/16
 ################################
 GET {{api}}/count
+################################
+@api2 =  http://localhost:4000/qrcode
+################################
+DELETE {{api2}}/
+PUT {{api2}}/Incuvalab/Qr/prpbnysbpp2swmz8sbkb
+Content-Type: application/json
+
+{
+    "Category" :"Ejemplo"
+}
 ################################
 PUT {{api}}/10
 Content-Type: application/json

@@ -1,10 +1,10 @@
 export const queries = {
     getAllCategory: "SELECT * FROM Category",
-    createNewCategory: "INSERT INTO Category VALUES(@category)",
+    createNewCategory: "INSERT INTO Category (CategoryName, Description, ImageUrl, PublicIDImage) VALUES (@CategoryName, @Description,@ImageUrl,@PublicIDImage)",
     getCategoryById: "SELECT * FROM Category WHERE IdCategory = @id",
     deleteCategoryById: "DELETE FROM Category WHERE IdCategory = @id",
     getCountCategory: "SELECT COUNT(*) FROM Category",
-    updateCategoryById: "Update Category SET CategoryName = @category WHERE IdCategory = @id",
+    updateCategoryById: "UPDATE Category SET CategoryName = @CategoryName, Description = @Description, ImageUrl = @ImageUrl, PublicIDImage = @PublicIDImage WHERE IdCategory = @id",
     rankCategory: "SELECT TOP 10 * FROM Funding ORDER BY CurrentGoal DESC",
     Donations:"SELECT * FROM Donations INNER JOIN Funding ON Donations.IdDonation = Funding.IdFunding",
 
@@ -57,4 +57,11 @@ export const fundqueries = {
     createNewFunding: "INSERT INTO Funding(Title, Question1, Question2, Question3, FastDescription, Description, FundingImage1, FundingImage2, FundingImage3, FundingVideo, AccountNumber, SocialMedia, IdCategory, Goal) VALUES (@Title, @Question1, @Question2, @Question3, @FastDescription, @Description, @FundingImage1, @FundingImage2, @FundingImage3, @FundingVideo, @AccountNumber, @SocialMedia, @IdCategory, @Goal)",
     restoreFunding:"UPDATE Funding  SET State = 1, Aprove = 0 WHERE IdFunding  = @id"
 
+}
+export const qrqueris ={
+    getAllQr: "SELECT * FROM QrConfig",
+    getQrById: "SELECT * FROM QrConfig WHERE idQr = @id",
+    deleteQrById:"DELETE FROM QrConfig WHERE idQr = @id",
+    updateQrById:"UPDATE QrConfig SET PublicIDImage = @PublicIDImage, QrUrl = @QrUrl, mount = @Mount WHERE idQr = @id",
+    createQr:"INSERT INTO QrConfig (PublicIDImage, QrUrl, mount) VALUES (@PublicIDImage, @QrUrl, @Mount);"
 }

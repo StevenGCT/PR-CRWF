@@ -1,13 +1,13 @@
-import { getConnection, sql, queries } from '../database'
-import { uploadImageCategory, deleteImage } from '../libs/myCloudinary';
+import { getConnection, sql, qrqueris } from '../database'
+import { uploadImageQr, deleteImage } from '../libs/myCloudinary';
 import fs from 'fs-extra';
 
-export const getCategorys = async(req, res) => {
+export const getCodeQr = async(req, res) => {
     try {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .query(queries.getAllCategory);
+            .query(qrqueris.getAllQr);
         console.log(result);
         res.json(result.recordset);
     } catch (error) {
@@ -16,14 +16,14 @@ export const getCategorys = async(req, res) => {
     }
 }
 
-export const createCategory = async(req, res) => {
+export const createQr = async(req, res) => {
     try {
-        const { Category, Description} = req.body;
+        const { Mount } = req.body;
         console.log(req.files);
-        if (Category == null || req.files== null) {
+        if (Mount == null || req.files== null) {
             res.status(400).json({ msg: 'Bad Request. Please fill all fields' });
         } else {
-            const resultC =await uploadImageCategory(req.files.image.tempFilePath);
+            const resultC =await uploadImageQr(req.files.image.tempFilePath);
             await fs.remove(req.files.image.tempFilePath)
             console.log(resultC);
             const image ={
@@ -33,13 +33,12 @@ export const createCategory = async(req, res) => {
             //console.log(Category);
             const pool = await getConnection();
             var result = await pool.request()
-                .input("CategoryName", sql.VarChar, Category)
-                .input("Description",sql.VarChar, Description)
-                .input("ImageUrl",sql.VarChar,image.url)
                 .input("PublicIDImage", sql.VarChar, image.public_id)
-                .query(queries.createNewCategory);
+                .input("QrUrl",sql.VarChar, image.url)
+                .input("Mount",sql.Decimal , Mount)
+                .query(qrqueris.createQr);
             console.log(result.rowsAffected);
-            res.json({ Category });
+            res.json({ Mount });
         }
     } catch (error) {
         res.status(500);
@@ -47,13 +46,13 @@ export const createCategory = async(req, res) => {
     }
 }
 
-export const getCategoryById = async(req, res) => {
+export const getCodeQrById = async(req, res) => {
     try {
         const { id } = req.params;
         const pool = await getConnection();
         const result = await pool.request()
-            .input('id', id)
-            .query(queries.getCategoryById)
+            .input('id', sql.VarChar, id)
+            .query(qrqueris.getQrById)
         console.log(result);
         res.json(result.recordset);
     } catch (error) {
@@ -62,21 +61,21 @@ export const getCategoryById = async(req, res) => {
     }
 }
 
-export const deleteCategoryById = async(req, res) => {
+export const deleteQrCodeById = async(req, res) => {
     try {
         const { id } = req.params;
         const pool = await getConnection();
         const result2 = await pool.request()
             .input('id', id)
-            .query(queries.getCategoryById)
+            .query(qrqueris.getQrById)
         console.log(result2);
-        const categoryFromBd = result2;
-        console.log(categoryFromBd.recordset[0].PublicIDImage);
-        const resultCloudinary = await deleteImage(categoryFromBd.recordset[0].PublicIDImage);
+        const QrFromBd = result2;
+        console.log(QrFromBd.recordset[0].PublicIDImage);
+        const resultCloudinary = await deleteImage(QrFromBd.recordset[0].PublicIDImage);
         console.log(resultCloudinary);
         const result = await pool.request()
             .input('id', id)
-            .query(queries.deleteCategoryById)
+            .query(qrqueris.deleteQrById)
         console.log(result);
         res.status(200);
         res.json(result.rowsAffected);
@@ -86,29 +85,22 @@ export const deleteCategoryById = async(req, res) => {
     }
 }
 
-export const getCountCategory = async(req, res) => {
+export const updateQrCodeById = async(req, res) => {
     try {
         const pool = await getConnection();
-        const result = await pool.request()
-            .query(queries.getCountCategory)
-        console.log(result);
-        res.status(200);
-        res.json(result.recordset[0]['']);
-    } catch (error) {
-        res.status(500);
-        res.send(error.message);
-    }
-}
-
-export const updateCategoryById = async(req, res) => {
-    try {
-        const pool = await getConnection();
-        const { Category } = req.body;
+        const { Mount } = req.body;
         const { id } = req.params;
-        if (Category == null || id == null || req.files == null) {
-            res.status(400).json(msg, "Bad Request undefined Category Or id");
+        if (Mount == null || id == null ||  req.files == null) {
+            res.status(400).json(msg, "Bad Request undefined Category Or id Or File");
         } else {
-            const resultC =await uploadImageCategory(req.files.image.tempFilePath);
+            const result2 = await pool.request()
+            .input('id', id)
+            .query(qrqueris.getQrById)
+            console.log(result2);
+            const QrFromBd = result2;
+            console.log(QrFromBd.recordset[0].PublicIDImage);
+            const resultC =await uploadImageQr(req.files.image.tempFilePath);
+            await deleteImage(QrFromBd.recordset[0].PublicIDImage);
             await fs.remove(req.files.image.tempFilePath)
             console.log(resultC);
             const image ={
@@ -116,12 +108,11 @@ export const updateCategoryById = async(req, res) => {
                 public_id: resultC.public_id
             }
             const result = await pool.request()
-                .input('CategoryName', sql.VarChar, Category)
-                .input('id', sql.Int, id)
-                .input("Description",sql.VarChar, Description)
-                .input("ImageUrl",sql.VarChar,image.url)
-                .input("PublicIDImage", sql.VarChar, image.public_id)
-                .query(queries.updateCategoryById);
+                .input('Mount', sql.Decimal, Mount)
+                .input('id', sql.VarChar, id)
+                .input('PublicIDImage', sql.VarChar, image.public_id)
+                .input("QrUrl",sql.VarChar, image.url)
+                .query(qrqueris.updateQrById);
             res.status(200);
             res.json(result);
         }

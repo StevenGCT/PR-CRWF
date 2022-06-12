@@ -1,3 +1,3 @@
 export * from './connection';
-export { queries }
+export { queries, qrqueris }
 from './querys'
