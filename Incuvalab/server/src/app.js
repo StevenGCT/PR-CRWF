@@ -8,6 +8,7 @@ import qrCodeRoute from './routes/qrCodeRoute';
 import commentRoute from './routes/commentRoute';
 import userRoute from './routes/userRoute';
 import fileUpload from 'express-fileupload';
+import donationRoute from './routes/donationRoute';
 
 const app = express();
 
@@ -28,5 +29,6 @@ app.use(usersRoute);
 app.use(userRoute);
 app.use(commentRoute);
 app.use(qrCodeRoute);
+app.use(donationRoute);
 
 export default app;
