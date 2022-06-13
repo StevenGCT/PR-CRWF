@@ -109,7 +109,7 @@ export function FundingPage() {
                                     </div>
                                 </div>
                                 <div className="row ">
-                                    <button href="#" className="col button btn-general">Donar a este proyecto</button>
+                                    <a href="/qrpage" className="col button btn-general btn">Donar a este proyecto</a>
                                 </div>
                                 <div className="row my-2" >
                                     <button href="#" className="col me-2 button btn-general">Seguir</button>
