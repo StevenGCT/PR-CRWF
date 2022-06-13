@@ -2,6 +2,7 @@ import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, FundingPa
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
+import { Qrpage } from './pages/Qrpage';
 
 function App() {
     return (
@@ -52,6 +53,8 @@ function App() {
                 </Route>
 
                 <Route path="/catalogue" element={<Catalogue />} />
+
+                <Route path="/qrpage" element={<Qrpage />} />
 
                 <Route path="/catalogue/category" element={<CatalogueCategory />} />
             </Routes>

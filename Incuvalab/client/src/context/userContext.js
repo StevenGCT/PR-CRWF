@@ -5,7 +5,7 @@ import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
 import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest , userDonateFundingRequest} from '../api/users'
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest} from '../api/comment'
-
+import { getCodeQrRequest } from '../api/qr'
 
 
 const userContext = createContext()
@@ -55,6 +55,12 @@ export const usePostsFundComplete = () => {
   const context = useContext(userContext)
   return context
 }
+
+export const usePostsQr = () => {
+  const context = useContext(userContext)
+  return context
+}
+
 
 
 export const UserProvider = ({ children }) => {
@@ -151,6 +157,7 @@ export const UserProvider = ({ children }) => {
     console.log(res)
   }
 
+
   const [posts, setPosts] = useState([])
   const [postsTop, setPostsTop] = useState([])
   const [postsCat, setPostsCat] = useState([])
@@ -159,6 +166,7 @@ export const UserProvider = ({ children }) => {
   const [postsToRecycle, setPostsRecycle] = useState([])
   const [postsComplete, setPostsCompleted] = useState([])
   const [postsUsersList, setPostsUsersToModify] = useState([])
+  const [postsQr, setPostsQr] = useState([])
 
   const getFunds = async () => {
     const res = await getFundsRequests()
@@ -176,6 +184,12 @@ export const UserProvider = ({ children }) => {
     const res = await getCatRequests()
     console.log("Datos getCats", res)
     setPostsCat(res.data)
+  }
+
+  const getQr = async () => {
+    const res = await getCodeQrRequest()
+    console.log("Datos getQr", res)
+    setPostsQr(res.data)
   }
 
   const getFundsAprobe = async () => {
@@ -326,6 +340,10 @@ export const UserProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
+    getQr()
+  }, [])
+
+  useEffect(() => {
     getPostsFundByCat()
   }, [])
 
@@ -356,6 +374,9 @@ export const UserProvider = ({ children }) => {
 
       postsCat,
       getCats,
+
+      postsQr,
+      getQr,
 
       postsCatFund,
       getPostsFundByCat,
