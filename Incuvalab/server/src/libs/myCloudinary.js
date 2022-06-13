@@ -19,3 +19,9 @@ export const uploadImageQr = async filePath =>{
         folder: "Incuvalab/Qr"
     })
 }
+
+export const uploadDocumentDonation = async filePath =>{
+    return await cloudinary.uploader.upload(filePath,{
+        folder: "Incuvalab/DocumentDonation"
+    })
+}

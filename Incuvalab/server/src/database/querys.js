@@ -65,3 +65,10 @@ export const qrqueris ={
     updateQrById:"UPDATE QrConfig SET PublicIDImage = @PublicIDImage, QrUrl = @QrUrl, mount = @Mount WHERE idQr = @id",
     createQr:"INSERT INTO QrConfig (PublicIDImage, QrUrl, mount) VALUES (@PublicIDImage, @QrUrl, @Mount);"
 }
+export const donationQuery ={
+    getAllDonation: "SELECT * FROM Donations",
+    getDonationyId: "SELECT * FROM Donations WHERE IdDonation = @id",
+    deleteDonation:"DELETE FROM Donations WHERE IdDonation =@id",
+    updateDonation:"UPDATE Donations SET Mount = @Mount, UpdateDate = CURRENT_TIMESTAMP, State =1, VoucherDocument = @VoucherDocument, PublicIDDocument = @PublicIDDocument  WHERE IdDonation =@id",
+    createDonation:"INSERT INTO Donations (Mount, RegisterDate, IdUser, IdFunding, VoucherDocument, PublicIDDocument) VALUES (@Mount, CURRENT_TIMESTAMP, @IDUser, @IDFunding, @VoucherDocument, @PublicIDDocument)"
+}
