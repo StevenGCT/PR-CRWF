@@ -1,6 +1,4 @@
 import { getConnection, sql, queries } from '../database'
-import { uploadImageCategory, deleteImage } from '../libs/myCloudinary';
-import fs from 'fs-extra';
 
 export const getCategorys = async(req, res) => {
     try {

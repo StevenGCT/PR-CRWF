@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { setRanckFunding, createFunding, getFunding, getFundingByCat, getFundingById, getOldFunding, getQuestionFunding, getAllFundingBySameName, getAllCompleteFunding, setRanckTop3, deletePointedFunding, deletePointedLogicalFunding, AproveFunding, restoreBaultedFunding } from '../controllers/fundingController';
+import { updateFunding, setRanckFunding, createFunding, getFunding, getFundingByCat, getFundingById, getOldFunding, getQuestionFunding, getAllFundingBySameName, getAllCompleteFunding, setRanckTop3, deletePointedFunding, deletePointedLogicalFunding, AproveFunding, restoreBaultedFunding } from '../controllers/fundingController';
 
 const router = Router();
 
@@ -8,7 +8,7 @@ router.get('/Funding/rank', setRanckFunding);
 router.post('/Funding', createFunding);
 
 // Get Funding BY ID
-router.get('/Funding/:id', getFundingById);
+router.get('/funding/:id', getFundingById);
 // Get a List of all not aprobed funding
 router.get('/request-funding', getQuestionFunding);
 // Get a List of funding
@@ -20,7 +20,7 @@ router.get('/fullfunding', getAllCompleteFunding);
 // Get Funding BY Category
 router.get('/funding/category/:id', getFundingByCat);
 // Get Funding By name
-router.get('/funding/name' , getAllFundingBySameName);
+router.post('/funding/name' , getAllFundingBySameName);
 // Get Funding Top 3
 router.get('/fundingRank3' , setRanckTop3 );
 // Logical delete/deny of funding
@@ -32,5 +32,6 @@ router.put('/funding/aprove/:id', AproveFunding);
 // Restore from bault of funding
 router.put('/funding/restore/:id', restoreBaultedFunding);
 
+router.put('/updateFunding', updateFunding);
 
 export default router;
