@@ -25,7 +25,7 @@ export function FundCardsCat() {
             {catpost.CurrentGoal >= catpost.Goal ? <ProgressBar className="m-2"  now={(catpost.CurrentGoal/catpost.Goal)*100} variant="success" label={catpost.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2"  now={(catpost.CurrentGoal/catpost.Goal)*100} variant="dark" label={catpost.CurrentGoal + "Bs."} />}
                     <Card.Text className="p-2">
                         <div className="flex justify-center "><h6 className="text-muted">Meta: {catpost.Goal}Bs.</h6></div>
-                        {catpost.FastDescription}
+                        <div className="text-wrap justify-center">{catpost.FastDescription}</div>
                     </Card.Text>
             </Card.Body>
             <Card.Footer>
