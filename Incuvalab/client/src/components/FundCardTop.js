@@ -2,18 +2,16 @@ import { useFundTop } from '../context/userContext'
 import moment from 'moment'
 import { Card, ProgressBar, CardGroup, Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Link } from "react-router-dom"
-import { usePosts } from "../context/postContext";
 
 
-export function FundCards() {
+export function FundCardTop() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
     const { postsTop } = useFundTop()
 
     return (
         <CardGroup>
             <Row xs={1} md={3} className="g-4 rounded">
-                {postsTop.map(post => (
+            {postsTop.map(post => (
                     <Col>
                             <Card key={postsTop.IdFunding}>
                                 <a class="btn" href={"/funding/" + post.IdFunding[0]}>
@@ -35,7 +33,9 @@ export function FundCards() {
                             </Card>
                     </Col>
                 ))}
+            
             </Row>
+            
         </CardGroup>
     );
 }
