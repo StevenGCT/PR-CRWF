@@ -1,9 +1,11 @@
-import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers, FundingForm ,Questions } from './pages';
+import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers, FundingForm, Questions } from './pages';
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
 import { Qrpage } from './pages/Qrpage';
-
+import { EmailVerification } from './pages/User/emailVerification';
+import { CodeVerication } from './pages/User/numberConfirmation';
+import { FormChangePassword } from './pages/User/formChangePassword';
 
 //Proteger UserProfile y Settings para cada usuario individualmente
 
@@ -14,9 +16,9 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="*" element={<NotFoundPage />} />
                 <Route path="/Questions" element={<Questions />} />
-                
+
                 <Route path="/UserProfile" element={<UserProfile />} />
-                
+
                 <Route exact path='/CreateProject' element={<PrivateRoute />}>
                     <Route path="/CreateProject" element={<CreateProject />} />
                 </Route>
@@ -63,7 +65,7 @@ function App() {
 
                 <Route path="/catalogue/category" element={<CatalogueCategory />} />
                 <Route path="/catalogue/category" element={<CatalogueCategory />} />
-               
+
                 <Route exact path='/createFunding' element={<PrivateRouteAdmin />}>
                     <Route path="/createFunding" element={<FundingForm />} />
                 </Route>
@@ -71,6 +73,12 @@ function App() {
                 <Route exact path='/createFunding/:id' element={<PrivateRouteAdmin />}>
                     <Route path="/createFunding/:id" element={<FundingForm />} />
                 </Route>
+
+                <Route path="/forgetPassword" element={<EmailVerification />} />
+
+                <Route path="/formCodeConfirmation" element={<CodeVerication />} />
+
+                <Route path="/changePassword" element={<FormChangePassword />} />
             </Routes>
         </UserProvider>
     );

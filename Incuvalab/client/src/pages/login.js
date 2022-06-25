@@ -2,7 +2,7 @@ import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
 import { useUsers } from "../context/userContext"
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import './../css/login.css';
 
@@ -19,7 +19,7 @@ export function Login() {
             <NavbarLogin locale={true} />
 
             <div className="container-sm my-5 card shadow-lg bg-body rounded">
-                <div className="row ">
+                <div className="row">
                     <div className="col text-start m-5">
 
                         <div className="mb-5">
@@ -39,15 +39,15 @@ export function Login() {
                                 onSubmit={async (values, actions) => {
                                     const posts = await loginUser(values)
                                     if (posts.length > 0) {
-                                        localStorage.setItem('user',JSON.stringify(posts));
+                                        sessionStorage.setItem('user',JSON.stringify(posts));
                                         const postsTypeUser = await getTypeUser(posts[0].IdUser);
                                         
                                         if(postsTypeUser.length > 0 && postsTypeUser[0].TypeUserName == "Administrador"){
                                             navigate('/control-page')
-                                            localStorage.setItem('role', 'Administrador');
+                                            sessionStorage.setItem('role', 'Administrador');
                                         }else{
                                             navigate('/')
-                                            localStorage.setItem('role', 'Usuario');
+                                            sessionStorage.setItem('role', 'Usuario');
                                         }
                                         
                                     } else {
@@ -65,7 +65,7 @@ export function Login() {
                                         }
                                         <div className="form-group mb-3">
                                             <div className="row">
-                                                <label htmlFor="email" className="col-3 form-label">Email</label>
+                                                <label htmlFor="email" className="form-label">Email</label>
                                                 <ErrorMessage component="p" name="email" className="col text-danger" />
                                             </div>
                                             <Field name='email' type="email" className="form-control" placeholder="nombre@ejemplo.com" />
@@ -73,17 +73,17 @@ export function Login() {
 
                                         <div className="form-group mb-3">
                                             <div className="row">
-                                                <label htmlFor="password" className="col-3 form-label">Contraseña</label>
+                                                <label htmlFor="password" className="form-label">Contraseña</label>
                                                 <ErrorMessage component="p" name="password" className="col text-danger" />
                                             </div>
                                             <Field name='password' type="password" className="form-control" />
                                             <div className="text-center my-4">
-                                                <a className="link-secondary text-center">¿Olvidaste tu contraseña?</a>
+                                            <Link to={'/forgetPassword'} className="link-secondary text-center">¿Olvidaste tu contraseña?</Link>
                                             </div>
                                         </div>
 
                                         <div className="text-center">
-                                            <div className="footer mt-4 card">
+                                            <div className="mt-4">
                                                 <button type="submit" className="button btn-outline-login">
                                                     Iniciar Sesión
                                                 </button>
@@ -97,8 +97,8 @@ export function Login() {
 
                     </div>
 
-                    <div className="col-7 position-relative gradient">
-                        <div className="position-absolute top-50 start-50 translate-middle text-light text-center">
+                    <div className="col gradient position-relative p-5">
+                        <div className=" top-50 start-50 mt-5 pt-5 text-light text-center">
                             <h1>¡Bienvenido!</h1>
                             <h3 className="">Estamos a tu disposición para ayudarte.</h3>
                             <h6 className="my-4">¿No tienes una cuenta?</h6>

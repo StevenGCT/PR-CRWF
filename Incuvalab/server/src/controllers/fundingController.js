@@ -7,7 +7,6 @@ export const setRanckFunding = async(req, res) => {
         const result = await pool
             .request()
             .query(fundqueries.rankCategory);
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -41,7 +40,6 @@ export const createFunding = async(req, res) => {
                 .input("goal", sql.Decimal, req.body.goal)
                 .input("aprove", sql.TinyInt, 0)
                 .query(fundqueries.createNewFunding);
-            console.log(result.rowsAffected);
             res.json(req.body);
         }
 }
@@ -54,7 +52,6 @@ export const getFundingById = async(req, res) => {
         const result = await pool.request()
             .input('id', id)
             .query(fundqueries.getFundingById)
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -68,7 +65,6 @@ export const getFunding = async(req, res) => {
         const result = await pool
             .request()
             .query(fundqueries.getAllFunding);
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -82,7 +78,6 @@ export const getQuestionFunding = async(req, res) => {
         const result = await pool
             .request()
             .query(fundqueries.getAllNoAprobedFunding);
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -96,7 +91,6 @@ export const getOldFunding = async(req, res) => {
         const result = await pool
             .request()
             .query(fundqueries.getDeletedFunding);
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -110,7 +104,6 @@ export const getAllCompleteFunding = async(req, res) => {
         const result = await pool
             .request()
             .query(fundqueries.getCompleteFunding);
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -125,7 +118,6 @@ export const getFundingByCat = async(req, res) => {
         const result = await pool.request()
             .input('id', id)
             .query(fundqueries.getAllFundingByCat)
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -140,7 +132,6 @@ export const deletePointedFunding = async(req, res) => {
         const result = await pool.request()
             .input('id', id)
             .query(fundqueries.deleteFundingById)
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -155,7 +146,6 @@ export const deletePointedLogicalFunding = async(req, res) => {
         const result = await pool.request()
             .input('id', id)
             .query(fundqueries.deleteFundingByLogical)
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -167,24 +157,23 @@ export const updateFunding = async(req, res) => {
     try {
         const pool = await getConnection();
         const result = await pool.request()
-            .input('Id',sql.TinyInt ,req.body.IdFunding)
-            .input('Title', sql.VarChar,req.body.Title)
-            .input('Question1',sql.VarChar, req.body.Question1)
-            .input('Question2',sql.VarChar, req.body.Question1)
-            .input('Question3', sql.VarChar,req.body.Question3)
-            .input('FastDescription',sql.VarChar, req.body.FastDescription)
-            .input('Description',sql.VarChar, req.body.Description)
-            .input('FundingImage1', sql.VarChar,req.body.FundingImage1)
-            .input('FundingImage2',sql.VarChar, req.body.FundingImage2)
-            .input('FundingImage3',sql.VarChar, req.body.FundingImage3)
-            .input('FundingVideo',sql.VarChar, req.body.FundingVideo)
-            .input('AccountNumber', sql.VarChar,req.body.AccountNumber)
-            .input('SocialMedia',sql.VarChar,req.body.SocialMedia)
-            .input('IdCategory',sql.TinyInt, req.body.IdCategory)
-            .input('Goal', sql.Decimal,req.body.Goal)
+            .input('Id',sql.TinyInt ,req.body.idFunding)
+            .input('Title', sql.VarChar,req.body.title)
+            .input('Question1',sql.VarChar, req.body.question1)
+            .input('Question2',sql.VarChar, req.body.question1)
+            .input('Question3', sql.VarChar,req.body.question3)
+            .input('FastDescription',sql.VarChar, req.body.fastDescription)
+            .input('Description',sql.VarChar, req.body.description)
+            .input('FundingImage1', sql.VarChar,req.body.fundingImage1)
+            .input('FundingImage2',sql.VarChar, req.body.fundingImage2)
+            .input('FundingImage3',sql.VarChar, req.body.fundingImage3)
+            .input('FundingVideo',sql.VarChar, req.body.fundingVideo)
+            .input('AccountNumber', sql.VarChar,req.body.accountNumber)
+            .input('SocialMedia',sql.VarChar,req.body.socialMedia)
+            .input('IdCategory',sql.TinyInt, req.body.idCategory)
+            .input('Goal', sql.Decimal,req.body.goal)
             .query(fundqueries.updateFunding)
-        console.log(result);
-        res.json(result.recordset);
+        res.json(result.rowsAffected);
     } catch (error) {
         res.status(500);
         res.send(error.message);
@@ -198,7 +187,6 @@ export const restoreBaultedFunding = async(req, res) => {
         const result = await pool.request()
             .input('id', id)
             .query(fundqueries.restoreFunding)
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -214,7 +202,6 @@ export const AproveFunding = async(req, res) => {
         const result = await pool.request()
             .input('id', id)
             .query(fundqueries.aproveFundingById)
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -229,7 +216,6 @@ export const getAllFundingBySameName = async(req, res) => {
         const result = await pool.request()
             .input('nameplace', sql.VarChar, req.body.nameplace)
             .query(fundqueries.getFundingByName)
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -245,7 +231,6 @@ export const setRanckTop3 = async(req, res) => {
         const result = await pool
             .request()
             .query(queries.getRackFundingTop3);
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
