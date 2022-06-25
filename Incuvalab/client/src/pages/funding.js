@@ -15,7 +15,8 @@ import f3 from '../components/images/predeterminate.jpg'
 import { ProgressBar } from 'react-bootstrap'
 
 export function FundingPage() {
-    const dataUser = JSON.parse(localStorage.getItem('user'));
+    const dataUser = JSON.parse(sessionStorage.getItem('user'));
+    console.log(dataUser);
 
     const { getFundingById } = usePostsFund();
     const [post, setPost] = useState({
@@ -60,7 +61,6 @@ export function FundingPage() {
                     Goal: post[0].Goal,
                     CurrentGoal: post[0].CurrentGoal
                 });
-
             }
         })();
     }, [params.id, getFundingById]);
@@ -68,7 +68,7 @@ export function FundingPage() {
     return (
         <div className="base-container">
             <NavbarLogin locale={true} />
-            <div className="container  my-5 ">
+            <div className="container-sm  my-5 ">
                 <h4 className="text-center">{post.Title}</h4>
                 <p className="text-center">{post.FastDescrption}</p>
 
@@ -162,7 +162,12 @@ export function FundingPage() {
 
                     <div className="col-sm">
                         <h5>Comentarios</h5>
-                        <CommentFrom idFunding={post.IdFunding} idUser={dataUser[0].IdUser} />
+                        {
+                            sessionStorage.getItem('user')!= null?
+                            <CommentFrom idFunding={post.IdFunding} idUser={dataUser[0].IdUser} />:
+                            <CommentFrom idFunding={post.IdFunding} />
+                        }
+                        
                         <hr />
                         <Comment idFunding={post.IdFunding} />
                     </div>

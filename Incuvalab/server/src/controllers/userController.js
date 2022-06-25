@@ -1,5 +1,7 @@
 import { getConnection, sql, queries } from '../database'
+import { generateCodeVerification } from '../extras/confirmNumber';
 
+const nodemaller = require("nodemailer");
 
 export const createUser = async(req, res) => {
     try {
@@ -14,7 +16,6 @@ export const createUser = async(req, res) => {
                 .input("password", sql.VarChar, req.body.password)
                 .input("username", sql.VarChar, req.body.username)
                 .query(queries.createNewUser);
-            console.log(result.rowsAffected);
             res.json(req.body);
         }
     } catch (err) {
@@ -31,7 +32,6 @@ export const getLoginUser = async(req, res) => {
             .input('email', sql.VarChar, req.body.email)
             .input('password', sql.VarChar, req.body.password)
             .query(queries.getLoginUser)
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -47,7 +47,6 @@ export const getUserById = async(req, res) => {
         const result = await pool.request()
             .input('id', id)
             .query(queries.getUserById)
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -64,7 +63,6 @@ export const getTypeUserById = async(req, res) => {
         const result = await pool.request()
             .input('id', id)
             .query(queries.getTypeUserById)
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -80,7 +78,6 @@ export const deleteUserById = async(req, res) => {
         const result = await pool.request()
             .input('id', id)
             .query(queries.deleteUserById)
-        console.log(result);
         res.status(200);
         res.json(result.rowsAffected);
     } catch (error) {
@@ -117,7 +114,6 @@ export const getUserEditList = async(req, res) => {
         const result = await pool
             .request()
             .query(queries.getUserCommandlist);
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -132,11 +128,79 @@ export const getUserDonateFunding = async(req, res) => {
         const result = await pool
             .request().input('idFunding', id)
             .query(queries.getUserDonateFunding);
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
         res.send(error.message);
     }
 }
+
+export const getEmailVerification = async(req, res) => {
+    try {
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('email', req.body.email)
+            .query(queries.getExistEmailVerification)
+        res.json(result.recordset);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const restoreForgetPassword = async(req, res) => {
+    try {
+        var codeVerfication = generateCodeVerification(7);
+
+        var transporter = nodemaller.createTransport({
+            host:"smtp.ethereal.email",
+            post:587,
+            secure: false,
+            auth:{
+                user:"ruthie.nikolaus44@ethereal.email",
+                pass:"k6Hk9rnUBCUdFRt5Vu"
+            }
+        });
+
+        var mailOptions ={
+            from:"Incuva Lab",
+            to: req.body.email,
+            subject: "Enviado desde node malle",
+            text: "<h1>Tu código de verificación es: </h1>"+codeVerfication
+        }
+
+        transporter.sendMail(mailOptions, (error, info) =>{
+            if(error){
+                res.status(500).send(error.message);
+            }
+        })
+        
+        const code = {codeV: codeVerfication}
+        res.json(code);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const setPasswordForget = async(req, res) => {
+    try {
+        if (req.body == null) {
+            res.status(400).json({ msg: 'Bad Request. Please fill all fields'});
+        } else {
+            const pool = await getConnection();
+            var result = await pool.request()
+                .input("email", sql.VarChar, req.body.email)
+                .input("password", sql.VarChar, req.body.password)
+                .query(queries.setPasswordUpdate);
+            res.json(result.rowsAffected);
+        }
+    } catch (err) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+
+
 

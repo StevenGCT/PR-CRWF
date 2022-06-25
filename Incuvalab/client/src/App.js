@@ -2,7 +2,10 @@ import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFu
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
-
+import { FundCards } from './components/FundCards';
+import { EmailVerification } from './pages/User/emailVerification';
+import { CodeVerication } from './pages/User/numberConfirmation';
+import { FormChangePassword } from './pages/User/formChangePassword';
 
 //Proteger UserProfile y Settings para cada usuario individualmente
 
@@ -67,6 +70,14 @@ function App() {
                 <Route exact path='/createFunding/:id' element={<PrivateRouteAdmin />}>
                     <Route path="/createFunding/:id" element={<FundingForm />} />
                 </Route>
+
+                <Route path="/fundCards" element={<FundCards/>} />
+
+                <Route path="/forgetPassword" element={<EmailVerification/>} />
+
+                <Route path="/formCodeConfirmation" element={<CodeVerication/>} />
+
+                <Route path="/changePassword" element={<FormChangePassword/>} />
             </Routes>
         </UserProvider>
     );

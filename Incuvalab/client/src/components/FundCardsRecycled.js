@@ -26,7 +26,7 @@ export function FundCardsRecycled() {
                             
                                 <Card.Header>
                                     <a class="btn" href={"/control-funding/" + postContainer.IdFunding}>
-                                        <strong>{postContainer.Title}</strong>
+                                        <strong className='text-wrap'>{postContainer.Title}</strong>
                                     </a>
                                 </Card.Header>
                                 <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg" />

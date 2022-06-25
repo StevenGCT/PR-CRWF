@@ -7,7 +7,8 @@ import ButonLogout from './logout';
 import '../css/navbar.css'
 
 export default function NavbarLogin(props) {
-    const dataUser = JSON.parse(localStorage.getItem('user'));
+
+    const dataUser = JSON.parse(sessionStorage.getItem('user'));
 
     return (
         <div>
@@ -26,9 +27,8 @@ export default function NavbarLogin(props) {
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="me-auto my-2 my-lg-0"
-                            style={{ maxHeight: '100px' }}
                             navbarScroll>
-                            {localStorage.getItem('role') != null && localStorage.getItem('role') == 'Administrador' ?
+                            {sessionStorage.getItem('role') != null && sessionStorage.getItem('role') == 'Administrador' ?
                             <Nav.Link href="/control-page">Dashboard</Nav.Link> : <Nav.Link href="/">Inicio</Nav.Link>}
                             
                             <Nav.Link href="/catalogue">Catalogo de proyectos</Nav.Link>
@@ -36,7 +36,7 @@ export default function NavbarLogin(props) {
                         </Nav>
 
                         <div className="d-flex">
-                            {localStorage.getItem('user') != null ?
+                            {sessionStorage.getItem('user') != null ?
                                 <div class="dropdown">
                                     <div class="flex" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
                                         <img src={avatar} class="profile-image img-circle" height="40" width="40" />

@@ -9,7 +9,6 @@ import userRoute from './routes/userRoute';
 
 const app = express();
 
-
 //Setting
 app.set('port', config.port);
 //Middelwars
@@ -21,5 +20,7 @@ app.use(confirmRoute);
 app.use(usersRoute);
 app.use(userRoute);
 app.use(commentRoute);
+
+
 
 export default app;

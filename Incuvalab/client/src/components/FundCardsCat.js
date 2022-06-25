@@ -16,8 +16,8 @@ export function FundCardsCat() {
       {postsCatFund.map(catpost => (
           <Col>
         <Card key={catpost.IdFunding}>
-        <Link to={"/funding/" + catpost.IdFunding}>
-            <Card.Header>
+        <Link to={"/control-funding/" + catpost.IdFunding}>
+            <Card.Header className='text-wrap'>
                 {catpost.Title}
             </Card.Header>
             <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg"/>

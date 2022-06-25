@@ -16,7 +16,7 @@ export function FundCardsComplete() {
                 {postGreen.CurrentGoal >= postGreen.Goal && <Card>
                     <Link to={"/funding/" + postGreen.IdFunding} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                         <Card.Header className="text-center">
-                            <strong>{postGreen.Title}</strong>
+                            <strong className='text-wrap'>{postGreen.Title}</strong>
                         </Card.Header>
                         <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg"/>
                         <Card.Body>

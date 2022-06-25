@@ -8,7 +8,6 @@ export const deleteCommentById = async (req, res) => {
         const result = await pool.request()
             .input('idComment', id)
             .query(queries.deleteCommentById)
-        console.log(result);
         res.status(200);
         res.json(result.rowsAffected);
     } catch (error) {
@@ -29,7 +28,6 @@ export const createComment = async(req, res) => {
                 .input("idUser", sql.Int, req.body.idUser)
                 .input("comment", sql.VarChar, req.body.comment)
                 .query(queries.createNewComment);
-            console.log(result.rowsAffected);
             res.json(req.body);
         }
     } catch (err) {
@@ -46,7 +44,6 @@ export const getComments = async (req, res) => {
             .request()
             .input('idFunding', id)
             .query(queries.getComments);
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);

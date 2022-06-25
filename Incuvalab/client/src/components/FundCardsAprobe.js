@@ -3,6 +3,7 @@ import moment from 'moment'
 import { useState } from 'react'
 import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { Link } from 'react-router-dom'
 
 
 export function FundCardsAprobe() {
@@ -26,11 +27,9 @@ export function FundCardsAprobe() {
                         <Card key={postsToAprobe.IdFunding}>
                             
                                 <Card.Header>
-                                   
                                     <a class="btn" href={"/control-funding/" + postAprove.IdFunding}>
-                                    <strong>{postAprove.Title}</strong>
+                                    <strong className='text-wrap'>{postAprove.Title}</strong>
                                     </a>
-                                    
                                 </Card.Header>
                                 <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg" />
                                 <Card.Body>
@@ -44,7 +43,7 @@ export function FundCardsAprobe() {
                                                 <Row className="flex p-3">
                                                     <ButtonGroup className="flex dgrid gap-2 p-2" aria-label="Options">
                                                         <Button variant="success" size="sm" onClick={() => { publishFunding(postAprove.IdFunding); refreshPage(); }}>Publicar</Button>
-                                                        <Button variant="warning" size="sm">Editar</Button>
+                                                        <Link className="btn btn-warning" to={'/createFunding/'+postAprove.IdFunding} >Editar</Link>
                                                         <Button variant="danger" size="sm" onClick={() => { moveFundingToBault(postAprove.IdFunding); refreshPage(); }}>Denegar</Button>
                                                     </ButtonGroup>
                                                 </Row>

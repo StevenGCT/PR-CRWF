@@ -10,8 +10,6 @@ export function FundCards() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
     const { postsTop } = useFundTop()
 
-    console.log(postsTop);
-
     return (
         <CardGroup>
             <Row xs={1} md={3} className="g-4 rounded">
