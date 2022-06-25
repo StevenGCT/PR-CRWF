@@ -27,7 +27,7 @@ export function FundCards() {
                                     {post.CurrentGoal >= post.Goal ? <ProgressBar className="m-2" now={(post.CurrentGoal / post.Goal) * 100} variant="success" label={post.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2" now={(post.CurrentGoal / post.Goal) * 100} variant="dark" label={post.CurrentGoal + "Bs."} />}
                                     <Card.Text className="p-2">
                                         <div className="flex justify-center "><h6 className="text-muted">Meta: {post.Goal}Bs.</h6></div>
-                                        {post.FastDescription}
+                                        <div className="text-wrap justify-center">{post.FastDescription}</div>
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Footer>
