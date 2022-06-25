@@ -17,7 +17,7 @@ function App() {
                 <Route path="*" element={<NotFoundPage />} />
                 <Route path="/Questions" element={<Questions />} />
 
-                <Route path="/UserProfile" element={<UserProfile />} />
+                <Route path="/user-funding-list" element={<UserProfile />} />
 
                 <Route exact path='/CreateProject' element={<PrivateRoute />}>
                     <Route path="/CreateProject" element={<CreateProject />} />
