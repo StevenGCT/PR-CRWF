@@ -46,7 +46,7 @@ export function FundCardsCommand() {
                                                 </Row>
                                             </Col>
                                         </div>
-                                        {post.FastDescription}
+                                        <div className="text-wrap justify-center">{post.FastDescription}</div>
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Footer>

@@ -46,7 +46,7 @@ export function FundCardsRecycled() {
                                                 </Row>
                                             </Col>
                                         </div>
-                                        {postContainer.FastDescription}
+                                        <div className="text-wrap justify-center">{postContainer.FastDescription}</div>
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Footer>

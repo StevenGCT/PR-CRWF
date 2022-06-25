@@ -23,7 +23,7 @@ export function FundCardsComplete() {
                                 {postGreen.CurrentGoal >= postGreen.Goal ? <ProgressBar className="m-2"  now={(postGreen.CurrentGoal/postGreen.Goal)*100} variant="success" label={postGreen.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2"  now={(postGreen.CurrentGoal/postGreen.Goal)*100} variant="dark" label={postGreen.CurrentGoal + "Bs."} />}                        
                                 <Card.Text className="p-2">
                                     <div className="flex justify-center "><h6 className="text-muted text-center">Meta: {postGreen.Goal}Bs.</h6></div>
-                                    {postGreen.FastDescription}
+                                    <div className="text-wrap justify-center">{postGreen.FastDescription}</div>
                                 </Card.Text>
                         </Card.Body>
                         <Card.Footer>

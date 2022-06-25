@@ -50,7 +50,7 @@ export function FundCardsAprobe() {
                                                 </Row>
                                             </Col>
                                         </div>
-                                        {postAprove.FastDescription}
+                                        <div className="text-wrap justify-center">{postAprove.FastDescription}</div>
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Footer>
