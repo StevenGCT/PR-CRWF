@@ -3,7 +3,7 @@ export {Donate} from './Donate';
 export {Confirmation} from './Confirmation';
 export {NotFoundPage} from './NotFoundPage';
 export {Questions} from './Questions';
-//Ambos
+
 export {UserProfile} from './UserProfile';
 export {Settings} from './Settings';
 export {CreateProject} from './CreateProject';
@@ -22,3 +22,4 @@ export {ControlComplete} from './Control/ControlComplete';
 export {ControlUsers} from './Control/ControlUsers';
 
 export {FundingForm} from './fundingForm';
+export {ControlQrView} from  './Control/ControlQrView';

@@ -1,10 +1,10 @@
 import { usePostsQr } from '../context/userContext'
-import { Card, CardGroup, Row, Col } from 'react-bootstrap'
+import { Card, CardGroup, Row, Col, ButtonGroup, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 
-export function QrpageCard() {
+export function QrCardsViewAdmin() {
     const {postsQr} = usePostsQr()
     return(
            
@@ -15,10 +15,15 @@ export function QrpageCard() {
                            <Card> 
                            <Card.Img variant="top" src={post.QrUrl} />                               
                                    <Card.Header>
-                                       {post.mount}
+                                       Monto:{post.mount} 
                                    </Card.Header>  
                                    <Card.Footer>
-                                      <a key={postsQr.IdQr} href="#" className="col button btn-general btn">Subir Comprobante</a>
+                                   <Row className="flex p-3">
+                                                    <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
+                                                        <Button variant="warning" size="sm">Editar</Button>
+                                                        <Button variant="danger" size="sm">Eliminar</Button>
+                                                    </ButtonGroup>
+                                                </Row>
                                    </Card.Footer>                                 
                            </Card>
                    </Col>
