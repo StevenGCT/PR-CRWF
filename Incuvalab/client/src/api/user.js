@@ -19,7 +19,20 @@ export const getUserFollowedFundingRequest = async () => await axios.get('/users
 
 export const getAllCategorysRequest = async () => await axios.get('/categorys');
 
-export const createFundingRequest = async (funding) => await axios.post("/Funding", funding);
+export const createFundingRequest = async (funding) => {
+    const form = new FormData()
+
+    for (let key in funding) {
+       form.append(key, funding[key])
+    }
+
+   return await axios.post("/Funding", form,{
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    });
+}
+
 
 export const changePassword = async (id, NewPassword) => await axios.put(`/users/change/${id}`,  NewPassword);
 

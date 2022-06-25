@@ -1,5 +1,7 @@
 import { getConnection, sql, queries } from '../database'
 import { fundqueries} from '../database/querys'
+import { uploadImageProyect } from '../libs/myCloudinary';
+import fs from 'fs-extra';
 
 export const setRanckFunding = async(req, res) => {
     try {
@@ -22,6 +24,14 @@ export const createFunding = async(req, res) => {
         } 
         else 
         {
+            const resultCloudinaryf1 =await uploadImageProyect(req.files.fundingImage1.tempFilePath);
+            const resultCloudinaryf2 =await uploadImageProyect(req.files.fundingImage2.tempFilePath);
+            const resultCloudinaryf3 =await uploadImageProyect(req.files.fundingImage3.tempFilePath);
+            
+            await fs.remove(req.files.fundingImage1.tempFilePath)
+            await fs.remove(req.files.fundingImage2.tempFilePath)
+            await fs.remove(req.files.fundingImage3.tempFilePath)
+
             const pool = await getConnection();
             var result = await pool.request()
                 .input("title", sql.VarChar, req.body.title)
@@ -30,9 +40,9 @@ export const createFunding = async(req, res) => {
                 .input("question3", sql.VarChar, req.body.question3)
                 .input("fastDescription", sql.VarChar, req.body.fastDescription)
                 .input("description", sql.VarChar, req.body.description)
-                .input("fundingImage1", sql.VarChar, req.body.fundingImage1)
-                .input("fundingImage2", sql.VarChar, req.body.fundingImage2)
-                .input("fundingImage3", sql.VarChar, req.body.fundingImage3)
+                .input("fundingImage1", sql.VarChar, resultCloudinaryf1.secure_url)
+                .input("fundingImage2", sql.VarChar, resultCloudinaryf2.secure_url)
+                .input("fundingImage3", sql.VarChar, resultCloudinaryf3.secure_url)
                 .input("fundingVideo", sql.VarChar, req.body.fundingVideo)
                 .input("accountNumber", sql.VarChar, req.body.accountNumber)
                 .input("socialMedia", sql.VarChar, req.body.socialMedia)

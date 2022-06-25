@@ -133,7 +133,6 @@ export function FundingPage() {
                         nombreDonacion="Donador incial"
                         monto="Libre"
                         descripcion="Apóyalo porque crees en él. Apoya el proyecto sin recompensa, simplemente porque te resulta interesante." />
-
                     <OfertFunding
                         nombreDonacion="Donador estrella"
                         monto="250 Bs."
@@ -152,11 +151,11 @@ export function FundingPage() {
                     <div className="col-sm-8 pe-4">
                         <h5>Historia del proyecto</h5>
                         <p>{post.Description}</p>
-                        <img src={f1} className="img-fluid m-4"></img>
+                        <img src={post.FundingImage1} className="img-fluid m-4"></img>
                         <p>{post.Question1}</p>
-                        <img src={f2} className="img-fluid m-4"></img>
+                        <img src={post.FundingImage2} className="img-fluid m-4"></img>
                         <p>{post.Question2}</p>
-                        <img src={f3} className="img-fluid m-4"></img>
+                        <img src={post.FundingImage3} className="img-fluid m-4"></img>
                         <p>{post.Question3}</p>
                     </div>
 

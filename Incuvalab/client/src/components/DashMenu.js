@@ -86,7 +86,7 @@ export function DashMenu() {
 
           <div>
             <section>
-              <FundCards />
+              <FundCardsCommand/>
             </section>
           </div>
 
