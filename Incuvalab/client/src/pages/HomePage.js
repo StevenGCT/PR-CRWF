@@ -5,11 +5,15 @@ import image2 from '../components/images/homepage1.jpg';
 import image3 from '../components/images/homepage2.jpg';
 import image4 from '../components/images/finances.svg';
 import image5 from '../components/images/manchas.png';
+import { usePosts } from "../context/postContext";
+import { Link } from "react-router-dom";
+
 
 import './../css/home.css';
 import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
 import { FundCards} from '../components/FundCardTop';
+
 
 export function HomePage() {
 
@@ -118,6 +122,7 @@ export function HomePage() {
         <p className='display-6 fw-bold'>Proyectos destacados</p>
         </div>
         <FundCards/>
+        
       </div>
 
       <hr/>

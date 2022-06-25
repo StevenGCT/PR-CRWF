@@ -12,13 +12,15 @@ import CommentFrom from '../components/formCommentFunding'
 import f1 from '../components/images/predeterminate.jpg'
 import f2 from '../components/images/predeterminate.jpg'
 import f3 from '../components/images/predeterminate.jpg'
+import { ProgressBar } from 'react-bootstrap'
 
 export function FundingPage() {
-    const dataUser = JSON.parse(localStorage.getItem('user'));
+    const dataUser = JSON.parse(sessionStorage.getItem('user'));
+    console.log(dataUser);
 
-    const { getFundingById} = usePostsFund();
+    const { getFundingById } = usePostsFund();
     const [post, setPost] = useState({
-        IdFunding:"",
+        IdFunding: "",
         Title: "",
         Question1: "",
         Question2: "",
@@ -41,6 +43,7 @@ export function FundingPage() {
         (async () => {
             if (params.id) {
                 const post = await getFundingById(params.id);
+
                 setPost({
                     IdFunding: post[0].IdFunding,
                     Title: post[0].Title,
@@ -58,7 +61,6 @@ export function FundingPage() {
                     Goal: post[0].Goal,
                     CurrentGoal: post[0].CurrentGoal
                 });
-                
             }
         })();
     }, [params.id, getFundingById]);
@@ -66,7 +68,7 @@ export function FundingPage() {
     return (
         <div className="base-container">
             <NavbarLogin locale={true} />
-            <div className="container  my-5 ">
+            <div className="container-sm  my-5 ">
                 <h4 className="text-center">{post.Title}</h4>
                 <p className="text-center">{post.FastDescrption}</p>
 
@@ -80,8 +82,11 @@ export function FundingPage() {
                         <div className="card">
                             <div className="card-body col px-5 pb-5 pt-4">
                                 <div className="row mb-3">
-                                    <div className="progress">
-                                        <div className="progress-bar bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div>
+                                        {post.CurrentGoal >= post.Goal ?
+                                            <ProgressBar min={0} now={(post.CurrentGoal * 100) / post.Goal} max={100} variant="success" />
+                                            : <ProgressBar min={0} now={(post.CurrentGoal * 100) / post.Goal} max={100} variant="dark"  />
+                                        }
                                     </div>
                                 </div>
                                 <div className="row">
@@ -125,17 +130,18 @@ export function FundingPage() {
                 <h4 className="text-center mb-5">Opciones de donación directa</h4>
                 <div className=" row row-cols-1 row-cols-md-3 mb-3  text-center ">
                     <OfertFunding
-                    nombreDonacion= "Donador incial"
-                    monto = "Libre"
-                    descripcion = "Apóyalo porque crees en él. Apoya el proyecto sin recompensa, simplemente porque te resulta interesante." />
+                        nombreDonacion="Donador incial"
+                        monto="Libre"
+                        descripcion="Apóyalo porque crees en él. Apoya el proyecto sin recompensa, simplemente porque te resulta interesante." />
+
                     <OfertFunding
-                    nombreDonacion= "Donador estrella"
-                    monto = "250 Bs."
-                    descripcion = "Siendo un donador estrella usted nos ayudará a llevar nuestro objetivo a las estrellas. Savemos que crees en nosotros." />
+                        nombreDonacion="Donador estrella"
+                        monto="250 Bs."
+                        descripcion="Siendo un donador estrella usted nos ayudará a llevar nuestro objetivo a las estrellas. Savemos que crees en nosotros." />
                     <OfertFunding
-                    nombreDonacion= "Donador Sol Naciente"
-                    monto = "500 Bs."
-                    descripcion = "Siendo un donador sol naciente usted nos ayudará a llevar nuestro objetivo a las estrellas. Savemos que crees en nosotros." />
+                        nombreDonacion="Donador Sol Naciente"
+                        monto="500 Bs."
+                        descripcion="Siendo un donador sol naciente usted nos ayudará a llevar nuestro objetivo a las estrellas. Savemos que crees en nosotros." />
                 </div>
             </div>
 
@@ -156,9 +162,14 @@ export function FundingPage() {
 
                     <div className="col-sm">
                         <h5>Comentarios</h5>
-                        <CommentFrom idFunding = {post.IdFunding} idUser={dataUser[0].IdUser}/>
-                        <hr/>
-                        <Comment idFunding = {post.IdFunding} />
+                        {
+                            sessionStorage.getItem('user')!= null?
+                            <CommentFrom idFunding={post.IdFunding} idUser={dataUser[0].IdUser} />:
+                            <CommentFrom idFunding={post.IdFunding} />
+                        }
+                        
+                        <hr />
+                        <Comment idFunding={post.IdFunding} />
                     </div>
                 </div>
             </div>

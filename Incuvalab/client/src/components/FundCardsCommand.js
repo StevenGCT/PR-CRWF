@@ -1,91 +1,62 @@
-import { Toaster, toast} from "react-hot-toast"
 import { usePostsFund } from '../context/userContext'
+import moment from 'moment'
 import { Card, ProgressBar, CardGroup, Row, Col, Button, ButtonGroup } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import { Link } from "react-router-dom"
 
 export function FundCardsCommand() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
-          
-    const {posts} = usePostsFund()
-    const {moveRequestToBault} = usePostsFund()
 
-    const handleToStore = (id) => {
-        toast(
-          (t) => (
-            <div>
-              <p className="text-white">
-                Do you want to delete <strong>{id}</strong>?
-              </p>
-              <div>
-                <button
-                  className="bg-red-500 hover:bg-red-400 px-3 py-2 text-sm text-white rounded-sm mx-2"
-                  onClick={(e) => {
-                    moveRequestToBault(id);
-                    toast.dismiss(t.id);
-                  }}
-                >
-                  Delete
-                </button>
-                <button
-                  className="bg-slate-400 hover:bg-slate-500 px-3 py-2 text-white rounded-sm mx-2"
-                  onClick={() => toast.dismiss(t.id)}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          ),
-          {
-            duration: "4000",
-            style: {
-              background: "#202020"
-            }
-          }
-        );
-      };
-        
+    const { posts } = usePostsFund()
+    const { moveFundingToBault } = usePostsFund()
 
-    return(
-    <CardGroup>
-        <Row xs={1} md={3} className="g-4 rounded">
-      {posts.map(post => (
-          <Col>
-        <Card key={posts.IdFunding}> 
-            <Card.Header>
-                {post.Title}
-            </Card.Header>
-            <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg"/>
-            <Card.Body>
-            <div className="flex justify-center ">
-            </div>
-            {post.CurrentGoal >= post.Goal ? <ProgressBar className="m-2"  now={(post.CurrentGoal/post.Goal)*100} variant="success" label={post.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2"  now={(post.CurrentGoal/post.Goal)*100} variant="dark" label={post.CurrentGoal + "Bs."} />}
-                    <Card.Text className="p-2">
-                        <div className="flex justify-center ">
-                            <Col>
-                                <Row >
-                                    <h6 className="text-muted">Meta: {post.Goal}Bs.</h6>
-                                </Row>
-                                <Row className="flex p-3">
-                                    <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
-                                        <Button variant="warning" size="sm" onClick={() => toast('Ejemplo')}>Editar</Button>
-                                        <Button variant="danger" size="sm" onClick={() => {
-                                    handleToStore(post.IdFunding);
-                                  }}>Eliminar</Button>              
-                                    </ButtonGroup>
-                                </Row>
-                            </Col>
-                        </div>
-                        {post.FastDescription}
-                    </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-                <small className="text-muted">Campaña subida el: {post.RegisterDate}</small>
-            </Card.Footer>
-        </Card>
-        </Col> 
-      ))}
-      </Row>
-    </CardGroup>
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
+    return (
+        <CardGroup>
+            <Row xs={1} md={3} className="g-4 rounded">
+                {posts.map(post => (
+                    <Col>
+                        <Card key={posts.IdFunding}>
+                            
+                                <Card.Header>
+                                    <a class="btn" href={"/control-funding/" + post.IdFunding}>
+                                    <strong className='text-wrap'>{post.Title}</strong>
+                                    </a>
+                                </Card.Header>
+                                <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg" />
+                            
+                                <Card.Body>
+                                    <div className="flex justify-center ">
+                                    </div>
+                                    {post.CurrentGoal >= post.Goal ? <ProgressBar className="m-2" now={(post.CurrentGoal / post.Goal) * 100} variant="success" label={post.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2" now={(post.CurrentGoal / post.Goal) * 100} variant="dark" label={post.CurrentGoal + "Bs."} />}
+                                    <Card.Text className="p-2">
+                                        <div className="flex justify-center ">
+                                            <Col>
+                                                <Row >
+                                                    <h6 className="text-muted text-center">Meta: {post.Goal}Bs.</h6>
+                                                </Row>
+                                                <Row className="flex p-3">
+                                                    <ButtonGroup className="flex grid gap-2 m-2" aria-label="Options">
+                                                        <Link to={'/createFunding/'+post.IdFunding} className='btn btn-warning' size="sm">Editar</Link>
+                                                        <Button variant="danger" size="sm" onClick={() => { moveFundingToBault(post.IdFunding); refreshPage(); }}>Eliminar</Button>
+                                                    </ButtonGroup>
+                                                </Row>
+                                            </Col>
+                                        </div>
+                                        <div className="text-wrap justify-center">{post.FastDescription}</div>
+                                    </Card.Text>
+                                </Card.Body>
+                                <Card.Footer>
+                                    <small className="text-muted">Campaña subida el: {moment(post.RegisterDate).format('DD/MM/YYYY')}</small>
+                                </Card.Footer>
+                        </Card>
+                    </Col>
+                ))
+                }
+            </Row>
+        </CardGroup>
     );
 }

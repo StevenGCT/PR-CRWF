@@ -1,12 +1,11 @@
 import { useState, createContext, useContext, useEffect } from 'react'
-import { changePassword, getAllCategorysRequest, createFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
+import { changePassword, getAllCategorysRequest, createFundingRequest,putFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
 import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestFromBault, permanentDeleteRequest, moveRequestToBault } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
-import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest , userDonateFundingRequest} from '../api/users'
+import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest , userDonateFundingRequest, deleteReqById, getemailCoincidencesRequest, getNumberConfirmationRequest, setPasswordForgetRequest} from '../api/users'
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest} from '../api/comment'
-
-
+import { createRoutesFromChildren } from 'react-router-dom'
 
 const userContext = createContext()
 
@@ -91,6 +90,16 @@ export const UserProvider = ({ children }) => {
     return res.data;
   }
 
+  const getemailCoincidences = async (emailSend) => {
+    const res = await getemailCoincidencesRequest(emailSend);
+    return res.data;
+  }
+
+  const getNumberConfirmation = async (emailSend) => {
+    const res = await getNumberConfirmationRequest(emailSend);
+    return res.data;
+  }
+  
   const userDonateFunding = async (id) => {
     const res = await userDonateFundingRequest(id);
     return res.data;
@@ -113,7 +122,7 @@ export const UserProvider = ({ children }) => {
 
   const getDonatedFunding = async () => {
     const res = await getUserDonatedFundingRequest()
-    setDonated(res.data)
+    return res.data
   }
 
   const getDonatedCount = async () => {
@@ -123,6 +132,11 @@ export const UserProvider = ({ children }) => {
 
   const getUserFunding = async () => {
     const res = await getUserFundingRequest()
+    setProjec(res.data)
+  }
+
+  const deleteUserById = async (id) => {
+    const res = await deleteReqById(id)
     setProjec(res.data)
   }
 
@@ -136,19 +150,23 @@ export const UserProvider = ({ children }) => {
     setUsers(res.data)
   }
 
-  const getUserById = async () => {
-    const res = await getUserByIdRequest()
+  const getUserById = async (id) => {
+    const res = await getUserByIdRequest(id)
     setUsersById(res.data)
   }
 
   const createFunding = async (funding) => {
     const res = await createFundingRequest(funding)
-    console.log(res)
+    return res.data;
+  }
+
+  const updateFunding = async (funding) => {
+    const res = await putFundingRequest(funding)
+    return res.data;
   }
 
   const updatePassword = async (id, password) => {
     const res = await changePassword(id, password)
-    console.log(res)
   }
 
   const [posts, setPosts] = useState([])
@@ -168,7 +186,6 @@ export const UserProvider = ({ children }) => {
 
   const getUsersToModify = async () => {
     const res = await userListToEditRequest()
-    console.log("Datos to modify", res)
     setPostsUsersToModify(res.data)
   }
 
@@ -180,7 +197,6 @@ export const UserProvider = ({ children }) => {
 
   const getFundsAprobe = async () => {
     const res = await getFundsAprobeRequests()
-    console.log(res, setPosts)
     setPostsAprobe(res.data)
   }
 
@@ -192,7 +208,6 @@ export const UserProvider = ({ children }) => {
 
   const getFundsCompleted = async () => {
     const res = await getFundsCompletedRequests()
-    console.log(res, setPosts)
     setPostsCompleted(res.data)
   }
 
@@ -207,14 +222,8 @@ export const UserProvider = ({ children }) => {
   };
 
   const moveFundingToBault = async (id) => {
-    try {
     const res = await moveRequestToBault(id);
-    setPosts(posts.filter((post) => post.idFunding !== id))
-    }
-    catch (error)
-    {
-      console.error(error);
-    }
+    return res.data;
   }
 
   const fundingOutBault = async (id) => {
@@ -260,6 +269,12 @@ export const UserProvider = ({ children }) => {
     return res.data;
   }
 
+  
+
+  const setPasswordForget = async (user) => {
+    const res = await setPasswordForgetRequest(user);
+    return res.data;
+  }
 
   useEffect(() => {
     getAllCategory()
@@ -298,10 +313,6 @@ export const UserProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    getDonatedFunding()
-  }, [])
-
-  useEffect(() => {
     getDonatedCount()
   }, [])
 
@@ -329,6 +340,10 @@ export const UserProvider = ({ children }) => {
     getPostsFundByCat()
   }, [])
 
+  useEffect(() => {
+    getemailCoincidences()
+  } , [])
+
   return (
     <userContext.Provider value={{
       categorys,
@@ -338,19 +353,22 @@ export const UserProvider = ({ children }) => {
 
       followeds,
       followedsCount,
+      setPasswordForget,
+      getNumberConfirmation,
 
       donated,
       donatedCount,
-
+      getDonatedFunding,
       projects,
       projectsCount,
 
       createFunding,
+      updateFunding,
       updatePassword,
       setPosts,
       posts,
       getFunds,
-
+      getemailCoincidences,
       setPostsTop,
       postsTop,
 
@@ -381,6 +399,7 @@ export const UserProvider = ({ children }) => {
       registerUser,
       loginUser,
       getTypeUser,
+      deleteUserById,
 
       getFundingTop3,
 
@@ -393,3 +412,4 @@ export const UserProvider = ({ children }) => {
     </userContext.Provider>
   );
 }
+

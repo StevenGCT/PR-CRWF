@@ -1,14 +1,11 @@
 import { getConnection, sql, queries } from '../database'
 
-
-
 export const getCategorys = async(req, res) => {
     try {
         const pool = await getConnection();
         const result = await pool
             .request()
             .query(queries.getAllCategory);
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -27,7 +24,6 @@ export const createCategory = async(req, res) => {
             var result = await pool.request()
                 .input("category", sql.VarChar, Category)
                 .query(queries.createNewCategory);
-            console.log(result.rowsAffected);
             res.json({ Category });
         }
     } catch (err) {
@@ -43,7 +39,6 @@ export const getCategoryById = async(req, res) => {
         const result = await pool.request()
             .input('id', id)
             .query(queries.getCategoryById)
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);
@@ -58,7 +53,6 @@ export const deleteCategoryById = async(req, res) => {
         const result = await pool.request()
             .input('id', id)
             .query(queries.deleteCategoryById)
-        console.log(result);
         res.status(200);
         res.json(result.rowsAffected);
     } catch (error) {
@@ -72,7 +66,6 @@ export const getCountCategory = async(req, res) => {
         const pool = await getConnection();
         const result = await pool.request()
             .query(queries.getCountCategory)
-        console.log(result);
         res.status(200);
         res.json(result.recordset[0]['']);
     } catch (error) {

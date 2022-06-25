@@ -1,7 +1,13 @@
-import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers } from './pages';
+import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers, FundingForm ,Questions } from './pages';
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
+import { FundCards } from './components/FundCards';
+import { EmailVerification } from './pages/User/emailVerification';
+import { CodeVerication } from './pages/User/numberConfirmation';
+import { FormChangePassword } from './pages/User/formChangePassword';
+
+//Proteger UserProfile y Settings para cada usuario individualmente
 
 function App() {
     return (
@@ -9,17 +15,15 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="*" element={<NotFoundPage />} />
-                <Route exact path='/UserProfile' element={<PrivateRoute />}>
-                    <Route path="/UserProfile" element={<UserProfile />} />
-                </Route>
-
+                <Route path="/Questions" element={<Questions />} />
+                
+                <Route path="/UserProfile" element={<UserProfile />} />
+                
                 <Route exact path='/CreateProject' element={<PrivateRoute />}>
                     <Route path="/CreateProject" element={<CreateProject />} />
                 </Route>
 
-                <Route exact path="/Settings" element={<PrivateRoute />}>
-                    <Route path="/Settings" element={<Settings />} />
-                </Route>
+                <Route path="/Settings" element={<Settings />} />
 
                 <Route path='/funding/:id' element={<FundingPage />} />
 
@@ -51,11 +55,33 @@ function App() {
                     <Route path="/control-page-user" element={<ControlUsers />} />
                 </Route>
 
+                <Route exact path='/control-funding/:id' element={<PrivateRouteAdmin />}>
+                    <Route path="/control-funding/:id" element={<ControlFunding />} />
+                </Route>
+
                 <Route path="/catalogue" element={<Catalogue />} />
 
                 <Route path="/catalogue/category" element={<CatalogueCategory />} />
+               
+                <Route exact path='/createFunding' element={<PrivateRouteAdmin />}>
+                    <Route path="/createFunding" element={<FundingForm />} />
+                </Route>
+
+                <Route exact path='/createFunding/:id' element={<PrivateRouteAdmin />}>
+                    <Route path="/createFunding/:id" element={<FundingForm />} />
+                </Route>
+
+                <Route path="/fundCards" element={<FundCards/>} />
+
+                <Route path="/forgetPassword" element={<EmailVerification/>} />
+
+                <Route path="/formCodeConfirmation" element={<CodeVerication/>} />
+
+                <Route path="/changePassword" element={<FormChangePassword/>} />
             </Routes>
         </UserProvider>
     );
+
 }
+
 export default App;
