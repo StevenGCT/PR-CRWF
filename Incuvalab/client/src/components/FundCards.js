@@ -5,8 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link } from "react-router-dom"
 import React from 'react'
 
-
-
 export function FundCards() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
     const { posts } = usePostsFund()

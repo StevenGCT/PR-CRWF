@@ -66,6 +66,10 @@ export const usePostsQr = () => {
   return context
 }
 
+export const useUserFundings = () => {
+  const context = useContext(userContext)
+  return context
+}
 
 
 export const UserProvider = ({ children }) => {
@@ -137,21 +141,6 @@ export const UserProvider = ({ children }) => {
     setCategorys(res.data)
   }
 
-  const getFollowedFunding = async () => {
-    const res = await getUserFollowedFundingRequest()
-    setFollowed(res.data)
-  }
-
-  const getDonatedFunding = async () => {
-    const res = await getUserDonatedFundingRequest()
-    return res.data
-  }
-
-  const getUserFunding = async () => {
-    const res = await getUserFundingRequest()
-    setProjec(res.data)
-  }
-
   const deleteUserById = async (id) => {
     const res = await deleteReqById(id)
     setProjec(res.data)
@@ -179,6 +168,21 @@ export const UserProvider = ({ children }) => {
   
   const getUserFundingCount = async (id) => {
     const res = await getCountUserFundingRequest(id)
+    return res.data
+  }
+
+  const getFollowedFunding = async (id) => {
+    const res = await getUserFollowedFundingRequest(id)
+    return res.data
+  }
+  
+  const getDonatedFunding = async (id) => {
+    const res = await getUserDonatedFundingRequest(id)
+    return res.data
+  }
+
+  const getUserFunding = async (id) => {
+    const res = await getUserFundingRequest(id)
     return res.data
   }
 
@@ -348,16 +352,8 @@ export const UserProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    getFollowedFunding()
-  }, [])
-
-  useEffect(() => {
     getemailCoincidences()
   } , [])
-
-  useEffect(() => {
-    getUserFunding()
-  }, [])
 
   useEffect(() => {
     getFunds()
@@ -400,7 +396,6 @@ export const UserProvider = ({ children }) => {
       projectsCount,
       setPasswordForget,
       getNumberConfirmation,
-      getDonatedFunding,
       getemailCoincidences,
       createFunding,
       updateFunding,
@@ -457,9 +452,11 @@ export const UserProvider = ({ children }) => {
       userDonateFunding,
       getFollowedCount, getDonatedCount, getUserFundingCount,
       setUpdateUser,
-      setUpdateAccountInfo
+      setUpdateAccountInfo,
+      getFollowedFunding, getDonatedFunding, getUserFunding
     }}>
       {children}
     </userContext.Provider>
   );
 }
+
