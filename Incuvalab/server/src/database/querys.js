@@ -29,6 +29,8 @@ export const queries = {
     createNewUser: "INSERT INTO Users ([Name] ,LastName, Email, [Password], UserName) VALUES (@name, @lastName, @email, HashBytes('MD5', @password), @username)",
     getUserById: "SELECT U.IdUser,[Name],[Email],[PhoneNumber],[IdUserType],[LastName],[SecondLastName],U.RegisterDate,[UserName],[Address],[IdUsersImage] FROM Users U WHERE U.IdUser = @id GROUP BY U.IdUser,[Name],[Email],[PhoneNumber],[IdUserType],[LastName],[SecondLastName],U.RegisterDate,[UserName],[Address],[IdUsersImage]",
 
+    createNewAdmin: "INSERT INTO Users ([Name], Email, [Password], PhoneNumber, IdUserType, LastName, SecondLastName, State, RegisterDate,UserName,Address) VALUES (@name, @email, HashBytes('MD5',@password), @phonenumber, 1, @lastname, @secondlastname, 1, CURRENT_TIMESTAMP, @username, @address)",
+
     getCountFollowedByUserId:"SELECT COUNT(FF.IdUser) AS 'countFollowedFunding' FROM Users U LEFT JOIN Followed_Funding FF ON FF.IdUser = U.IdUser WHERE U.IdUser = @id GROUP BY FF.IdUser",
     getCountDonationsByUserId:"SELECT COUNT(D.IdUser) AS 'countDonationsFunding' FROM Users U LEFT JOIN Donations D ON D.IdUser = U.IdUser WHERE U.IdUser = @id GROUP BY  D.IdUser",
     getCountFundingsCreateByUserId:"SELECT COUNT(UF.idUser) AS 'countCreateFunding' FROM Users U LEFT JOIN User_Funding UF ON UF.idUser = U.IdUser WHERE U.IdUser = @id  GROUP BY UF.idUser",

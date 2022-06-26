@@ -24,6 +24,30 @@ export const createUser = async(req, res) => {
     }
 }
 
+export const createAdmin = async(req, res) => {
+    try {
+        if (req.body == null) {
+            res.status(400).json({ msg: 'Bad Request. Please fill all fields'});
+        } else {
+            const pool = await getConnection();
+            var result = await pool.request()
+                .input("name", sql.VarChar, req.body.name)
+                .input("email", sql.VarChar, req.body.email)
+                .input("password", sql.VarChar, req.body.password)
+                .input("phonenumber", sql.VarChar, req.body.phonenumber)
+                .input("lastname", sql.VarChar, req.body.lastname)
+                .input("secondlastname", sql.VarChar, req.body.secondlastname)
+                .input("username", sql.VarChar, req.body.username)
+                .input("address", sql.VarChar, req.body.address)
+                .query(queries.createNewAdmin);
+            res.json(req.body);
+        }
+    } catch (err) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
 export const getLoginUser = async(req, res) => {
     try {
         console.log(res);
