@@ -1,68 +1,8 @@
 
-#h1 {
-  color: #474544;
-  font-size: 25px;
-  letter-spacing: 7px;
-  text-align: left;
-  text-transform: uppercase;
-  margin-left: 7%;
-}
+#toSettings{
+  background: #CA0058;
+  border-color: #CA0058;
+  border-radius: 10px;
+  font-family: 'Helvetica', Arial, sans-serif;
 
-#subject_input{
-	background: none;
-  border: none;
-	border-bottom: solid 2px #474544;
-	color: #474544;
-	font-size: 1.000em;
-  font-weight: 400;
-  letter-spacing: 1px;
-	margin: 0em 0 2.200em 0;
-	padding: 0 0 0.875em 0;
-  text-transform: uppercase;
-	width: 100%;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	box-sizing: border-box;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	-ms-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-#subject_input::-ms-expand {
-  display: none;
-}
-#subject{
-  margin: 80px;
-  text-align: left;
-}
-@media screen and (max-width: 768px) {
-  #container {
-    margin: 20px auto;
-    width: 95%;
-  }
-}
-
-#cardUser1 {
-    max-width: 80%;
-    margin: 60px 10%;
-    padding: 3%;
-
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 16px;
-    text-align: center;
-    background-color: #cccccc69;
-    border-radius: 40px;
-}
-
-#cardUser2 {
-  margin:  80px;
-  margin-top: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 16px;
-  background-color: #f1f1f1;
-  border-radius: 20px;
 }

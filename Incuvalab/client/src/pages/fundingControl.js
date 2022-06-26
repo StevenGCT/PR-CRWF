@@ -123,11 +123,11 @@ export function ControlFunding() {
                     <div className="col-sm">
                         <h3>Historia del proyecto</h3>
                         <p>{post.Description}</p>
-                        <img src={f1} className="img-fluid m-4"></img>
+                        <img src={post.FundingImage1} className="img-fluid m-4 rounded mx-auto d-block"></img>
                         <p>{post.Question1}</p>
-                        <img src={f2} className="img-fluid m-4"></img>
+                        <img src={post.FundingImage2} className="img-fluid m-4 rounded mx-auto d-block"></img>
                         <p>{post.Question2}</p>
-                        <img src={f3} className="img-fluid m-4"></img>
+                        <img src={post.FundingImage3} className="img-fluid m-4 rounded mx-auto d-block"></img>
                         <p>{post.Question3}</p>
                     </div>
                 </div>

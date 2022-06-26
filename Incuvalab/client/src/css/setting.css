@@ -1,197 +1,210 @@
+/***
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: https://j.mp/metronictheme
+Licensed under MIT
+***/
 
-#container {
-    background-color: #DFDFDF;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 40px;
-  }
-
-  #container2 {
-    background-color: #FFFFFF;
-    border-radius: 40px;
-  }
-
-
- /*input file*/
- .file-select {
-  position: relative;
-  display: inline-block;
+body {
+  background: #F1F3FA;
 }
 
-.file-select::before {
-  background-color: #CA0058;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  content: 'Seleccionar'; /* testo por defecto */
-  font-family: 'Helvetica', Arial, sans-serif;
-  font-weight: bold;
+/* Profile container */
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
   text-align: center;
-  outline: none;
-  -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-  border-radius: 20px;
-  height: 35px;
+  margin-top: 20px;
 }
 
-.file-select input[type="file"] {
-  opacity: 0;
-  display: inline-block;
-  background: #CA0058;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  font-family: 'Helvetica', Arial, sans-serif;
-  font-weight: bold;
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
   text-align: center;
-  outline: none;
-  border-radius: 20px;
-  height: 35px;
+  margin-top: 10px;
 }
 
-#src-file1::before {
-  content: 'Subir una nueva Imagen';
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
 }
 
-#requestbrand_button{
-  background: #CA0058;
-  border-color: #CA0058;
-  border-radius: 20px;
-  font-family: 'Helvetica', Arial, sans-serif;
-
-  margin:0 auto;
-    display:block;
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
 }
-#padding-helper{
-  padding-top: 50px;
-  padding-bottom: 20px;
-}
-
-#save_button{
-  background: #CA0058;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  font-family: 'Helvetica', Arial, sans-serif;
-  font-weight: bold;
-  text-align: center;
-  outline: none;
-  -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
-  border-radius: 40px;
-  height: 35px;
-  width: 35%;
-  vertical-align: middle;
-}
-
-
-#newPasswordButton_button{
-  background: #CA0058;
-  color: white;
-  border-radius: 20px;
-  font-weight: bold;
-  width: 100px;
-  font-family: 'Helvetica', Arial, sans-serif;
-}
-
-  #weaklyReports{
-    margin: 10px;
-    text-align: left;
-    width: 100%;
-  }
-  #notification_label{
-    margin-right: 67%;
-  }
     
-  
-  .underline {
-    border-bottom: solid 1.6px #a4a4a4;
-    margin: -1px auto;
-    width: 100%;
-  }
-  
-  .input[type='password'] {
-      background: none;
-    border: none;
-      border-bottom: solid 2px #474544;
-      color: #474544;
-      font-size: 1.000em;
-    font-weight: 400;
-    letter-spacing: 1px;
-      margin: 0em 0 1.875em 0;
-      padding: 0.475em 0 0.475em 0;
-    text-transform: uppercase;
-      width: 100%;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      -ms-box-sizing: border-box;
-      -o-box-sizing: border-box;
-      box-sizing: border-box;
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      -ms-transition: all 0.3s;
-      -o-transition: all 0.3s;
-      transition: all 0.3s;
-  }
-  
- 
-  
-  ::-webkit-input-placeholder {
-      color: #474544;
-  }
-  
-  :-moz-placeholder { 
-      color: #474544;
-      opacity: 1;
-  }
-  
-  ::-moz-placeholder {
-      color: #474544;
-      opacity: 1;
-  }
-  
-  :-ms-input-placeholder {
-      color: #474544;
-  }
-  
+.profile-usermenu {
+  margin-top: 30px;
+}
 
-  
-  #businessApply {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 100%;
-    border-radius: 40px;
-  }
- 
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
 
-  #submits{
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a, button, code, div, img, input, label, li, p, pre, select, span, svg, table, td, textarea, th, ul {
+    -webkit-border-radius: 0!important;
+    -moz-border-radius: 0!important;
+    border-radius: 0!important;
+}
+.dashboard-stat, .portlet {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+.portlet {
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding: 0;
+    border-radius: 4px;
+}
+.portlet.bordered {
+    border-left: 2px solid #e6e9ec!important;
+}
+.portlet.light {
+    padding: 12px 20px 15px;
+    background-color: #fff;
+}
+.portlet.light.bordered {
+    border: 1px solid #e7ecf1!important;
+}
+.list-separated {
     margin-top: 10px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-  }
-  
-  /* The switch - the box around the slider */
-  .switch {
-    position: relative;
+    margin-bottom: 15px;
+}
+.profile-stat {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f4f7;
+}
+.profile-stat-title {
+    color: #7f90a4;
+    font-size: 25px;
+    text-align: center;
+}
+.uppercase {
+    text-transform: uppercase!important;
+}
+
+.profile-stat-text {
+    color: #5b9bd1;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+}
+.profile-desc-title {
+    color: #7f90a4;
+    font-size: 17px;
+    font-weight: 600;
+}
+.profile-desc-text {
+    color: #7e8c9e;
+    font-size: 14px;
+}
+.margin-top-20 {
+    margin-top: 20px!important;
+}
+[class*=" fa-"]:not(.fa-stack), [class*=" glyphicon-"], [class*=" icon-"], [class^=fa-]:not(.fa-stack), [class^=glyphicon-], [class^=icon-] {
     display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  
-  *,
-  *:before,
-  *:after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  
- 
+    line-height: 14px;
+    -webkit-font-smoothing: antialiased;
+}
+.profile-desc-link i {
+    width: 22px;
+    font-size: 19px;
+    color: #abb6c4;
+    margin-right: 5px;
+}
+

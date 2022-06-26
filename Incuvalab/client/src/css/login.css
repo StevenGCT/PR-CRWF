@@ -8,10 +8,6 @@ h1{
     font-family: 'Montserrat', sans-serif;
 }
 
-.footer {
-    background-color: rgba(0, 0, 0, .1);
-}
-
 .gradient {
     background: rgb(2,0,36);
     background: linear-gradient(222deg, rgba(2,0,36,1) 0%, rgba(228,0,99,1) 0%, rgba(232,72,142,1) 100%);

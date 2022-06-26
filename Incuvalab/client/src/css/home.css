@@ -1,5 +1,5 @@
 #banner{
-  background-color: black;
+  background-color: rgb(47, 40, 40);
 } 
 #titleHome {
   color:  #e20263;
@@ -50,8 +50,4 @@
 
 #text-wrap-left{
   width: 35rem;
-}
-
-Link{
-  outline: none;
 }

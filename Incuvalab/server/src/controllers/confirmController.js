@@ -6,7 +6,6 @@ export const getDonation = async(req, res) => {
         const result = await pool
             .request()
             .query(queries.Donations);
-        console.log(result);
         res.json(result.recordset);
     } catch (error) {
         res.status(500);

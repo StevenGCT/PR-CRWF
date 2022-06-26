@@ -1,11 +1,12 @@
 import { useState, createContext, useContext, useEffect } from 'react'
-import { changePassword, getAllCategorysRequest, createFundingRequest,putFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
-import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestFromBault, permanentDeleteRequest, moveRequestToBault } from '../api/funds'
+import { changePassword, getAllCategorysRequest, createFundingRequest, putFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
+import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestFromBault, permanentDeleteRequest, moveRequestToBault, getFundByNameRequest } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
-import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest , userDonateFundingRequest, deleteReqById} from '../api/users'
-import { createCommentRequest, getCommentsRequest, deleteCommentRequest} from '../api/comment'
-import {getCodeQrRequest} from '../api/qr'
+import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest, userDonateFundingRequest, deleteReqById, getemailCoincidencesRequest, getNumberConfirmationRequest, setPasswordForgetRequest } from '../api/users'
+import { createCommentRequest, getCommentsRequest, deleteCommentRequest } from '../api/comment'
+import { getCodeQrRequest } from '../api/qr'
+import { createRoutesFromChildren } from 'react-router-dom'
 
 const userContext = createContext()
 
@@ -36,6 +37,11 @@ export const usePostsCat = () => {
 }
 
 export const usePostsCatFund = () => {
+  const context = useContext(userContext)
+  return context
+}
+
+export const usePostsNamFund = () => {
   const context = useContext(userContext)
   return context
 }
@@ -91,6 +97,16 @@ export const UserProvider = ({ children }) => {
     return res.data;
   }
 
+  const getemailCoincidences = async (emailSend) => {
+    const res = await getemailCoincidencesRequest(emailSend);
+    return res.data;
+  }
+
+  const getNumberConfirmation = async (emailSend) => {
+    const res = await getNumberConfirmationRequest(emailSend);
+    return res.data;
+  }
+
   const getTypeUser = async (user) => {
     const res = await getTypeUserRequest(user);
     return res.data;
@@ -111,19 +127,9 @@ export const UserProvider = ({ children }) => {
     setFollowed(res.data)
   }
 
-  const getFollowedCount = async () => {
-    const res = await getCountUserFollowedFundingRequest()
-    setFollowedCount(res.data)
-  }
-
   const getDonatedFunding = async () => {
     const res = await getUserDonatedFundingRequest()
-    setDonated(res.data)
-  }
-
-  const getDonatedCount = async () => {
-    const res = await getCountUserDonatedFundingRequest()
-    setDonatedCount(res.data)
+    return res.data
   }
 
   const getUserFunding = async () => {
@@ -136,11 +142,6 @@ export const UserProvider = ({ children }) => {
     setProjec(res.data)
   }
 
-  const getUserFundingCount = async () => {
-    const res = await getCountUserFundingRequest()
-    setProjectCount(res.data)
-  }
-
   const getUser = async () => {
     const res = await getUserRequest()
     setUsers(res.data)
@@ -148,23 +149,36 @@ export const UserProvider = ({ children }) => {
 
   const getUserById = async (id) => {
     const res = await getUserByIdRequest(id)
-    setUsersById(res.data)
+    return res.data
+  }
+
+  const getFollowedCount = async (id) => {
+    const res = await getCountUserFollowedFundingRequest(id)
+    return res.data
+  }
+
+  const getDonatedCount = async (id) => {
+    const res = await getCountUserDonatedFundingRequest(id)
+    return res.data
+  }
+  
+  const getUserFundingCount = async (id) => {
+    const res = await getCountUserFundingRequest(id)
+    return res.data
   }
 
   const createFunding = async (funding) => {
     const res = await createFundingRequest(funding)
     return res.data;
   }
-
+ 
   const updateFunding = async (funding) => {
-    console.log(funding)
     const res = await putFundingRequest(funding)
     return res.data;
   }
 
   const updatePassword = async (id, password) => {
     const res = await changePassword(id, password)
-    console.log(res)
   }
 
 
@@ -172,6 +186,7 @@ export const UserProvider = ({ children }) => {
   const [postsTop, setPostsTop] = useState([])
   const [postsCat, setPostsCat] = useState([])
   const [postsCatFund, setPostsCatFund] = useState([])
+  const [postsNamFund, setPostsNamFund] = useState([])
   const [postsToAprobe, setPostsAprobe] = useState([])
   const [postsToRecycle, setPostsRecycle] = useState([])
   const [postsComplete, setPostsCompleted] = useState([])
@@ -186,7 +201,6 @@ export const UserProvider = ({ children }) => {
 
   const getUsersToModify = async () => {
     const res = await userListToEditRequest()
-    console.log("Datos to modify", res)
     setPostsUsersToModify(res.data)
   }
 
@@ -204,7 +218,6 @@ export const UserProvider = ({ children }) => {
 
   const getFundsAprobe = async () => {
     const res = await getFundsAprobeRequests()
-    console.log(res, setPosts)
     setPostsAprobe(res.data)
   }
 
@@ -216,7 +229,6 @@ export const UserProvider = ({ children }) => {
 
   const getFundsCompleted = async () => {
     const res = await getFundsCompletedRequests()
-    console.log(res, setPosts)
     setPostsCompleted(res.data)
   }
 
@@ -229,6 +241,17 @@ export const UserProvider = ({ children }) => {
       console.error(error);
     }
   };
+
+  const getPostsFundByNam = async (post) => {
+    try {
+      const res = await getFundByNameRequest(post);
+      setPostsNamFund(res.data);
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
+
 
   const moveFundingToBault = async (id) => {
     const res = await moveRequestToBault(id);
@@ -258,6 +281,11 @@ export const UserProvider = ({ children }) => {
   const getFundingTop3 = async () => {
     const res = await getFundingTop3Request();
     setPostsTop(res.data);
+  }
+
+  const setPasswordForget = async (user) => {
+    const res = await setPasswordForgetRequest(user);
+    return res.data;
   }
 
   const createComment = async (comment) => {
@@ -292,10 +320,6 @@ export const UserProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    getUserById()
-  }, [])
-
-  useEffect(() => {
     getFundsAprobe()
   }, [])
 
@@ -312,23 +336,11 @@ export const UserProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    getFollowedCount()
-  }, [])
-
-  useEffect(() => {
-    getDonatedFunding()
-  }, [])
-
-  useEffect(() => {
-    getDonatedCount()
-  }, [])
+    getemailCoincidences()
+  } , [])
 
   useEffect(() => {
     getUserFunding()
-  }, [])
-
-  useEffect(() => {
-    getUserFundingCount()
   }, [])
 
   useEffect(() => {
@@ -351,6 +363,10 @@ export const UserProvider = ({ children }) => {
     getPostsFundByCat()
   }, [])
 
+   useEffect(() => {
+    getPostsFundByNam()
+  }, [])
+
   return (
     <userContext.Provider value={{
       categorys,
@@ -366,7 +382,10 @@ export const UserProvider = ({ children }) => {
 
       projects,
       projectsCount,
-
+      setPasswordForget,
+      getNumberConfirmation,
+      getDonatedFunding,
+      getemailCoincidences,
       createFunding,
       updateFunding,
       updatePassword,
@@ -383,8 +402,13 @@ export const UserProvider = ({ children }) => {
       postsQr,
       getQr,
 
+      getUserById,
+
       postsCatFund,
       getPostsFundByCat,
+
+      postsNamFund,
+      getPostsFundByNam,
 
       postsToAprobe,
       getFundsAprobe,
@@ -414,7 +438,8 @@ export const UserProvider = ({ children }) => {
       createComment,
       getComments,
       deleteCommentById,
-      userDonateFunding
+      userDonateFunding,
+      getFollowedCount, getDonatedCount, getUserFundingCount
     }}>
       {children}
     </userContext.Provider>

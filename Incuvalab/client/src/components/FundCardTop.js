@@ -18,7 +18,7 @@ export function FundCardTop() {
                                     <Card.Header className='text-wrap'>
                                         {post.Title}
                                     </Card.Header>
-                                    <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg" />
+                                    <Card.Img variant="top" src={post.FundingImage1} />
                                     <Card.Body>
                                         {post.CurrentGoal >= post.Goal ? <ProgressBar className="m-2" now={(post.CurrentGoal / post.Goal) * 100} variant="success" label={post.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2" now={(post.CurrentGoal / post.Goal) * 100} variant="dark" label={post.CurrentGoal + "Bs."} />}
                                         <Card.Text className="p-2">

@@ -75,7 +75,7 @@ export function FundingPage() {
     return (
         <div className="base-container">
             <NavbarLogin locale={true} />
-            <div className="container  my-5 ">
+            <div className="container-sm  my-5 ">
                 <h4 className="text-center">{post.Title}</h4>
                 <p className="text-center">{post.FastDescrption}</p>
 
@@ -137,9 +137,8 @@ export function FundingPage() {
                                 </div>
                                 <div className="row my-2" >
                                     <button href="#" className="col me-2 button btn-general">Seguir</button>
-                                    <button href="#" className="col ms-2 button btn-general">Patrocinar</button>
-                                </div>                          
-                                
+                                    <button href="#" className="col ms-2 button btn-general">Compartir</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -153,7 +152,6 @@ export function FundingPage() {
                         nombreDonacion="Donador incial"
                         monto="Libre"
                         descripcion="Apóyalo porque crees en él. Apoya el proyecto sin recompensa, simplemente porque te resulta interesante." />
-
                     <OfertFunding
                         nombreDonacion="Donador estrella"
                         monto="250 Bs."
@@ -172,17 +170,21 @@ export function FundingPage() {
                     <div className="col-sm-8 pe-4">
                         <h5>Historia del proyecto</h5>
                         <p>{post.Description}</p>
-                        <img src={f1} className="img-fluid m-4"></img>
+                        <img src={post.FundingImage1} className="img-fluid m-4"></img>
                         <p>{post.Question1}</p>
-                        <img src={f2} className="img-fluid m-4"></img>
+                        <img src={post.FundingImage2} className="img-fluid m-4"></img>
                         <p>{post.Question2}</p>
-                        <img src={f3} className="img-fluid m-4"></img>
+                        <img src={post.FundingImage3} className="img-fluid m-4"></img>
                         <p>{post.Question3}</p>
                     </div>
 
                     <div className="col-sm">
                         <h5>Comentarios</h5>
-                        <CommentFrom idFunding={post.IdFunding} idUser={dataUser[0].IdUser} />
+                        {
+                            sessionStorage.getItem('user')!= null?
+                            <CommentFrom idFunding={post.IdFunding} idUser={dataUser[0].IdUser} />:
+                            <CommentFrom idFunding={post.IdFunding} />
+                        }
                         <hr />
                         <Comment idFunding={post.IdFunding} />
                     </div>

@@ -7,13 +7,13 @@ import ButonLogout from './logout';
 import '../css/navbar.css'
 
 export default function NavbarLogin(props) {
-    const dataUser = JSON.parse(localStorage.getItem('user'));
+    const dataUser = JSON.parse(sessionStorage.getItem('user'));
 
     return (
         <div>
             <Navbar bg="light" expand="lg" className="px-4 py-3">
                 <Container fluid>
-                    <Navbar.Brand href="#" className="nav-page-title">
+                    <Navbar.Brand href="/" className="nav-page-title">
                         <img
                             alt=""
                             src={logo}
@@ -28,7 +28,7 @@ export default function NavbarLogin(props) {
                         <Nav className="me-auto my-2 my-lg-0"
                             style={{ maxHeight: '100px' }}
                             navbarScroll>
-                            {localStorage.getItem('role') != null && localStorage.getItem('role') == 'Administrador' ?
+                            {sessionStorage.getItem('role') != null && sessionStorage.getItem('role') == 'Administrador' ?
                             <Nav.Link href="/control-page">Dashboard</Nav.Link> : <Nav.Link href="/">Inicio</Nav.Link>}
                             
                             <Nav.Link href="/catalogue">Catalogo de proyectos</Nav.Link>
@@ -36,14 +36,14 @@ export default function NavbarLogin(props) {
                         </Nav>
 
                         <div className="d-flex">
-                            {localStorage.getItem('user') != null ?
+                            {sessionStorage.getItem('user') != null ?
                                 <div class="dropdown">
                                     <div class="flex" data-toggle="dropdown" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
                                         <img src={avatar} class="profile-image img-circle" height="40" width="40" />
                                         <b class="caret mx-4 mt-2"> {dataUser[0].UserName}</b>
                                     </div>
                                     <div class="dropdown-menu dropdown-left mt-2" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="/UserProfile">Mis registros</a>
+                                        <a class="dropdown-item" href="/user-funding-list">Mis registros</a>
                                         <a class="dropdown-item" href="/Settings">Mi Perfil</a>
                                         <ButonLogout />
                                     </div>

@@ -15,8 +15,8 @@ export function QrCardImage() {
                            <Card> 
                            <Card.Header>
                                    Este es el ID: {post.IdQr}
-                                   </Card.Header>
-                           <Card.Img variant="top" src={post.QrUrl} />                                                                                                
+                              </Card.Header>
+                             <Card.Img variant="top" src={post.QrUrl}/>                                                                                                
                            </Card>
                    </Col>
                ))}

@@ -15,7 +15,7 @@ export function QrCardPayment() {
                         <ButtonGroup  className="flex dgrid gap-2 m-2" aria-label="Options">                                 
                                     <Button variant="general" >
                                     <Link  class="btn" to={"/qrimage/" + post.IdQr}>
-                                        <strong >Donar {post.mount}Bs.</strong>      
+                                        <strong>Donar {post.mount}Bs.</strong>      
                                     </Link>                              
                                     </Button>                                     
                         </ButtonGroup>                                  

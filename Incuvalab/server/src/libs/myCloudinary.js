@@ -25,3 +25,9 @@ export const uploadDocumentDonation = async filePath =>{
         folder: "Incuvalab/DocumentDonation"
     })
 }
+
+export const uploadImageProyect = async filePath =>{
+    return await cloudinary.uploader.upload(filePath,{
+        folder: "Incuvalab/Proyect"
+    })
+}

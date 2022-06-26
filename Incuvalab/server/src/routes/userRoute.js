@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { updateUserById, createUser, getUserById, deleteUserById, getLoginUser, getTypeUserById, getUserEditList, getUserDonateFunding} from '../controllers/userController';
+import { updateUserById, createUser, getUserById, deleteUserById, getLoginUser, getTypeUserById, getUserEditList, getUserDonateFunding, getEmailVerification, restoreForgetPassword, setPasswordForget} from '../controllers/userController';
 
 const router = Router();
 // Insert User
@@ -19,4 +19,9 @@ router.get('/userlist', getUserEditList);
 
 router.get('/userDonate/:id', getUserDonateFunding);
 
+router.post('/email', getEmailVerification)
+
+router.post('/restoreForgetPassword', restoreForgetPassword)
+
+router.put('/setPassword', setPasswordForget)
 export default router;

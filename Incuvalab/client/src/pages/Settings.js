@@ -6,77 +6,143 @@ import { Col, Row, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import avatar from '../components/images/profile.webp'
 import Footer from "../components/footer"
+import Accordion from 'react-bootstrap/Accordion'
+import { useState, useEffect } from 'react'
+import { Register } from './register'
 
 export function Settings() {
+    const dataUser = JSON.parse(sessionStorage.getItem('user'));
 
-    const { usersById, updatePassword } = useUsers();
+    const { getUserById ,  getFollowedCount, getDonatedCount, getUserFundingCount} = useUsers()
+    const [post, setPost] = useState({
+    });
+    const [postCount, setPostCount] = useState({
+        countFollowedFunding:"", 
+        countDonationsFunding:"",
+        countCreateFunding:""
+    });
+    useEffect(() => {
+        (async () => {
+            if (dataUser[0].IdUser!=undefined) {
+                const post = await getUserById(dataUser[0].IdUser);
+                setPost(post[0]);
+            }
+        })();
+    }, [dataUser[0].IdUser, getUserById]);
+
+    useEffect(() => {
+        (async () => {
+            if (dataUser[0].IdUser!=undefined) {
+                const postCount = await getFollowedCount(dataUser[0].IdUser);
+                const postCount2 = await getDonatedCount(dataUser[0].IdUser);
+                const postCount3 = await getUserFundingCount(dataUser[0].IdUser);
+                setPostCount({
+                    countFollowedFunding:postCount[0].countFollowedFunding, 
+                    countDonationsFunding:postCount2[0].countDonationsFunding,
+                    countCreateFunding:postCount3[0].countCreateFunding
+                })
+            }
+        })();
+    }, [dataUser[0].IdUser, getFollowedCount, getDonatedCount, getUserFundingCount]);
 
     return (
-        <div className="App">
+        <div>
             <NavbarLogin locale={true} />
-            <br />
-            <h2 className="font-semibold position-relative pl-5 pb-3">Perfil de Usuario</h2>
-            <div className="container position-relative p-4" id="container">
-                <Row>
-                    <Col>
-                        <div className="flex dgrid gap-2 p-2 pb-5">
-                            {usersById.map(userById => (
-                                <>
-                                <h3>{userById.Name}</h3>
+            <div class="container">
+                <div class="row profile">
+                    <div class="col-md-3">
+                        <div class="profile-sidebar text-center">
+                            <div className='mb-3'>
+                                <h5>Mi perfil</h5>
+                            </div>
+                            <div class="profile-userpic">
+                                <img src={avatar} class="img-responsive" alt="" />
+                            </div>
+                            <div class="profile-usertitle">
+                                <div class="profile-usertitle-name">
+                                    {post.Name + post.LastName}
+                                </div>
+                                <div class="profile-usertitle-job">
+                                    {"@" + post.UserName}
+                                </div>
+                            </div>
+                            <div class="profile-usermenu">
+                                <ul class="nav">
+                                    <li>
+                                        <a href="/Settings/ModifiedProfile">
+                                            <i class="glyphicon glyphicon-user"></i>
+                                            Confguraciones de la cuenta  </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyphicon glyphicon-flag"></i>
+                                            Ayuda </a>
+                                    </li>
+                                </ul>
+                            </div>
 
-                                <h3>{userById.LastName}</h3>
-                                </>
-                            ))}
-                        </div>
-                        <div class="newPassword">
-                        <Formik
-                            initialValues={{
-                                NewPassword: '',
-                            }}
-                            onSubmit={(values, actions) => {
-                                updatePassword(3, values)
-                                console.log(values)
-                            }}
-                        >
-
-                            {({ handleSubmit }) => (
-                                <Form onSubmit={handleSubmit}>
-                                    <h5>Cambiar de contraseña:</h5>
-                                    <div className="flex dgrid gap-2 p-2 pb-5">
-                                    <Field id="newPassword_input" type="password" name="NewPassword" placeholder="Ingrese una nueva Contraseña" required />
-                                    <button id="newPasswordButton_button" name="newPasswordButton" type='submit'>Cambiar Contraseña</button>
+                            <div class="portlet light bordered">
+                                <div class="row list-separated profile-stat">
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
+                                        <div class="uppercase profile-stat-title"> {postCount.countCreateFunding} </div>
+                                        <div class="uppercase profile-stat-text">Campañas</div>
                                     </div>
-                                </Form>
-                            )}
-                        </Formik>
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
+                                        <div class="uppercase profile-stat-title"> {postCount.countFollowedFunding} </div>
+                                        <div class="uppercase profile-stat-text">Seguidas </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-6">
+                                        <div class="uppercase profile-stat-title"> {postCount.countDonationsFunding} </div>
+                                        <div class="uppercase profile-stat-text">Donadas </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="profile-desc-title">Información</h4>
+                                    <span class="profile-desc-text">Email</span>
+                                    <br/>
+                                    <span class="profile-desc-text">{post.Email}</span>
+                                    <br/>
+                                    <span class="profile-desc-text">Número de telefono</span>
+                                    <br/>
+                                    <span class="profile-desc-text">{post.PhoneNumber}</span>
+                                    <br/>
+                                    <span class="profile-desc-text">Participa desde</span>
+                                    <br/>
+                                    <span class="profile-desc-text">{post.RegisterDate}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div id="padding-helper">
-                    <Button id="requestbrand_button"><strong>Convertir esta cuenta en cuenta empresarial</strong></Button>
-                    </div>
-                    <div class="underline"></div>
-                    <div className="d-flex justify-content-center p-3" >
-                        <input type="submit" value="Guardar" id="save_button" />
-                    </div>
+                    <div class="col-md-9">
+                        <div class="profile-content">
 
-                     <div class="underline"></div>
-                    </Col> 
-                    <Col>
-                        <h3 className="pb-3 pt-3">Foto de perfil actual:</h3>
-                        <div className="container-sm bg-light d-flex justify-content-center" id="container2">
-                            <img src={avatar} alt="userImage" height="400" width="400" className="p-5 "/>  
+                            <h3 className='my-3'>Mi panel de control</h3>
+                            <Accordion>
+                                <Accordion.Item eventKey="0">
+                                    <Accordion.Header>Campañas a las Que Sigues</Accordion.Header>
+                                    <Accordion.Body>
+                                        Insertar componente aqui
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                                <Accordion.Item eventKey="1">
+                                    <Accordion.Header>Campañas a las Que Donaste</Accordion.Header>
+                                    <Accordion.Body>
+                                        Insertar componente aqui
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                                <Accordion.Item eventKey="2">
+                                    <Accordion.Header>Mis Campañas</Accordion.Header>
+                                    <Accordion.Body>
+                                        Proximamente...
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
                         </div>
-                        <div className="d-flex justify-content-center" >
-                        <div className="file-select pt-3" id="src-file1" >
-                            <input type="file" name="src-file1" aria-label="Archivo" accept="image/png, image/jpeg" />
-                        </div>  
-                        </div>
-                       
-                    </Col>
-                </Row>
+                    </div>
+                </div>
             </div>
-            <br />
             <Footer></Footer>
-        </div>      
+        </div>
     );
 }
 

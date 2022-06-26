@@ -6,7 +6,7 @@ class ButtonLogout extends Component {
       this.handleClick = this.handleClick.bind(this);
     }
     handleClick() {
-      localStorage.clear();
+      sessionStorage.clear();
       window.location.replace('/');
     }
     render() {

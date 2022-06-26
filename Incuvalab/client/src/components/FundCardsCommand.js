@@ -23,10 +23,10 @@ export function FundCardsCommand() {
                             
                                 <Card.Header>
                                     <a class="btn" href={"/control-funding/" + post.IdFunding}>
-                                    <strong>{post.Title}</strong>
+                                    <strong className='text-wrap'>{post.Title}</strong>
                                     </a>
                                 </Card.Header>
-                                <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg" />
+                                <Card.Img variant="top" src={post.FundingImage1} />
                             
                                 <Card.Body>
                                     <div className="flex justify-center ">
@@ -39,7 +39,7 @@ export function FundCardsCommand() {
                                                     <h6 className="text-muted text-center">Meta: {post.Goal}Bs.</h6>
                                                 </Row>
                                                 <Row className="flex p-3">
-                                                    <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
+                                                    <ButtonGroup className="flex grid gap-2 m-2" aria-label="Options">
                                                         <Link to={'/createFunding/'+post.IdFunding} className='btn btn-warning' size="sm">Editar</Link>
                                                         <Button variant="danger" size="sm" onClick={() => { moveFundingToBault(post.IdFunding); refreshPage(); }}>Eliminar</Button>
                                                     </ButtonGroup>

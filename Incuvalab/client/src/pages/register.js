@@ -3,22 +3,22 @@ import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
 import { useUsers } from "../context/userContext"
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import './../css/login.css'
 
 export function Register() {
 
-    const { registerUser } = useUsers();
-
+    const { registerUser, getemailCoincidences } = useUsers();
+    let errorLogin = false;
     const navigate = useNavigate();
 
     function getUsername(firstName, lastName) {
         let username = firstName + lastName;
-        let userRows  = new RegExp('^{$username}(-[0-3]*)?$');
-        let countUser = Math.random()*(0-100)-100;
+        let userRows = new RegExp('^{$username}(-[0-3]*)?$');
+        let countUser = Math.random() * (0 - 100) - 100;
 
-        return (countUser > 1) ? userRows+'-'+countUser : username;
+        return (countUser > 1) ? userRows + '-' + countUser : username;
     }
 
     return (
@@ -27,9 +27,9 @@ export function Register() {
             <NavbarLogin locale={false} />
 
             <div className="container-sm my-5 card shadow-lg bg-body rounded">
-                <div className="row ">
-                    <div className="col-4 position-relative gradient">
-                        <div className="position-absolute top-50 start-50 translate-middle text-light text-center">
+                <div className="row">
+                    <div className="col gradient position-relative p-5">
+                        <div className="top-50 start-50 mt-5 pt-5 text-light text-center">
                             <h1>¡Bienvenido!</h1>
                             <h3 className="">Estamos a tu disposición para ayudarte.</h3>
                             <h6 className="my-4">¿Ya tienes una cuenta?</h6>
@@ -53,7 +53,7 @@ export function Register() {
                                     password: '',
                                     confirmPassword: '',
                                     cbxCkeckPrivacyPolicy: '',
-                                    username:''
+                                    username: ''
                                 }}
                                 validationSchema={Yup.object({
                                     name: Yup.string().required('* Nombre es un campo requerido'),
@@ -61,22 +61,39 @@ export function Register() {
                                     email: Yup.string().required('* Email es un campo requerido').email('* Email invalido'),
                                     password: Yup.string().required('* Contraseña es un campo requerido').min(8, '* Contraseña demasiado corta - Ingrese por lo menos 8 caracteres.'),
                                     confirmPassword: Yup.string().required('* Confimación de la contraseña es un campo requerido').oneOf([Yup.ref('password'), null], '* Las contraseñas no coinciden'),
-                                    cbxCkeckPrivacyPolicy: Yup.boolean().required('* Debes aceptar los terminos y condiciones').oneOf([true],'* Debes aceptar los terminos y condiciones')
+                                    cbxCkeckPrivacyPolicy: Yup.boolean().required('* Debes aceptar los terminos y condiciones').oneOf([true], '* Debes aceptar los terminos y condiciones')
                                 })}
                                 onSubmit={async (values, actions) => {
                                     values.username = getUsername(values.name, values.lastName);
-                                    const posts = await registerUser(values);
-                                    if (posts.length > 0) {
-                                        localStorage.setItem('user',JSON.stringify(posts));
-                                        navigate('/')
+                                    const postsEmail = await getemailCoincidences(values);
+
+                                    if (postsEmail[0].email == 0) {
+                                        const posts = await registerUser(values);
+
+                                        if (posts.length > 0) {
+                                            sessionStorage.setItem('user', JSON.stringify(posts));
+                                            navigate('/')
+                                        } else {
+
+                                        }
                                     } else {
-                                        //errorLogin = true;
+                                        errorLogin = true;
                                     }
                                 }}
                             >
                                 {({ handleSubmit }) => (
                                     <Form onSubmit={handleSubmit}>
                                         <div className="row">
+                                            {
+                                                errorLogin == true ?
+                                                    <div>
+                                                        <section className="col text-danger">
+                                                            <p>* Email ya registrado</p>
+                                                        </section>
+                                                    </div>
+                                                    :
+                                                    <div></div>
+                                            }
                                             <div className="row">
                                                 <ErrorMessage component="p" name="name" className="col text-danger" />
                                                 <ErrorMessage component="p" name="lastName" className="col text-danger" />
@@ -121,12 +138,12 @@ export function Register() {
                                             <ErrorMessage component="p" name="cbxCkeckPrivacyPolicy" className="col text-danger" />
                                             <Field name="cbxCkeckPrivacyPolicy" className="form-check-input" type="checkbox" id="gridCheck" />
                                             <label className="form-check-label" htmlFor="gridCheck">
-                                                Acepto la <a className="link-primary">Política de privacidad</a> , <a className="link-primary">Política de cookies y los Términos de uso</a>.
+                                                Acepto la <Link to={'/'} className="link-secondary text-center">Política de privacidad</Link> , <Link to={'/'} className="link-secondary text-center">Política de cookies y los Términos de uso</Link>.
                                             </label>
                                         </div>
 
                                         <div className="text-center">
-                                            <div className="footer mt-4 card text-center">
+                                            <div className="mt-4 text-center">
                                                 <button type="submit" className="button btn-outline-login">
                                                     Crear cuenta
                                                 </button>
