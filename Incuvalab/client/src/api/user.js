@@ -36,6 +36,19 @@ export const createFundingRequest = async (funding) => {
 
 export const changePassword = async (id, NewPassword) => await axios.put(`/users/change/${id}`,  NewPassword);
 
-export const putFundingRequest = async (funding) => await axios.put('/updateFunding',  funding);
+export const putFundingRequest = async (funding) => 
+{
+    const form = new FormData()
+
+    for (let key in funding) {
+       form.append(key, funding[key])
+    }
+
+    return await axios.put('/updateFunding',  form,{
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    });
+}
 
 //export const createProjectRequest = async (project) => await axios.post('api/Funding')

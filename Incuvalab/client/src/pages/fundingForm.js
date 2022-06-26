@@ -97,6 +97,7 @@ export function FundingForm(props) {
 
                     onSubmit={async (values, actions) => {
                         if (post.idFunding != "") {
+                            console.log(values);
                             const posts = await updateFunding(values);
                             if (posts != null) {
                                 window.location.replace('/control-page-aprove')
