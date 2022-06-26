@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
 import { Qrpage } from './pages/Qrpage';
+import { QrCrPage } from './pages/QrCrPage';
+import { QrImage } from './pages/QrImage';
 
 
 //Proteger UserProfile y Settings para cada usuario individualmente
@@ -72,10 +74,9 @@ function App() {
                     <Route path="/createFunding/:id" element={<FundingForm />} />
                 </Route>
 
-                <Route exact path='/control-page-qradmin' element={<PrivateRouteAdmin />}>
-                    <Route path="/control-page-qradmin" element={<ControlQrView />} />
-                </Route>
-
+                <Route path="/control-page-qradmin" element={<ControlQrView />} />
+                <Route path="/qrcreate" element={<QrCrPage />} />
+                <Route path="/qrimage/:id" element={<QrImage/>} />
 
             </Routes>
         </UserProvider>

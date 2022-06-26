@@ -23,3 +23,5 @@ export {ControlUsers} from './Control/ControlUsers';
 
 export {FundingForm} from './fundingForm';
 export {ControlQrView} from  './Control/ControlQrView';
+export {QrCrPage} from  './QrCrPage';
+export {QrImage} from  './QrImage';
