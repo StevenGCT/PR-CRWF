@@ -1,16 +1,15 @@
-import { useUsers } from '../context/userContext'
+import { useUsers } from '../../context/userContext'
 import { Formik, Form, Field } from 'formik'
-import './../css/setting.css'
-import NavbarLogin from "../components/header-navbar"
+import './../../css/setting.css'
+import NavbarLogin from "../../components/header-navbar"
 import { Col, Row, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import avatar from '../components/images/profile.webp'
-import Footer from "../components/footer"
+import avatar from '../../components/images/profile.webp'
+import Footer from "../../components/footer"
 import Accordion from 'react-bootstrap/Accordion'
 import { useState, useEffect } from 'react'
-import { Register } from './register'
 
-export function Settings() {
+export function FormModfiedUser() {
     const dataUser = JSON.parse(sessionStorage.getItem('user'));
 
     const { getUserById ,  getFollowedCount, getDonatedCount, getUserFundingCount} = useUsers()
@@ -68,10 +67,10 @@ export function Settings() {
                             </div>
                             <div class="profile-usermenu">
                                 <ul class="nav">
-                                    <li>
-                                        <a href="/Settings/ModifiedProfile">
-                                            <i class="glyphicon glyphicon-user"></i>
-                                            Confguraciones de la cuenta  </a>
+                                    <li class="active">
+                                        <a href="/Settings">
+                                            <i class="glyphicon glyphicon-home"></i>
+                                            Mi perfil </a>
                                     </li>
                                     <li>
                                         <a href="#">
@@ -116,27 +115,8 @@ export function Settings() {
                     <div class="col-md-9">
                         <div class="profile-content">
 
-                            <h3 className='my-3'>Mi panel de control</h3>
-                            <Accordion>
-                                <Accordion.Item eventKey="0">
-                                    <Accordion.Header>Campañas a las Que Sigues</Accordion.Header>
-                                    <Accordion.Body>
-                                        Insertar componente aqui
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                                <Accordion.Item eventKey="1">
-                                    <Accordion.Header>Campañas a las Que Donaste</Accordion.Header>
-                                    <Accordion.Body>
-                                        Insertar componente aqui
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                                <Accordion.Item eventKey="2">
-                                    <Accordion.Header>Mis Campañas</Accordion.Header>
-                                    <Accordion.Body>
-                                        Proximamente...
-                                    </Accordion.Body>
-                                </Accordion.Item>
-                            </Accordion>
+                            <h3 className='my-3'>Configure</h3>
+                            
                         </div>
                     </div>
                 </div>
@@ -145,5 +125,3 @@ export function Settings() {
         </div>
     );
 }
-
-

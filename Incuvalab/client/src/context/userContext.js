@@ -122,19 +122,9 @@ export const UserProvider = ({ children }) => {
     setFollowed(res.data)
   }
 
-  const getFollowedCount = async () => {
-    const res = await getCountUserFollowedFundingRequest()
-    setFollowedCount(res.data)
-  }
-
   const getDonatedFunding = async () => {
     const res = await getUserDonatedFundingRequest()
     return res.data
-  }
-
-  const getDonatedCount = async () => {
-    const res = await getCountUserDonatedFundingRequest()
-    setDonatedCount(res.data)
   }
 
   const getUserFunding = async () => {
@@ -147,11 +137,6 @@ export const UserProvider = ({ children }) => {
     setProjec(res.data)
   }
 
-  const getUserFundingCount = async () => {
-    const res = await getCountUserFundingRequest()
-    setProjectCount(res.data)
-  }
-
   const getUser = async () => {
     const res = await getUserRequest()
     setUsers(res.data)
@@ -159,14 +144,29 @@ export const UserProvider = ({ children }) => {
 
   const getUserById = async (id) => {
     const res = await getUserByIdRequest(id)
-    setUsersById(res.data)
+    return res.data
+  }
+
+  const getFollowedCount = async (id) => {
+    const res = await getCountUserFollowedFundingRequest(id)
+    return res.data
+  }
+
+  const getDonatedCount = async (id) => {
+    const res = await getCountUserDonatedFundingRequest(id)
+    return res.data
+  }
+  
+  const getUserFundingCount = async (id) => {
+    const res = await getCountUserFundingRequest(id)
+    return res.data
   }
 
   const createFunding = async (funding) => {
     const res = await createFundingRequest(funding)
     return res.data;
   }
-
+ 
   const updateFunding = async (funding) => {
     const res = await putFundingRequest(funding)
     return res.data;
@@ -303,10 +303,6 @@ export const UserProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    getUserById()
-  }, [])
-
-  useEffect(() => {
     getFundsAprobe()
   }, [])
 
@@ -323,23 +319,11 @@ export const UserProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    getFollowedCount()
-  }, [])
-
-  useEffect(() => {
-    getDonatedCount()
-  }, [])
-
-  useEffect(() => {
     getemailCoincidences()
   } , [])
 
   useEffect(() => {
     getUserFunding()
-  }, [])
-
-  useEffect(() => {
-    getUserFundingCount()
   }, [])
 
   useEffect(() => {
@@ -397,6 +381,8 @@ export const UserProvider = ({ children }) => {
       postsQr,
       getQr,
 
+      getUserById,
+
       postsCatFund,
       getPostsFundByCat,
 
@@ -428,7 +414,8 @@ export const UserProvider = ({ children }) => {
       createComment,
       getComments,
       deleteCommentById,
-      userDonateFunding
+      userDonateFunding,
+      getFollowedCount, getDonatedCount, getUserFundingCount
     }}>
       {children}
     </userContext.Provider>

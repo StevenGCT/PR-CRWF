@@ -6,6 +6,7 @@ import { Qrpage } from './pages/Qrpage';
 import { EmailVerification } from './pages/User/emailVerification';
 import { CodeVerication } from './pages/User/numberConfirmation';
 import { FormChangePassword } from './pages/User/formChangePassword';
+import { FormModfiedUser } from './pages/User/formModificationUser';
 
 //Proteger UserProfile y Settings para cada usuario individualmente
 
@@ -78,10 +79,12 @@ function App() {
                 <Route path="/formCodeConfirmation" element={<CodeVerication />} />
 
                 <Route path="/changePassword" element={<FormChangePassword />} />
-                
+
                 <Route exact path='/control-page-qradmin' element={<PrivateRouteAdmin />}>
                     <Route path="/control-page-qradmin" element={<ControlQrView />} />
                 </Route>
+
+                <Route path="/Settings/ModifiedProfile" element={<FormModfiedUser/>} />
 
             </Routes>
         </UserProvider>

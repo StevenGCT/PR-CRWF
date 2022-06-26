@@ -5,15 +5,19 @@ export const getUserRequest = async () => await axios.get('/users');
 
 export const getUserByIdRequest = async (id) => await axios.get('/users/' + id);
 
-export const getCountUserFundingRequest = async () => await axios.get('/users/countFunding/3');
 
-export const getUserFundingRequest = async () => await axios.get('/users/TitleFunding/3');
 
-export const getCountUserDonatedFundingRequest = async () => await axios.get('/users/countDonated/3');
+export const getCountUserFundingRequest = async (id) => await axios.get('/users/countFunding/'+id);
+
+export const getCountUserDonatedFundingRequest = async (id) => await axios.get('/users/countDonated/'+id);
+
+export const getCountUserFollowedFundingRequest = async (id) => await axios.get('/users/countFollowed/'+id);
+
+
+
+export const getUserFundingRequest = async (id) => await axios.get('/users/TitleFunding/3');
 
 export const getUserDonatedFundingRequest = async () => await axios.get('/users/TitleFundingDonated/3');
-
-export const getCountUserFollowedFundingRequest = async () => await axios.get('/users/countFollowed/3');
 
 export const getUserFollowedFundingRequest = async () => await axios.get('/users/Followed/3');
 

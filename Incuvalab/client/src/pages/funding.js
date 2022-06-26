@@ -118,7 +118,7 @@ export function FundingPage() {
                                 </div>
                                 <div className="row my-2" >
                                     <button href="#" className="col me-2 button btn-general">Seguir</button>
-                                    <button href="#" className="col ms-2 button btn-general">Patrocinar</button>
+                                    <button href="#" className="col ms-2 button btn-general">Compartir</button>
                                 </div>
                             </div>
                         </div>
