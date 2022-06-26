@@ -90,17 +90,21 @@ export const deleteUserById = async(req, res) => {
 export const updateUserById = async(req, res) => {
     try {
         const pool = await getConnection();
-        const { User } = req.body;
         const { id } = req.params;
-        if (User == null || id == null) {
+        if (req.body == null || id == null) {
             res.status(400).json(msg, "Bad Request undefined Category Or id");
         } else {
             const result = await pool.request()
-                .input('user', sql.VarChar, User)
+                .input("name", sql.VarChar, req.body.name)
+                .input("lastname", sql.VarChar, req.body.lastname)
+                .input("secondlastname", sql.VarChar,req.body.secondlastname)
+                .input("username", sql.VarChar, req.body.username)
+                .input("phonenumber", sql.VarChar, req.body.phonenumber)
+                .input("address",sql.VarChar, req.body.address)
                 .input('id', sql.Int, id)
                 .query(queries.updateUserById);
             res.status(200);
-            res.json(result);
+            res.json(result.rowsAffected);
         }
     } catch (error) {
         res.status(500);

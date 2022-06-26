@@ -16,7 +16,9 @@ export const queries = {
     
     getTitleFundingByUserId: "SELECT UE.idUser, F.Title FROM Funding F INNER JOIN User_Funding UE ON F.IdFunding = UE.idFunding WHERE UE.idUser = @id",
     getTitleOfFundingDonateByUserId: "SELECT U.IdUser, F.Title FROM Donations D INNER JOIN Users U ON D.IdUser = U.IdUser INNER JOIN Funding F ON D.IdFunding = f.IdFunding WHERE U.idUser = @id",
-    changePassword: "Update Users SET Password = HASHBYTES('MD5', @newPassword) WHERE IdUser = @id",
+    
+    changePassword: " UPDATE Users  SET Password = HASHBYTES('MD5', @newPassword)  ,Email = @email WHERE IdUser = @id",
+
     changeImageProfile: "UPDATE UI SET UI.UserImage = @newImageProfile FROM UserImage UI INNER JOIN Users U ON UI.IdImage = U.idUsersImage WHERE U.IdUser = @id",
     getTitleFollowedFundingByUserId: "SELECT U.IdUser, F.Title FROM Followed_Funding FD INNER JOIN Users U ON FD.IdUser = U.IdUser INNER JOIN Funding F ON FD.IdFunding = f.IdFunding WHERE U.idUser = @id",
 
@@ -33,7 +35,7 @@ export const queries = {
 
     getLoginUser: "SELECT IdUser, UserName FROM Users WHERE Email = @email AND [Password]= HashBytes('MD5',@password)",
     deleteUserById: "DELETE FROM Users WHERE IdUser = @id",
-    updateUserById: "UPDATE Users SET Name = @name, Email = @userEmail, PhoneNumber = @userPhoneNumber, LastName = @userLastname, SecondLastName = @userSecondName, UserName = @username, Address = @addressName WHERE IdUser = @id",
+    updateUserById: "UPDATE Users SET [Name] = @name ,[PhoneNumber] = @phonenumber ,[LastName] = @lastname ,[SecondLastName] = @secondlastname ,[UserName] = @username ,[Address] = @address WHERE IdUser = @id",
     getUserCommandlist: "SELECT U.IdUser, U.Name , U.Email , U.PhoneNumber , UT.TypeUserName , U.LastName , U.SecondLastName , U.RegisterDate , U.LastUpdate , U.UserName , U.Address FROM Users U INNER JOIN UserType UT ON U.IdUserType = UT.IdUserType WHERE U.IdUserType = 1",
 
     //Comments

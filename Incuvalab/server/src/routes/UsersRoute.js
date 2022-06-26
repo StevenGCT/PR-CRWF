@@ -21,6 +21,6 @@ router.get('/users/TitleFundingDonated/:id', getTitleOfFundingDonateByUserId);
 // Get Title Followed Fonding 
 router.get('/users/Followed/:id', getTitleOfFollowedFundingByUserId);
 // Put Password  
-router.put('/users/change/:id', updatePasswordByUserId);
+router.put('/users/changePassword/:id', updatePasswordByUserId);
 
 export default router;

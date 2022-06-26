@@ -5,8 +5,6 @@ export const getUserRequest = async () => await axios.get('/users');
 
 export const getUserByIdRequest = async (id) => await axios.get('/users/' + id);
 
-
-
 export const getCountUserFundingRequest = async (id) => await axios.get('/users/countFunding/'+id);
 
 export const getCountUserDonatedFundingRequest = async (id) => await axios.get('/users/countDonated/'+id);
