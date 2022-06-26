@@ -15,6 +15,8 @@ import { Label } from 'react-bootstrap'
 export function FormModfiedAccount() {
     const dataUser = JSON.parse(sessionStorage.getItem('user'));
     const navigate = useNavigate();
+    var errorAuth = false;
+
     const { getUserById, getFollowedCount, getDonatedCount, getUserFundingCount, setUpdateAccountInfo, loginUser } = useUsers()
     const [post, setPost] = useState({
     });
@@ -139,11 +141,13 @@ export function FormModfiedAccount() {
                                 })}
                                 onSubmit={async (values, actions) => {
                                     const authUser = await loginUser(values)
-                                    if (authUser!= null) {
+                                    if (authUser.length > 0) {
                                         const resUpdate = await setUpdateAccountInfo(dataUser[0].IdUser, values)
                                         if(resUpdate > 0){
                                             navigate('/Settings')
                                         }
+                                    }else{
+                                        errorAuth = true
                                     }
                                 }}
                                 enableReinitialize={true}
@@ -151,6 +155,10 @@ export function FormModfiedAccount() {
                                 {({ handleSubmit }) => (
                                     <Form onSubmit={handleSubmit}>
                                         <div className='px-5 py-2'>
+                                            <div>
+                                               {errorAuth == true ?  <span className="col text-danger">* Autentificación incorrecta</span>:<span></span>} 
+                                            </div>
+
                                             <div className="row">
                                                 <div className=" col form-group mb-3">
                                                     <label>Correo electronico</label>
