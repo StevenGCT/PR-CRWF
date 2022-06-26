@@ -9,13 +9,13 @@ import Accordion from 'react-bootstrap/Accordion'
 import { useState, useEffect } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Label } from 'react-bootstrap'
 
 export function FormModfiedUser() {
     const dataUser = JSON.parse(sessionStorage.getItem('user'));
-
-    const { getUserById, getFollowedCount, getDonatedCount, getUserFundingCount } = useUsers()
+    const navigate = useNavigate();
+    const { getUserById, getFollowedCount, getDonatedCount, getUserFundingCount, setUpdateUser } = useUsers()
     const [post, setPost] = useState({
     });
     const [postCount, setPostCount] = useState({
@@ -128,9 +128,9 @@ export function FormModfiedUser() {
                                 initialValues={{
                                     name: post.Name,
                                     lastname: post.LastName,
-                                    secondLastname: post.SecondLastName,
+                                    secondlastname: post.SecondLastName,
                                     username: post.UserName,
-                                    phoneNumber: post.PhoneNumber,
+                                    phonenumber: post.PhoneNumber,
                                     address: post.Address
                                 }}
                                 validationSchema={Yup.object({
@@ -139,6 +139,13 @@ export function FormModfiedUser() {
                                     username: Yup.string().required('* Nombre de usuario es un campo requerido'),
                                 })}
                                 onSubmit={async (values, actions) => {
+                                    const resulUpdate = await setUpdateUser(dataUser[0].IdUser, values);
+
+                                    if (resulUpdate.length > 0) {
+                                        navigate('/Settings')
+                                    } else {
+
+                                    }
                                 }}
 
                                 enableReinitialize={true}
@@ -163,8 +170,8 @@ export function FormModfiedUser() {
                                                 </div>
                                                 <div className="col form-group mb-3">
                                                     <label>Apellido Materno</label>
-                                                    <ErrorMessage component="p" name="secondLastName" className="col text-danger" />
-                                                    <Field name='secondLastname' className="form-control form-control-sm" placeholder="Ingresa tu apellido" />
+                                                    <ErrorMessage component="p" name="secondlastname" className="col text-danger" />
+                                                    <Field name='secondlastname' className="form-control form-control-sm" placeholder="Ingresa tu apellido" />
                                                 </div>
                                             </div>
 
@@ -179,8 +186,8 @@ export function FormModfiedUser() {
                                             <div className="row">
                                                 <div className=" col form-group mb-3">
                                                     <label>Número de telefono</label>
-                                                    <ErrorMessage component="p" name="phoneNumber" className="col text-danger" />
-                                                    <Field name='phoneNumbar' className="form-control form-control-sm" placeholder="Ingresa tu nombre" />
+                                                    <ErrorMessage component="p" name="phonenumber" className="col text-danger" />
+                                                    <Field name='phonenumbar' className="form-control form-control-sm" placeholder="Ingresa tu nombre" />
                                                 </div>
                                             </div>
 

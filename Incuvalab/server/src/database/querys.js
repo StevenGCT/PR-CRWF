@@ -33,7 +33,7 @@ export const queries = {
 
     getLoginUser: "SELECT IdUser, UserName FROM Users WHERE Email = @email AND [Password]= HashBytes('MD5',@password)",
     deleteUserById: "DELETE FROM Users WHERE IdUser = @id",
-    updateUserById: "UPDATE Users SET Name = @name, Email = @userEmail, PhoneNumber = @userPhoneNumber, LastName = @userLastname, SecondLastName = @userSecondName, UserName = @username, Address = @addressName WHERE IdUser = @id",
+    updateUserById: "UPDATE Users SET [Name] = @name ,[PhoneNumber] = @phonenumber ,[LastName] = @lastname ,[SecondLastName] = @secondlastname ,[UserName] = @username ,[Address] = @address WHERE IdUser = @id",
     getUserCommandlist: "SELECT U.IdUser, U.Name , U.Email , U.PhoneNumber , UT.TypeUserName , U.LastName , U.SecondLastName , U.RegisterDate , U.LastUpdate , U.UserName , U.Address FROM Users U INNER JOIN UserType UT ON U.IdUserType = UT.IdUserType WHERE U.IdUserType = 1",
 
     //Comments

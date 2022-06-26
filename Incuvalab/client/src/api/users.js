@@ -17,3 +17,5 @@ export const getemailCoincidencesRequest = async (emailSend) => await axios.post
 export const getNumberConfirmationRequest = async (emailSend) => await axios.post('/restoreForgetPassword', emailSend)
 
 export const setPasswordForgetRequest = async (userRecoverPassword) => await axios.put('/setPassword', userRecoverPassword)
+
+export const setUpdateUserRequest = async (id, user) => await axios.put('/user/'+id, user)
