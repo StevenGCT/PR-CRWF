@@ -20,7 +20,7 @@ export function FundCardsCat() {
             <Card.Header className='text-wrap'>
                 {catpost.Title}
             </Card.Header>
-            <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg"/>
+            <Card.Img variant="top" src={postsCatFund.FundingImage1}/>
             <Card.Body>
             {catpost.CurrentGoal >= catpost.Goal ? <ProgressBar className="m-2"  now={(catpost.CurrentGoal/catpost.Goal)*100} variant="success" label={catpost.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2"  now={(catpost.CurrentGoal/catpost.Goal)*100} variant="dark" label={catpost.CurrentGoal + "Bs."} />}
                     <Card.Text className="p-2">

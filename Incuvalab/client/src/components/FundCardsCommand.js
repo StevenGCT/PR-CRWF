@@ -26,7 +26,7 @@ export function FundCardsCommand() {
                                     <strong className='text-wrap'>{post.Title}</strong>
                                     </a>
                                 </Card.Header>
-                                <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg" />
+                                <Card.Img variant="top" src={post.FundingImage1} />
                             
                                 <Card.Body>
                                     <div className="flex justify-center ">

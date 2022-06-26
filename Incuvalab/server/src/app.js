@@ -21,6 +21,7 @@ app.use(fileUpload({
     useTempFiles: true,
     tempFileDir: './server/src/upload'
 }));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(categoryRoute);
 app.use(fundingRoute);

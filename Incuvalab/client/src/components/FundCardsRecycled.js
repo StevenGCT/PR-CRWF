@@ -29,7 +29,7 @@ export function FundCardsRecycled() {
                                         <strong className='text-wrap'>{postContainer.Title}</strong>
                                     </a>
                                 </Card.Header>
-                                <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg" />
+                                <Card.Img variant="top" src={postContainer.FundingImage1} />
                                 <Card.Body>
                                     {postContainer.CurrentGoal >= postContainer.Goal ? <ProgressBar className="m-2" now={(postContainer.CurrentGoal / postContainer.Goal) * 100} variant="success" label={postContainer.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2" now={(postContainer.CurrentGoal / postContainer.Goal) * 100} variant="dark" label={postContainer.CurrentGoal + "Bs."} />}
                                     <Card.Text className="p-2">

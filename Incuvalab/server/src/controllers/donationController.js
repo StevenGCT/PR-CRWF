@@ -40,8 +40,8 @@ export const InsertDonation = async(req, res) => {
                 .input("IDFunding",sql.Int , IdFunding)
                 .query(donationQuery.createDonation);
             console.log(result.rowsAffected);
-            var res = result.rowsAffected;
-            res.json({ res });
+            var rowsAfecct = result.rowsAffected;
+            res.json({ rowsAfecct });
         }
     } catch (error) {
         res.status(500);
@@ -117,7 +117,7 @@ export const updateDonation = async(req, res) => {
                 .input("IDUser",sql.Int , IdUser)
                 .input("IDFunding",sql.Int , IdFunding)
                 .input("id",sql.Int , id)
-                .query(qrqueris.updateQrById);
+                .query(donationQuery.updateDonation);
             res.status(200);
             res.json(result);
         }

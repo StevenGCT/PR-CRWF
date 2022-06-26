@@ -26,13 +26,11 @@ export function FundCardsAprobe() {
                         <Card key={postsToAprobe.IdFunding}>
                             
                                 <Card.Header>
-                                   
                                     <a class="btn" href={"/control-funding/" + postAprove.IdFunding}>
-                                    <strong className='text-wrap'>{postAprove.Title}</strong>
+                                        <strong className='text-wrap'>{postAprove.Title}</strong>
                                     </a>
-                                    
                                 </Card.Header>
-                                <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg" />
+                                <Card.Img variant="top" src={postAprove.FundingImage1} />
                                 <Card.Body>
                                     {postAprove.CurrentGoal >= postAprove.Goal ? <ProgressBar className="m-2" now={(postAprove.CurrentGoal / postAprove.Goal) * 100} variant="success" label={postAprove.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2" now={(postAprove.CurrentGoal / postAprove.Goal) * 100} variant="dark" label={postAprove.CurrentGoal + "Bs."} />}
                                     <Card.Text className="p-2">
