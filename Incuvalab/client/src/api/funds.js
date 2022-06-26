@@ -17,3 +17,5 @@ export const moveRequestToBault = async (id) => await axios.put('/funding/move/'
 export const removeRequestFromBault = async (id) => await axios.put('/funding/restore/' + id)
 
 export const permanentDeleteRequest = async (id) => await axios.delete('/funding/delete/' + id)
+
+export const getFundByNameRequest = async (post) => await axios.post('/funding/name', post) 

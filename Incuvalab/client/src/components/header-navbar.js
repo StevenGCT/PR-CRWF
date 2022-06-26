@@ -13,7 +13,7 @@ export default function NavbarLogin(props) {
         <div>
             <Navbar bg="light" expand="lg" className="px-4 py-3">
                 <Container fluid>
-                    <Navbar.Brand href="#" className="nav-page-title">
+                    <Navbar.Brand href="/" className="nav-page-title">
                         <img
                             alt=""
                             src={logo}
