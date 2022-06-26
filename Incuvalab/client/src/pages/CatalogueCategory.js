@@ -56,6 +56,7 @@ export function CatalogueCategory() {
   
   return (
     <>
+    <NavbarLogin locale={true} />
       <div className="container align-center">
         <h1 className="mt-5 p-3">Catálogo</h1>
           <Container>
@@ -79,6 +80,7 @@ export function CatalogueCategory() {
       <div className="container align-center">
         <FundCardsCat />       
       </div>
+      <Footer />
     </>
   )
 }

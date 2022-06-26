@@ -243,7 +243,7 @@ export const getAllFundingBySameName = async (req, res) => {
         console.log(res);
         const pool = await getConnection();
         const result = await pool.request()
-            .input('nameplace', sql.VarChar, req.body.nameplace)
+            .input('search', sql.VarChar, req.body.search)
             .query(fundqueries.getFundingByName)
         res.json(result.recordset);
     } catch (error) {
