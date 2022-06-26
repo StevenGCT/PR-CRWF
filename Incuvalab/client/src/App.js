@@ -3,9 +3,13 @@ import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
 import { Qrpage } from './pages/Qrpage';
+import { QrCrPage } from './pages/QrCrPage';
+import { QrImage } from './pages/QrImage';
+
 import { EmailVerification } from './pages/User/emailVerification';
 import { CodeVerication } from './pages/User/numberConfirmation';
 import { FormChangePassword } from './pages/User/formChangePassword';
+import { FormModfiedUser } from './pages/User/formModificationUser';
 
 //Proteger UserProfile y Settings para cada usuario individualmente
 
@@ -79,10 +83,15 @@ function App() {
                 <Route path="/formCodeConfirmation" element={<CodeVerication />} />
 
                 <Route path="/changePassword" element={<FormChangePassword />} />
-                
+
+                <Route path="/control-page-qradmin" element={<ControlQrView />} />
+                <Route path="/qrcreate" element={<QrCrPage />} />
+                <Route path="/qrimage/:id" element={<QrImage/>} />
                 <Route exact path='/control-page-qradmin' element={<PrivateRouteAdmin />}>
                     <Route path="/control-page-qradmin" element={<ControlQrView />} />
                 </Route>
+
+                <Route path="/Settings/ModifiedProfile" element={<FormModfiedUser/>} />
 
             </Routes>
         </UserProvider>

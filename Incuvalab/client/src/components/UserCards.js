@@ -43,7 +43,6 @@ export function UserCards() {
                             <Card.Text className="pl-3">
                                     <li>{postUserEditList.Email}</li>
                                     <li>{postUserEditList.PhoneNumber}</li>
-                                    <li>{postUserEditList.Address}</li>
                                     <li>Registrado: {moment(postUserEditList.RegisterDate).format('DD/MM/YYYY')} a las: {moment(postUserEditList.RegisterDate).format('HH:mm a')}</li>
                                     <li>Ultima modificación: {moment(postUserEditList.LastUpdate).format('DD/MM/YYYY')} a las: {moment(postUserEditList.LastUpdate).format('HH:mm a')}</li>
                             </Card.Text>

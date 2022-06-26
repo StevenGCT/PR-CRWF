@@ -1,12 +1,11 @@
 import { VscBell } from 'react-icons/vsc'
-import { Form, Button, Container, Col, Row, FormControl } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
-import { QrpageCard } from "../components/QrpageCard"
+import { QrCardCreatePage } from "../components/QrCardCreatePage"
 import { usePostsQr } from '../context/userContext'
 
-export function Qrpage() {
+export function QrCrPage() {
 
   const { posts } = usePostsQr()
 
@@ -25,12 +24,12 @@ export function Qrpage() {
       <NavbarLogin locale={true} />
       <div className="my-3">
         <div className="container align-center">
-          <h1 className="mt-3 p-3">Transaccion de Pagos</h1>
+          <h1 className="mt-3 p-3">Agregar QR</h1>
 
         </div>
         <br />
         <div className="container align-center">
-          <QrpageCard />
+          <QrCardCreatePage />
         </div>
 
       </div>

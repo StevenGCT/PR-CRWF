@@ -93,7 +93,7 @@ export function DashMenuQrView() {
         
       </div>
       <div className="h-screen flex-1 p-7">
-        <h1 className="text-2xl font-semibold ">Lista de Campañas</h1>
+        <h1 className="text-2xl font-semibold ">Lista de los codigos Qr</h1>
         <br />
             <div className="container align-center">
                 <QrCardsViewAdmin />

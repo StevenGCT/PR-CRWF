@@ -12,10 +12,17 @@ import CommentFrom from '../components/formCommentFunding'
 import f1 from '../components/images/predeterminate.jpg'
 import f2 from '../components/images/predeterminate.jpg'
 import f3 from '../components/images/predeterminate.jpg'
-import { ProgressBar } from 'react-bootstrap'
+import { Modal, ProgressBar, Button, ButtonGroup } from 'react-bootstrap'
+import {QrCardPayment} from '../components/QrCardPayment'
+
 
 export function FundingPage() {
-    const dataUser = JSON.parse(sessionStorage.getItem('user'));
+    const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+    
+    const dataUser = JSON.parse(localStorage.getItem('user'));
 
     const { getFundingById } = usePostsFund();
     const [post, setPost] = useState({
@@ -114,11 +121,23 @@ export function FundingPage() {
                                     </div>
                                 </div>
                                 <div className="row ">
-                                    <a href="/qrpage" className="col button btn-general btn">Donar a este proyecto</a>
+                                    <Button href="#" className="col button btn-general btn" onClick={handleShow}>
+                                        Donar
+                                    </Button>
+                                    <Modal show={show} onHide={handleClose}>
+                                     <Modal.Header closeButton>
+                                     <Modal.Title>Escoja Monto De Donacion</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <div className='flex justify-center'>
+                                         <QrCardPayment/>  
+                                        </div>                                                          
+                                    </Modal.Body>
+                                    </Modal>
                                 </div>
                                 <div className="row my-2" >
                                     <button href="#" className="col me-2 button btn-general">Seguir</button>
-                                    <button href="#" className="col ms-2 button btn-general">Patrocinar</button>
+                                    <button href="#" className="col ms-2 button btn-general">Compartir</button>
                                 </div>
                             </div>
                         </div>
