@@ -69,9 +69,14 @@ export function Settings() {
                             <div class="profile-usermenu">
                                 <ul class="nav">
                                     <li>
+                                        <a href="/Settings/ConfigureAccount">
+                                            <i class="glyphicon glyphicon-user"></i>
+                                            Confgurar cuenta </a>
+                                    </li>
+                                    <li>
                                         <a href="/Settings/ModifiedProfile">
                                             <i class="glyphicon glyphicon-user"></i>
-                                            Confguraciones de la cuenta  </a>
+                                            Editar perfil </a>
                                     </li>
                                     <li>
                                         <a href="#">

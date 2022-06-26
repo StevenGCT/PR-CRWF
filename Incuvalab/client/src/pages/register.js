@@ -3,8 +3,8 @@ import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
 import { useUsers } from "../context/userContext"
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
+import { Link, useNavigate } from 'react-router-dom'
 import './../css/login.css'
 
 export function Register() {
@@ -154,7 +154,6 @@ export function Register() {
                                     </Form>
                                 )}
                             </Formik>
-
                         </div>
                     </div>
                 </div>

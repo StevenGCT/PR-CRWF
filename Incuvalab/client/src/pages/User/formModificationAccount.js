@@ -12,7 +12,7 @@ import * as Yup from 'yup'
 import { Link, useNavigate } from 'react-router-dom'
 import { Label } from 'react-bootstrap'
 
-export function FormModfiedUser() {
+export function FormModfiedAccount() {
     const dataUser = JSON.parse(sessionStorage.getItem('user'));
 
     const { getUserById, getFollowedCount, getDonatedCount, getUserFundingCount } = useUsers()
@@ -76,9 +76,9 @@ export function FormModfiedUser() {
                                             Mi perfil </a>
                                     </li>
                                     <li>
-                                        <a href="/Settings/ConfigureAccount">
+                                        <a href="/Settings/ModifiedProfile">
                                             <i class="glyphicon glyphicon-flag"></i>
-                                            Configurar cuenta </a>
+                                            Editar perfil </a>
                                     </li>
                                     <li>
                                         <a href="#">
@@ -123,72 +123,61 @@ export function FormModfiedUser() {
                     <div class="col-md-9">
                         <div class="profile-content">
 
-                            <h3 className='my-3'>Editar perfil</h3>
+                            <h3 className='my-3'>Cofigurar cuenta</h3>
                             <Formik className="form"
                                 initialValues={{
-                                    name: post.Name,
-                                    lastname: post.LastName,
-                                    secondLastname: post.SecondLastName,
-                                    username: post.UserName,
-                                    phoneNumber: post.PhoneNumber,
-                                    address: post.Address
+                                    email: post.Email,
+                                    password: '',
+                                    confirmNewPassword: '',
+                                    newPassword: ''
                                 }}
                                 validationSchema={Yup.object({
-                                    name: Yup.string().required('* Nombre es un campo requerido'),
-                                    lastname: Yup.string().required('* Apellido es un campo requerido'),
-                                    username: Yup.string().required('* Nombre de usuario es un campo requerido'),
+                                    email: Yup.string().required('* Email es un campo requerido').email('* Email invalido'),
+                                    password: Yup.string().required('* Contraseña es un campo requerido'),
+                                    confirmNewPassword: Yup.string().required('* Cónfirmación de contraseña es un campo requerido').oneOf([Yup.ref('newPassword'), null], '* Las contraseñas no coinciden'),
+                                    newPassword: Yup.string().required('* Nueva contraseña es un campo requerido').min(8, '* Contraseña demasiado corta - Ingrese por lo menos 8 caracteres.')
                                 })}
                                 onSubmit={async (values, actions) => {
                                 }}
-
                                 enableReinitialize={true}
                             >
                                 {({ handleSubmit }) => (
                                     <Form onSubmit={handleSubmit}>
                                         <div className='px-5 py-2'>
-                                            
                                             <div className="row">
                                                 <div className=" col form-group mb-3">
-                                                    <label>Nombre</label>
-                                                    <ErrorMessage component="p" name="name" className="col text-danger" />
-                                                    <Field name='name' className="form-control form-control-sm" placeholder="Ingresa tu nombre" />
+                                                    <label>Correo electronico</label>
+                                                    <ErrorMessage component="p" name="email" className="col text-danger" />
+                                                    <Field name='email' type="email" className="form-control form-control-sm" />
+                                                </div>
+                                            </div>
+
+                                            <h6>Cambiar de contraseña</h6>
+
+                                            <div className="row">
+                                                <div className=" col form-group mb-3">
+                                                    <label>Contraseña nueva</label>
+                                                    <ErrorMessage component="p" name="newPassword" className="col text-danger" />
+                                                    <Field name='newPassword' type="password" className="form-control form-control-sm" />
                                                 </div>
                                             </div>
 
                                             <div className="row">
                                                 <div className=" col form-group mb-3">
-                                                    <label>Apellido Paterno</label>
-                                                    <ErrorMessage component="p" name="lastname" className="col text-danger" />
-                                                    <Field name='lastname' className="form-control form-control-sm" placeholder="Ingresa tu nombre" />
-                                                </div>
-                                                <div className="col form-group mb-3">
-                                                    <label>Apellido Materno</label>
-                                                    <ErrorMessage component="p" name="secondLastName" className="col text-danger" />
-                                                    <Field name='secondLastname' className="form-control form-control-sm" placeholder="Ingresa tu apellido" />
+                                                    <label>Confimar contraseña</label>
+                                                    <ErrorMessage component="p" name="confirmNewPassword" className="col text-danger" />
+                                                    <Field name='confirmNewPassword' type="password" className="form-control form-control-sm" />
                                                 </div>
                                             </div>
 
-                                            <div className="row">
-                                                <div className=" col form-group mb-3">
-                                                    <label>Nombre de Usuario</label>
-                                                    <ErrorMessage component="p" name="username" className="col text-danger" />
-                                                    <Field name='username' className="form-control form-control-sm" placeholder="Ingresa tu nombre" />
-                                                </div>
-                                            </div>
+                                            <h6>Confimar los cambios</h6>
 
                                             <div className="row">
                                                 <div className=" col form-group mb-3">
-                                                    <label>Número de telefono</label>
-                                                    <ErrorMessage component="p" name="phoneNumber" className="col text-danger" />
-                                                    <Field name='phoneNumbar' className="form-control form-control-sm" placeholder="Ingresa tu nombre" />
-                                                </div>
-                                            </div>
-
-                                            <div className="row">
-                                                <div className=" col form-group mb-3">
-                                                    <label>Dirección</label>
-                                                    <ErrorMessage component="p" name="address" className="col text-danger" />
-                                                    <Field name='address' className="form-control form-control-sm" placeholder="Ingresa tu nombre" />
+                                                    <label className=''>Contraseña actual</label>
+                                                    <ErrorMessage component="p" name="password" className="col text-danger" />
+                                                    <Field name='password' className="form-control form-control-sm" aria-describedby="password " />
+                                                    <div id="password" type="password" class="form-text">Ingresa tu contraseña actual para guardar estos cambios.</div>
                                                 </div>
                                             </div>
 
