@@ -245,6 +245,7 @@ export const UserProvider = ({ children }) => {
   const getPostsFundByNam = async (post) => {
     try {
       const res = await getFundByNameRequest(post);
+      console.log(res, setPostsNamFund)
       setPostsNamFund(res.data);
     }
     catch (error) {

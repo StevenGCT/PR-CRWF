@@ -18,7 +18,7 @@ export function QrCardsViewAdmin() {
                                        Monto:{post.mount} 
                                    </Card.Header>  
                                    <Card.Footer>
-                                   <Row className="flex p-3">
+                                   <Row className="flex p-2">
                                                     <ButtonGroup className="flex dgrid gap-2 m-2" aria-label="Options">
                                                         <Button variant="warning" size="sm">Editar</Button>
                                                         <Button variant="danger" size="sm">Eliminar</Button>

@@ -25,4 +25,3 @@ export {ControlUsers} from './Control/ControlUsers';
 export {ControlQrView} from  './Control/ControlQrView';
 
 export {FundingForm} from './fundingForm';
-

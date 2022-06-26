@@ -64,6 +64,23 @@ export function DashMenu() {
               </span>
             </li>
           </Link>
+          <Link to="/control-page-qradmin" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 mt-9 : mt-2`}>
+              <img src={require('./images/assets/codeQr.png')} alt="Control-Icon" />
+              <span className={`${!open && "hidden"} origin-left duration-200`}>
+                Lista de QR's
+              </span>
+            </li>
+          </Link>
+          <Link to="/createFunding/menu" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
+            <img src={require('./images/assets/addQr.png')} alt="Control-Icon" />
+            <span className={`${!open && "hidden"} origin-left duration-200`}>
+              Agregar Codigo QR
+            </span>
+          </li>
+          </Link>
+
           <Link to="/control-page-user" style={{ color: 'inherit', textDecoration: 'inherit' }}>
             <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 mt-9 : mt-2`}>
               <img src={require('./images/assets/newUser.png')} alt="Control-Icon" />
