@@ -84,13 +84,16 @@ function App() {
 
                 <Route path="/changePassword" element={<FormChangePassword />} />
 
-                <Route path="/control-page-qradmin" element={<ControlQrView />} />
-                <Route path="/qrcreate" element={<QrCrPage />} />
+                
                 <Route path="/qrimage/:id" element={<QrImage/>} />
                 <Route exact path='/control-page-qradmin' element={<PrivateRouteAdmin />}>
                     <Route path="/control-page-qradmin" element={<ControlQrView />} />
                 </Route>
 
+                <Route exact path='/qrcreate' element={<PrivateRouteAdmin />}>
+                    <Route path="/qrcreate" element={<QrCrPage />} />
+                </Route>
+                
                 <Route path="/Settings/ModifiedProfile" element={<FormModfiedUser/>} />
 
             </Routes>

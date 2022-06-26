@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { FundCardsCommand } from "./FundCardsCommand"
 import { Link } from "react-router-dom"
-import { FundCards } from "./FundCards";
 //ARREGLAR RUTEOS Y COLORES
 
 export function DashMenu() {
@@ -72,7 +71,7 @@ export function DashMenu() {
               </span>
             </li>
           </Link>
-          <Link to="/createFunding/menu" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+          <Link to="/qrcreate" style={{ color: 'inherit', textDecoration: 'inherit' }}>
             <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
             <img src={require('./images/assets/addQr.png')} alt="Control-Icon" />
             <span className={`${!open && "hidden"} origin-left duration-200`}>
