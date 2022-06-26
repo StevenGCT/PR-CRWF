@@ -13,7 +13,7 @@ export function UserProfile() {
                     <br />
                         <h2 className="font-semibold position-relative pl-5 pb-3">Mi Registro de Campañas</h2>
                             <div className="container position-relative p-4" id="container">
-                            <Accordion>
+                            <Accordion id="mainMenu">
                                 <Accordion.Item eventKey="0">
                                     <Accordion.Header>Campañas a las Que Sigues</Accordion.Header>
                                     <Accordion.Body>

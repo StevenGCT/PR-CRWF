@@ -1,6 +1,6 @@
 import { useState, createContext, useContext, useEffect } from 'react'
 import { changePassword, getAllCategorysRequest, createFundingRequest, putFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
-import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestFromBault, permanentDeleteRequest, moveRequestToBault } from '../api/funds'
+import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestFromBault, permanentDeleteRequest, moveRequestToBault, getFundByNameRequest } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
 import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest, userDonateFundingRequest, deleteReqById, getemailCoincidencesRequest, getNumberConfirmationRequest, setPasswordForgetRequest } from '../api/users'
@@ -37,6 +37,11 @@ export const usePostsCat = () => {
 }
 
 export const usePostsCatFund = () => {
+  const context = useContext(userContext)
+  return context
+}
+
+export const usePostsNamFund = () => {
   const context = useContext(userContext)
   return context
 }
@@ -181,6 +186,7 @@ export const UserProvider = ({ children }) => {
   const [postsTop, setPostsTop] = useState([])
   const [postsCat, setPostsCat] = useState([])
   const [postsCatFund, setPostsCatFund] = useState([])
+  const [postsNamFund, setPostsNamFund] = useState([])
   const [postsToAprobe, setPostsAprobe] = useState([])
   const [postsToRecycle, setPostsRecycle] = useState([])
   const [postsComplete, setPostsCompleted] = useState([])
@@ -235,6 +241,17 @@ export const UserProvider = ({ children }) => {
       console.error(error);
     }
   };
+
+  const getPostsFundByNam = async (post) => {
+    try {
+      const res = await getFundByNameRequest(post);
+      setPostsNamFund(res.data);
+    }
+    catch (error) {
+      console.error(error);
+    }
+  };
+
 
   const moveFundingToBault = async (id) => {
     const res = await moveRequestToBault(id);
@@ -346,6 +363,10 @@ export const UserProvider = ({ children }) => {
     getPostsFundByCat()
   }, [])
 
+   useEffect(() => {
+    getPostsFundByNam()
+  }, [])
+
   return (
     <userContext.Provider value={{
       categorys,
@@ -385,6 +406,9 @@ export const UserProvider = ({ children }) => {
 
       postsCatFund,
       getPostsFundByCat,
+
+      postsNamFund,
+      getPostsFundByNam,
 
       postsToAprobe,
       getFundsAprobe,

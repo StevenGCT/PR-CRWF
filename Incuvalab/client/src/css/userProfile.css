@@ -1,7 +1,8 @@
 
-#toSettings_button{
+#toSettings{
   background: #CA0058;
-  border-radius: 20px;
+  border-color: #CA0058;
+  border-radius: 10px;
   font-family: 'Helvetica', Arial, sans-serif;
 
 }

@@ -15,11 +15,14 @@ export {Login} from './login';
 export {Register} from './register';
 export {Catalogue} from './Catalogue';
 export {CatalogueCategory} from './CatalogueCategory';
+export {CatalogueName} from './CatalogueName';
+
 export {ControlPage} from './Control/ControlPage';
 export {ControlAprobe} from './Control/ControlAprobe';
 export {ControlRecycled} from './Control/ControlRecycled';
 export {ControlComplete} from './Control/ControlComplete';
 export {ControlUsers} from './Control/ControlUsers';
+export {ControlQrView} from  './Control/ControlQrView';
 
 export {FundingForm} from './fundingForm';
-export {ControlQrView} from  './Control/ControlQrView';
+

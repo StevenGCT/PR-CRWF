@@ -2,14 +2,18 @@ import { FundCards } from "../components/FundCards"
 import { SearchByCategory } from "../components/SearchByCategory"
 import { usePostsFund } from '../context/userContext'
 import { VscBell } from 'react-icons/vsc'
-import { Form, Button, Container, Col, Row, FormControl } from 'react-bootstrap'
+import { Button, Container, Col, Row } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
+import { Form, Formik, Field} from 'formik'
+import { usePostsNamFund } from '../context/userContext'
+import { Link } from "react-router-dom"
 
 export function Catalogue() {
 
   const { posts } = usePostsFund()
+  const { getPostsFundByNam } = usePostsNamFund()
 
   if (posts.length === 0) return (
     <>
@@ -22,15 +26,7 @@ export function Catalogue() {
               <Row>
                 <Col sm={4}><SearchByCategory /></Col>
                 <Col sm={8}>
-                  <Form className="d-flex m-2">
-                    <FormControl
-                      type="search"
-                      placeholder="Buscar..."
-                      className="me-2"
-                      aria-label="Search"
-                    />
-                    <Button variant="outline-dark">Buscar</Button>
-                  </Form>
+                 
                 </Col>
               </Row>
             </Container>
@@ -62,15 +58,22 @@ export function Catalogue() {
             <Row>
               <Col sm={4}><SearchByCategory /></Col>
               <Col sm={8}>
-                <Form className="d-flex m-2">
-                  <FormControl
-                    type="search"
-                    placeholder="Buscar..."
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-dark">Buscar</Button>
-                </Form>
+                <Formik initialValues={{
+                    search: '',
+                  }}
+                  onSubmit={(values, actions) => {
+                    getPostsFundByNam(values)
+                  }}
+                  >
+                  {({ handleSubmit }) => (
+                  <Form onSubmit={handleSubmit} className="d-flex m-2">
+                    <Field className="form-control me-1" name='Search' placeholder="Buscar..." />
+                    <Link to="/catalogue/name">
+                    <Button type="submit" variant="outline-dark">Buscar</Button>
+                    </Link>
+                  </Form>
+                  )}
+                </Formik>
               </Col>
             </Row>
           </Container>

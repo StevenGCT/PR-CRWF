@@ -1,4 +1,4 @@
-import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers, FundingForm ,Questions,ControlQrView } from './pages';
+import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, CatalogueName, ControlComplete, ControlUsers, FundingForm ,Questions,ControlQrView } from './pages';
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
@@ -65,7 +65,8 @@ function App() {
                 <Route path="/qrpage" element={<Qrpage />} />
 
                 <Route path="/catalogue/category" element={<CatalogueCategory />} />
-                <Route path="/catalogue/category" element={<CatalogueCategory />} />
+
+                <Route path="/catalogue/name" element={<CatalogueName />} />
 
                 <Route exact path='/createFunding' element={<PrivateRouteAdmin />}>
                     <Route path="/createFunding" element={<FundingForm />} />
