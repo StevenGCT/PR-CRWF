@@ -14,8 +14,8 @@ import { Label } from 'react-bootstrap'
 
 export function FormModfiedAccount() {
     const dataUser = JSON.parse(sessionStorage.getItem('user'));
-
-    const { getUserById, getFollowedCount, getDonatedCount, getUserFundingCount } = useUsers()
+    const navigate = useNavigate();
+    const { getUserById, getFollowedCount, getDonatedCount, getUserFundingCount, setUpdateAccountInfo, loginUser } = useUsers()
     const [post, setPost] = useState({
     });
     const [postCount, setPostCount] = useState({
@@ -138,6 +138,13 @@ export function FormModfiedAccount() {
                                     newPassword: Yup.string().required('* Nueva contraseña es un campo requerido').min(8, '* Contraseña demasiado corta - Ingrese por lo menos 8 caracteres.')
                                 })}
                                 onSubmit={async (values, actions) => {
+                                    const authUser = await loginUser(values)
+                                    if (authUser!= null) {
+                                        const resUpdate = await setUpdateAccountInfo(dataUser[0].IdUser, values)
+                                        if(resUpdate > 0){
+                                            navigate('/Settings')
+                                        }
+                                    }
                                 }}
                                 enableReinitialize={true}
                             >
@@ -176,8 +183,8 @@ export function FormModfiedAccount() {
                                                 <div className=" col form-group mb-3">
                                                     <label className=''>Contraseña actual</label>
                                                     <ErrorMessage component="p" name="password" className="col text-danger" />
-                                                    <Field name='password' className="form-control form-control-sm" aria-describedby="password " />
-                                                    <div id="password" type="password" class="form-text">Ingresa tu contraseña actual para guardar estos cambios.</div>
+                                                    <Field name='password' type="password" className="form-control form-control-sm" aria-describedby="password " />
+                                                    <div id="password"  class="form-text">Ingresa tu contraseña actual para guardar estos cambios.</div>
                                                 </div>
                                             </div>
 

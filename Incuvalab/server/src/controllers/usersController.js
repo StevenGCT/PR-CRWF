@@ -124,17 +124,17 @@ export const getTitleOfFollowedFundingByUserId = async(req, res) => {
 export const updatePasswordByUserId = async(req, res) => {
     try {
         const pool = await getConnection();
-        const { NewPassword } = req.body;
         const { id } = req.params;
-        if (NewPassword == null || id == null) {
+        if (req.body == null || id == null) {
             res.status(400).json(msg, "Bad Request undefined password Or id");
         } else {
             const result = await pool.request()
-                .input('newPassword', sql.VarChar, NewPassword)
+                .input('email', sql.VarChar, req.body.email)
+                .input('newPassword', sql.VarChar, req.body.newPassword)
                 .input('id', sql.Int, id)
                 .query(queries.changePassword);
             res.status(200);
-            res.json(result);
+            res.json(result.rowsAffected);
         }
     } catch (error) {
         res.status(500);

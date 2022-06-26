@@ -3,7 +3,7 @@ import { changePassword, getAllCategorysRequest, createFundingRequest, putFundin
 import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestFromBault, permanentDeleteRequest, moveRequestToBault, getFundByNameRequest } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
-import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest, userDonateFundingRequest, deleteReqById, getemailCoincidencesRequest, getNumberConfirmationRequest, setPasswordForgetRequest, setUpdateUserRequest } from '../api/users'
+import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest, userDonateFundingRequest, deleteReqById, getemailCoincidencesRequest, getNumberConfirmationRequest, setPasswordForgetRequest, setUpdateUserRequest, setUpdateAccountInfoRequest } from '../api/users'
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest } from '../api/comment'
 import { getCodeQrRequest } from '../api/qr'
 import { createRoutesFromChildren } from 'react-router-dom'
@@ -99,6 +99,11 @@ export const UserProvider = ({ children }) => {
 
   const setUpdateUser = async (id, user) => {
     const res = await setUpdateUserRequest(id,user);
+    return res.data;
+  }
+
+  const setUpdateAccountInfo = async (id, user) => {
+    const res = await setUpdateAccountInfoRequest(id , user);
     return res.data;
   }
 
@@ -446,7 +451,8 @@ export const UserProvider = ({ children }) => {
       deleteCommentById,
       userDonateFunding,
       getFollowedCount, getDonatedCount, getUserFundingCount,
-      setUpdateUser
+      setUpdateUser,
+      setUpdateAccountInfo
     }}>
       {children}
     </userContext.Provider>

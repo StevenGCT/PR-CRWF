@@ -19,3 +19,5 @@ export const getNumberConfirmationRequest = async (emailSend) => await axios.pos
 export const setPasswordForgetRequest = async (userRecoverPassword) => await axios.put('/setPassword', userRecoverPassword)
 
 export const setUpdateUserRequest = async (id, user) => await axios.put('/user/'+id, user)
+
+export const setUpdateAccountInfoRequest = async (id, user) => await axios.put('/users/changePassword/'+id, user)
