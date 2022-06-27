@@ -1,9 +1,11 @@
 import { Router } from 'express';
-import { updateUserById, createUser, getUserById, deleteUserById, getLoginUser, getTypeUserById, getUserEditList, getUserDonateFunding, getEmailVerification, restoreForgetPassword, setPasswordForget} from '../controllers/userController';
+import { updateUserById, createUser, getUserById, deleteUserById, getLoginUser, getTypeUserById, getUserEditList, getUserDonateFunding, getEmailVerification, restoreForgetPassword, setPasswordForget, createAdmin} from '../controllers/userController';
 
 const router = Router();
 // Insert User
 router.post('/user', createUser);
+// Insert Admin
+router.post('/new-admin', createAdmin);
 // Get User
 router.get('/user/:id', getUserById);
 // Login User

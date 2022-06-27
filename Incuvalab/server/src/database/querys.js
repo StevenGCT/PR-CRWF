@@ -14,18 +14,24 @@ export const queries = {
     getAllUsers: "SELECT * FROM Users;",
     getUserById: "SELECT * FROM Users WHERE IdUser = @id",
     
-    getTitleFundingByUserId: "SELECT UE.idUser, F.Title FROM Funding F INNER JOIN User_Funding UE ON F.IdFunding = UE.idFunding WHERE UE.idUser = @id",
-    getTitleOfFundingDonateByUserId: "SELECT U.IdUser, F.Title FROM Donations D INNER JOIN Users U ON D.IdUser = U.IdUser INNER JOIN Funding F ON D.IdFunding = f.IdFunding WHERE U.idUser = @id",
-    changePassword: "Update Users SET Password = HASHBYTES('MD5', @newPassword) WHERE IdUser = @id",
+   
+    changePassword: " UPDATE Users  SET Password = HASHBYTES('MD5', @newPassword)  ,Email = @email WHERE IdUser = @id",
+
     changeImageProfile: "UPDATE UI SET UI.UserImage = @newImageProfile FROM UserImage UI INNER JOIN Users U ON UI.IdImage = U.idUsersImage WHERE U.IdUser = @id",
-    getTitleFollowedFundingByUserId: "SELECT U.IdUser, F.Title FROM Followed_Funding FD INNER JOIN Users U ON FD.IdUser = U.IdUser INNER JOIN Funding F ON FD.IdFunding = f.IdFunding WHERE U.idUser = @id",
-
-
+    
+    
     getUserDonateFunding: "SELECT idUser FROM Funding F INNER JOIN User_Funding UF ON UF.idFunding = F.idFunding WHERE F.IdFunding = @idFunding",
     
     //User
     createNewUser: "INSERT INTO Users ([Name] ,LastName, Email, [Password], UserName) VALUES (@name, @lastName, @email, HashBytes('MD5', @password), @username)",
     getUserById: "SELECT U.IdUser,[Name],[Email],[PhoneNumber],[IdUserType],[LastName],[SecondLastName],U.RegisterDate,[UserName],[Address],[IdUsersImage] FROM Users U WHERE U.IdUser = @id GROUP BY U.IdUser,[Name],[Email],[PhoneNumber],[IdUserType],[LastName],[SecondLastName],U.RegisterDate,[UserName],[Address],[IdUsersImage]",
+
+    createNewAdmin: "INSERT INTO Users ([Name], Email, [Password], PhoneNumber, IdUserType, LastName, SecondLastName, State, RegisterDate,UserName,Address) VALUES (@name, @email, HashBytes('MD5',@password), @phonenumber, 1, @lastname, @secondlastname, 1, CURRENT_TIMESTAMP, @username, @address)",
+
+    getTitleFollowedFundingByUserId: "SELECT F.IdFunding , F.Title, F.FastDescription FROM Users U  LEFT JOIN Followed_Funding FF ON FF.IdUser = U.IdUser LEFT JOIN Funding F ON FF.IdFunding = F.IdFunding WHERE U.IdUser = @id GROUP BY FF.IdUser, F.IdFunding, F.Title, F.FastDescription",
+    getTitleOfFundingDonateByUserId: "	SELECT F.IdFunding , F.Title, F.FastDescription FROM Users U  LEFT JOIN Donations D ON D.IdUser = U.IdUser  LEFT JOIN Funding F ON D.IdFunding = F.IdFunding WHERE U.IdUser = @id GROUP BY  D.IdUser, F.IdFunding, F.Title, F.FastDescription",
+    getTitleFundingByUserId: "	SELECT F.IdFunding , F.Title, F.FastDescription FROM Users U  LEFT JOIN User_Funding UF ON UF.idUser = U.IdUser LEFT JOIN Funding F ON UF.IdFunding = F.IdFunding WHERE U.IdUser = @id GROUP BY UF.idUser, F.IdFunding, F.Title, F.FastDescription",
+    
 
     getCountFollowedByUserId:"SELECT COUNT(FF.IdUser) AS 'countFollowedFunding' FROM Users U LEFT JOIN Followed_Funding FF ON FF.IdUser = U.IdUser WHERE U.IdUser = @id GROUP BY FF.IdUser",
     getCountDonationsByUserId:"SELECT COUNT(D.IdUser) AS 'countDonationsFunding' FROM Users U LEFT JOIN Donations D ON D.IdUser = U.IdUser WHERE U.IdUser = @id GROUP BY  D.IdUser",
@@ -33,7 +39,7 @@ export const queries = {
 
     getLoginUser: "SELECT IdUser, UserName FROM Users WHERE Email = @email AND [Password]= HashBytes('MD5',@password)",
     deleteUserById: "DELETE FROM Users WHERE IdUser = @id",
-    updateUserById: "UPDATE Users SET Name = @name, Email = @userEmail, PhoneNumber = @userPhoneNumber, LastName = @userLastname, SecondLastName = @userSecondName, UserName = @username, Address = @addressName WHERE IdUser = @id",
+    updateUserById: "UPDATE Users SET [Name] = @name ,[PhoneNumber] = @phonenumber ,[LastName] = @lastname ,[SecondLastName] = @secondlastname ,[UserName] = @username ,[Address] = @address WHERE IdUser = @id",
     getUserCommandlist: "SELECT U.IdUser, U.Name , U.Email , U.PhoneNumber , UT.TypeUserName , U.LastName , U.SecondLastName , U.RegisterDate , U.LastUpdate , U.UserName , U.Address FROM Users U INNER JOIN UserType UT ON U.IdUserType = UT.IdUserType WHERE U.IdUserType = 1",
 
     //Comments
@@ -53,7 +59,7 @@ export const fundqueries = {
     getAllNoAprobedFunding: "SELECT * FROM Funding WHERE State = 1 AND Aprove = 0",
     getDeletedFunding: "SELECT * FROM Funding WHERE State = 0",
     getAllFundingByCat: "SELECT * FROM Funding WHERE IdCategory = @id",
-    getFundingByName: "SELECT * FROM Funding WHERE Title LIKE CONCAT('%',@nameplace,'%') AND State  = 1 AND Aprove = 1",
+    getFundingByName: "SELECT * FROM Funding WHERE Title LIKE CONCAT('%',@search,'%') AND State  = 1 AND Aprove = 1",
     getFundingById: "SELECT IdFunding, Title,Question1,Question2,Question3,FastDescription,F.Description,FundingImage1,FundingImage2,FundingImage3,FundingVideo,SocialMedia,RegisterDate, f.IdCategory, C.CategoryName,Goal,CurrentGoal, AccountNumber FROM Funding F INNER JOIN Category C ON C.IdCategory = F.IdCategory WHERE IdFunding = @id",
     deleteFundingById: "DELETE FROM Funding WHERE IdFunding = @id",
     deleteFundingByLogical:"UPDATE Funding  SET State = 0 WHERE IdFunding  = @id",

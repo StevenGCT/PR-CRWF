@@ -8,21 +8,17 @@ import { usePostsFund } from "../context/userContext"
 import OfertFunding from '../components/cardOfertsFunding'
 import Comment from '../components/commentFundinng'
 import CommentFrom from '../components/formCommentFunding'
-
-import f1 from '../components/images/predeterminate.jpg'
-import f2 from '../components/images/predeterminate.jpg'
-import f3 from '../components/images/predeterminate.jpg'
 import { Modal, ProgressBar, Button, ButtonGroup } from 'react-bootstrap'
-import {QrCardPayment} from '../components/QrCardPayment'
+import { QrCardPayment } from '../components/QrCardPayment'
 
 
 export function FundingPage() {
     const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-    
-    const dataUser = JSON.parse(localStorage.getItem('user'));
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const dataUser = JSON.parse(sessionStorage.getItem('user'));
 
     const { getFundingById } = usePostsFund();
     const [post, setPost] = useState({
@@ -72,6 +68,8 @@ export function FundingPage() {
         })();
     }, [params.id, getFundingById]);
 
+
+
     return (
         <div className="base-container">
             <NavbarLogin locale={true} />
@@ -92,7 +90,7 @@ export function FundingPage() {
                                     <div>
                                         {post.CurrentGoal >= post.Goal ?
                                             <ProgressBar min={0} now={(post.CurrentGoal * 100) / post.Goal} max={100} variant="success" />
-                                            : <ProgressBar min={0} now={(post.CurrentGoal * 100) / post.Goal} max={100} variant="dark"  />
+                                            : <ProgressBar min={0} now={(post.CurrentGoal * 100) / post.Goal} max={100} variant="dark" />
                                         }
                                     </div>
                                 </div>
@@ -125,14 +123,14 @@ export function FundingPage() {
                                         Donar
                                     </Button>
                                     <Modal show={show} onHide={handleClose}>
-                                     <Modal.Header closeButton>
-                                     <Modal.Title>Escoja Monto De Donacion</Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Body>
-                                        <div className='flex justify-center'>
-                                         <QrCardPayment/>  
-                                        </div>                                                          
-                                    </Modal.Body>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Escoja Monto De Donacion</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <div className='flex justify-center'>
+                                                <QrCardPayment />
+                                            </div>
+                                        </Modal.Body>
                                     </Modal>
                                 </div>
                                 <div className="row my-2" >
@@ -181,9 +179,10 @@ export function FundingPage() {
                     <div className="col-sm">
                         <h5>Comentarios</h5>
                         {
-                            sessionStorage.getItem('user')!= null?
-                            <CommentFrom idFunding={post.IdFunding} idUser={dataUser[0].IdUser} />:
-                            <CommentFrom idFunding={post.IdFunding} />
+                            sessionStorage.getItem('user') != null ?
+                                <CommentFrom idFunding={post.IdFunding} idUser={dataUser[0].IdUser} />
+                                :
+                                <CommentFrom idFunding={post.IdFunding} />
                         }
                         <hr />
                         <Comment idFunding={post.IdFunding} />

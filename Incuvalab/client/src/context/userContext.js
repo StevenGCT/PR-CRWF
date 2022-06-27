@@ -3,7 +3,7 @@ import { changePassword, getAllCategorysRequest, createFundingRequest, putFundin
 import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestFromBault, permanentDeleteRequest, moveRequestToBault, getFundByNameRequest } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
-import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest, userDonateFundingRequest, deleteReqById, getemailCoincidencesRequest, getNumberConfirmationRequest, setPasswordForgetRequest } from '../api/users'
+import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest, userDonateFundingRequest, deleteReqById, getemailCoincidencesRequest, getNumberConfirmationRequest, setPasswordForgetRequest, setUpdateUserRequest, setUpdateAccountInfoRequest ,registerAdminRequest } from '../api/users'
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest } from '../api/comment'
 import { getCodeQrRequest, QrDeleteRequest } from '../api/qr'
 import { createRoutesFromChildren } from 'react-router-dom'
@@ -66,6 +66,10 @@ export const usePostsQr = () => {
   return context
 }
 
+export const useUserFundings = () => {
+  const context = useContext(userContext)
+  return context
+}
 
 
 export const UserProvider = ({ children }) => {
@@ -92,8 +96,23 @@ export const UserProvider = ({ children }) => {
     }
   }
 
+  const registerAdmin = async (user) => {
+    const res = await registerAdminRequest(user);
+    return res.data;
+  }
+
   const loginUser = async (user) => {
     const res = await loginUserRequest(user);
+    return res.data;
+  }
+
+  const setUpdateUser = async (id, user) => {
+    const res = await setUpdateUserRequest(id,user);
+    return res.data;
+  }
+
+  const setUpdateAccountInfo = async (id, user) => {
+    const res = await setUpdateAccountInfoRequest(id , user);
     return res.data;
   }
 
@@ -120,21 +139,6 @@ export const UserProvider = ({ children }) => {
   const getAllCategory = async () => {
     const res = await getAllCategorysRequest()
     setCategorys(res.data)
-  }
-
-  const getFollowedFunding = async () => {
-    const res = await getUserFollowedFundingRequest()
-    setFollowed(res.data)
-  }
-
-  const getDonatedFunding = async () => {
-    const res = await getUserDonatedFundingRequest()
-    return res.data
-  }
-
-  const getUserFunding = async () => {
-    const res = await getUserFundingRequest()
-    setProjec(res.data)
   }
 
   const deleteUserById = async (id) => {
@@ -164,6 +168,21 @@ export const UserProvider = ({ children }) => {
   
   const getUserFundingCount = async (id) => {
     const res = await getCountUserFundingRequest(id)
+    return res.data
+  }
+
+  const getFollowedFunding = async (id) => {
+    const res = await getUserFollowedFundingRequest(id)
+    return res.data
+  }
+  
+  const getDonatedFunding = async (id) => {
+    const res = await getUserDonatedFundingRequest(id)
+    return res.data
+  }
+
+  const getUserFunding = async (id) => {
+    const res = await getUserFundingRequest(id)
     return res.data
   }
 
@@ -246,6 +265,7 @@ export const UserProvider = ({ children }) => {
   const getPostsFundByNam = async (post) => {
     try {
       const res = await getFundByNameRequest(post);
+      console.log(res, setPostsNamFund)
       setPostsNamFund(res.data);
     }
     catch (error) {
@@ -338,16 +358,8 @@ export const UserProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    getFollowedFunding()
-  }, [])
-
-  useEffect(() => {
     getemailCoincidences()
   } , [])
-
-  useEffect(() => {
-    getUserFunding()
-  }, [])
 
   useEffect(() => {
     getFunds()
@@ -390,7 +402,6 @@ export const UserProvider = ({ children }) => {
       projectsCount,
       setPasswordForget,
       getNumberConfirmation,
-      getDonatedFunding,
       getemailCoincidences,
       createFunding,
       updateFunding,
@@ -446,9 +457,14 @@ export const UserProvider = ({ children }) => {
       getComments,
       deleteCommentById,     
       userDonateFunding,
-      getFollowedCount, getDonatedCount, getUserFundingCount
+      getFollowedCount, getDonatedCount, getUserFundingCount,
+      setUpdateUser,
+      setUpdateAccountInfo,
+      getFollowedFunding, getDonatedFunding, getUserFunding,
+      registerAdmin
     }}>
       {children}
     </userContext.Provider>
   );
 }
+

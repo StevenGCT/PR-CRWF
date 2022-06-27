@@ -15,13 +15,13 @@ export function QrCardsViewAdmin() {
     return(
            
         <CardGroup>
-        <Row xs={1} md={3} className="g-4 rounded">
+        <Row xs={1} md={4} className="g-4 rounded">
                {postsQr.map(post => (
                    <Col>
                            <Card key={postsQr.IdQr}> 
                            <Card.Img variant="top" src={post.QrUrl} />                               
                                    <Card.Header>
-                                       Monto:{post.mount} 
+                                    <h6 className="text-muted text-center">Monto: {post.mount}Bs.</h6>
                                    </Card.Header>  
                                    <Card.Footer>
                                    <Row className="flex p-2">

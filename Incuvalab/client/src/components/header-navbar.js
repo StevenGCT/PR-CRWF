@@ -30,8 +30,8 @@ export default function NavbarLogin(props) {
                             navbarScroll>
                             {sessionStorage.getItem('role') != null && sessionStorage.getItem('role') == 'Administrador' ?
                             <Nav.Link href="/control-page">Dashboard</Nav.Link> : <Nav.Link href="/">Inicio</Nav.Link>}
-                            
-                            <Nav.Link href="/catalogue">Catalogo de proyectos</Nav.Link>
+                            {sessionStorage.getItem('role') != null && sessionStorage.getItem('role') == 'Administrador'?
+                            <Nav.Link href="/createFunding/menu">Crear campaña</Nav.Link> : <Nav.Link href="/catalogue">Catalogo de proyectos</Nav.Link>}
                             <Nav.Link href="/Questions">Preguntas frecuentes</Nav.Link>
                         </Nav>
 

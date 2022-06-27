@@ -14,9 +14,60 @@ export const createUser = async(req, res) => {
                 .input("lastName", sql.VarChar, req.body.lastName)
                 .input("email", sql.VarChar, req.body.email)
                 .input("password", sql.VarChar, req.body.password)
-                .input("username", sql.VarChar, req.body.username)
+                .input("username", sql.VarChar, req.body.name.substring(0, 3)+req.body.lastname.substring(0, 3)+generateCodeVerification(2).trim())
                 .query(queries.createNewUser);
             res.json(req.body);
+        }
+    } catch (err) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+export const createAdmin = async(req, res) => {
+    try {
+        if (req.body == null) {
+            res.status(400).json({ msg: 'Bad Request. Please fill all fields'});
+        } else {
+            var generatePassword = generateCodeVerification(8);
+
+            const pool = await getConnection();
+            var result = await pool.request()
+                .input("name", sql.VarChar, req.body.name)
+                .input("email", sql.VarChar, req.body.email)
+                .input("password", sql.VarChar, generatePassword.trim())
+                .input("phonenumber", sql.VarChar, req.body.phonenumber)
+                .input("lastname", sql.VarChar, req.body.lastname)
+                .input("secondlastname", sql.VarChar, req.body.secondlastname)
+                .input("username", sql.VarChar, req.body.name.substring(0, 3)+req.body.lastname.substring(0, 3)+generateCodeVerification(2).trim())
+                .input("address", sql.VarChar, req.body.address)
+                .query(queries.createNewAdmin);
+            if(result.rowsAffected==1)
+            {
+                var transporter = nodemaller.createTransport({
+                    host:"smtp.ethereal.email",
+                    post:587,
+                    secure: false,
+                    auth:{
+                        user:"ruthie.nikolaus44@ethereal.email",
+                        pass:"k6Hk9rnUBCUdFRt5Vu"
+                    }
+                });
+        
+                var mailOptions ={
+                    from:"Incuva Lab",
+                    to: req.body.email,
+                    subject: "Enviado desde node malle",
+                    text: "<h1> Tu contraseña inicial: </h1>" + generatePassword
+                }
+        
+                transporter.sendMail(mailOptions, (error, info) =>{
+                    if(error){
+                        res.status(500).send(error.message);
+                    }
+                })
+            }
+            res.json(result.rowsAffected);
         }
     } catch (err) {
         res.status(500);
@@ -90,17 +141,21 @@ export const deleteUserById = async(req, res) => {
 export const updateUserById = async(req, res) => {
     try {
         const pool = await getConnection();
-        const { User } = req.body;
         const { id } = req.params;
-        if (User == null || id == null) {
+        if (req.body == null || id == null) {
             res.status(400).json(msg, "Bad Request undefined Category Or id");
         } else {
             const result = await pool.request()
-                .input('user', sql.VarChar, User)
+                .input("name", sql.VarChar, req.body.name)
+                .input("lastname", sql.VarChar, req.body.lastname)
+                .input("secondlastname", sql.VarChar,req.body.secondlastname)
+                .input("username", sql.VarChar, req.body.username)
+                .input("phonenumber", sql.VarChar, req.body.phonenumber)
+                .input("address",sql.VarChar, req.body.address)
                 .input('id', sql.Int, id)
                 .query(queries.updateUserById);
             res.status(200);
-            res.json(result);
+            res.json(result.rowsAffected);
         }
     } catch (error) {
         res.status(500);

@@ -73,13 +73,13 @@ export const getCountFundingsCreateByUserId = async(req, res) => {
     }
 }
 
-export const getTitleFundingByUserId = async(req, res) => {
+export const getTitleOfFollowedFundingByUserId = async(req, res) => {
     try {
         const { id } = req.params;
         const pool = await getConnection();
         const result = await pool.request()
             .input('id', id)
-            .query(queries.getTitleFundingByUserId)
+            .query(queries.getTitleFollowedFundingByUserId)
         console.log(result);
         res.status(200);
         res.json(result.recordset);
@@ -105,13 +105,13 @@ export const getTitleOfFundingDonateByUserId = async(req, res) => {
     }
 }
 
-export const getTitleOfFollowedFundingByUserId = async(req, res) => {
+export const getTitleFundingByUserId = async(req, res) => {
     try {
         const { id } = req.params;
         const pool = await getConnection();
         const result = await pool.request()
             .input('id', id)
-            .query(queries.getTitleFollowedFundingByUserId)
+            .query(queries.getTitleFundingByUserId)
         console.log(result);
         res.status(200);
         res.json(result.recordset);
@@ -124,17 +124,17 @@ export const getTitleOfFollowedFundingByUserId = async(req, res) => {
 export const updatePasswordByUserId = async(req, res) => {
     try {
         const pool = await getConnection();
-        const { NewPassword } = req.body;
         const { id } = req.params;
-        if (NewPassword == null || id == null) {
+        if (req.body == null || id == null) {
             res.status(400).json(msg, "Bad Request undefined password Or id");
         } else {
             const result = await pool.request()
-                .input('newPassword', sql.VarChar, NewPassword)
+                .input('email', sql.VarChar, req.body.email)
+                .input('newPassword', sql.VarChar, req.body.newPassword)
                 .input('id', sql.Int, id)
                 .query(queries.changePassword);
             res.status(200);
-            res.json(result);
+            res.json(result.rowsAffected);
         }
     } catch (error) {
         res.status(500);
