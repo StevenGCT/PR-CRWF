@@ -1,32 +1,50 @@
+import {Formik, Form, Field} from 'formik'
 import './../css/setting.css'
 import { Col, Row,Card } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import avatar from '../components/images/Nube.png'
+import { Navigate } from 'react-router-dom';
+import { usePostsQr } from '../context/userContext'
 
 export function QrCardUpdatePage() {
-
+    const{createPostQr} = usePostsQr()
     return (
                 <Row className="g-4 rounded">
                     <Col >
                      <Card>                     
                       <Card.Header>
-                      <h3 className="pb-3 pt-3">Actualizar Codigo QR</h3>
+                      <h3 className="pb-3 pt-3">Modificar Qr</h3>
                       </Card.Header>  
                       <Card.Footer>
-                      <input type="file" name='image' />
-                      <div className='m-3'>
+                        <Formik
+                    initialValues={{
+                     Mount : '',
+                     image: null
+                     }}
+                     onSubmit = {(values, actions)=>{
+                        createPostQr(values)
+                        console.log(values)
+                     }}
+                    >                
+                 {({ handleSubmit, setFieldValue }) => (
+                    <Form onSubmit={handleSubmit}>   
+                        <div className='m-2 p-3'>
+                            <input type="file" name="image" onChange={(e) => setFieldValue('image',e.target.files[0])}/>
+                        </div>         
+                        
                         <div className="col">Cantidad</div>
-                            <div className="col">
-                                    <input type="text" className="form-control" placeholder="5$" />
-                            </div>
+                        <div className="col">
+                           <Field type="text" className="form-control" name="Mount" placeholder="colocar un monto 5$" required/>
                         </div>
                         <div className='m-2 p-3'>
-                            <a href="#" className="col button btn-general btn"><strong> Actualizar</strong></a>
-                        </div>
+                          <button href="#" className="col button btn-general btn" type='submit'><strong>Actualizar</strong></button>
+                        </div>                                           
+                    </Form>
+                )}    
+            </Formik>:<Navigate to="/qrcreate"/>
                       </Card.Footer>
                        
                      </Card>                      
                     </Col>
-                </Row>                 
+               </Row>                 
     );
 }

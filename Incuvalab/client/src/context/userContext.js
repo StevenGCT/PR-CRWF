@@ -5,8 +5,9 @@ import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
 import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest, userDonateFundingRequest, deleteReqById, getemailCoincidencesRequest, getNumberConfirmationRequest, setPasswordForgetRequest, setUpdateUserRequest, setUpdateAccountInfoRequest ,registerAdminRequest } from '../api/users'
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest } from '../api/comment'
-import { getCodeQrRequest, QrDeleteRequest } from '../api/qr'
+import { getCodeQrRequest, QrDeleteRequest, postCodeQrRequest } from '../api/qr'
 import { createRoutesFromChildren } from 'react-router-dom'
+
 
 const userContext = createContext()
 
@@ -150,7 +151,7 @@ export const UserProvider = ({ children }) => {
     const res = await getUserRequest()
     setUsers(res.data)
   }
-
+  
   const getUserById = async (id) => {
     const res = await getUserByIdRequest(id)
     return res.data
@@ -196,6 +197,11 @@ export const UserProvider = ({ children }) => {
     return res.data;
   }
 
+  const createPostQr = async (postQr) => {
+    const res = await postCodeQrRequest(postQr)
+    return res.data;
+  }
+
   const updatePassword = async (id, password) => {
     const res = await changePassword(id, password)
   }
@@ -235,7 +241,6 @@ export const UserProvider = ({ children }) => {
     setPostsQr(res.data)
   }
 
-
   const getFundsAprobe = async () => {
     const res = await getFundsAprobeRequests()
     setPostsAprobe(res.data)
@@ -272,7 +277,6 @@ export const UserProvider = ({ children }) => {
       console.error(error);
     }
   };
-
 
   const moveFundingToBault = async (id) => {
     const res = await moveRequestToBault(id);
@@ -316,6 +320,7 @@ export const UserProvider = ({ children }) => {
       return res.status;
     }
   }
+  
 
   const getComments = async (idFunding) => {
     const res = await getCommentsRequest(idFunding);
@@ -419,6 +424,7 @@ export const UserProvider = ({ children }) => {
       postsQr,
       getQr,
       deleteQrById,
+      createPostQr,
 
       getUserById,
 

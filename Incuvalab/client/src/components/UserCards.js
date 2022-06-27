@@ -20,7 +20,7 @@ export function UserCards() {
         
     
     <CardGroup >
-        <Row xs={1} md={2} className="g-4 rounded">
+    <Row xs={1} md={2} className="g-4 rounded">
       {postsUsersList.map(postUserEditList => (
           <Col>
             <Card key={postUserEditList.IdUser}>
