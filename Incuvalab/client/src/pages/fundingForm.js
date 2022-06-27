@@ -124,18 +124,18 @@ export function FundingForm(props) {
                                     </div>
                                     <div className="col form-group mb-3">
                                         <label className="fw-semibold">Título</label>
-                                        <Field name='title' className="form-control" />
+                                        <Field name='title' className="form-control" maxlength="300"/>
                                     </div>
                                 </div>
 
                                 <div className="row mb-3">
                                     <div className="col form-group mb-3 ">
                                         <label className="fw-semibold">Descripcion breve</label>
-                                        <Field component="textarea" name='fastDescription' className="form-control" maxlength="135" rows="4" />
+                                        <Field component="textarea" name='fastDescription' className="form-control" maxlength="300" rows="4" />
                                     </div>
                                     <div className="col form-group ">
                                         <label className="fw-semibold">Descripcion General</label>
-                                        <Field component="textarea" name='description' className="form-control" maxlength="135" rows="4" />
+                                        <Field component="textarea" name='description' className="form-control" rows="4" maxlength="1000"/>
                                     </div>
                                 </div>
 
@@ -156,7 +156,7 @@ export function FundingForm(props) {
                                     <li><strong>¿Por qué este proyecto?</strong></li>
                                     <p>Transmite tu entusiasmo sobre el proyecto a la gente, hazle sentir tu compromiso de llevarlo a cabo.</p>
 
-                                    <Field name='question1' type="text" component="textarea" Style="height:280px;" maxlength="280px" className="form-control" />
+                                    <Field name='question1' type="text" component="textarea" Style="height:280px;" maxlength="999" className="form-control" />
                                 </div>
                                 <a className="flex btn btn-success mt-3" href="#three">Ir a la siguiente sección</a>
                             </section>
@@ -172,7 +172,7 @@ export function FundingForm(props) {
                                     <p> Cuenta cómo comenzó todo y hasta dónde has llegado en este momento. De esta forma, los patrocinadores pueden entender qué tipo de trabajo ofreces y cómo lo manejas.
                                     </p>
 
-                                    <Field name='question2' type="text" component="textarea" Style="height:360px;" maxlength="350px" className="form-control" />
+                                    <Field name='question2' type="text" component="textarea" Style="height:360px;" maxlength="999" className="form-control" />
                                 </div>
                                 <a className="flex btn btn-success mt-5" href="#four">Ir a la siguiente sección</a>
                             </section>
@@ -188,7 +188,7 @@ export function FundingForm(props) {
                                     <li><strong>Riesgos y desafíos</strong></li>
                                     <p>Sé honesto acerca de los posibles riesgos y desafíos del proyecto y cómo planeas superarlos para completarlo.</p>
 
-                                    <Field name='question3' type="text" component="textarea" Style="height:360px;" maxlength="350px" className="form-control" />
+                                    <Field name='question3' type="text" component="textarea" Style="height:360px;" maxlength="999" className="form-control" />
                                 </div>
                                 <a className="flex btn btn-success mt-5" href="#five">Ir a la siguiente sección</a>
                             </section>
@@ -240,12 +240,12 @@ export function FundingForm(props) {
                                 <div className="row">
                                     <div class="col form-group mb-3">
                                         <label className="fw-semibold">Link de la video presentacion de la compaña</label>
-                                        <Field name='fundingVideo' type="text" className="form-control" placeholder="https://www.youtube.com/embed/tuVideo" />
+                                        <Field name='fundingVideo' type="text" className="form-control" maxlength="300" placeholder="https://www.youtube.com/embed/tuVideo" />
                                     </div>
                                     <div class="col form-group mb-3">
                                         <label className="fw-semibold">Social media</label>
                                         <p className=" text-secondary">Agrega el link de una red socal de preferencia para una mejor visualización de la campaña.</p>
-                                        <Field name='socialMedia' type="text" className="form-control" placeholder="Facebook, Twiter o Instagram" />
+                                        <Field name='socialMedia' type="text" maxlength="250" className="form-control" placeholder="Facebook, Twiter o Instagram" />
                                     </div>
                                     <div class="col form-group mb-3">
                                         <label className="fw-semibold">Categoria</label>
@@ -272,14 +272,14 @@ export function FundingForm(props) {
                                     <div class="col form-group mb-3">
                                         <label className="fw-semibold">Número de cuenta</label>
                                         <p className=" text-secondary">Agrega la cuenta corriente donde deseas recibir los fondos.</p>
-                                        <Field name='accountNumber' type="text" className="form-control" />
+                                        <Field name='accountNumber' maxlength="30" type="text" className="form-control" />
                                     </div>
                                     <div class="col form-group mb-3">
                                         <label className="fw-semibold">Meta a reacudar</label>
                                         <p className=" text-secondary">Define una meta alcanzable que cubra lo que necesitas para completar tu proyecto.
                                             El financiamiento es todo o nada. Si no cumples tu meta, no recibirás ninguna contribución.</p>
                                         <div class="input-group">
-                                            <Field name='goal' type="text" className="form-control" placeholder="0.00" />
+                                            <Field name='goal' type="text" className="form-control" placeholder="0.00" maxlength="8" />
                                             <span class="input-group-text">Bs.</span>
                                             <span class="input-group-text">0.00</span>
                                         </div>

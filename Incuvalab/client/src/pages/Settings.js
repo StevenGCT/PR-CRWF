@@ -199,7 +199,7 @@ export function Settings() {
                                                                 </Card.Footer>
                                                             </Card>
                                                             :
-                                                            <p>No sigues ninguna campaña</p>
+                                                            <p>No donaste a ninguna campaña</p>
                                                     }
                                                 </div>
 
@@ -230,7 +230,7 @@ export function Settings() {
                                                                     <Link to={"/funding/" + postFU.IdFunding}>Ir a proyecto</Link>
                                                                 </Card.Footer>
                                                             </Card> :
-                                                            <p>No sigues ninguna campaña</p>
+                                                            <p>No creaste ninguna campaña</p>
                                                     }
                                                 </div>
 
