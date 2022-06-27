@@ -3,10 +3,9 @@ import { generateCodeVerification } from '../extras/confirmNumber';
 
 const nodemaller = require("nodemailer");
 
-export const createUser = async(req, res) => {
-    try {
-        if (req.body == null) {
-            res.status(400).json({ msg: 'Bad Request. Please fill all fields'});
+export const createUser = async (req, res) => {
+    if (req.body == null) {
+            res.status(400).json({ msg: 'Bad Request. Please fill all fields' });
         } else {
             const pool = await getConnection();
             var result = await pool.request()
@@ -14,20 +13,16 @@ export const createUser = async(req, res) => {
                 .input("lastName", sql.VarChar, req.body.lastName)
                 .input("email", sql.VarChar, req.body.email)
                 .input("password", sql.VarChar, req.body.password)
-                .input("username", sql.VarChar, req.body.name.substring(0, 3)+req.body.lastname.substring(0, 3)+generateCodeVerification(2).trim())
+                .input("username", sql.VarChar, req.body.username)
                 .query(queries.createNewUser);
             res.json(req.body);
         }
-    } catch (err) {
-        res.status(500);
-        res.send(error.message);
-    }
 }
 
-export const createAdmin = async(req, res) => {
+export const createAdmin = async (req, res) => {
     try {
         if (req.body == null) {
-            res.status(400).json({ msg: 'Bad Request. Please fill all fields'});
+            res.status(400).json({ msg: 'Bad Request. Please fill all fields' });
         } else {
             var generatePassword = generateCodeVerification(8);
 
@@ -39,30 +34,29 @@ export const createAdmin = async(req, res) => {
                 .input("phonenumber", sql.VarChar, req.body.phonenumber)
                 .input("lastname", sql.VarChar, req.body.lastname)
                 .input("secondlastname", sql.VarChar, req.body.secondlastname)
-                .input("username", sql.VarChar, req.body.name.substring(0, 3)+req.body.lastname.substring(0, 3)+generateCodeVerification(2).trim())
+                .input("username", sql.VarChar, req.body.name.substring(0, 3) + req.body.lastname.substring(0, 3) + generateCodeVerification(2).trim())
                 .input("address", sql.VarChar, req.body.address)
                 .query(queries.createNewAdmin);
-            if(result.rowsAffected==1)
-            {
+            if (result.rowsAffected == 1) {
                 var transporter = nodemaller.createTransport({
-                    host:"smtp.ethereal.email",
-                    post:587,
+                    host: "smtp.ethereal.email",
+                    post: 587,
                     secure: false,
-                    auth:{
-                        user:"ruthie.nikolaus44@ethereal.email",
-                        pass:"k6Hk9rnUBCUdFRt5Vu"
+                    auth: {
+                        user: "ruthie.nikolaus44@ethereal.email",
+                        pass: "k6Hk9rnUBCUdFRt5Vu"
                     }
                 });
-        
-                var mailOptions ={
-                    from:"Incuva Lab",
+
+                var mailOptions = {
+                    from: "Incuva Lab",
                     to: req.body.email,
                     subject: "Enviado desde node malle",
                     text: "<h1> Tu contraseña inicial: </h1>" + generatePassword
                 }
-        
-                transporter.sendMail(mailOptions, (error, info) =>{
-                    if(error){
+
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
                         res.status(500).send(error.message);
                     }
                 })
@@ -75,7 +69,7 @@ export const createAdmin = async(req, res) => {
     }
 }
 
-export const getLoginUser = async(req, res) => {
+export const getLoginUser = async (req, res) => {
     try {
         console.log(res);
         const pool = await getConnection();
@@ -90,7 +84,7 @@ export const getLoginUser = async(req, res) => {
     }
 }
 
-export const getUserById = async(req, res) => {
+export const getUserById = async (req, res) => {
     try {
         const { id } = req.params;
         console.log(id);
@@ -106,7 +100,7 @@ export const getUserById = async(req, res) => {
 }
 
 
-export const getTypeUserById = async(req, res) => {
+export const getTypeUserById = async (req, res) => {
     try {
         const { id } = req.params;
         console.log(id);
@@ -122,7 +116,7 @@ export const getTypeUserById = async(req, res) => {
 }
 
 
-export const deleteUserById = async(req, res) => {
+export const deleteUserById = async (req, res) => {
     try {
         const { id } = req.params;
         const pool = await getConnection();
@@ -138,7 +132,7 @@ export const deleteUserById = async(req, res) => {
 }
 
 
-export const updateUserById = async(req, res) => {
+export const updateUserById = async (req, res) => {
     try {
         const pool = await getConnection();
         const { id } = req.params;
@@ -148,10 +142,10 @@ export const updateUserById = async(req, res) => {
             const result = await pool.request()
                 .input("name", sql.VarChar, req.body.name)
                 .input("lastname", sql.VarChar, req.body.lastname)
-                .input("secondlastname", sql.VarChar,req.body.secondlastname)
+                .input("secondlastname", sql.VarChar, req.body.secondlastname)
                 .input("username", sql.VarChar, req.body.username)
                 .input("phonenumber", sql.VarChar, req.body.phonenumber)
-                .input("address",sql.VarChar, req.body.address)
+                .input("address", sql.VarChar, req.body.address)
                 .input('id', sql.Int, id)
                 .query(queries.updateUserById);
             res.status(200);
@@ -163,7 +157,7 @@ export const updateUserById = async(req, res) => {
     }
 }
 
-export const getUserEditList = async(req, res) => {
+export const getUserEditList = async (req, res) => {
     try {
         const pool = await getConnection();
         const result = await pool
@@ -176,7 +170,7 @@ export const getUserEditList = async(req, res) => {
     }
 }
 
-export const getUserDonateFunding = async(req, res) => {
+export const getUserDonateFunding = async (req, res) => {
     try {
         const { id } = req.params;
         const pool = await getConnection();
@@ -188,50 +182,45 @@ export const getUserDonateFunding = async(req, res) => {
         res.status(500);
         res.send(error.message);
     }
-    
+
 }
 
-export const getEmailVerification = async(req, res) => {
-    try {
-        const pool = await getConnection();
-        const result = await pool.request()
-            .input('email', req.body.email)
-            .query(queries.getExistEmailVerification)
-        res.json(result.recordset);
-    } catch (error) {
-        res.status(500);
-        res.send(error.message);
-    }
+export const getEmailVerification = async (req, res) => {
+    const pool = await getConnection();
+    const result = await pool.request()
+        .input('email', sql.VarChar, req.body.email)
+        .query(queries.getExistEmailVerification)
+    res.json(result.recordset);
 }
 
-export const restoreForgetPassword = async(req, res) => {
+export const restoreForgetPassword = async (req, res) => {
     try {
         var codeVerfication = generateCodeVerification(7);
 
         var transporter = nodemaller.createTransport({
-            host:"smtp.ethereal.email",
-            post:587,
+            host: "smtp.ethereal.email",
+            post: 587,
             secure: false,
-            auth:{
-                user:"ruthie.nikolaus44@ethereal.email",
-                pass:"k6Hk9rnUBCUdFRt5Vu"
+            auth: {
+                user: "ruthie.nikolaus44@ethereal.email",
+                pass: "k6Hk9rnUBCUdFRt5Vu"
             }
         });
 
-        var mailOptions ={
-            from:"Incuva Lab",
+        var mailOptions = {
+            from: "Incuva Lab",
             to: req.body.email,
             subject: "Enviado desde node malle",
-            text: "<h1>Tu código de verificación es: </h1>"+codeVerfication
+            text: "<h1>Tu código de verificación es: </h1>" + codeVerfication
         }
 
-        transporter.sendMail(mailOptions, (error, info) =>{
-            if(error){
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
                 res.status(500).send(error.message);
             }
         })
 
-        const code = {codeV: codeVerfication}
+        const code = { codeV: codeVerfication }
         res.json(code);
     } catch (error) {
         res.status(500);
@@ -239,10 +228,10 @@ export const restoreForgetPassword = async(req, res) => {
     }
 }
 
-export const setPasswordForget = async(req, res) => {
+export const setPasswordForget = async (req, res) => {
     try {
         if (req.body == null) {
-            res.status(400).json({ msg: 'Bad Request. Please fill all fields'});
+            res.status(400).json({ msg: 'Bad Request. Please fill all fields' });
         } else {
             const pool = await getConnection();
             var result = await pool.request()

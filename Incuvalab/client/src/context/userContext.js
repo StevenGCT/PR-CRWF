@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from 'react'
-import { changePassword, getAllCategorysRequest, createFundingRequest, putFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
+import { changePassword, getAllCategorysRequest, createFundingRequest, putFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest, setFollowedFundingRequest } from '../api/user'
 import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestFromBault, permanentDeleteRequest, moveRequestToBault, getFundByNameRequest } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
@@ -188,6 +188,15 @@ export const UserProvider = ({ children }) => {
 
   const getUserFunding = async (id) => {
     const res = await getUserFundingRequest(id)
+    return res.data
+  }
+
+  const setFollowedFunding = async (userFunding) => {
+    console.log(userFunding)
+    
+    const res = await setFollowedFundingRequest(userFunding)
+    console.log(res)
+    
     return res.data
   }
 
@@ -483,7 +492,8 @@ export const UserProvider = ({ children }) => {
       getFollowedFunding, getDonatedFunding, getUserFunding,
 
       getDonation, createDonation,
-      registerAdmin
+      registerAdmin,
+      setFollowedFunding
     }}>
       {children}
     </userContext.Provider>

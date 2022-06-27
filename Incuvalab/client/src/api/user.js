@@ -19,7 +19,7 @@ export const getUserDonatedFundingRequest = async (id) => await axios.get('/user
 
 export const getUserFollowedFundingRequest = async (id) => await axios.get('/users/Followed/'+id);
 
-
+export const setFollowedFundingRequest = async (userFunding) => await axios.post("/users/Followed", userFunding);
 
 export const getAllCategorysRequest = async () => await axios.get('/categorys');
 

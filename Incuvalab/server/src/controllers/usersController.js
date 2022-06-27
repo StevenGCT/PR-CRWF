@@ -60,21 +60,14 @@ export const getCountDonationsByUserId = async(req, res) => {
 }
 
 export const setUserFollowedInsert = async(req, res) => {
-    try {
-        if (req.body == null) {
-            res.status(400).json({ msg: 'Bad Request. Please fill all fields'});
-        } else {
+
             const pool = await getConnection();
             var result = await pool.request()
                 .input("idUser", sql.Int, req.body.idUser)
                 .input("idFunding", sql.Int, req.body.idFunding)
                 .query(queries.setUserFollowedInsert);
             res.json(result.rowsAffected);
-        }
-    } catch (err) {
-        res.status(500);
-        res.send(error.message);
-    }
+
 }
 
 export const getCountFundingsCreateByUserId = async(req, res) => {

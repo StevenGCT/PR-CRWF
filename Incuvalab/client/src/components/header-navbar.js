@@ -26,7 +26,6 @@ export default function NavbarLogin(props) {
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="me-auto my-2 my-lg-0"
-                            style={{ maxHeight: '100px' }}
                             navbarScroll>
                             {sessionStorage.getItem('role') != null && sessionStorage.getItem('role') == 'Administrador' ?
                             <Nav.Link href="/control-page">Dashboard</Nav.Link> : <Nav.Link href="/">Inicio</Nav.Link>}
