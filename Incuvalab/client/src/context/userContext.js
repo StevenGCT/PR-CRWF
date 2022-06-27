@@ -143,7 +143,7 @@ export const UserProvider = ({ children }) => {
 
   const deleteUserById = async (id) => {
     const res = await deleteReqById(id)
-    setProjec(res.data)
+    return res.data
   }
 
   const getUser = async () => {

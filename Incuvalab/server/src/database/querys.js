@@ -20,7 +20,7 @@ export const queries = {
     changeImageProfile: "UPDATE UI SET UI.UserImage = @newImageProfile FROM UserImage UI INNER JOIN Users U ON UI.IdImage = U.idUsersImage WHERE U.IdUser = @id",
     
     
-    getUserDonateFunding: "SELECT idUser FROM Funding F INNER JOIN User_Funding UF ON UF.idFunding = F.idFunding WHERE F.IdFunding = @idFunding",
+    getUserDonateFunding: "SELECT idUser FROM Funding F INNER JOIN Donations D ON D.idFunding = F.idFunding WHERE F.IdFunding = @idFunding",
     
     //User
     createNewUser: "INSERT INTO Users ([Name] ,LastName, Email, [Password], UserName) VALUES (@name, @lastName, @email, HashBytes('MD5', @password), @username)",
