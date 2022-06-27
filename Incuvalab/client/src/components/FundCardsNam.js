@@ -16,7 +16,7 @@ export function FundCardsNam() {
       {postsNamFund.map(nampost => (
           <Col>
         <Card key={nampost.IdFunding}>
-        <Link to={"/control-funding/" + nampost.IdFunding} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+        <Link to={"/funding/" + nampost.IdFunding} style={{ color: 'inherit', textDecoration: 'inherit'}}>
             <Card.Header className='text-wrap'>
                 {nampost.Title}
             </Card.Header>

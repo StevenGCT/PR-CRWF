@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
 
-import { useNavigate, useParams } from 'react-router-dom'
-
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { usePostsFund } from "../context/userContext"
 import OfertFunding from '../components/cardOfertsFunding'
 import Comment from '../components/commentFundinng'
@@ -17,6 +17,7 @@ export function FundingPage() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const navigate = useNavigate();
 
     const dataUser = JSON.parse(sessionStorage.getItem('user'));
 
@@ -119,23 +120,40 @@ export function FundingPage() {
                                     </div>
                                 </div>
                                 <div className="row ">
-                                    <Button href="#" className="col button btn-general btn" onClick={handleShow}>
-                                        Donar
-                                    </Button>
-                                    <Modal show={show} onHide={handleClose}>
-                                        <Modal.Header closeButton>
-                                            <Modal.Title>Escoja Monto De Donacion</Modal.Title>
-                                        </Modal.Header>
-                                        <Modal.Body>
-                                            <div className='flex justify-center'>
-                                                <QrCardPayment />
-                                            </div>
-                                        </Modal.Body>
-                                    </Modal>
+                                    {
+                                        dataUser == null ?
+                                        <Link to={'/login'} className="col button btn-general btn btn-secondary">Donar</Link> :
+                                        <div>
+                                            <Button href="#" className="col button btn-general btn btn-secondary" onClick={handleShow}>
+                                                Donar
+                                            </Button>
+                                            <Modal show={show} onHide={handleClose}>
+                                                <Modal.Header closeButton>
+                                                    <Modal.Title>Escoja Monto De Donacion</Modal.Title>
+                                                </Modal.Header>
+                                                <Modal.Body>
+                                                    <div className='flex justify-center'>
+                                                        <QrCardPayment />
+                                                    </div>
+                                                </Modal.Body>
+                                            </Modal>
+                                        </div>
+                                    }
+
                                 </div>
                                 <div className="row my-2" >
-                                    <button href="#" className="col me-2 button btn-general">Seguir</button>
-                                    <button href="#" className="col ms-2 button btn-general">Compartir</button>
+                                    <Formik initialValues={{}}
+                                        onSubmit={async (values, actions) => {
+
+                                        }} >
+                                        {({ handleSubmit }) => (
+                                            <Form onSubmit={handleSubmit} className='col'>
+                                                <button type='submit' className="col button btn-general">Seguir</button>
+                                            </Form>
+                                        )}
+                                    </Formik>
+
+                                    <button className="col button btn-general me-2">Compartir</button>
                                 </div>
                             </div>
                         </div>

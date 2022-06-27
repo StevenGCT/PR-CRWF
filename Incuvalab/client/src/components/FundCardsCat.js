@@ -16,7 +16,7 @@ export function FundCardsCat() {
       {postsCatFund.map(catpost => (
           <Col>
         <Card key={catpost.IdFunding}>
-        <Link to={"/control-funding/" + catpost.IdFunding} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+        <Link to={"/funding/" + catpost.IdFunding} style={{ color: 'inherit', textDecoration: 'inherit'}}>
             <Card.Header className='text-wrap'>
                 {catpost.Title}
             </Card.Header>
