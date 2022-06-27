@@ -23,7 +23,7 @@ export function FundCardsAprobe() {
             <Row xs={1} md={3} className="g-4 rounded">
                 {postsToAprobe.map(postAprove => (
                     <Col>
-                        <Card key={postsToAprobe.IdFunding}>
+                        <Card key={postAprove.IdFunding}>
                             
                                 <Card.Header>
                                     <a class="btn" href={"/control-funding/" + postAprove.IdFunding}>

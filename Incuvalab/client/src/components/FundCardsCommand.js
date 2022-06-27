@@ -19,7 +19,7 @@ export function FundCardsCommand() {
             <Row xs={1} md={3} className="g-4 rounded">
                 {posts.map(post => (
                     <Col>
-                        <Card key={posts.IdFunding}>
+                        <Card key={post.IdFunding}>
                             
                                 <Card.Header>
                                     <a class="btn" href={"/control-funding/" + post.IdFunding}>

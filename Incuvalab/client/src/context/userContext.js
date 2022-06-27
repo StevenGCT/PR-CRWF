@@ -214,7 +214,6 @@ export const UserProvider = ({ children }) => {
 
   const getFunds = async () => {
     const res = await getFundsRequests()
-    console.log(res, setPosts)
     setPosts(res.data)
   }
 
@@ -243,7 +242,6 @@ export const UserProvider = ({ children }) => {
 
   const getFundsRecycle = async () => {
     const res = await getFundsErasedRequests()
-    console.log(res, setPosts)
     setPostsRecycle(res.data)
   }
 
@@ -263,14 +261,9 @@ export const UserProvider = ({ children }) => {
   };
 
   const getPostsFundByNam = async (post) => {
-    try {
+      console.log(post)
       const res = await getFundByNameRequest(post);
-      console.log(res, setPostsNamFund)
       setPostsNamFund(res.data);
-    }
-    catch (error) {
-      console.error(error);
-    }
   };
 
 
