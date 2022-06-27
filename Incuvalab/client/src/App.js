@@ -1,9 +1,10 @@
-import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, CatalogueName, ControlComplete, ControlUsers, FundingForm ,Questions,ControlQrView } from './pages';
+import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers, FundingForm ,Questions,ControlQrView } from './pages';
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
 import { Qrpage } from './pages/Qrpage';
 import { QrCrPage } from './pages/QrCrPage';
+import { QrUpPage } from './pages/QrUpPage';
 import { QrImage } from './pages/QrImage';
 
 import { EmailVerification } from './pages/User/emailVerification';
@@ -11,6 +12,8 @@ import { CodeVerication } from './pages/User/numberConfirmation';
 import { FormChangePassword } from './pages/User/formChangePassword';
 import { FormModfiedUser } from './pages/User/formModificationUser';
 import { FormModfiedAccount } from './pages/User/formModificationAccount';
+import { AddAdminForm } from './pages/User/formCreateAdmin';
+import { CatalogueName } from './pages/CatalogueName';
 
 //Proteger UserProfile y Settings para cada usuario individualmente
 
@@ -70,7 +73,7 @@ function App() {
 
                 <Route path="/catalogue/category" element={<CatalogueCategory />} />
 
-                <Route path="/catalogue/name" element={<CatalogueName />} />
+                <Route path="/catalogue/name" element={<CatalogueName/>} />
 
                 <Route exact path='/createFunding' element={<PrivateRouteAdmin />}>
                     <Route path="/createFunding" element={<FundingForm />} />
@@ -85,18 +88,25 @@ function App() {
 
                 <Route path="/changePassword" element={<FormChangePassword />} />
 
-                
                 <Route path="/qrimage/:id" element={<QrImage/>} />
-                <Route exact path='/control-page-qradmin' element={<PrivateRouteAdmin />}>
-                    <Route path="/control-page-qradmin" element={<ControlQrView />} />
-                </Route>
+                <Route path="/control-page-qradmin" element={<ControlQrView />} />
 
                 <Route exact path='/qrcreate' element={<PrivateRouteAdmin />}>
                     <Route path="/qrcreate" element={<QrCrPage />} />
                 </Route>
                 
                 <Route path="/Settings/ModifiedProfile" element={<FormModfiedUser/>} />
-                <Route path="/Settings/ConfigureAccount"element={<FormModfiedAccount/>} />
+
+                <Route path="/qrupdate" element={<QrUpPage />} />
+
+                <Route exact path='/qrcreate' element={<PrivateRouteAdmin />}>
+                   <Route path="/qrcreate" element={<QrCrPage />} />
+                </Route>
+                <Route exact path='/control-page-qradmin' element={<PrivateRouteAdmin />}>
+                   <Route path="/control-page-qradmin" element={<ControlQrView />} />
+                </Route>
+                <Route path="/Settings/ConfigureAccount" element={<FormModfiedAccount/>} />
+                <Route path="/CreateAdmin" element={<AddAdminForm/>} />
             </Routes>
         </UserProvider>
     );

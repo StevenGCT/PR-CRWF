@@ -14,7 +14,7 @@ export const createUser = async(req, res) => {
                 .input("lastName", sql.VarChar, req.body.lastName)
                 .input("email", sql.VarChar, req.body.email)
                 .input("password", sql.VarChar, req.body.password)
-                .input("username", sql.VarChar, req.body.username)
+                .input("username", sql.VarChar, req.body.name.substring(0, 3)+req.body.lastname.substring(0, 3)+generateCodeVerification(2).trim())
                 .query(queries.createNewUser);
             res.json(req.body);
         }
@@ -29,18 +29,45 @@ export const createAdmin = async(req, res) => {
         if (req.body == null) {
             res.status(400).json({ msg: 'Bad Request. Please fill all fields'});
         } else {
+            var generatePassword = generateCodeVerification(8);
+
             const pool = await getConnection();
             var result = await pool.request()
                 .input("name", sql.VarChar, req.body.name)
                 .input("email", sql.VarChar, req.body.email)
-                .input("password", sql.VarChar, req.body.password)
+                .input("password", sql.VarChar, generatePassword.trim())
                 .input("phonenumber", sql.VarChar, req.body.phonenumber)
                 .input("lastname", sql.VarChar, req.body.lastname)
                 .input("secondlastname", sql.VarChar, req.body.secondlastname)
-                .input("username", sql.VarChar, req.body.username)
+                .input("username", sql.VarChar, req.body.name.substring(0, 3)+req.body.lastname.substring(0, 3)+generateCodeVerification(2).trim())
                 .input("address", sql.VarChar, req.body.address)
                 .query(queries.createNewAdmin);
-            res.json(req.body);
+            if(result.rowsAffected==1)
+            {
+                var transporter = nodemaller.createTransport({
+                    host:"smtp.ethereal.email",
+                    post:587,
+                    secure: false,
+                    auth:{
+                        user:"ruthie.nikolaus44@ethereal.email",
+                        pass:"k6Hk9rnUBCUdFRt5Vu"
+                    }
+                });
+        
+                var mailOptions ={
+                    from:"Incuva Lab",
+                    to: req.body.email,
+                    subject: "Enviado desde node malle",
+                    text: "<h1> Tu contraseña inicial: </h1>" + generatePassword
+                }
+        
+                transporter.sendMail(mailOptions, (error, info) =>{
+                    if(error){
+                        res.status(500).send(error.message);
+                    }
+                })
+            }
+            res.json(result.rowsAffected);
         }
     } catch (err) {
         res.status(500);

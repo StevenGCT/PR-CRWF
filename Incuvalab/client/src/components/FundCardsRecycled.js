@@ -22,7 +22,7 @@ export function FundCardsRecycled() {
             <Row xs={1} md={3} className="g-4 rounded">
                 {postsToRecycle.map(postContainer => (
                     <Col>
-                        <Card key={postsToRecycle.IdFunding}>
+                        <Card key={postContainer.IdFunding}>
                             
                                 <Card.Header>
                                     <a class="btn" href={"/control-funding/" + postContainer.IdFunding}>

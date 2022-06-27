@@ -1,19 +1,21 @@
 import { FundCardsCat } from "../components/FundCardsCat"
 import { SearchByCategory } from "../components/SearchByCategory"
-import { usePostsCatFund } from '../context/userContext'
+import { usePostsCatFund, usePostsNamFund } from '../context/userContext'
 import { VscBell } from 'react-icons/vsc'
-import { Form, Button, Container, Col, Row, FormControl } from 'react-bootstrap'
+import { Button, Container, Col, Row, FormControl } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
+import { Link, useNavigate  } from "react-router-dom"
+import { Form, Formik, Field } from 'formik'
+
+export function CatalogueCategory() {
+  const navigate = useNavigate();
+  const { postsCatFund } = usePostsCatFund()
+  const { getPostsFundByNam } = usePostsNamFund()
 
 
-export function CatalogueCategory() { 
-
-  const {postsCatFund} = usePostsCatFund()
-
-
-  if (postsCatFund.length === 0) return(    
+  if (postsCatFund.length === 0) return (
     <>
       <div>
         <NavbarLogin locale={true} />
@@ -24,15 +26,20 @@ export function CatalogueCategory() {
               <Row>
                 <Col sm={4}><SearchByCategory /></Col>
                 <Col sm={8}>
-                  <Form className="d-flex m-2">
-                    <FormControl
-                      type="search"
-                      placeholder="Buscar..."
-                      className="me-2"
-                      aria-label="Search"
-                    />
-                    <Button variant="outline-dark">Buscar</Button>
-                  </Form>
+                <Formik initialValues={{ search: ''}}
+                  onSubmit={(values, actions) => {
+                    const resultFundsName = getPostsFundByNam(values)
+                    if (resultFundsName != null) {
+                      navigate('/catalogue/name')
+                    }
+                  }}>
+                  {({ handleSubmit }) => (
+                    <Form onSubmit={handleSubmit} className="d-flex m-2">
+                      <Field className="form-control me-1" name='search' placeholder="Buscar..." />
+                      <Button type="submit" variant="outline-dark">Buscar</Button>
+                    </Form>
+                  )}
+                </Formik>
                 </Col>
               </Row>
             </Container>
@@ -53,32 +60,37 @@ export function CatalogueCategory() {
     </>
   )
 
-  
+
   return (
     <>
-    <NavbarLogin locale={true} />
-      <div className="container align-center">
+      <NavbarLogin locale={true} />
+      <div className="container align-center my.3">
         <h1 className="mt-5 p-3">Catálogo</h1>
-          <Container>
-            <Row>
-              <Col sm={4}><SearchByCategory /></Col>
-              <Col sm={8}>
-                <Form className="d-flex m-2">
-                  <FormControl
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-dark">Search</Button>
-              </Form>
-              </Col>
-            </Row>
-          </Container>
+        <Container>
+          <Row>
+            <Col sm={4}><SearchByCategory /></Col>
+            <Col sm={8}>
+            <Formik initialValues={{ search: ''}}
+                  onSubmit={(values, actions) => {
+                    const resultFundsName = getPostsFundByNam(values)
+                    if (resultFundsName != null) {
+                      navigate('/catalogue/name')
+                    }
+                  }}>
+                  {({ handleSubmit }) => (
+                    <Form onSubmit={handleSubmit} className="d-flex m-2">
+                      <Field className="form-control me-1" name='search' placeholder="Buscar..." />
+                      <Button type="submit" variant="outline-dark">Buscar</Button>
+                    </Form>
+                  )}
+                </Formik>
+            </Col>
+          </Row>
+        </Container>
       </div>
       <br />
-      <div className="container align-center">
-        <FundCardsCat />       
+      <div className="container align-center my-3">
+        <FundCardsCat />
       </div>
       <Footer />
     </>

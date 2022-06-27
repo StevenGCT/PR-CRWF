@@ -73,11 +73,11 @@ export function DashMenu() {
           </Link>
           <Link to="/qrcreate" style={{ color: 'inherit', textDecoration: 'inherit' }}>
             <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
-            <img src={require('./images/assets/addQr.png')} alt="Control-Icon" />
-            <span className={`${!open && "hidden"} origin-left duration-200`}>
-              Agregar Codigo QR
-            </span>
-          </li>
+              <img src={require('./images/assets/addQr.png')} alt="Control-Icon" />
+              <span className={`${!open && "hidden"} origin-left duration-200`}>
+                Agregar Codigo QR
+              </span>
+            </li>
           </Link>
 
           <Link to="/control-page-user" style={{ color: 'inherit', textDecoration: 'inherit' }}>
@@ -88,12 +88,15 @@ export function DashMenu() {
               </span>
             </li>
           </Link>
-          <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
-            <img src={require('./images/assets/addUser.png')} alt="Control-Icon" />
-            <span className={`${!open && "hidden"} origin-left duration-200`}>
-              Agregar Usuario
-            </span>
-          </li>
+
+          <Link to="/CreateAdmin" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <li className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 `}>
+              <img src={require('./images/assets/addUser.png')} alt="Control-Icon" />
+              <span className={`${!open && "hidden"} origin-left duration-200`}>
+                Agregar Usuario
+              </span>
+            </li>
+          </Link>
         </div>
       </React.Fragment>
       <div className="h-screen flex-1">
@@ -102,7 +105,7 @@ export function DashMenu() {
 
           <div>
             <section>
-              <FundCardsCommand/>
+              <FundCardsCommand />
             </section>
           </div>
 

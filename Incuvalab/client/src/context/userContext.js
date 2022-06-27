@@ -5,7 +5,7 @@ import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
 import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest, userDonateFundingRequest, deleteReqById, getemailCoincidencesRequest, getNumberConfirmationRequest, setPasswordForgetRequest, setUpdateUserRequest, setUpdateAccountInfoRequest ,registerAdminRequest } from '../api/users'
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest } from '../api/comment'
-import { getCodeQrRequest } from '../api/qr'
+import { getCodeQrRequest, QrDeleteRequest } from '../api/qr'
 import { createRoutesFromChildren } from 'react-router-dom'
 import {getDonationRequest, createDonationRequest} from '../api/donation'
 
@@ -103,7 +103,7 @@ export const UserProvider = ({ children }) => {
 
   const registerAdmin = async (user) => {
     const res = await registerAdminRequest(user);
-
+    return res.data;
   }
 
   const loginUser = async (user) => {
@@ -148,7 +148,7 @@ export const UserProvider = ({ children }) => {
 
   const deleteUserById = async (id) => {
     const res = await deleteReqById(id)
-    setProjec(res.data)
+    return res.data
   }
 
   const getUser = async () => {
@@ -238,7 +238,6 @@ export const UserProvider = ({ children }) => {
 
   const getFunds = async () => {
     const res = await getFundsRequests()
-    console.log(res, setPosts)
     setPosts(res.data)
   }
 
@@ -259,6 +258,7 @@ export const UserProvider = ({ children }) => {
     setPostsQr(res.data)
   }
 
+
   const getFundsAprobe = async () => {
     const res = await getFundsAprobeRequests()
     setPostsAprobe(res.data)
@@ -266,7 +266,6 @@ export const UserProvider = ({ children }) => {
 
   const getFundsRecycle = async () => {
     const res = await getFundsErasedRequests()
-    console.log(res, setPosts)
     setPostsRecycle(res.data)
   }
 
@@ -286,14 +285,9 @@ export const UserProvider = ({ children }) => {
   };
 
   const getPostsFundByNam = async (post) => {
-    try {
+      console.log(post)
       const res = await getFundByNameRequest(post);
-      console.log(res, setPostsNamFund)
       setPostsNamFund(res.data);
-    }
-    catch (error) {
-      console.error(error);
-    }
   };
 
 
@@ -353,6 +347,11 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     getDonation()
   }, [])
+  const deleteQrById = async (IdQr) => {
+    const res = await QrDeleteRequest(IdQr);
+    return res.data;
+  }
+
 
   useEffect(() => {
     getAllCategory()
@@ -439,6 +438,7 @@ export const UserProvider = ({ children }) => {
 
       postsQr,
       getQr,
+      deleteQrById,
 
       getUserById,
 
@@ -475,14 +475,15 @@ export const UserProvider = ({ children }) => {
 
       createComment,
       getComments,
-      deleteCommentById,
+      deleteCommentById,     
       userDonateFunding,
       getFollowedCount, getDonatedCount, getUserFundingCount,
       setUpdateUser,
       setUpdateAccountInfo,
       getFollowedFunding, getDonatedFunding, getUserFunding,
 
-      getDonation, createDonation
+      getDonation, createDonation,
+      registerAdmin
     }}>
       {children}
     </userContext.Provider>
