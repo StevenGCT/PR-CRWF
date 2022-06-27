@@ -98,7 +98,7 @@ export const UserProvider = ({ children }) => {
 
   const registerAdmin = async (user) => {
     const res = await registerAdminRequest(user);
-
+    return res.data;
   }
 
   const loginUser = async (user) => {
@@ -453,7 +453,8 @@ export const UserProvider = ({ children }) => {
       getFollowedCount, getDonatedCount, getUserFundingCount,
       setUpdateUser,
       setUpdateAccountInfo,
-      getFollowedFunding, getDonatedFunding, getUserFunding
+      getFollowedFunding, getDonatedFunding, getUserFunding,
+      registerAdmin
     }}>
       {children}
     </userContext.Provider>

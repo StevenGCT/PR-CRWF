@@ -11,6 +11,7 @@ import { CodeVerication } from './pages/User/numberConfirmation';
 import { FormChangePassword } from './pages/User/formChangePassword';
 import { FormModfiedUser } from './pages/User/formModificationUser';
 import { FormModfiedAccount } from './pages/User/formModificationAccount';
+import { AddAdminForm } from './pages/User/formCreateAdmin';
 
 //Proteger UserProfile y Settings para cada usuario individualmente
 
@@ -96,7 +97,8 @@ function App() {
                 </Route>
                 
                 <Route path="/Settings/ModifiedProfile" element={<FormModfiedUser/>} />
-                <Route path="/Settings/ConfigureAccount"element={<FormModfiedAccount/>} />
+                <Route path="/Settings/ConfigureAccount" element={<FormModfiedAccount/>} />
+                <Route path="/CreateAdmin" element={<AddAdminForm/>} />
             </Routes>
         </UserProvider>
     );
