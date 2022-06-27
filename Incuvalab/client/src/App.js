@@ -88,7 +88,6 @@ function App() {
 
                 <Route path="/changePassword" element={<FormChangePassword />} />
 
-                
                 <Route path="/qrimage/:id" element={<QrImage/>} />
                 <Route path="/control-page-qradmin" element={<ControlQrView />} />
 

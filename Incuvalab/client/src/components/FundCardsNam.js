@@ -20,7 +20,7 @@ export function FundCardsNam() {
             <Card.Header className='text-wrap'>
                 {nampost.Title}
             </Card.Header>
-            <Card.Img variant="top" src="https://economipedia.com/wp-content/uploads/Economia-de-la-empresa.jpg"/>
+            <Card.Img variant="top" src={nampost.FundingImage1}/>
             <Card.Body>
             {nampost.CurrentGoal >= nampost.Goal ? <ProgressBar className="m-2"  now={(nampost.CurrentGoal/nampost.Goal)*100} variant="success" label={nampost.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2"  now={(nampost.CurrentGoal/nampost.Goal)*100} variant="dark" label={nampost.CurrentGoal + "Bs."} />}
                     <Card.Text className="p-2">
