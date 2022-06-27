@@ -13,7 +13,7 @@ export function FundCardTop() {
             <Row xs={1} md={3} className="g-4 rounded">
             {postsTop.map(post => (
                     <Col>
-                            <Card key={postsTop.IdFunding}>
+                            <Card key={post.IdFunding}>
                                 <a class="btn" href={"/funding/" + post.IdFunding[0]}>
                                     <Card.Header className='text-wrap'>
                                         {post.Title}

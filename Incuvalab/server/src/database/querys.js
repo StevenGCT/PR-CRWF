@@ -58,7 +58,7 @@ export const fundqueries = {
     getCompleteFunding: "SELECT * FROM Funding WHERE CurrentGoal >= Goal AND State = 1 AND Aprove = 1",
     getAllNoAprobedFunding: "SELECT * FROM Funding WHERE State = 1 AND Aprove = 0",
     getDeletedFunding: "SELECT * FROM Funding WHERE State = 0",
-    getAllFundingByCat: "SELECT * FROM Funding WHERE IdCategory = @id",
+    getAllFundingByCat: "SELECT * FROM Funding WHERE IdCategory = @id AND [State] = 1 AND Aprove = 1",
     getFundingByName: "SELECT * FROM Funding WHERE Title LIKE CONCAT('%',@search,'%') AND State  = 1 AND Aprove = 1",
     getFundingById: "SELECT IdFunding, Title,Question1,Question2,Question3,FastDescription,F.Description,FundingImage1,FundingImage2,FundingImage3,FundingVideo,SocialMedia,RegisterDate, f.IdCategory, C.CategoryName,Goal,CurrentGoal, AccountNumber FROM Funding F INNER JOIN Category C ON C.IdCategory = F.IdCategory WHERE IdFunding = @id",
     deleteFundingById: "DELETE FROM Funding WHERE IdFunding = @id",

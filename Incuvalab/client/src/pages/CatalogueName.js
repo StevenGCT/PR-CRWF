@@ -2,21 +2,21 @@ import { FundCardsNam } from "../components/FundCardsNam"
 import { SearchByCategory } from "../components/SearchByCategory"
 import { usePostsNamFund } from '../context/userContext'
 import { VscBell } from 'react-icons/vsc'
-import { Button, Container, Col, Row} from 'react-bootstrap'
-import { Form, Formik, Field} from 'formik'
+import { Button, Container, Col, Row } from 'react-bootstrap'
+import { Form, Formik, Field } from 'formik'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
 import { Link } from "react-router-dom"
 
 
-export function CatalogueName() { 
+export function CatalogueName() {
 
   const { postsNamFund } = usePostsNamFund()
   const { getPostsFundByNam } = usePostsNamFund()
 
 
-  if (postsNamFund.length === 0) return(    
+  if (postsNamFund.length === 0) return (
     <>
       <div>
         <NavbarLogin locale={true} />
@@ -27,7 +27,7 @@ export function CatalogueName() {
               <Row>
                 <Col sm={4}><SearchByCategory /></Col>
                 <Col sm={8}>
-                  
+
                 </Col>
               </Row>
             </Container>
@@ -48,39 +48,40 @@ export function CatalogueName() {
     </>
   )
 
-  
+
   return (
     <>
-    <NavbarLogin locale={true} />
+      <NavbarLogin locale={true} />
       <div className="container align-center">
         <h1 className="mt-5 p-3">Catálogo</h1>
-          <Container>
-            <Row>
-              <Col sm={4}><SearchByCategory /></Col>
-              <Col sm={8}>
+        <Container>
+          <Row>
+            <Col sm={4}><SearchByCategory /></Col>
+            <Col sm={8}>
               <Formik initialValues={{
-                    search: '',
-                  }}
-                  onSubmit={(values, actions) => {
-                    getPostsFundByNam(values)
-                  }}
-                  >
-                  {({ handleSubmit }) => (
+                search: ''
+              }}
+                onSubmit={(values, actions) => {
+                  const resultFundsName = getPostsFundByNam(values)
+                  console.log(resultFundsName)
+                }}
+              >
+                {({ handleSubmit }) => (
                   <Form onSubmit={handleSubmit} className="d-flex m-2">
-                    <Field className="form-control me-1" name='Search' placeholder="Buscar..." />
-                    <Link to="/catalogue/name">
+                    <Field className="form-control me-1"  name='search' placeholder="Buscar..." />
+
                     <Button type="submit" variant="outline-dark">Buscar</Button>
-                    </Link>
+
                   </Form>
-                  )}
-                </Formik>
-              </Col>
-            </Row>
-          </Container>
+                )}
+              </Formik>
+            </Col>
+          </Row>
+        </Container>
       </div>
       <br />
-      <div className="container align-center">
-        <FundCardsNam />       
+      <div className="container align-center  my-3">
+        <FundCardsNam />
       </div>
       <Footer />
     </>
