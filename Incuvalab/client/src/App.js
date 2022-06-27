@@ -87,12 +87,6 @@ function App() {
 
                 <Route path="/changePassword" element={<FormChangePassword />} />
 
-                
-<<<<<<< HEAD
-                
-
-=======
->>>>>>> 1c3ce262e750805b13d42d7d8e52fab395384e6f
                 <Route path="/qrimage/:id" element={<QrImage/>} />
                 <Route path="/control-page-qradmin" element={<ControlQrView />} />
 
@@ -101,7 +95,6 @@ function App() {
                 </Route>
                 
                 <Route path="/Settings/ModifiedProfile" element={<FormModfiedUser/>} />
-<<<<<<< HEAD
 
                 <Route path="/qrupdate" element={<QrUpPage />} />
 
@@ -111,10 +104,8 @@ function App() {
                 <Route exact path='/control-page-qradmin' element={<PrivateRouteAdmin />}>
                    <Route path="/control-page-qradmin" element={<ControlQrView />} />
                 </Route>
-=======
                 <Route path="/Settings/ConfigureAccount" element={<FormModfiedAccount/>} />
                 <Route path="/CreateAdmin" element={<AddAdminForm/>} />
->>>>>>> 1c3ce262e750805b13d42d7d8e52fab395384e6f
             </Routes>
         </UserProvider>
     );
