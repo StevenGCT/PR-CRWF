@@ -95,7 +95,7 @@ export function UserProfile() {
                                                     </Card.Footer>
                                                 </Card>
                                                 :
-                                                <p>No sigues ninguna campaña</p>
+                                                <p>No donaste a ninguna campaña</p>
                                         }
                                     </div>
 
@@ -126,7 +126,7 @@ export function UserProfile() {
                                                         <Link to={"/funding/" + postFU.IdFunding}>Ir a proyecto</Link>
                                                     </Card.Footer>
                                                 </Card> :
-                                                <p>No sigues ninguna campaña</p>
+                                                <p>No creaste ninguna campaña</p>
                                         }
                                     </div>
 
@@ -137,9 +137,6 @@ export function UserProfile() {
                         }
                     </Accordion.Item>
                 </Accordion>
-                <div className="flex justify-center m-3 pt-2">
-                    <Button id="toSettings"><strong>Mis Datos</strong></Button>
-                </div>
             </div>
             <br />
             <Footer />

@@ -16,11 +16,11 @@ export function FundCardsCat() {
       {postsCatFund.map(catpost => (
           <Col>
         <Card key={catpost.IdFunding}>
-        <Link to={"/control-funding/" + catpost.IdFunding} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+        <Link to={"/funding/" + catpost.IdFunding} style={{ color: 'inherit', textDecoration: 'inherit'}}>
             <Card.Header className='text-wrap'>
                 {catpost.Title}
             </Card.Header>
-            <Card.Img variant="top" src={postsCatFund.FundingImage1}/>
+            <Card.Img variant="top" src={catpost.FundingImage1}/>
             <Card.Body>
             {catpost.CurrentGoal >= catpost.Goal ? <ProgressBar className="m-2"  now={(catpost.CurrentGoal/catpost.Goal)*100} variant="success" label={catpost.CurrentGoal + "Bs."} /> : <ProgressBar className="m-2"  now={(catpost.CurrentGoal/catpost.Goal)*100} variant="dark" label={catpost.CurrentGoal + "Bs."} />}
                     <Card.Text className="p-2">

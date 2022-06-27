@@ -48,7 +48,7 @@ function Comment(props) {
                                 </div>
 
                                 <div className="text-center">
-                                    <div className="footer mt-2 card">
+                                    <div className="mt-2 card">
                                         <button type="submit" className="btn btn-outline-secondary">
                                             Comentar
                                         </button>

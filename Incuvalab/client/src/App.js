@@ -1,4 +1,4 @@
-import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, CatalogueName, ControlComplete, ControlUsers, FundingForm ,Questions,ControlQrView } from './pages';
+import { HomePage, NotFoundPage, UserProfile, CreateProject, Settings, ControlFunding, FundingPage, Login, Register, ControlPage, ControlAprobe, ControlRecycled, Catalogue, CatalogueCategory, ControlComplete, ControlUsers, FundingForm ,Questions,ControlQrView } from './pages';
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
@@ -13,6 +13,7 @@ import { FormChangePassword } from './pages/User/formChangePassword';
 import { FormModfiedUser } from './pages/User/formModificationUser';
 import { FormModfiedAccount } from './pages/User/formModificationAccount';
 import { AddAdminForm } from './pages/User/formCreateAdmin';
+import { CatalogueName } from './pages/CatalogueName';
 
 //Proteger UserProfile y Settings para cada usuario individualmente
 
@@ -72,7 +73,7 @@ function App() {
 
                 <Route path="/catalogue/category" element={<CatalogueCategory />} />
 
-                <Route path="/catalogue/name" element={<CatalogueName />} />
+                <Route path="/catalogue/name" element={<CatalogueName/>} />
 
                 <Route exact path='/createFunding' element={<PrivateRouteAdmin />}>
                     <Route path="/createFunding" element={<FundingForm />} />

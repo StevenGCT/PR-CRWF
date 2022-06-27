@@ -20,7 +20,7 @@ export const queries = {
     changeImageProfile: "UPDATE UI SET UI.UserImage = @newImageProfile FROM UserImage UI INNER JOIN Users U ON UI.IdImage = U.idUsersImage WHERE U.IdUser = @id",
     
     
-    getUserDonateFunding: "SELECT idUser FROM Funding F INNER JOIN User_Funding UF ON UF.idFunding = F.idFunding WHERE F.IdFunding = @idFunding",
+    getUserDonateFunding: "SELECT idUser FROM Funding F INNER JOIN Donations D ON D.idFunding = F.idFunding WHERE F.IdFunding = @idFunding",
     
     //User
     createNewUser: "INSERT INTO Users ([Name] ,LastName, Email, [Password], UserName) VALUES (@name, @lastName, @email, HashBytes('MD5', @password), @username)",
@@ -50,15 +50,17 @@ export const queries = {
     getTypeUserById: "SELECT TypeUserName FROM Users U INNER JOIN UserType UT ON UT.IdUserType = U.IdUserType WHERE U.IdUser = @id;",
     getExistEmailVerification: "SELECT COUNT(IdUser) AS email FROM  Users WHERE email LIKE CONCAT(@email, '%')",
 
-    setPasswordUpdate: "UPDATE Users SET [Password] = HASHBYTES('MD5', @password) WHERE Email = @email"
-}
+    setPasswordUpdate: "UPDATE Users SET [Password] = HASHBYTES('MD5', @password) WHERE Email = @email",
+
+    setUserFollowedInsert: "INSERT INTO Followed_Funding ([IdUser] ,[IdFunding]) VALUES (@idUser ,@idFunding)"
+    }
 
 export const fundqueries = {
     getAllFunding: "SELECT * FROM Funding WHERE State = 1 AND Aprove = 1",
     getCompleteFunding: "SELECT * FROM Funding WHERE CurrentGoal >= Goal AND State = 1 AND Aprove = 1",
     getAllNoAprobedFunding: "SELECT * FROM Funding WHERE State = 1 AND Aprove = 0",
     getDeletedFunding: "SELECT * FROM Funding WHERE State = 0",
-    getAllFundingByCat: "SELECT * FROM Funding WHERE IdCategory = @id",
+    getAllFundingByCat: "SELECT * FROM Funding WHERE IdCategory = @id AND [State] = 1 AND Aprove = 1",
     getFundingByName: "SELECT * FROM Funding WHERE Title LIKE CONCAT('%',@search,'%') AND State  = 1 AND Aprove = 1",
     getFundingById: "SELECT IdFunding, Title,Question1,Question2,Question3,FastDescription,F.Description,FundingImage1,FundingImage2,FundingImage3,FundingVideo,SocialMedia,RegisterDate, f.IdCategory, C.CategoryName,Goal,CurrentGoal, AccountNumber FROM Funding F INNER JOIN Category C ON C.IdCategory = F.IdCategory WHERE IdFunding = @id",
     deleteFundingById: "DELETE FROM Funding WHERE IdFunding = @id",

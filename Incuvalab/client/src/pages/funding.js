@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
-
-import { useNavigate, useParams } from 'react-router-dom'
-
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { usePostsFund } from "../context/userContext"
 import OfertFunding from '../components/cardOfertsFunding'
 import Comment from '../components/commentFundinng'
@@ -17,10 +16,11 @@ export function FundingPage() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const navigate = useNavigate();
 
     const dataUser = JSON.parse(sessionStorage.getItem('user'));
 
-    const { getFundingById } = usePostsFund();
+    const { getFundingById, setFollowedFunding, getFollowedFunding } = usePostsFund();
     const [post, setPost] = useState({
         IdFunding: "",
         Title: "",
@@ -33,11 +33,15 @@ export function FundingPage() {
         FundingImage2: "",
         FundingImage3: "",
         FundingVideo: "",
-        SocialMedios: "",
+        SocialMedia: "",
         Category: "",
         Goal: "",
         CurrentGoal: ""
     });
+
+    const [postFollowed, setPostFollowed] = useState({
+    });
+
 
     const params = useParams();
 
@@ -58,7 +62,7 @@ export function FundingPage() {
                     FundingImage2: post[0].FundingImage2,
                     FundingImage3: post[0].FundingImage3,
                     FundingVideo: post[0].FundingVideo,
-                    SocialMedios: post[0].SocialMedios,
+                    SocialMedia: post[0].SocialMedia,
                     Category: post[0].Category,
                     Goal: post[0].Goal,
                     CurrentGoal: post[0].CurrentGoal
@@ -68,7 +72,12 @@ export function FundingPage() {
         })();
     }, [params.id, getFundingById]);
 
-
+    useEffect(() => {
+        (async () => {
+            const postFollowed = await getFollowedFunding(dataUser[0].IdUser)
+            setPostFollowed(postFollowed)
+        })();
+    }, [dataUser[0].IdUser, getFollowedFunding]);
 
     return (
         <div className="base-container">
@@ -119,23 +128,67 @@ export function FundingPage() {
                                     </div>
                                 </div>
                                 <div className="row ">
-                                    <Button href="#" className="col button btn-general btn" onClick={handleShow}>
-                                        Donar
-                                    </Button>
-                                    <Modal show={show} onHide={handleClose}>
-                                        <Modal.Header closeButton>
-                                            <Modal.Title>Escoja Monto De Donacion</Modal.Title>
-                                        </Modal.Header>
-                                        <Modal.Body>
-                                            <div className='flex justify-center'>
-                                                <QrCardPayment />
+                                    {
+                                        dataUser == null ?
+                                            <Link to={'/login'} className="col button btn-general btn btn-secondary">Donar</Link> :
+                                            <div>
+                                                <Button href="#" className="col button btn-general btn btn-secondary" onClick={handleShow}>
+                                                    Donar
+                                                </Button>
+                                                <Modal show={show} onHide={handleClose}>
+                                                    <Modal.Header closeButton>
+                                                        <Modal.Title>Escoja Monto De Donacion</Modal.Title>
+                                                    </Modal.Header>
+                                                    <Modal.Body>
+                                                        <div className='flex justify-center'>
+                                                            <QrCardPayment />
+                                                        </div>
+                                                    </Modal.Body>
+                                                </Modal>
                                             </div>
-                                        </Modal.Body>
-                                    </Modal>
+                                    }
+
                                 </div>
                                 <div className="row my-2" >
-                                    <button href="#" className="col me-2 button btn-general">Seguir</button>
-                                    <button href="#" className="col ms-2 button btn-general">Compartir</button>
+                                    <Formik initialValues={{
+                                        idUser: dataUser[0].IdUser,
+                                        idFunding: params.id
+                                    }}
+                                        onSubmit={async (values, actions) => {
+                                            const resFollowed = await setFollowedFunding(values);
+                                            window.location.reload()
+                                        }} >
+                                        {({ handleSubmit }) => (
+                                            <Form onSubmit={handleSubmit} className='col'>
+                                                {Object.keys(postFollowed).length != 0 ?
+                                                    <div>
+                                                        {postFollowed.length > 0 ?
+                                                            <div>
+                                                                {postFollowed.find(element => element.IdFunding == params.id) != null ?
+                                                                    <button className="form-control col " disabled>Lo sigo!</button>
+                                                                    :
+                                                                    <button type='submit' className="col button btn-general">Seguir</button>
+                                                                }</div> :
+                                                            <div>
+                                                                <button type='submit' className="col button btn-general">Seguir</button>
+                                                            </div>
+                                                        }
+                                                    </div> :
+                                                    <div>
+                                                        <button type='submit' className="col button btn-general">Seguir</button>
+                                                    </div>
+                                                }
+
+                                            </Form>
+                                        )}
+                                    </Formik>
+
+
+
+                                    {post.SocialMedia == null ?
+                                        <Link to={'/'} className="col button btn btn-general me-2 text-center">Visitar Social Media</Link> :
+                                        <a className="col button btn btn-general me-2 text-center" href={post.SocialMedia}>Visitar Social Media</a>
+                                    }
                                 </div>
                             </div>
                         </div>

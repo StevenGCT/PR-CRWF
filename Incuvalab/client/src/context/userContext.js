@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from 'react'
-import { changePassword, getAllCategorysRequest, createFundingRequest, putFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest } from '../api/user'
+import { changePassword, getAllCategorysRequest, createFundingRequest, putFundingRequest, getUserByIdRequest, getCountUserDonatedFundingRequest, getUserDonatedFundingRequest, getCountUserFollowedFundingRequest, getUserFollowedFundingRequest, getCountUserFundingRequest, getUserFundingRequest, getUserRequest, setFollowedFundingRequest } from '../api/user'
 import { getFundsRequests, getFundsRequestsByCat, getFundsAprobeRequests, getFundsErasedRequests, getFundsCompletedRequests, aproveRequestsOfList, removeRequestFromBault, permanentDeleteRequest, moveRequestToBault, getFundByNameRequest } from '../api/funds'
 import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
@@ -7,6 +7,7 @@ import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEd
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest } from '../api/comment'
 import { getCodeQrRequest, QrDeleteRequest, postCodeQrRequest } from '../api/qr'
 import { createRoutesFromChildren } from 'react-router-dom'
+import {getDonationRequest, createDonationRequest} from '../api/donation'
 
 
 const userContext = createContext()
@@ -68,6 +69,10 @@ export const usePostsQr = () => {
 }
 
 export const useUserFundings = () => {
+  const context = useContext(userContext)
+  return context
+}
+export const useDonation =()=>{
   const context = useContext(userContext)
   return context
 }
@@ -144,7 +149,7 @@ export const UserProvider = ({ children }) => {
 
   const deleteUserById = async (id) => {
     const res = await deleteReqById(id)
-    setProjec(res.data)
+    return res.data
   }
 
   const getUser = async () => {
@@ -187,6 +192,15 @@ export const UserProvider = ({ children }) => {
     return res.data
   }
 
+  const setFollowedFunding = async (userFunding) => {
+    console.log(userFunding)
+    
+    const res = await setFollowedFundingRequest(userFunding)
+    console.log(res)
+    
+    return res.data
+  }
+
   const createFunding = async (funding) => {
     const res = await createFundingRequest(funding)
     return res.data;
@@ -217,10 +231,28 @@ export const UserProvider = ({ children }) => {
   const [postsComplete, setPostsCompleted] = useState([])
   const [postsUsersList, setPostsUsersToModify] = useState([])
   const [postsQr, setPostsQr] = useState([])
+  const [donations, setDonation] = useState([])
+
+  const createDonation = async (donation) => {
+    try {
+      const res = await createDonationRequest(donation);
+      setPosts([...donations, res.data]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getDonation = async (id) => {
+    try {
+      const res = await getDonationRequest(id);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const getFunds = async () => {
     const res = await getFundsRequests()
-    console.log(res, setPosts)
     setPosts(res.data)
   }
 
@@ -248,7 +280,6 @@ export const UserProvider = ({ children }) => {
 
   const getFundsRecycle = async () => {
     const res = await getFundsErasedRequests()
-    console.log(res, setPosts)
     setPostsRecycle(res.data)
   }
 
@@ -268,14 +299,9 @@ export const UserProvider = ({ children }) => {
   };
 
   const getPostsFundByNam = async (post) => {
-    try {
+      console.log(post)
       const res = await getFundByNameRequest(post);
-      console.log(res, setPostsNamFund)
       setPostsNamFund(res.data);
-    }
-    catch (error) {
-      console.error(error);
-    }
   };
 
   const moveFundingToBault = async (id) => {
@@ -332,6 +358,9 @@ export const UserProvider = ({ children }) => {
     return res.data;
   }
 
+  useEffect(() => {
+    getDonation()
+  }, [])
   const deleteQrById = async (IdQr) => {
     const res = await QrDeleteRequest(IdQr);
     return res.data;
@@ -467,7 +496,10 @@ export const UserProvider = ({ children }) => {
       setUpdateUser,
       setUpdateAccountInfo,
       getFollowedFunding, getDonatedFunding, getUserFunding,
-      registerAdmin
+
+      getDonation, createDonation,
+      registerAdmin,
+      setFollowedFunding
     }}>
       {children}
     </userContext.Provider>

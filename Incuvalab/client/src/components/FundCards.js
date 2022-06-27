@@ -8,13 +8,14 @@ import React from 'react'
 export function FundCards() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
     const { posts } = usePostsFund()
+    
     return (
         <React.Fragment>
             <CardGroup>
                 <Row xs={1} md={3} className="g-4 rounded">
                     {posts.map(post => (
                         <Col>
-                            <Card key={posts.IdFunding}>
+                            <Card key={post.IdFunding}>
                                 <Link class="btn" to={"/funding/" + post.IdFunding}>
                                     <Card.Header className='text-wrap'>
                                         {post.Title}

@@ -6,14 +6,15 @@ import { Button, Container, Col, Row } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavbarLogin from "../components/header-navbar"
 import Footer from "../components/footer"
-import { Form, Formik, Field} from 'formik'
+import { Form, Formik, Field } from 'formik'
 import { usePostsNamFund } from '../context/userContext'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from 'react-router-dom'
 
 export function Catalogue() {
 
   const { posts } = usePostsFund()
   const { getPostsFundByNam } = usePostsNamFund()
+  const navigate = useNavigate();
 
   if (posts.length === 0) return (
     <>
@@ -26,7 +27,20 @@ export function Catalogue() {
               <Row>
                 <Col sm={4}><SearchByCategory /></Col>
                 <Col sm={8}>
-                 
+                <Formik initialValues={{ search: ''}}
+                  onSubmit={(values, actions) => {
+                    const resultFundsName = getPostsFundByNam(values)
+                    if (resultFundsName != null) {
+                      navigate('/catalogue/name')
+                    }
+                  }}>
+                  {({ handleSubmit }) => (
+                    <Form onSubmit={handleSubmit} className="d-flex m-2">
+                      <Field className="form-control me-1" name='search' placeholder="Buscar..." />
+                      <Button type="submit" variant="outline-dark">Buscar</Button>
+                    </Form>
+                  )}
+                </Formik>
                 </Col>
               </Row>
             </Container>
@@ -58,20 +72,18 @@ export function Catalogue() {
             <Row>
               <Col sm={4}><SearchByCategory /></Col>
               <Col sm={8}>
-                <Formik initialValues={{
-                    search: '',
-                  }}
+                <Formik initialValues={{ search: ''}}
                   onSubmit={(values, actions) => {
-                    getPostsFundByNam(values)
-                  }}
-                  >
+                    const resultFundsName = getPostsFundByNam(values)
+                    if (resultFundsName != null) {
+                      navigate('/catalogue/name')
+                    }
+                  }}>
                   {({ handleSubmit }) => (
-                  <Form onSubmit={handleSubmit} className="d-flex m-2">
-                    <Field className="form-control me-1" name='Search' placeholder="Buscar..." />
-                    <Link to="/catalogue/name">
-                    <Button type="submit" variant="outline-dark">Buscar</Button>
-                    </Link>
-                  </Form>
+                    <Form onSubmit={handleSubmit} className="d-flex m-2">
+                      <Field className="form-control me-1" name='search' placeholder="Buscar..." />
+                      <Button type="submit" variant="outline-dark">Buscar</Button>
+                    </Form>
                   )}
                 </Formik>
               </Col>

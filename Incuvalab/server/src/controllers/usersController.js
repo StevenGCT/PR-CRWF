@@ -59,6 +59,17 @@ export const getCountDonationsByUserId = async(req, res) => {
     }
 }
 
+export const setUserFollowedInsert = async(req, res) => {
+
+            const pool = await getConnection();
+            var result = await pool.request()
+                .input("idUser", sql.Int, req.body.idUser)
+                .input("idFunding", sql.Int, req.body.idFunding)
+                .query(queries.setUserFollowedInsert);
+            res.json(result.rowsAffected);
+
+}
+
 export const getCountFundingsCreateByUserId = async(req, res) => {
     try {
         const { id } = req.params;

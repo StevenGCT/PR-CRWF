@@ -109,7 +109,7 @@ export function HomePage() {
       <div className='container-sm my-5'>
         <div className='text-center'>
           <p className='display-5 fw-bold'>¿Qué es IncUVa-Lab?</p>
-          <p className='fs-5 fw-semibold px-5 lh-lg'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet aliquet ipsum. Vestibulum sagittis at elit in feugiat. Curabitur at ipsum et sapien tempus cursus. Nunc ac ante sapien. Proin eget est tellus. In hac habitasse platea dictumst. Suspendisse potenti. Sed tempor et ex vitae ultrices.</p>
+          <p className='fs-5 fw-semibold px-5 lh-lg'>IncUVa-Lab es una incubadora multipropósito que alberga empresas de diversas actividades económicas y tipos de productos y servicios pertenecientes a estudiantes de UNIVALLE, vale decir que brinda servicio a todas las facultades de la Universidad y funciona bajo la modalidad presencial y virtual. La participación es gratuita, todo alumno o exalumno de la UNIVALLE puede gozar de los servicios de la incubadora, siempre y cuando asuma el compromiso de cumplir con su programa de desarrollo emprendedor.</p>
         </div>
       </div>
 
