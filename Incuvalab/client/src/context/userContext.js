@@ -7,6 +7,7 @@ import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEd
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest } from '../api/comment'
 import { getCodeQrRequest } from '../api/qr'
 import { createRoutesFromChildren } from 'react-router-dom'
+import {getDonationRequest, createDonationRequest} from '../api/donation'
 
 const userContext = createContext()
 
@@ -67,6 +68,10 @@ export const usePostsQr = () => {
 }
 
 export const useUserFundings = () => {
+  const context = useContext(userContext)
+  return context
+}
+export const useDonation =()=>{
   const context = useContext(userContext)
   return context
 }
@@ -211,6 +216,25 @@ export const UserProvider = ({ children }) => {
   const [postsComplete, setPostsCompleted] = useState([])
   const [postsUsersList, setPostsUsersToModify] = useState([])
   const [postsQr, setPostsQr] = useState([])
+  const [donations, setDonation] = useState([])
+
+  const createDonation = async (donation) => {
+    try {
+      const res = await createDonationRequest(donation);
+      setPosts([...donations, res.data]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getDonation = async (id) => {
+    try {
+      const res = await getDonationRequest(id);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const getFunds = async () => {
     const res = await getFundsRequests()
@@ -326,6 +350,9 @@ export const UserProvider = ({ children }) => {
     return res.data;
   }
 
+  useEffect(() => {
+    getDonation()
+  }, [])
 
   useEffect(() => {
     getAllCategory()
@@ -453,7 +480,9 @@ export const UserProvider = ({ children }) => {
       getFollowedCount, getDonatedCount, getUserFundingCount,
       setUpdateUser,
       setUpdateAccountInfo,
-      getFollowedFunding, getDonatedFunding, getUserFunding
+      getFollowedFunding, getDonatedFunding, getUserFunding,
+
+      getDonation, createDonation
     }}>
       {children}
     </userContext.Provider>
