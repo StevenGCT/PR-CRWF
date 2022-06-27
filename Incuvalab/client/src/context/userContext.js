@@ -5,7 +5,7 @@ import { getCatRequests } from '../api/categories'
 import { getFundingByIdRequest, getFundingTop3Request } from '../api/funding'
 import { loginUserRequest, registerUserRequest, getTypeUserRequest, userListToEditRequest, userDonateFundingRequest, deleteReqById, getemailCoincidencesRequest, getNumberConfirmationRequest, setPasswordForgetRequest, setUpdateUserRequest, setUpdateAccountInfoRequest ,registerAdminRequest } from '../api/users'
 import { createCommentRequest, getCommentsRequest, deleteCommentRequest } from '../api/comment'
-import { getCodeQrRequest } from '../api/qr'
+import { getCodeQrRequest, QrDeleteRequest } from '../api/qr'
 import { createRoutesFromChildren } from 'react-router-dom'
 
 const userContext = createContext()
@@ -234,6 +234,7 @@ export const UserProvider = ({ children }) => {
     setPostsQr(res.data)
   }
 
+
   const getFundsAprobe = async () => {
     const res = await getFundsAprobeRequests()
     setPostsAprobe(res.data)
@@ -316,6 +317,11 @@ export const UserProvider = ({ children }) => {
 
   const deleteCommentById = async (idComment) => {
     const res = await deleteCommentRequest(idComment);
+    return res.data;
+  }
+
+  const deleteQrById = async (IdQr) => {
+    const res = await QrDeleteRequest(IdQr);
     return res.data;
   }
 
@@ -405,6 +411,7 @@ export const UserProvider = ({ children }) => {
 
       postsQr,
       getQr,
+      deleteQrById,
 
       getUserById,
 
@@ -441,7 +448,7 @@ export const UserProvider = ({ children }) => {
 
       createComment,
       getComments,
-      deleteCommentById,
+      deleteCommentById,     
       userDonateFunding,
       getFollowedCount, getDonatedCount, getUserFundingCount,
       setUpdateUser,

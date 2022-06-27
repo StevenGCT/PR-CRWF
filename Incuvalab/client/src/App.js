@@ -4,6 +4,7 @@ import { UserProvider } from './context/userContext';
 import { PrivateRoute, PrivateRouteAdmin } from './components/PrivateRoute';
 import { Qrpage } from './pages/Qrpage';
 import { QrCrPage } from './pages/QrCrPage';
+import { QrUpPage } from './pages/QrUpPage';
 import { QrImage } from './pages/QrImage';
 
 import { EmailVerification } from './pages/User/emailVerification';
@@ -88,18 +89,33 @@ function App() {
                 <Route path="/changePassword" element={<FormChangePassword />} />
 
                 
+<<<<<<< HEAD
+                
+
+=======
+>>>>>>> 1c3ce262e750805b13d42d7d8e52fab395384e6f
                 <Route path="/qrimage/:id" element={<QrImage/>} />
-                <Route exact path='/control-page-qradmin' element={<PrivateRouteAdmin />}>
-                    <Route path="/control-page-qradmin" element={<ControlQrView />} />
-                </Route>
+                <Route path="/control-page-qradmin" element={<ControlQrView />} />
 
                 <Route exact path='/qrcreate' element={<PrivateRouteAdmin />}>
                     <Route path="/qrcreate" element={<QrCrPage />} />
                 </Route>
                 
                 <Route path="/Settings/ModifiedProfile" element={<FormModfiedUser/>} />
+<<<<<<< HEAD
+
+                <Route path="/qrupdate" element={<QrUpPage />} />
+
+                <Route exact path='/qrcreate' element={<PrivateRouteAdmin />}>
+                   <Route path="/qrcreate" element={<QrCrPage />} />
+                </Route>
+                <Route exact path='/control-page-qradmin' element={<PrivateRouteAdmin />}>
+                   <Route path="/control-page-qradmin" element={<ControlQrView />} />
+                </Route>
+=======
                 <Route path="/Settings/ConfigureAccount" element={<FormModfiedAccount/>} />
                 <Route path="/CreateAdmin" element={<AddAdminForm/>} />
+>>>>>>> 1c3ce262e750805b13d42d7d8e52fab395384e6f
             </Routes>
         </UserProvider>
     );
