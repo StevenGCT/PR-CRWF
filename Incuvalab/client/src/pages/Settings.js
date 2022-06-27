@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react'
 import { Register } from './register'
 import AccordionBody from 'react-bootstrap/esm/AccordionBody'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 
 export function Settings() {
     const dataUser = JSON.parse(sessionStorage.getItem('user'));
@@ -135,7 +136,7 @@ export function Settings() {
                                     <br />
                                     <span class="profile-desc-text">Participa desde</span>
                                     <br />
-                                    <span class="profile-desc-text">{post.RegisterDate}</span>
+                                    <span class="profile-desc-text">{moment(post.RegisterDate).format('DD/MM/YYYY')}</span>
                                 </div>
                             </div>
                         </div>

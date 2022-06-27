@@ -50,8 +50,10 @@ export const queries = {
     getTypeUserById: "SELECT TypeUserName FROM Users U INNER JOIN UserType UT ON UT.IdUserType = U.IdUserType WHERE U.IdUser = @id;",
     getExistEmailVerification: "SELECT COUNT(IdUser) AS email FROM  Users WHERE email LIKE CONCAT(@email, '%')",
 
-    setPasswordUpdate: "UPDATE Users SET [Password] = HASHBYTES('MD5', @password) WHERE Email = @email"
-}
+    setPasswordUpdate: "UPDATE Users SET [Password] = HASHBYTES('MD5', @password) WHERE Email = @email",
+
+    setUserFollowedInsert: "INSERT INTO Followed_Funding ([IdUser] ,[IdFunding]) VALUES (@idUser ,@idFunding)"
+    }
 
 export const fundqueries = {
     getAllFunding: "SELECT * FROM Funding WHERE State = 1 AND Aprove = 1",

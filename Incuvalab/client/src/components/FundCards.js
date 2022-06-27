@@ -8,6 +8,7 @@ import React from 'react'
 export function FundCards() {
     //ARREGLAR EL RUTEO DE LAS IMAGENES
     const { posts } = usePostsFund()
+    
     return (
         <React.Fragment>
             <CardGroup>

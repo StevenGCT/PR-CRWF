@@ -137,9 +137,6 @@ export function UserProfile() {
                         }
                     </Accordion.Item>
                 </Accordion>
-                <div className="flex justify-center m-3 pt-2">
-                    <Button id="toSettings"><strong>Mis Datos</strong></Button>
-                </div>
             </div>
             <br />
             <Footer />

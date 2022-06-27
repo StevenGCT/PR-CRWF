@@ -1,7 +1,6 @@
 import { useUsers } from '../../context/userContext'
 import './../../css/setting.css'
 import NavbarLogin from "../../components/header-navbar"
-import { Col, Row, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import avatar from '../../components/images/profile.webp'
 import Footer from "../../components/footer"
@@ -10,7 +9,7 @@ import { useState, useEffect } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { Link, useNavigate } from 'react-router-dom'
-import { Label } from 'react-bootstrap'
+import moment from 'moment'
 
 export function FormModfiedAccount() {
     const dataUser = JSON.parse(sessionStorage.getItem('user'));
@@ -117,7 +116,7 @@ export function FormModfiedAccount() {
                                     <br />
                                     <span class="profile-desc-text">Participa desde</span>
                                     <br />
-                                    <span class="profile-desc-text">{post.RegisterDate}</span>
+                                    <span class="profile-desc-text">{moment(post.RegisterDate).format('DD/MM/YYYY')}</span>
                                 </div>
                             </div>
                         </div>

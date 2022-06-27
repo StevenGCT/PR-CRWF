@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { Label } from 'react-bootstrap'
+import moment from 'moment'
 
 export function FormModfiedUser() {
     const dataUser = JSON.parse(sessionStorage.getItem('user'));
@@ -115,7 +115,7 @@ export function FormModfiedUser() {
                                     <br />
                                     <span class="profile-desc-text">Participa desde</span>
                                     <br />
-                                    <span class="profile-desc-text">{post.RegisterDate}</span>
+                                    <span class="profile-desc-text">{moment(post.RegisterDate).format('DD/MM/YYYY')}</span>
                                 </div>
                             </div>
                         </div>
@@ -187,7 +187,7 @@ export function FormModfiedUser() {
                                                 <div className=" col form-group mb-3">
                                                     <label>Número de telefono</label>
                                                     <ErrorMessage component="p" name="phonenumber" className="col text-danger" />
-                                                    <Field name='phonenumbar' className="form-control form-control-sm" placeholder="Ingresa tu nombre" />
+                                                    <Field name='phonenumber' className="form-control form-control-sm" placeholder="Ingresa telefono" />
                                                 </div>
                                             </div>
 
@@ -195,7 +195,7 @@ export function FormModfiedUser() {
                                                 <div className=" col form-group mb-3">
                                                     <label>Dirección</label>
                                                     <ErrorMessage component="p" name="address" className="col text-danger" />
-                                                    <Field name='address' className="form-control form-control-sm" placeholder="Ingresa tu nombre" />
+                                                    <Field name='address' className="form-control form-control-sm" placeholder="Ingresa dirección" />
                                                 </div>
                                             </div>
 
